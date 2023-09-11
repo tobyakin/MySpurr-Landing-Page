@@ -1,0 +1,15 @@
+{
+  "routes": [
+    {
+      "route": "/*",
+      "serve": "/index.html",
+      "statusCode": 200
+    }
+  ],
+  "rewrites": [],
+  "navigationFallback": {
+    "rewrite": "/index.html",
+    "statusCode": 200
+  },
+  "functions": []
+}
