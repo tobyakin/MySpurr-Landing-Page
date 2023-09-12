@@ -18,7 +18,8 @@ module.exports = {
           text: '#333333',
           pink: '#DD4A6B'
         },
-        brand: '#2F929C',
+        brand: '#43D0DF',
+        dimBrand: '#00474F',
         secondary: {
           main: '#00AFEF8A'
           // light: "var(--color-secondary-light)",
