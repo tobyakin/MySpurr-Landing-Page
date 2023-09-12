@@ -81,12 +81,12 @@
 
 .btn-light {
 
-  @apply border-none text-brand border-2 px-10 py-3 rounded-md text-sm
+  @apply border-none text-black border-2 px-10 py-3 rounded-md text-sm
 }
 
 .btn-brand {
 
-  @apply border-brand bg-brand text-gray-100 border-2 px-10 py-3 rounded-full text-sm
+  @apply border-brand bg-brand text-black font-Satoshi500 border-2 px-10 py-3 rounded-full text-[16px]
 }
 
 .btn-light-border {
