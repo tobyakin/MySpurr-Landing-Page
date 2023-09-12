@@ -24,7 +24,7 @@ const toogleMobileMenu = () => {
           <router-link to="/">
             <img
               src="@/assets/Logo.png"
-              class="h-[40px] md:h-[27.53px] w-auto"
+              class="h-[30px] md:h-[34.421px] w-auto"
               alt="MySpurr logo"
             />
           </router-link>
