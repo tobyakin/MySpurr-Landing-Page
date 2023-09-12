@@ -1,5 +1,15 @@
-<script setup></script>
+<script setup>
+import Navbar from "@/components/Navbar/Navbar.vue";
+import Footer from "@/components/Footer.vue";
+import SectionOne from "@/components/Home/SectionOne.vue";
+</script>
 
 <template>
-  <div></div>
+  <div>
+    <Navbar />
+    <SectionOne />
+    <Footer />
+  </div>
 </template>
+
+<style scoped></style>
