@@ -17,7 +17,7 @@
           fill="white"
         />
       </svg> -->
-      <div class="justify-end items-start mb-8 flex flex-col">
+      <div class="justify-end w-full items-end text-right mb-8 flex flex-col">
         <h2
           class="text-white text-[50px] lg:text-[62px] leading-[50px] lg:leading-[76px] font-Satoshi400 mt-2 lg:mt-4 mb-8"
         >
@@ -167,5 +167,11 @@ const image = mainbg;
   background-size: cover;
   background-blend-mode: overlay;
   background-color: #000000ab;
+  background-color: linear-gradient(
+    90deg,
+    rgba(6, 6, 6, 0.9318321078431373) 0%,
+    rgba(86, 86, 92, 0.7973783263305322) 35%,
+    rgba(250, 250, 250, 1) 100%
+  );
 }
 </style>

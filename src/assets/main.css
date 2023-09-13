@@ -6,7 +6,7 @@
 
 
 .container {
-  max-width: 1200px;
+  max-width: 1150px;
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
@@ -37,7 +37,7 @@
   }
 }
 .auth_container {
-  max-width: 1363px;
+  max-width: 1360px;
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
