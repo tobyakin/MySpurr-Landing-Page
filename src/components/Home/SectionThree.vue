@@ -4,7 +4,7 @@
     :style="{ backgroundImage: `url(${image})` }"
   >
     <div class="container">
-      <!-- <svg
+      <svg
         width="65"
         height="65"
         viewBox="0 0 65 65"
@@ -16,8 +16,8 @@
           d="M25.5371 22.3224C25.5371 20.6555 27.4565 19.7201 28.7694 20.7471L43.2479 32.0736C44.3207 32.9129 44.259 34.5556 43.1263 35.3121L28.6478 44.981C27.3188 45.8685 25.5371 44.9159 25.5371 43.3178V22.3224Z"
           fill="white"
         />
-      </svg> -->
-      <div class="justify-end w-full items-end text-right mb-8 flex flex-col">
+      </svg>
+      <div class="justify-start w-full items-start mb-8 flex flex-col">
         <h2
           class="text-white text-[50px] lg:text-[62px] leading-[50px] lg:leading-[76px] font-Satoshi400 mt-2 lg:mt-4 mb-8"
         >
