@@ -45,7 +45,18 @@ const tweetId = [
   margin-top: 0 !important;
   margin-bottom: 0 !important;
 }
-/* .twitter-tweet,
+.css-1dbjc4n,
+.r-kzbkwu,
+.r-1h8ys4a,
+.css-1dbjc4n,
+.r-1habvwh,
+.r-1ets6dv,
+.r-5kkj8d,
+.r-18u37iz,
+.r-14gqq1x,
+.r-1h8ys4a {
+  display: none !important;
+} /* .twitter-tweet,
 .twitter-tweet-rendered,
 iframe {
   @apply !max-h-[500px];
