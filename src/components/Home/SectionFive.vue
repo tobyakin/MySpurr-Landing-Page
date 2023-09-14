@@ -3,7 +3,7 @@
     <div class="container">
       <div class="flex justify-center">
         <h2
-          class="text-dimBrand text-[43px] lg:text-[72px] !font-semibold leading-[68.056px] lg:leading-[74px] font-EBGaramond500 mb-8"
+          class="text-dimBrand text-[43px] lg:text-[50px] !font-semibold leading-[68.056px] lg:leading-[74px] font-EBGaramond500 mb-8"
         >
           Loved by Creatives
         </h2>

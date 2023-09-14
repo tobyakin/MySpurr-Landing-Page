@@ -2,7 +2,7 @@
   <div class="py-20 container">
     <div class="flex justify-between">
       <h2
-        class="text-dimBrand text-[43px] lg:text-[59.757px] !font-semibold leading-[68.056px] lg:leading-[74px] font-EBGaramond500 mb-8"
+        class="text-dimBrand text-[43px] lg:text-[50px] !font-semibold leading-[68.056px] lg:leading-[74px] font-EBGaramond500 mb-8"
       >
         New job listing
       </h2>
