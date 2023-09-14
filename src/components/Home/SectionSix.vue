@@ -2,7 +2,8 @@
   <div class="container py-40">
     <div class="w-full">
       <iframe
-        class="w-full lg:h-[80vh] h-[50vh] rounded-[14px]"
+        v-if="steps[1]"
+        class="w-full lg:h-[80vh] h-[50vh] animate__bounceIn rounded-[14px]"
         width="auto"
         height="auto"
         src="https://www.youtube.com/embed/1f-vEXh_XaI"
@@ -10,9 +11,25 @@
         frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowfullscreen
-      ></iframe>
+      ></iframe
+      ><button class="animate__bounceOut" @click="changeScreen(0, 1)" v-if="steps[0]">
+        <img
+          class="w-full lg:h-[80vh] h-[50vh] rounded-[14px]"
+          src="@/assets/img/videoBg.png"
+          alt=""
+        />
+      </button>
     </div>
   </div>
 </template>
 
-<style></style>
+<script setup>
+import { ref } from "vue";
+import "animate.css";
+
+const steps = ref([true, false]);
+const changeScreen = (from, to, type = null) => {
+  steps.value[from] = false;
+  steps.value[to] = true;
+};
+</script>
