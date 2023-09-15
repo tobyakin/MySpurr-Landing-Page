@@ -1,9 +1,13 @@
 <script setup>
 import { ref } from "vue";
+import { useRoute } from "vue-router";
+
 import SearchBarIcon from "@/components/icons/searchBarIcon.vue";
 const body = document.querySelector("body");
 body.classList.remove("overflow-hidden");
 const showMobile = ref(false);
+const route = useRoute();
+
 const toogleMobileMenu = () => {
   const body = document.querySelector("body");
   showMobile.value = !showMobile.value;
@@ -53,7 +57,8 @@ const toogleMobileMenu = () => {
             <ul class="flex flex-row font-Satoshi500 items-center gap-5">
               <li>
                 <router-link
-                  to="/"
+                  to="/business"
+                  :class="route.name === 'business' ? 'text-[#2F929C] ' : ''"
                   class="p-[10px] pr-0 flex justify-start rounded-[5px]"
                 >
                   <span class="place-self-center text-[16px] leading-[21.6px]"
