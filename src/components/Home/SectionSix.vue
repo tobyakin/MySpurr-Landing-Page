@@ -3,7 +3,7 @@
     <div class="w-full">
       <iframe
         v-if="steps[1]"
-        class="w-full lg:h-[80vh] h-[50vh] animate__bounceIn rounded-[14px]"
+        class="w-full lg:h-[630px] h-[50vh] animate__bounceIn rounded-[14px]"
         width="auto"
         height="auto"
         src="https://www.youtube.com/embed/1f-vEXh_XaI"
@@ -12,9 +12,13 @@
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowfullscreen
       ></iframe
-      ><button class="animate__bounceOut" @click="changeScreen(0, 1)" v-if="steps[0]">
+      ><button
+        class="animate__bounceOut w-full"
+        @click="changeScreen(0, 1)"
+        v-if="steps[0]"
+      >
         <img
-          class="w-full lg:h-[80vh] h-[50vh] rounded-[14px]"
+          class="w-full lg:h-[630px] h-[50vh] rounded-[14px]"
           src="@/assets/img/videoBg.png"
           alt=""
         />
