@@ -8,7 +8,9 @@
           Loved by Businesses
         </h2>
       </div>
-      <div class="md:grid md:grid-cols-3 flex overflow-x-scroll gap-4 my-4 mb-[50px]">
+      <div
+        class="md:grid md:grid-cols-3 hide-scrollbar flex overflow-x-scroll gap-4 my-4 mb-[50px]"
+      >
         <div
           v-for="item in tweetPost"
           :key="item"
