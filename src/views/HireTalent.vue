@@ -90,6 +90,14 @@ const FormSelectGroup = defineAsyncComponent(() =>
           </button>
         </div>
       </div>
+      <div class="text-center my-10 py-20">
+        <h4 class="text-[63.549px] text-[#000000] font-Satoshi500 leading-[67.52px]">
+          Creative Talents for Hire
+        </h4>
+        <p class="text-[#007582] text-[31.194px] font-Satoshi400 leading-[59.552px]">
+          Find you desired talent & make your work done
+        </p>
+      </div>
       <div class="mt-14 flex flex-col gap-8">
         <!-- <JobRowCard class="min-w-[95%] lg:min-w-[45%]" v-for="item in 4" :key="item" /> -->
       </div>
