@@ -68,7 +68,8 @@ const toogleMobileMenu = () => {
               </li>
               <li>
                 <router-link
-                  to="/"
+                  to="/learn"
+                  :class="route.name === 'learn' ? 'text-[#2F929C] ' : ''"
                   class="p-[10px] pr-0 flex justify-start rounded-[5px]"
                 >
                   <span class="place-self-center text-[16px] leading-[21.6px]"

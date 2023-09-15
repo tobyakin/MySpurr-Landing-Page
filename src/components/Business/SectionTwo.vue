@@ -45,8 +45,8 @@
 <script setup>
 import { ref } from "vue";
 import ImageOne from "@/assets/img/access.png";
-import ImageTwo from "@/assets/img/find.png";
-import ImageThree from "@/assets/img/manage.png";
+import ImageTwo from "@/assets/img/manage.png";
+import ImageThree from "@/assets/img/find.png";
 import ImageFour from "@/assets/img/collaborate.png";
 import SampleOne from "@/components/genericComponents/sampleOne.vue";
 const HeadingOne = ` <span class="font-Satoshi700">Access</span>  creative  <br class="md:block hidden" /> talents`;
