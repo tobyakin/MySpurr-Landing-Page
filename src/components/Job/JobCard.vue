@@ -59,12 +59,12 @@
         alt=""
       />
     </div>
-    <button class="flex items-center gap-4 mt-6">
+    <router-link to="/talent-profile" class="flex items-center gap-4 mt-6">
       <p class="lg:text-[20.699px] text-[14px] font-Satoshi500 text-[#244034]">
         View Profile
       </p>
       <ArrowRight />
-    </button>
+    </router-link>
   </div>
 </template>
 <script setup>
