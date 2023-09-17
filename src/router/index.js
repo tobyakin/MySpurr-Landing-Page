@@ -4,6 +4,8 @@ import BusinessView from '../views/Business/index.vue'
 import LearnView from '../views/LearnView.vue'
 import HireTalent from '@/views/HireTalent.vue'
 import TalentProfile from '@/views/TalentProfile.vue'
+import BlogView from '@/views/Blog/BlogPage.vue'
+import SingleBlog from '@/views/Blog/SingleBlogPage.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -21,6 +23,16 @@ const router = createRouter({
       path: '/learn',
       name: 'learn',
       component: LearnView
+    },
+    {
+      path: '/blog',
+      name: 'blog',
+      component: BlogView
+    },
+    {
+      path: '/view-blog',
+      name: 'view-blog',
+      component: SingleBlog
     },
     {
       path: '/hire-talent',
