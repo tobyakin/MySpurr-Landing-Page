@@ -148,7 +148,7 @@ const getYear = new Date().getFullYear();
               <router-link to="/"> About </router-link>
             </li>
             <li class="text-[13.933px] font-Satoshi400 leading-[36.062px]">
-              <router-link to="/"> Blog </router-link>
+              <router-link to="/blog"> Blog </router-link>
             </li>
             <li class="text-[13.933px] font-Satoshi400 leading-[36.062px]">
               <router-link to="/"> Case Study </router-link>
