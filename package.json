@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "animate.css": "^4.1.1",
+    "dayjs": "^1.11.9",
     "pinia": "^2.1.4",
+    "share-url": "^1.2.0",
     "vue": "^3.3.4",
     "vue-router": "^4.2.4"
   },

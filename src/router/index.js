@@ -30,8 +30,8 @@ const router = createRouter({
       component: BlogView
     },
     {
-      path: '/view-blog',
-      name: 'view-blog',
+      path: '/view-blog/:slug',
+      name: 'SingleBlog',
       component: SingleBlog
     },
     {
