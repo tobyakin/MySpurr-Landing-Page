@@ -157,7 +157,7 @@ const getYear = new Date().getFullYear();
               <router-link to="/"> FAQ </router-link>
             </li>
             <li class="text-[13.933px] font-Satoshi400 leading-[36.062px]">
-              <router-link to="/"> Contact </router-link>
+              <router-link to="/contact-us"> Contact </router-link>
             </li>
             <li class="text-[13.933px] font-Satoshi400 leading-[36.062px]">
               <router-link to="/"> Advertise </router-link>
