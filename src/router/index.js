@@ -6,6 +6,7 @@ import HireTalent from '@/views/HireTalent.vue'
 import TalentProfile from '@/views/TalentProfile.vue'
 import BlogView from '@/views/Blog/BlogPage.vue'
 import SingleBlog from '@/views/Blog/SingleBlogPage.vue'
+import ContactUs from '@/views/ContactUs.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -38,6 +39,11 @@ const router = createRouter({
       path: '/hire-talent',
       name: 'hire-talent',
       component: HireTalent
+    },
+    {
+      path: '/contact-us',
+      name: 'contact-us',
+      component: ContactUs
     },
     {
       path: '/talent-profile',
