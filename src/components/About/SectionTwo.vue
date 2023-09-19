@@ -18,9 +18,6 @@
     :hideText="true"
     :yellow="true"
   />
-  <div class="flex justify-center items-center pb-[6rem]">
-    <a role="button" class="btn-brand font-Satoshi400"> Start Free Trial </a>
-  </div>
 </template>
 
 <script setup>
