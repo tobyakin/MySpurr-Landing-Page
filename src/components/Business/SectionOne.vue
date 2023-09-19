@@ -33,16 +33,17 @@
   </div>
 </template>
 <script setup>
-import mainbg from "@/assets/img/business.png";
-import PlayButton from "@/components/icons/playButton.vue";
-const image = mainbg;
+import mainbg from '@/assets/img/business.webp'
+import PlayButton from '@/components/icons/playButton.vue'
+const image = mainbg
 </script>
 
 <style scoped>
 .background {
   background-size: cover;
   background-blend-mode: overlay;
-  background: linear-gradient(
+  background:
+    linear-gradient(
       from 270deg at 50% 50%,
       rgba(15, 14, 14, 0.28) 184.15632963180542deg,
       rgba(13, 11, 11, 0.33) 270.5531358718872deg,

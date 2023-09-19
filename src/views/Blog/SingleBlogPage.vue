@@ -1,19 +1,19 @@
 <script setup>
-import Navbar from "@/components/Navbar/Navbar.vue";
-import Footer from "@/components/Footer.vue";
-import { useRouter, useRoute } from "vue-router";
+import Navbar from '@/components/Navbar/Navbar.vue'
+import Footer from '@/components/Footer.vue'
+import { useRouter, useRoute } from 'vue-router'
 // import { storeToRefs } from "pinia";
 // import dayjs from "dayjs";
 // import { useFaqStore } from "@/stores/faq";
 // import share from "share-url";
-import { onMounted, ref } from "vue";
-const router = useRouter();
-const route = useRoute();
-import blogbg from "@/assets/img/blog.png";
-import EyeIcon from "@/components/icons/eyeIcon.vue";
-import CommentIcon from "@/components/icons/commentIcon.vue";
-import ShareIcon from "@/components/icons/shareIcon.vue";
-import BlogCard from "@/components/Blog/BlogCard.vue";
+import { onMounted, ref } from 'vue'
+const router = useRouter()
+const route = useRoute()
+import blogbg from '@/assets/img/blog.webp'
+import EyeIcon from '@/components/icons/eyeIcon.vue'
+import CommentIcon from '@/components/icons/commentIcon.vue'
+import ShareIcon from '@/components/icons/shareIcon.vue'
+import BlogCard from '@/components/Blog/BlogCard.vue'
 
 // const store = useFaqStore();
 // const { singleBlog } = storeToRefs(store);
@@ -21,7 +21,7 @@ import BlogCard from "@/components/Blog/BlogCard.vue";
 onMounted(async () => {
   // await store.getSingleBlog(route.params.slug);
   // store.getRelatedBlog(singleBlog.value.blog_category, singleBlog.value.id);
-});
+})
 
 // var url = window.location.origin + route.fullPath;
 </script>
@@ -40,9 +40,7 @@ onMounted(async () => {
           /> -->
         </div>
 
-        <div
-          class="text-[#007582] py-4 leading-[69.598px] text-[48.719px] font-Satoshi500"
-        >
+        <div class="text-[#007582] py-4 leading-[69.598px] text-[48.719px] font-Satoshi500">
           Showcasing the works of emerging artists
           <!-- {{ singleBlog.title }} -->
         </div>
@@ -135,12 +133,8 @@ onMounted(async () => {
         />
       </div>
 
-      <div
-        class="my-40 py-10 border-t-[#EBEBEB] border-b-[#EBEBEB] border-t-[1px] border-b-[1px]"
-      >
-        <div
-          class="flex lg:flex-nowrap flex-wrap lg:gap-0 gap-10 items-center justify-between"
-        >
+      <div class="my-40 py-10 border-t-[#EBEBEB] border-b-[#EBEBEB] border-t-[1px] border-b-[1px]">
+        <div class="flex lg:flex-nowrap flex-wrap lg:gap-0 gap-10 items-center justify-between">
           <div class="w-full">
             <h2
               class="text-[#101621] w-full text-[30px] lg:text-[40px] text-center lg:text-left leading-[29px] lg:leading-[44px] font-EBGaramond500"

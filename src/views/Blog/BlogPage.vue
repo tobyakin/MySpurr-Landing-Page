@@ -1,47 +1,45 @@
 <script setup>
-import { defineAsyncComponent } from "vue";
-import SearchBarIcon from "@/components/icons/searchBarIcon.vue";
-import Navbar from "@/components/Navbar/Navbar.vue";
-import Footer from "@/components/Footer.vue";
-const FormGroup = defineAsyncComponent(() =>
-  import("@/components/Form/Input/FormGroup.vue")
-);
-import BlogCard from "@/components/Blog/BlogCard.vue";
-import useFaqStore from "@/stores/faq";
-import { ref, computed, onMounted } from "vue";
+import { defineAsyncComponent } from 'vue'
+import SearchBarIcon from '@/components/icons/searchBarIcon.vue'
+import Navbar from '@/components/Navbar/Navbar.vue'
+import Footer from '@/components/Footer.vue'
+const FormGroup = defineAsyncComponent(() => import('@/components/Form/Input/FormGroup.vue'))
+import BlogCard from '@/components/Blog/BlogCard.vue'
+import useFaqStore from '@/stores/faq'
+import { ref, computed, onMounted } from 'vue'
 // import { storeToRefs } from "pinia";
-import SampleThree from "@/assets/img/sampleThree.png";
-import WorkFlow from "@/components/Bander/WorkFlow.vue";
+import SampleThree from '@/assets/img/sampleThree.webp'
+import WorkFlow from '@/components/Bander/WorkFlow.vue'
 
-const tab = ref("ALL");
-const filteredTab = ref([]);
+const tab = ref('ALL')
+const filteredTab = ref([])
 const blogPost = [
   {
     slug: 1,
     cover_image: SampleThree,
-    title: "How to Build a Successful Career in the Creative Industry",
-    blog_category: "career development",
-    blog_description: "trdfgfg",
-    created_at: "16 Jul 2018",
+    title: 'How to Build a Successful Career in the Creative Industry',
+    blog_category: 'career development',
+    blog_description: 'trdfgfg',
+    created_at: '16 Jul 2018'
   },
   {
     slug: 2,
     cover_image: SampleThree,
-    title: "How to Build a Successful Career in the Creative Industry",
-    blog_category: "Company news",
-    blog_description: "trdfgfg",
-    created_at: "16 Jul 2018",
+    title: 'How to Build a Successful Career in the Creative Industry',
+    blog_category: 'Company news',
+    blog_description: 'trdfgfg',
+    created_at: '16 Jul 2018'
   },
   {
     slug: 3,
     cover_image: SampleThree,
-    title: "How to Build a Successful Career in the Creative Industry",
-    blog_category: "Creativity and Design",
-    blog_description: "trdfgfg",
-    created_at: "16 Jul 2018",
-  },
-];
-const store = useFaqStore();
+    title: 'How to Build a Successful Career in the Creative Industry',
+    blog_category: 'Creativity and Design',
+    blog_description: 'trdfgfg',
+    created_at: '16 Jul 2018'
+  }
+]
+const store = useFaqStore()
 // const { blog } = storeToRefs(store);
 // const pages = computed(() => {
 //   const divsor = Math.floor(blog.value.meta.current_page / 3);
@@ -71,12 +69,12 @@ const store = useFaqStore();
 // }
 
 const filterTab = (category) => {
-  tab.value = category;
-  filteredTab.value = [];
-  if (category != "ALL") {
-    filteredTab.value = store.blogPost.filter((item) => item.blog_category == category);
+  tab.value = category
+  filteredTab.value = []
+  if (category != 'ALL') {
+    filteredTab.value = store.blogPost.filter((item) => item.blog_category == category)
   }
-};
+}
 </script>
 
 <template>
@@ -123,7 +121,7 @@ const filterTab = (category) => {
                 href="javascript:void(0)"
                 @click="filterTab('Creativity and Design')"
                 :class="{
-                  'border-b-[#007582] border-b-[2.224px]': tab == 'Creativity and Design',
+                  'border-b-[#007582] border-b-[2.224px]': tab == 'Creativity and Design'
                 }"
                 class="px-0 py-2 hover:border-b-[#007582]"
               >
@@ -135,7 +133,7 @@ const filterTab = (category) => {
                 href="javascript:void(0)"
                 @click="filterTab('Creative inspiration')"
                 :class="{
-                  'border-b-[#007582] border-b-[2.224px]': tab == 'Creative inspiration',
+                  'border-b-[#007582] border-b-[2.224px]': tab == 'Creative inspiration'
                 }"
                 class="px-0 py-2 hover:border-b-[#007582]"
               >
@@ -147,7 +145,7 @@ const filterTab = (category) => {
                 href="javascript:void(0)"
                 @click="filterTab('Case Studies')"
                 :class="{
-                  'border-b-[#007582] border-b-[2.224px]': tab == 'Case Studies',
+                  'border-b-[#007582] border-b-[2.224px]': tab == 'Case Studies'
                 }"
                 class="px-0 py-2 hover:border-b-[#007582]"
               >
@@ -159,8 +157,7 @@ const filterTab = (category) => {
                 href="javascript:void(0)"
                 @click="filterTab('Interviews and features')"
                 :class="{
-                  'border-b-[#007582] border-b-[2.224px]':
-                    tab == 'Interviews and features',
+                  'border-b-[#007582] border-b-[2.224px]': tab == 'Interviews and features'
                 }"
                 class="px-0 py-2 hover:border-b-[#007582]"
               >
@@ -172,7 +169,7 @@ const filterTab = (category) => {
                 href="javascript:void(0)"
                 @click="filterTab('Company news')"
                 :class="{
-                  'border-b-[#007582] border-b-[2.224px]': tab == 'Company news',
+                  'border-b-[#007582] border-b-[2.224px]': tab == 'Company news'
                 }"
                 class="px-0 py-2 hover:border-b-[#007582]"
               >
@@ -184,8 +181,7 @@ const filterTab = (category) => {
                 href="javascript:void(0)"
                 @click="filterTab('Industry News and Insights')"
                 :class="{
-                  'border-b-[#007582] border-b-[2.224px]':
-                    tab == 'Industry News and Insights',
+                  'border-b-[#007582] border-b-[2.224px]': tab == 'Industry News and Insights'
                 }"
                 class="px-0 py-2 hover:border-b-[#007582]"
               >

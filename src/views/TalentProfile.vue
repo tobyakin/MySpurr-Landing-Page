@@ -5,17 +5,13 @@
       <div
         class="bg-[#E9FAFB] border-[#F6F6F6] flex lg:flex-row flex-col gap-5 justify-between items-center border-[1px] rounded-[15px] p-6 px-14"
       >
-        <div
-          class="flex lg:flex-row flex-col items-center lg:justify-normal justify-center gap-6"
-        >
+        <div class="flex lg:flex-row flex-col items-center lg:justify-normal justify-center gap-6">
           <JobAvater inputClasses="!h-[89.536px] !w-[89.536px]" class="" />
           <div class="lg:text-left text-center">
             <p class="text-[#000000] text-[17.518px] font-Satoshi500 leading-[31.739px]">
               Julia Ark
             </p>
-            <p
-              class="text-[#00000066] text-[14.598px] leading-[31.739px] font-Satoshi400"
-            >
+            <p class="text-[#00000066] text-[14.598px] leading-[31.739px] font-Satoshi400">
               Graphic Designer
             </p>
             <div class="flex items-center gap-2">
@@ -48,9 +44,7 @@
             <button>
               <SearchIconVeritical />
             </button>
-            <button class="btn-brand !bg-[#31795A] !border-none !py-2 !text-white">
-              Message
-            </button>
+            <button class="btn-brand !bg-[#31795A] !border-none !py-2 !text-white">Message</button>
           </div>
         </div>
       </div>
@@ -59,20 +53,18 @@
           <p class="text-[28px] text-[#000] font-Satoshi500">Overview</p>
           <div class="text-[#000000BF] font-Satoshi400 text-[16px] mt-4 leading-[35px]">
             <p>
-              Hello my name is Nicole Wells and web developer from Portland. In pharetra
-              orci dignissim, blandit mi semper, ultricies diam. Suspendisse malesuada
-              suscipit nunc non volutpat. Sed porta nulla id orci laoreet tempor non
-              consequat enim. Sed vitae aliquam velit. Aliquam ante erat, blandit at
-              pretium et, accumsan ac est. Integer vehicula rhoncus molestie. Morbi ornare
-              ipsum sed sem condimentum, et pulvinar tortor luctus. Suspendisse
-              condimentum lorem ut elementum aliquam.
+              Hello my name is Nicole Wells and web developer from Portland. In pharetra orci
+              dignissim, blandit mi semper, ultricies diam. Suspendisse malesuada suscipit nunc non
+              volutpat. Sed porta nulla id orci laoreet tempor non consequat enim. Sed vitae aliquam
+              velit. Aliquam ante erat, blandit at pretium et, accumsan ac est. Integer vehicula
+              rhoncus molestie. Morbi ornare ipsum sed sem condimentum, et pulvinar tortor luctus.
+              Suspendisse condimentum lorem ut elementum aliquam.
             </p>
             <p class="mt-4">
-              Mauris nec erat ut libero vulputate pulvinar. Aliquam ante erat, blandit at
-              pretium et, accumsan ac est. Integer vehicula rhoncus molestie. Morbi ornare
-              ipsum sed sem condimentum, et pulvinar tortor luctus. Suspendisse
-              condimentum lorem ut elementum aliquam. Mauris nec erat ut libero vulputate
-              pulvinar.
+              Mauris nec erat ut libero vulputate pulvinar. Aliquam ante erat, blandit at pretium
+              et, accumsan ac est. Integer vehicula rhoncus molestie. Morbi ornare ipsum sed sem
+              condimentum, et pulvinar tortor luctus. Suspendisse condimentum lorem ut elementum
+              aliquam. Mauris nec erat ut libero vulputate pulvinar.
             </p>
           </div>
           <p class="text-[28px] text-[#000] font-Satoshi500 mb-4 mt-6">Skills</p>
@@ -92,9 +84,7 @@
           </div>
           <p class="text-[28px] text-[#000] font-Satoshi500 mb-12 mt-8">Education</p>
           <SampleFive :items="items" />
-          <p class="text-[28px] text-[#000] font-Satoshi500 mb-12 mt-8">
-            Work Experience
-          </p>
+          <p class="text-[28px] text-[#000] font-Satoshi500 mb-12 mt-8">Work Experience</p>
           <SampleFive :items="workItems" />
           <p class="text-[28px] text-[#000] font-Satoshi500 mb-12 mt-8">Portfolio</p>
           <div
@@ -121,13 +111,9 @@
               <div class="flex items-center gap-1 font-Satoshi400 mb-2">
                 <RateStar v-for="i in 5" :key="i" />
                 <span class="text-[#001E00] text-[14px]">5.00 </span
-                ><span class="text-[#5E6D55] text-[12px]"
-                  >Dec 15, 2022 - Feb 2, 2023</span
-                >
+                ><span class="text-[#5E6D55] text-[12px]">Dec 15, 2022 - Feb 2, 2023</span>
               </div>
-              <p
-                class="text-[#001E00] font-Satoshi400 italic text-[13px] mb-4 tracking-[0.6px]"
-              >
+              <p class="text-[#001E00] font-Satoshi400 italic text-[13px] mb-4 tracking-[0.6px]">
                 "Great lead generation for education companies"
               </p>
               <p class="text-[#5E6D55] font-Satoshi400 text-[14px]">Private earnings</p>
@@ -143,9 +129,7 @@
               <CertificateBadge />
               <div>
                 <p class="text-[15px] text-[#000] font-Satoshi500">Graphics Design</p>
-                <p class="text-[14px] leading-[20px] text-[#31795A] font-Satoshi500">
-                  Cousera
-                </p>
+                <p class="text-[14px] leading-[20px] text-[#31795A] font-Satoshi500">Cousera</p>
                 <div class="flex items-center gap-2">
                   <CalenderWithPen />
                   <p class="font-Satoshi500 text-[12.9px] text-[#000000]">2015</p>
@@ -153,16 +137,14 @@
               </div>
             </div>
             <div class="">
-              <button
-                class="btn-brand !border-none !w-full !py-2 !text-[#FFFFFF] !bg-[#31795A]"
-              >
+              <button class="btn-brand !border-none !w-full !py-2 !text-[#FFFFFF] !bg-[#31795A]">
                 Download CV
               </button>
             </div>
           </div>
           <p class="text-[20px] text-[#000] font-Satoshi500 mt-16">Location</p>
           <div class="flex flex-col gap-12 mt-4 rounded-[15px]">
-            <img src="@/assets/img/Map.png" alt="" />
+            <img src="@/assets/img/Map.webp" alt="" />
           </div>
         </div>
       </div>
@@ -172,58 +154,53 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import JobAvater from "@/components/Avater/JobAvater.vue";
-import Navbar from "@/components/Navbar/Navbar.vue";
-import Footer from "@/components/Footer.vue";
-import SearchIconVeritical from "@/components/icons/searchIconVeritical.vue";
-import LinkdeinIcon from "@/components/icons/linkdeinIcon.vue";
-import InstagramIcon from "@/components/icons/instagramIcon.vue";
-import BeIcon from "@/components/icons/beIcon.vue";
-import TwitterIcon from "@/components/icons/twitterIcon.vue";
-import SampleFive from "@/components/genericComponents/sampleFive.vue";
-import SampleOne from "@/assets/img/sampleOne.png";
-import SampleTwo from "@/assets/img/sampleTwo.png";
-import SampleThree from "@/assets/img/sampleThree.png";
-import SampleFour from "@/assets/img/sampleFour.png";
-import RateStar from "@/components/icons/rateStar.vue";
-import CertificateBadge from "@/components/icons/certificateBadge.vue";
-import CalenderWithPen from "@/components/icons/calenderWithPen.vue";
-const Porfolio = [
-  { img: SampleOne },
-  { img: SampleTwo },
-  { img: SampleThree },
-  { img: SampleFour },
-];
+import { ref } from 'vue'
+import JobAvater from '@/components/Avater/JobAvater.vue'
+import Navbar from '@/components/Navbar/Navbar.vue'
+import Footer from '@/components/Footer.vue'
+import SearchIconVeritical from '@/components/icons/searchIconVeritical.vue'
+import LinkdeinIcon from '@/components/icons/linkdeinIcon.vue'
+import InstagramIcon from '@/components/icons/instagramIcon.vue'
+import BeIcon from '@/components/icons/beIcon.vue'
+import TwitterIcon from '@/components/icons/twitterIcon.vue'
+import SampleFive from '@/components/genericComponents/sampleFive.vue'
+import SampleOne from '@/assets/img/sampleOne.webp'
+import SampleTwo from '@/assets/img/sampleTwo.webp'
+import SampleThree from '@/assets/img/sampleThree.webp'
+import SampleFour from '@/assets/img/sampleFour.webp'
+import RateStar from '@/components/icons/rateStar.vue'
+import CertificateBadge from '@/components/icons/certificateBadge.vue'
+import CalenderWithPen from '@/components/icons/calenderWithPen.vue'
+const Porfolio = [{ img: SampleOne }, { img: SampleTwo }, { img: SampleThree }, { img: SampleFour }]
 
 const items = ref([
   {
-    heading: "University of Boston",
-    name: "Bachelor Degree of Design",
+    heading: 'University of Boston',
+    name: 'Bachelor Degree of Design',
     content:
-      "Mauris nec erat ut libero vulputate pulvinar. Aliquam ante erat, blandit at pretium et, accumsan ac est.",
+      'Mauris nec erat ut libero vulputate pulvinar. Aliquam ante erat, blandit at pretium et, accumsan ac est.'
   },
   {
-    heading: "Design Collage",
-    name: "UI/UX Design Course",
+    heading: 'Design Collage',
+    name: 'UI/UX Design Course',
     content:
-      "Morbi ornare ipsum sed sem condimentum, et pulvinar tortor luctus. Suspendisse condimentum lorem ut elementum aliquam et pulvinar tortor luctus.",
-  },
-]);
+      'Morbi ornare ipsum sed sem condimentum, et pulvinar tortor luctus. Suspendisse condimentum lorem ut elementum aliquam et pulvinar tortor luctus.'
+  }
+])
 const workItems = ref([
   {
-    heading: "02/03/18 - 13/05/20",
-    name: "Product Designer (Google)",
+    heading: '02/03/18 - 13/05/20',
+    name: 'Product Designer (Google)',
     content:
-      "Morbi ornare ipsum sed sem condimentum, et pulvinar tortor luctus. Suspendisse condimentum lorem ut elementum aliquam et pulvinar tortor luctus.",
+      'Morbi ornare ipsum sed sem condimentum, et pulvinar tortor luctus. Suspendisse condimentum lorem ut elementum aliquam et pulvinar tortor luctus.'
   },
   {
-    heading: "02/03/18 - 13/05/20",
-    name: "UI/UX Engineer (Adobe)",
+    heading: '02/03/18 - 13/05/20',
+    name: 'UI/UX Engineer (Adobe)',
     content:
-      "Morbi ornare ipsum sed sem condimentum, et pulvinar tortor luctus. Suspendisse condimentum lorem ut elementum aliquam et pulvinar tortor luctus.",
-  },
-]);
+      'Morbi ornare ipsum sed sem condimentum, et pulvinar tortor luctus. Suspendisse condimentum lorem ut elementum aliquam et pulvinar tortor luctus.'
+  }
+])
 </script>
 
 <style></style>

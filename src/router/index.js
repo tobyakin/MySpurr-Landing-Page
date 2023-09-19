@@ -8,6 +8,7 @@ import BlogView from '@/views/Blog/BlogPage.vue'
 import SingleBlog from '@/views/Blog/SingleBlogPage.vue'
 import ContactUs from '@/views/ContactUs.vue'
 import FQAs from '@/views/FQAs.vue'
+import AboutView from '@/views/AboutView.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -30,6 +31,11 @@ const router = createRouter({
       path: '/blog',
       name: 'blog',
       component: BlogView
+    },
+    {
+      path: '/about-us',
+      name: 'aboutUs',
+      component: AboutView
     },
     {
       path: '/view-blog/:slug',
