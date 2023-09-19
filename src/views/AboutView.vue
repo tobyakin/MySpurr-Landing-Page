@@ -1,8 +1,17 @@
+<script setup>
+import Navbar from "@/components/Navbar/Navbar.vue";
+import Footer from "@/components/Footer.vue";
+import SectionOne from "@/components/About/SectionOne.vue";
+import SectionTwo from "@/components/About/SectionTwo.vue";
+</script>
+
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+  <div>
+    <Navbar />
+    <SectionOne />
+    <SectionTwo />
+    <Footer />
   </div>
 </template>
 
-<style>
-</style>
+<style scoped></style>

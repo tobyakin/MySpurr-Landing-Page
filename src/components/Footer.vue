@@ -145,7 +145,7 @@ const getYear = new Date().getFullYear();
           <h5 class="font-Satoshi500 text-[19.67px] mb-8">Links</h5>
           <ul class="flex flex-col gap-2">
             <li class="text-[13.933px] font-Satoshi400 leading-[36.062px]">
-              <router-link to="/"> About </router-link>
+              <router-link to="/about-us"> About </router-link>
             </li>
             <li class="text-[13.933px] font-Satoshi400 leading-[36.062px]">
               <router-link to="/blog"> Blog </router-link>
