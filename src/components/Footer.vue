@@ -1,7 +1,7 @@
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive } from "vue";
 
-const getYear = new Date().getFullYear()
+const getYear = new Date().getFullYear();
 </script>
 
 <template>
@@ -11,10 +11,16 @@ const getYear = new Date().getFullYear()
     >
       <div class="w-auto">
         <div class="mb-4">
-          <img src="@/assets/whiteLogo.webp" class="h-[40px] md:h-[27.53px] w-auto" alt="" />
+          <img
+            src="@/assets/whiteLogo.png"
+            class="h-[40px] md:h-[27.53px] w-auto"
+            alt=""
+          />
         </div>
         <div class="flex lg:flex-cols-2 flex-col gap-1 justify-center lg:justify-between">
-          <h3 class="font-Satoshi500 text-[14.753px] leading-[22.2px] opacity-[0.6000000238418579]">
+          <h3
+            class="font-Satoshi500 text-[14.753px] leading-[22.2px] opacity-[0.6000000238418579]"
+          >
             support@myspurr.net
           </h3>
           <hr
@@ -74,7 +80,11 @@ const getYear = new Date().getFullYear()
                   />
                 </svg>
               </a>
-              <a href="https://www.linkedin.com/company/usemyspurr/" target="_blank" role="button">
+              <a
+                href="https://www.linkedin.com/company/usemyspurr/"
+                target="_blank"
+                role="button"
+              >
                 <svg
                   width="36"
                   height="37"
@@ -94,7 +104,10 @@ const getYear = new Date().getFullYear()
                     d="M27.7409 25.9994V19.3611C27.7409 16.0986 27.0448 13.6064 23.2728 13.6064C21.4542 13.6064 20.2417 14.6033 19.7478 15.5549H19.7029V13.901H16.1329V25.9994H19.86V19.9955C19.86 18.4096 20.1519 16.8916 22.0828 16.8916C23.9913 16.8916 24.0138 18.6815 24.0138 20.0861V25.9768H27.7409V25.9994Z"
                     fill="white"
                   />
-                  <path d="M10.3282 13.6064H13.9557V25.9994H10.3282V13.6064Z" fill="white" />
+                  <path
+                    d="M10.3282 13.6064H13.9557V25.9994H10.3282V13.6064Z"
+                    fill="white"
+                  />
                   <path
                     d="M11.7791 7.77441C10.5775 7.77441 9.60266 8.74893 9.60266 9.95008C9.60266 11.1512 10.5775 12.1484 11.7791 12.1484C12.9808 12.1484 13.9556 11.1512 13.9556 9.95008C13.9556 8.74893 12.9808 7.77441 11.7791 7.77441Z"
                     fill="white"
