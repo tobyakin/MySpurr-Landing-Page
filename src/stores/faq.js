@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import SampleThree from "@/assets/img/sampleThree.png";
+import SampleThree from "@/assets/img/sampleThree.webp";
 
 const useFaqStore = defineStore('help', {
   state: () => {

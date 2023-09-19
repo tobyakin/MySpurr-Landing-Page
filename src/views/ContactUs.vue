@@ -1,25 +1,21 @@
 <script setup>
-import { defineAsyncComponent } from "vue";
-import Navbar from "@/components/Navbar/Navbar.vue";
-import Footer from "@/components/Footer.vue";
-import LocationIcon from "@/components/icons/locationIcon.vue";
-import MailIcon from "@/components/icons/mailIcon.vue";
-import WorkFlow from "@/components/Bander/WorkFlow.vue";
-const FormGroup = defineAsyncComponent(() =>
-  import("@/components/Form/Input/FormGroup.vue")
-);
+import { defineAsyncComponent } from 'vue'
+import Navbar from '@/components/Navbar/Navbar.vue'
+import Footer from '@/components/Footer.vue'
+import LocationIcon from '@/components/icons/locationIcon.vue'
+import MailIcon from '@/components/icons/mailIcon.vue'
+import WorkFlow from '@/components/Bander/WorkFlow.vue'
+const FormGroup = defineAsyncComponent(() => import('@/components/Form/Input/FormGroup.vue'))
 </script>
 
 <template>
   <div>
     <Navbar />
     <div class="py-20 container">
-      <h4
-        class="font-EBGaramond500 lg:text-[72px] text-[30px] my-10 text-center text-[#007582]"
-      >
+      <h4 class="font-EBGaramond500 lg:text-[72px] text-[30px] my-10 text-center text-[#007582]">
         Get in touch
       </h4>
-      <div><img src="@/assets/img/contactUs.png" class="lg:h-[569.031px]" alt="" /></div>
+      <div><img src="@/assets/img/contactUs.webp" class="lg:h-[569.031px]" alt="" /></div>
       <div class="flex lg:flex-row flex-col justify-center my-24 gap-20">
         <div class="flex flex-col gap-2 items-center text-center">
           <LocationIcon />
