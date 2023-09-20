@@ -3,7 +3,7 @@
     class="min-h-[630px] flex items-center background py-20"
     :style="{ backgroundImage: `url(${image})` }"
   >
-    <div class="flex container gap-8 py-8 lg:flex-row flex-col-reverse justify-between">
+    <div class="flex container gap-8 py-8 lg:flex-row flex-col justify-between">
       <div class="lg:py-12 py-4">
         <h1
           class="md:text-[79.379px] text-[40px] font-normal mb-6 text-white md:leading-[71.441px] leading-[45px] font-EBGaramond500"
@@ -21,7 +21,7 @@
           ><!---->
         </div>
       </div>
-      <div class="flex justify-center items-center gap-4">
+      <div class="flex lg:justify-center items-center gap-4">
         <p class="font-Satoshi700 text-[20px] text-white">How to use MySpurr</p>
         <button
           class="bg-[#EDF0B8] rounded-full p-4 h-[76.477px] w-[76.477px] items-center justify-center flex"
@@ -33,22 +33,22 @@
   </div>
 </template>
 <script setup>
-import mainbg from '@/assets/img/sectionOnebg.webp'
-import PlayButton from '@/components/icons/playButton.vue'
-const image = mainbg
+import mainbg from "@/assets/img/sectionOnebg.webp";
+import PlayButton from "@/components/icons/playButton.vue";
+const image = mainbg;
 </script>
 
 <style scoped>
 .background {
   background-size: cover;
   background-blend-mode: overlay;
-  background:
-    linear-gradient(
+  background-color: rgba(15, 14, 14, 0.504);
+  /* background: linear-gradient(
       from 270deg at 50% 50%,
-      rgba(15, 14, 14, 0.28) 184.15632963180542deg,
+      rgba(15, 14, 14, 0.526) 184.15632963180542deg,
       rgba(13, 11, 11, 0.33) 270.5531358718872deg,
-      rgba(18, 16, 16, 0.32) 353.79907608032227deg
+      rgba(13, 11, 11, 0.626) 353.79907608032227deg
     ),
-    lightgray 50%;
+    lightgray 50%;*/
 }
 </style>

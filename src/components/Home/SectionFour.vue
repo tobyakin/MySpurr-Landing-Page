@@ -47,9 +47,9 @@
         </div>
       </div>
     </div>
-    <div class="flex justify-center pt-8">
+    <div class="flex lg:justify-center pt-8">
       <div class="bg-[#EFF6F3] border-[#D6ECE0] border-[0.83px] rounded-full p-2 px-3">
-        <p class="text-[13.279px] font-Satoshi500 leading-[16.599px]">
+        <p class="text-[13.279px] text-center font-Satoshi500 leading-[16.599px]">
           Do you want to post a job for your company?
           <span class="text-dimBrand">We can help.</span
           ><span class="text-dimBrand font-Satoshi400 underline">Click here</span>

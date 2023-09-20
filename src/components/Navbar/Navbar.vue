@@ -45,7 +45,7 @@ const toogleMobileMenu = () => {
                     placeholder=" Search here.."
                     type="text"
                   /><button
-                    class="absolute right-0 top-3 px-[21px] border-l-[#F0F0F0] border-l-[1px]"
+                    class="absolute right-0 top-3 font-Satoshi400 text-[16px] px-[21px] border-l-[#F0F0F0] border-l-[1px]"
                   >
                     Find job
                   </button>
@@ -91,7 +91,7 @@ const toogleMobileMenu = () => {
             </ul>
           </div>
           <div class="hidden lg:flex gap-4">
-            <button class="btn-light">Sign in</button>
+            <button class="btn-light !text-[16px]">Sign in</button>
             <button class="btn-brand">Start free trial</button>
           </div>
           <div class="lg:hidden">

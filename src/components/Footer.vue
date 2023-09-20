@@ -7,7 +7,7 @@ const getYear = new Date().getFullYear();
 <template>
   <footer class="bg-[#00474F] mt-0 py-10 text-white">
     <div
-      class="container py-[90px] flex lg:flex-row flex-col justify-center lg:justify-between gap-[130px] lg:py-[140px]"
+      class="container py-[50px] flex lg:flex-row flex-col justify-center lg:justify-between gap-[90px] lg:gap-[130px] !pb-[60px] lg:py-[90px]"
     >
       <div class="w-auto">
         <div class="mb-4">
@@ -139,61 +139,61 @@ const getYear = new Date().getFullYear();
         </div>
       </div>
       <div
-        class="flex flex-col lg:flex-row lg:justify-around lg:text-left text-center justify-center w-full"
+        class="flex flex-col lg:flex-row lg:justify-around gap-10 text-left justify-start w-full"
       >
         <div>
-          <h5 class="font-Satoshi500 text-[19.67px] mb-8">Links</h5>
-          <ul class="flex flex-col gap-2">
-            <li class="text-[13.933px] font-Satoshi400 leading-[36.062px]">
+          <h5 class="font-Satoshi500 text-[19.67px] mb-4 lg:mb-8">Links</h5>
+          <ul class="flex flex-col lg:gap-2">
+            <li class="text-[13.933px] font-Satoshi400 lg:leading-[36.062px]">
               <router-link to="/about-us"> About </router-link>
             </li>
-            <li class="text-[13.933px] font-Satoshi400 leading-[36.062px]">
+            <li class="text-[13.933px] font-Satoshi400 lg:leading-[36.062px]">
               <router-link to="/blog"> Blog </router-link>
             </li>
-            <li class="text-[13.933px] font-Satoshi400 leading-[36.062px]">
+            <li class="text-[13.933px] font-Satoshi400 lg:leading-[36.062px]">
               <router-link to="/"> Case Study </router-link>
             </li>
-            <li class="text-[13.933px] font-Satoshi400 leading-[36.062px]">
+            <li class="text-[13.933px] font-Satoshi400 lg:leading-[36.062px]">
               <router-link to="/faqs"> FAQ </router-link>
             </li>
-            <li class="text-[13.933px] font-Satoshi400 leading-[36.062px]">
+            <li class="text-[13.933px] font-Satoshi400 lg:leading-[36.062px]">
               <router-link to="/contact-us"> Contact </router-link>
             </li>
-            <li class="text-[13.933px] font-Satoshi400 leading-[36.062px]">
+            <li class="text-[13.933px] font-Satoshi400 lg:leading-[36.062px]">
               <router-link to="/"> Advertise </router-link>
             </li>
           </ul>
         </div>
         <div>
-          <h5 class="font-Satoshi500 text-[19.67px] mb-8">Product</h5>
-          <ul class="flex flex-col gap-2">
-            <li class="text-[13.933px] font-Satoshi400 leading-[36.062px]">
+          <h5 class="font-Satoshi500 text-[19.67px] mb-4 lg:mb-8">Product</h5>
+          <ul class="flex flex-col lg:gap-2">
+            <li class="text-[13.933px] font-Satoshi400 lg:leading-[36.062px]">
               <router-link to="/"> Take a tour </router-link>
             </li>
-            <li class="text-[13.933px] font-Satoshi400 leading-[36.062px]">
+            <li class="text-[13.933px] font-Satoshi400 lg:leading-[36.062px]">
               <router-link to="/internship"> Internships </router-link>
             </li>
-            <li class="text-[13.933px] font-Satoshi400 leading-[36.062px]">
+            <li class="text-[13.933px] font-Satoshi400 lg:leading-[36.062px]">
               <router-link to="/"> Learning </router-link>
             </li>
-            <li class="text-[13.933px] font-Satoshi400 leading-[36.062px]">
+            <li class="text-[13.933px] font-Satoshi400 lg:leading-[36.062px]">
               <router-link to="/"> Go Pro </router-link>
             </li>
           </ul>
         </div>
         <div>
-          <h5 class="font-Satoshi500 text-[19.67px] mb-8">Legal</h5>
-          <ul class="flex flex-col gap-2">
-            <li class="text-[13.933px] font-Satoshi400 leading-[36.062px]">
+          <h5 class="font-Satoshi500 text-[19.67px] mb-4 lg:mb-8">Legal</h5>
+          <ul class="flex flex-col lg:gap-2">
+            <li class="text-[13.933px] font-Satoshi400 lg:leading-[36.062px]">
               <router-link to="/"> Terms of use </router-link>
             </li>
-            <li class="text-[13.933px] font-Satoshi400 leading-[36.062px]">
+            <li class="text-[13.933px] font-Satoshi400 lg:leading-[36.062px]">
               <router-link to="/"> Terms & Conditions </router-link>
             </li>
-            <li class="text-[13.933px] font-Satoshi400 leading-[36.062px]">
+            <li class="text-[13.933px] font-Satoshi400 lg:leading-[36.062px]">
               <router-link to="/"> Privacy </router-link>
             </li>
-            <li class="text-[13.933px] font-Satoshi400 leading-[36.062px]">
+            <li class="text-[13.933px] font-Satoshi400 lg:leading-[36.062px]">
               <router-link to="/"> Cookie policy </router-link>
             </li>
           </ul>
