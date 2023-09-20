@@ -13,7 +13,7 @@
           'text-black': black,
           'text-[#6769C2]': lightBlue,
         }"
-        class="lg:w-1/2 w-full flex flex-col gap-5 py-3.5"
+        class="lg:w-1/2 w-full flex flex-col lg:gap-5 gap-3 py-3.5"
       >
         <h3
           v-html="heading"
@@ -22,7 +22,7 @@
 
         <div
           :class="{ 'hidden ': hideListArea }"
-          class="md:w-[90%] w-full font-Satoshi400 my-8 flex flex-col md:gap-4"
+          class="md:w-[90%] w-full font-Satoshi400 lg:my-8 flex flex-col gap-5 md:gap-4"
         >
           <div v-for="item in list" :key="item" class="flex items-center gap-6">
             <!-- <div class="flex-shrink-0">
@@ -38,7 +38,7 @@
                 class="tick font-Satoshi700"
               ></span>
             </div> -->
-            <p class="text-black">
+            <p class="text-black lg:text-[16px] text-[18px]">
               {{ item.text }}
             </p>
           </div>
