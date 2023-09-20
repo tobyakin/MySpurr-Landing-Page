@@ -19,7 +19,7 @@ const FormSelectGroup = defineAsyncComponent(() =>
     <Navbar />
     <div class="py-20 container">
       <div
-        class="bg-[#E9FAFB] rounded-[14.957px] flex flex-col gap-8 p-8 lg:px-20 px-6 md:px-10 border-[0.491px] border-[#97A6A8]"
+        class="bg-[#E9FAFB] rounded-[14.957px] flex flex-col gap-3 lg:gap-5 p-8 lg:px-10 px-8 md:px-10 border-[0.491px] border-[#97A6A8]"
       >
         <div class="flex lg:flex-row flex-col gap-12">
           <FormGroup
@@ -91,11 +91,11 @@ const FormSelectGroup = defineAsyncComponent(() =>
           </button>
         </div>
       </div>
-      <div class="text-center my-10 py-20">
-        <h4 class="text-[63.549px] text-[#000000] font-Satoshi500 leading-[67.52px]">
+      <div class="text-center lg:my-10 my-5 py-20 pb-10">
+        <h4 class="text-[50.549px] text-[#000000] font-Satoshi500 leading-[47.52px]">
           Creative Talents for Hire
         </h4>
-        <p class="text-[#007582] text-[31.194px] font-Satoshi400 lg:leading-[59.552px]">
+        <p class="text-[#007582] text-[21.194px] font-Satoshi400 lg:leading-[39.552px]">
           Find you desired talent & make your work done
         </p>
       </div>
@@ -106,7 +106,7 @@ const FormSelectGroup = defineAsyncComponent(() =>
         </p>
       </div>
       <div class="mt-14 flex flex-col gap-8">
-        <JobCard class="w-full" v-for="item in 4" :key="item" />
+        <JobCard class="w-full" v-for="item in 10" :key="item" />
       </div>
       <div class="mt-12 flex w-[60%] flex-row justify-center mx-auto">
         <button

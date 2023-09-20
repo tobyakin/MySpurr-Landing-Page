@@ -1,7 +1,9 @@
 <template>
   <div>
-    <p class="lg:text-[24.693px] text-[19px] font-Satoshi400 text-[#000000] capitalize">
-      Join & get important new regularly
+    <p
+      class="lg:text-[24.693px] text-center lg:text-left text-[19px] font-Satoshi400 text-[#000000] capitalize"
+    >
+      Join & get important news regularly
     </p>
     <div
       class="bg-[#0000000A] p-4 lg:px-10 px-4 flex lg:flex-row flex-col my-4 items-center gap-3 rounded-[11.158px]"
@@ -12,7 +14,7 @@
       />
       <button class="btn-brand">Subscribe</button>
     </div>
-    <p class="text-[16.316px] font-Satoshi400 text-[#979797]">
+    <p class="text-[16.316px] text-center lg:text-left font-Satoshi400 text-[#979797]">
       We only send interesting and relevant emails.
     </p>
   </div>
