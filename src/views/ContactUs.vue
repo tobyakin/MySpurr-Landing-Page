@@ -1,18 +1,22 @@
 <script setup>
-import { defineAsyncComponent } from 'vue'
-import Navbar from '@/components/Navbar/Navbar.vue'
-import Footer from '@/components/Footer.vue'
-import LocationIcon from '@/components/icons/locationIcon.vue'
-import MailIcon from '@/components/icons/mailIcon.vue'
-import WorkFlow from '@/components/Bander/WorkFlow.vue'
-const FormGroup = defineAsyncComponent(() => import('@/components/Form/Input/FormGroup.vue'))
+import { defineAsyncComponent } from "vue";
+import Navbar from "@/components/Navbar/Navbar.vue";
+import Footer from "@/components/Footer.vue";
+import LocationIcon from "@/components/icons/locationIcon.vue";
+import MailIcon from "@/components/icons/mailIcon.vue";
+import WorkFlow from "@/components/Bander/WorkFlow.vue";
+const FormGroup = defineAsyncComponent(() =>
+  import("@/components/Form/Input/FormGroup.vue")
+);
 </script>
 
 <template>
   <div>
     <Navbar />
     <div class="py-20 container">
-      <h4 class="font-EBGaramond500 lg:text-[72px] text-[30px] my-10 text-center text-[#007582]">
+      <h4
+        class="font-EBGaramond500 lg:text-[72px] text-[30px] my-10 text-center text-[#007582]"
+      >
         Get in touch
       </h4>
       <div><img src="@/assets/img/contactUs.webp" class="lg:h-[569.031px]" alt="" /></div>
@@ -21,16 +25,15 @@ const FormGroup = defineAsyncComponent(() => import('@/components/Form/Input/For
           <LocationIcon />
           <h4 class="text-[#141518] text-[24px] font-Satoshi500">Our Address</h4>
           <p class="text-[#878787] font-Satoshi400 text-[17px] text-center">
-            1012 Peb Parkway, Mirpur 2 <br />
-            Dhaka, Bangladesh
+            Abuja,Nigeria
           </p>
         </div>
         <div class="flex flex-col gap-2 items-center text-center">
           <MailIcon />
           <h4 class="text-[#141518] text-[24px] font-Satoshi500">Contact Info</h4>
           <p class="text-[#878787] font-Satoshi400 text-[17px] text-center">
-            Open a chat or give us call at <br />
-            <span class="text-[#31795A] text-[24px]">234 8166 813 812</span>
+            send an email to <br />
+            <span class="text-[#31795A] text-[17px]">hello@myspurr.net</span>
           </p>
         </div>
       </div>

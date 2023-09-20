@@ -5,35 +5,35 @@
     >
       <div class="text-center h-full">
         <h2
-          class="text-[#007582] w-full text-[50px] lg:text-[104.526px] leading-[29px] lg:leading-[120px] font-Satoshi700"
+          class="text-[#007582] w-full text-[50px] lg:text-[80.526px] leading-[29px] lg:leading-[120px] font-Satoshi700"
         >
           300
         </h2>
-        <p class="text-[#007582] font-Satoshi400 text-[26.286px]">creative talents</p>
+        <p class="text-[#007582] font-Satoshi400 text-[18.286px]">creative talents</p>
       </div>
       <div class="text-center">
         <h2
-          class="text-[#007582] w-full text-[50px] lg:text-[104.526px] leading-[29px] lg:leading-[120px] font-Satoshi700"
+          class="text-[#007582] w-full text-[50px] lg:text-[80.526px] leading-[29px] lg:leading-[120px] font-Satoshi700"
         >
           $4k
         </h2>
-        <p class="text-[#007582] font-Satoshi400 text-[26.286px]">payment processed</p>
+        <p class="text-[#007582] font-Satoshi400 text-[18.286px]">payment processed</p>
       </div>
       <div class="text-center">
         <h2
-          class="text-[#007582] w-full text-[50px] lg:text-[104.526px] leading-[29px] lg:leading-[120px] font-Satoshi700"
+          class="text-[#007582] w-full text-[50px] lg:text-[80.526px] leading-[29px] lg:leading-[120px] font-Satoshi700"
         >
           15
         </h2>
-        <p class="text-[#007582] font-Satoshi400 text-[26.286px]">supported businesses</p>
+        <p class="text-[#007582] font-Satoshi400 text-[18.286px]">supported businesses</p>
       </div>
       <div class="text-center">
         <h2
-          class="text-[#007582] w-full text-[50px] lg:text-[104.526px] leading-[29px] lg:leading-[120px] font-Satoshi700"
+          class="text-[#007582] w-full text-[50px] lg:text-[80.526px] leading-[29px] lg:leading-[120px] font-Satoshi700"
         >
           1
         </h2>
-        <p class="text-[#007582] font-Satoshi400 text-[26.286px]">available countries</p>
+        <p class="text-[#007582] font-Satoshi400 text-[18.286px]">available countries</p>
       </div>
     </div>
   </div>

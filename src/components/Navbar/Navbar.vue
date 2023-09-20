@@ -91,8 +91,8 @@ const toogleMobileMenu = () => {
             </ul>
           </div>
           <div class="hidden lg:flex gap-4">
-            <button class="btn-light !text-[16px]">Sign in</button>
-            <button class="btn-brand">Start free trial</button>
+            <button class="btn-light font-Satoshi500 !text-[16px]">Sign in</button>
+            <button class="btn-brand font-Satoshi500">Start free trial</button>
           </div>
           <div class="lg:hidden">
             <button @click="toogleMobileMenu">
