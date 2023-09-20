@@ -9,6 +9,7 @@ import SingleBlog from '@/views/Blog/SingleBlogPage.vue'
 import ContactUs from '@/views/ContactUs.vue'
 import FQAs from '@/views/FQAs.vue'
 import AboutView from '@/views/AboutView.vue'
+import InternshipView from '@/views/InternshipView.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -51,6 +52,11 @@ const router = createRouter({
       path: '/faqs',
       name: 'FAQs',
       component: FQAs
+    },
+    {
+      path: '/internship',
+      name: 'internship',
+      component: InternshipView
     },
     {
       path: '/contact-us',

@@ -22,7 +22,7 @@ const toogleMobileMenu = () => {
 </script>
 <template>
   <div class="sticky top-0 z-30 bg-[#ffffff]">
-    <div class="max-w-[90%] container mx-auto">
+    <div class="!max-w-[93%] container mx-auto">
       <header class="py-[25px]">
         <div
           class="lg:px-[15px] mx-auto flex items-center justify-between font-Satoshi700"
