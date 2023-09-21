@@ -9,12 +9,12 @@
         </h2>
       </div>
       <div
-        class="md:grid md:grid-cols-3 hide-scrollbar flex overflow-x-scroll gap-4 my-4 mb-[50px]"
+        class="md:grid md:grid-cols-3 flex flex-col hide-scrollbar overflow-y-scroll gap-4 my-4 mb-[50px]"
       >
         <div
           v-for="item in tweetPost"
           :key="item"
-          class="bg-white lg:w-full w-[1013.625px] min-h-[218.617px] p-4 rounded-[15.24px] hover:border-[0.5px] hover:border-brand"
+          class="bg-white lg:w-full min-h-[218.617px] p-4 rounded-[15.24px] hover:border-[0.5px] hover:border-brand"
         >
           <a target="_blank" :href="item.tweetUrl" role="button" class="w-full">
             <div class="flex justify-stretch items-center gap-3 w-full">
