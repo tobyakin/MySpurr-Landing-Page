@@ -18,7 +18,7 @@ const toogleMobileMenu = () => {
   }
 };
 
-// const landingUrl = import.meta.env.VITE_LANDING_PAGE;
+const landingUrl = import.meta.env.VITE_LANDING_PAGE;
 </script>
 <template>
   <div class="sticky top-0 z-30 bg-[#ffffff]">
@@ -90,9 +90,22 @@ const toogleMobileMenu = () => {
               </li>
             </ul>
           </div>
-          <div class="hidden lg:flex gap-4">
-            <button class="btn-light font-Satoshi500 !text-[16px]">Sign in</button>
-            <button class="btn-brand font-Satoshi500">Start free trial</button>
+          <div class="hidden lg:flex items-center gap-4">
+            <a
+              role="button"
+              target="_blank"
+              :href="landingUrl + 'login'"
+              class="btn-light font-Satoshi500 !text-[16px]"
+            >
+              Sign in
+            </a>
+            <a
+              role="button"
+              target="_blank"
+              :href="landingUrl + 'signup'"
+              class="btn-brand font-Satoshi500"
+              >Start free trial</a
+            >
           </div>
           <div class="lg:hidden">
             <button @click="toogleMobileMenu">

@@ -112,7 +112,10 @@ const getYear = new Date().getFullYear();
                     d="M11.7791 7.77441C10.5775 7.77441 9.60266 8.74893 9.60266 9.95008C9.60266 11.1512 10.5775 12.1484 11.7791 12.1484C12.9808 12.1484 13.9556 11.1512 13.9556 9.95008C13.9556 8.74893 12.9808 7.77441 11.7791 7.77441Z"
                     fill="white"
                   /></svg></a
-              ><a href="https://www.instagram.com/myspurr/" target="_blank" role="button"
+              ><a
+                href="https://www.facebook.com/usemyspurr/"
+                target="_blank"
+                role="button"
                 ><svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="36"
