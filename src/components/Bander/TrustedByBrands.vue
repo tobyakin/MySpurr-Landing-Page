@@ -3,7 +3,9 @@
     class="flex lg:flex-row flex-col items-center w-[90%] mx-auto my-20 justify-between"
   >
     <div class="lg:w-[25%] flex flex-row items-center">
-      <h4 class="text-[36.94px] text-[#011B1F] font-Satoshi400 leading-[64.031px]">
+      <h4
+        class="lg:text-[36.94px] text-[20px] text-[#011B1F] font-Satoshi400 lg:leading-[64.031px]"
+      >
         Trusted by
       </h4>
     </div>
@@ -14,7 +16,7 @@
         v-for="logo in BrandLogos"
         :key="logo"
         :src="logo.image"
-        class="h-[60px] w-full"
+        class="lg:h-[60px] h-[30px] w-full"
         alt=""
       />
     </div>
