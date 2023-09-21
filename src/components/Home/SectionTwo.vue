@@ -3,43 +3,27 @@
     :heading="BuildHeading"
     :list="section4List1"
     :image="Build"
-    :yellowwithHiddenButton="true"
-    :registerUrl="registerUrl"
-    :hideText="true"
-    :yellow="true"
-    reverseOnMobile="true"
+    :reverseOnMobile="true"
   />
   <SampleOne
     :heading="DiscoverHeading"
     :list="section4List2"
-    :yellowwithHiddenButton="true"
     :reverse="true"
     :image="Discover"
-    :registerUrl="registerUrl"
-    :hideText="true"
-    :yellow="true"
-    reverseOnMobile="true"
+    :reverseOnMobile="true"
   />
   <SampleOne
     :heading="ConnectHeading"
     :list="section4List3"
     :image="Connect"
-    :yellowwithHiddenButton="true"
-    :registerUrl="registerUrl"
-    :hideText="true"
-    :yellow="true"
-    reverseOnMobile="true"
+    :reverseOnMobile="true"
   />
   <SampleOne
     :heading="GrowHeading"
     :list="section4List"
-    :yellowwithHiddenButton="true"
     :reverse="true"
     :image="Grow"
-    :registerUrl="registerUrl"
-    :hideText="true"
-    :yellow="true"
-    reverseOnMobile="true"
+    :reverseOnMobile="true"
   />
   <div class="flex justify-center items-center pb-[6rem]">
     <a role="button" class="btn-brand font-Satoshi400"> Start Free Trial </a>

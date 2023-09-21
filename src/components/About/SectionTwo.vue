@@ -2,21 +2,15 @@
   <SampleOne
     :heading="HeadingTwo"
     :list="section4List2"
-    :yellowwithHiddenButton="true"
     :image="ImageThree"
-    :registerUrl="registerUrl"
-    :hideText="true"
-    :yellow="true"
     :reverse="true"
+    :reverseOnMobile="true"
   />
   <SampleOne
     :heading="HeadingThree"
     :list="section4List3"
     :image="ImageTwo"
-    :yellowwithHiddenButton="true"
-    :registerUrl="registerUrl"
-    :hideText="true"
-    :yellow="true"
+    :reverseOnMobile="true"
   />
 </template>
 
