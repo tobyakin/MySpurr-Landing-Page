@@ -104,7 +104,7 @@ const tweetPost = [
     brandUrl: "",
   },
   {
-    img: "https://pbs.twimg.com/profile_images/1668982490722074625/0XpVCWEd_400x400.webp",
+    img: "https://pbs.twimg.com/profile_images/1668982490722074625/0XpVCWEd_400x400.png",
     username: "bolaji adefioye",
     usertag: "@BolajiAdefioye",
     date: " Sep 12",
