@@ -31,7 +31,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref } from "vue";
 import Build from "@/assets/img/build.webp";
 import Connect from "@/assets/img/connect.webp";
 import Discover from "@/assets/img/discover.webp";
@@ -82,6 +82,4 @@ const section4List = ref([
       "Stay up-to-date with industry trends, learn new skills, and discover new opportunities in your field.",
   },
 ]);
-
-// const registerUrl = import.meta.env.VITE_DASHBOARD_BASEURL;
 </script>
