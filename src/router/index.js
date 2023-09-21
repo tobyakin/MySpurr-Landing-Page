@@ -68,7 +68,10 @@ const router = createRouter({
       name: 'talent-profile',
       component: TalentProfile
     }
-  ]
+  ],
+  scrollBehavior(to, from, savedPosition) {
+    return { top: 0 }
+  }
 })
 
 export default router
