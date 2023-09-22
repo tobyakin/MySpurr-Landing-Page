@@ -1,6 +1,6 @@
 <template>
   <div class="py-20 container">
-    <div class="flex justify-between">
+    <div class="flex lg:flex-row flex-col justify-between">
       <h2
         class="text-dimBrand text-[43px] lg:text-[50px] !font-semibold leading-[68.056px] lg:leading-[74px] font-EBGaramond500 mb-8"
       >
@@ -17,12 +17,14 @@
         v-for="item in 4"
         :key="item"
         :class="item < 4 ? 'border-b-[0.83px] border-[#DBE8E5]' : ''"
-        class="text-[#030303] p-9 flex items-center gap-4 justify-between"
+        class="text-[#030303] p-9 flex lg:flex-row flex-col items-center gap-4 justify-between"
       >
-        <div class="flex w-[70%] gap-[2.25rem]">
-          <div class="h-[41.498px] w-[39.176px] bg-[#00000033]"></div>
-          <div class="flex gap-[8%] w-full items-center">
-            <p class="text-[#000000] font-Satoshi500 text-[16.599px] leading-[26.558px]">
+        <div class="flex lg:flex-row flex-col lg:w-[70%] gap-[2.25rem]">
+          <div class="h-[41.498px] w-[39.176px] lg:block hidden bg-[#00000033]"></div>
+          <div class="flex lg:flex-row flex-col gap-[8%] w-full items-center">
+            <p
+              class="text-[#000000] font-Satoshi500 lg:text-left text-center text-[16.599px] leading-[26.558px]"
+            >
               Graphics Design & Expert in Illustration
             </p>
             <p class="text-[#43D0DF] font-Satoshi500 text-[12.449px]">Fulltime</p>
@@ -33,15 +35,21 @@
             </p>
           </div>
         </div>
-        <div class="flex w-[30%] items-end justify-end">
+        <div
+          class="flex lg:flex-row flex-col lg:w-[30%] text-center lg:text-left gap-4 lg:items-end lg:justify-end"
+        >
           <div class="w-full">
             <p class="text-[#20202099] font-Satoshi400 text-[12.449px]">Lagos, Nigeria</p>
             <p class="text-[#000000] font-Satoshi500 text-[13.279px]">
               Graphics Design, Artist
             </p>
           </div>
-          <div class="flex items-center gap-6">
-            <button><BookMarkIcon /></button
+          <div class="flex items-center gap-3">
+            <button class="rounded-full border-[#97A6A8] border-[0.496px] p-3">
+              <BookMarkIcon />
+            </button>
+            <button class="rounded-full border-[#97A6A8] border-[0.496px] p-2">
+              <ShareIcon /></button
             ><button class="btn-brand !text-[9.959px] !py-2 !px-6">APPLY</button>
           </div>
         </div>
@@ -60,4 +68,5 @@
 </template>
 <script setup>
 import BookMarkIcon from "@/components/icons/bookMarkIcon.vue";
+import ShareIcon from "@/components/icons/shareOutline.vue";
 </script>

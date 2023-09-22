@@ -37,7 +37,7 @@
           </div>
         </div>
         <div>
-          <div class="flex flex-row items-start items-center gap-4">
+          <div class="flex md:flex-row flex-col lg:items-start items-center gap-4">
             <div class="flex lg:justify-normal gap-4 items-center justify-center">
               <button><LoveIcon /></button><button><SearchIcon /></button>
             </div>

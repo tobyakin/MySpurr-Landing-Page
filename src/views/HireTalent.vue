@@ -110,29 +110,15 @@ const FormSelectGroup = defineAsyncComponent(() =>
       </div>
       <div class="mt-12 flex w-[60%] flex-row justify-center mx-auto">
         <button
-          class="border-[#007582] border-x-2 border-t-2 border-b-2 p-4 py-2 rounded-l-[6.032px] font-Satoshi500 text-[22.621px] items-center flex"
+          v-for="i in 4"
+          :key="i"
+          :class="
+            i == 1
+              ? 'border-[#007582] border-x-2 border-t-2 border-b-2 p-4 py-2 rounded-l-[6.032px] font-Satoshi500 text-[22.621px] items-center flex'
+              : 'border-[#007582] border-y-2 border-r-2 p-4 py-2 font-Satoshi500 text-[22.621px] items-center flex'
+          "
         >
-          1
-        </button>
-        <button
-          class="border-[#007582] border-y-2 border-r-2 p-4 py-2 font-Satoshi500 text-[22.621px] items-center flex"
-        >
-          2
-        </button>
-        <button
-          class="border-[#007582] border-y-2 border-r-2 p-4 py-2 font-Satoshi500 text-[22.621px] items-center flex"
-        >
-          3
-        </button>
-        <button
-          class="border-[#007582] border-y-2 border-r-2 p-4 py-2 font-Satoshi500 text-[22.621px] items-center flex"
-        >
-          4
-        </button>
-        <button
-          class="border-[#007582] border-y-2 border-r-2 p-4 py-2 font-Satoshi500 text-[22.621px] items-center flex"
-        >
-          5
+          {{ i }}
         </button>
         <button
           class="border-[#007582] border-r-2 border-y-2 p-4 py-2 rounded-r-[6.032px] font-Satoshi500 text-[22.621px] items-center flex"
