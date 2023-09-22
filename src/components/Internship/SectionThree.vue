@@ -5,12 +5,19 @@
     >
       It’s easy to get started
     </h4>
-    <div class="grid container !px-0 lg:grid-cols-3 lg:gap-[82px] gap-[30px] grid-cols-1">
+    <div class="grid container !px-0 lg:grid-cols-3 lg:gap-[70px] gap-[30px] grid-cols-1">
       <div
         v-for="item in boxLists"
         :key="item"
-        class="w-full bg-[#FBFBEE] flex rounded-[4.71px] items-center lg:px-8 px-4 py-12 lg:p-8"
-      ></div>
+        class="w-full bg-[#FBFBEE] flex flex-col text-center rounded-[4.71px] items-center lg:px-8 px-4 py-12 lg:p-8"
+      >
+        <h4 class="text-[#007582] font-Satoshi500 text-[23px] leading-[24.15px] mb-3">
+          {{ item.heading }}
+        </h4>
+        <p class="text-[#011B1F] text-[14px] font-Satoshi400 lg:leading-[16.87px]">
+          {{ item.text }}
+        </p>
+      </div>
     </div>
   </section>
 </template>
@@ -18,28 +25,28 @@
 import { ref } from "vue";
 const boxLists = ref([
   {
-    heading: " Diverse Opportunities",
+    heading: " Signup",
+    text: `Create your MySpurr Internships profile to get started.`,
+  },
+  {
+    heading: "Discover Internships",
+    text: `Explore internship listings from top companies.`,
+  },
+  {
+    heading: "Apply",
+    text: `Submit your applications to the internships that align with your goals.`,
+  },
+  {
+    heading: "Diverse Opportunities",
     text: `Explore a wide range of internship opportunities across various industries and fields.`,
   },
   {
-    heading: "Quality Partnerships",
-    text: `We partner with reputable businesses committed to nurturing and empowering emerging talent.`,
+    heading: "Diverse Opportunities",
+    text: `Explore a wide range of internship opportunities across various industries and fields.`,
   },
   {
-    heading: "Skill Enhancement",
-    text: `Gain hands-on experience, develop new skills, and build your professional network.`,
-  },
-  {
-    heading: "Career Growth",
-    text: "Kickstart your career journey and open doors to future job opportunities.",
-  },
-  {
-    heading: "Skill Enhancement",
-    text: `Gain hands-on experience, develop new skills, and build your professional network.`,
-  },
-  {
-    heading: "Career Growth",
-    text: "Kickstart your career journey and open doors to future job opportunities.",
+    heading: "Diverse Opportunities",
+    text: `Explore a wide range of internship opportunities across various industries and fields.`,
   },
 ]);
 </script>

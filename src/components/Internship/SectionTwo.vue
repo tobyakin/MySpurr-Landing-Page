@@ -10,7 +10,7 @@
           >
             Why Choose MySpurr Internships?
           </h1>
-          <div class="flex-col flex gap-8">
+          <div class="flex-col flex gap-6">
             <div
               v-for="item in lists"
               :key="item"
