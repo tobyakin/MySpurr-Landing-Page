@@ -1,5 +1,5 @@
 <template>
-  <section class="container lg:pt-[145px] !lg:px-0 h-full relative lg:mb-16">
+  <section class="container lg:pt-[145px] !lg:px-0 h-screen relative lg:mb-16">
     <div class="grid lg:grid-cols-2 relative grid-cols-1">
       <div
         class="lg:col-span-1 w-full bg-[#FBFBEE] lg:static absolute top-[70%] flex rounded-l-[6px] items-center lg:px-8 px-4 py-12 lg:p-8"

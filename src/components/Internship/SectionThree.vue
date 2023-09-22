@@ -1,13 +1,15 @@
 <template>
-  <section class="container md:h-auto my-16 lg:my-16">
-    <h4 class="text-[72px] font-EBGaramond500 leading-[67.5px] mb-10">
+  <section class="container my-16 lg:my-16">
+    <h4
+      class="lg:text-[72px] text-[40px] font-EBGaramond500 leading-[40px] lg:leading-[67.5px] mb-10"
+    >
       It’s easy to get started
     </h4>
-    <div class="grid container lg:grid-cols-3 gap-[82px] grid-cols-1">
+    <div class="grid container !px-0 lg:grid-cols-3 lg:gap-[82px] gap-[30px] grid-cols-1">
       <div
         v-for="item in boxLists"
         :key="item"
-        class="w-full bg-[#FBFBEE] lg:static flex rounded-[4.71px] items-center lg:px-8 px-4 py-12 lg:p-8"
+        class="w-full bg-[#FBFBEE] flex rounded-[4.71px] items-center lg:px-8 px-4 py-12 lg:p-8"
       ></div>
     </div>
   </section>
