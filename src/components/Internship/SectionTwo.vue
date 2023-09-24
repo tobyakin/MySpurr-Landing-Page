@@ -26,10 +26,10 @@
           </div>
         </div>
       </div>
-      <div class="">
+      <div class="w-auto">
         <img
           class="h-[100%] w-[100%] rounded-r-[6px] hidden lg:block"
-          src="@/assets/img/intern.png"
+          src="@/assets/img/woman_with_books.png"
           alt=""
         />
       </div>

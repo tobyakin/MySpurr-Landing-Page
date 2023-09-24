@@ -37,16 +37,16 @@ const boxLists = ref([
     text: `Submit your applications to the internships that align with your goals.`,
   },
   {
-    heading: "Diverse Opportunities",
-    text: `Explore a wide range of internship opportunities across various industries and fields.`,
+    heading: "Interview",
+    text: `Submit your applications to the internships that align with your goals.`,
   },
   {
-    heading: "Diverse Opportunities",
-    text: `Explore a wide range of internship opportunities across various industries and fields.`,
+    heading: "Intern",
+    text: `Start your internship journey, learn, and grow.`,
   },
   {
-    heading: "Diverse Opportunities",
-    text: `Explore a wide range of internship opportunities across various industries and fields.`,
+    heading: "Succeed",
+    text: `Use this experience as a stepping stone for your future career.`,
   },
 ]);
 </script>
