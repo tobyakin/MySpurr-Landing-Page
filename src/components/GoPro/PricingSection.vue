@@ -47,8 +47,10 @@ const filterTab = (category) => {
         GHS
       </button>
     </div>
-    <div class="mx-auto flex w-auto justify-center gap-8 flex-row items-center">
-      <h4 class="text-[26.186px] font-Satoshi500 text-[#000000]">Bill Monthly</h4>
+    <div class="mx-auto flex w-auto justify-center gap-4 lg:gap-8 flex-row items-center">
+      <h4 class="lg:text-[26.186px] text-[14px] font-Satoshi500 text-[#000000]">
+        Bill Monthly
+      </h4>
       <div
         class="border-[#2F929C] w-[120.601px] rounded-full p-1 px-[4px] border-2 gap-2 justify-between flex-row flex"
       >
@@ -69,9 +71,11 @@ const filterTab = (category) => {
           <slot name="tab2"></slot>
         </a>
       </div>
-      <h4 class="text-[26.186px] font-Satoshi500 text-[#000000]">Bill Yearly</h4>
+      <h4 class="lg:text-[26.186px] text-[14px] font-Satoshi500 text-[#000000]">
+        Bill Yearly
+      </h4>
     </div>
-    <div class="grid grid-cols-3 gap-4 mt-20">
+    <div class="grid lg:grid-cols-3 grid-cols-1 gap-4 mt-20">
       <div class="border-[#254035AB] border-2 p-10 rounded-full"></div>
       <div class="border-[#254035AB] border-2 p-10 rounded-full"></div>
       <div class="border-[#254035AB] border-2 p-10 rounded-full"></div>
