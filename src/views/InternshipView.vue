@@ -6,6 +6,7 @@ import TrustedByBrands from "@/components/Bander/TrustedByBrands.vue";
 import SectionTwo from "@/components/Internship/SectionTwo.vue";
 import SectionThree from "@/components/Internship/SectionThree.vue";
 import SectionFour from "@/components/Internship/SectionFour.vue";
+import SectionFive from "../components/Internship/SectionFive.vue";
 </script>
 
 <template>
@@ -16,6 +17,7 @@ import SectionFour from "@/components/Internship/SectionFour.vue";
     <SectionTwo />
     <SectionThree />
     <SectionFour />
+    <SectionFive />
     <Footer />
   </div>
 </template>
