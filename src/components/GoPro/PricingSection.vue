@@ -120,7 +120,7 @@ const pro = [
       </h4>
     </div>
     <div class="grid lg:grid-cols-3 grid-cols-1 gap-4">
-      <div class="border-[#007582] border-[1px] p-6 rounded-[33px]">
+      <div class="border-[#007582] border-[1px] p-6 py-10 rounded-[33px]">
         <h4
           class="text-[#2F929C] text-[45.909px] font-EBGaramond500 tracking-[ -0.51px] leading-[50.283px] !font-normal"
         >
@@ -172,7 +172,7 @@ const pro = [
           <button class="btn-brand w-full font-Satoshi400">Upgrade to Pro</button>
         </div>
       </div>
-      <div class="border-[#007582] border-[1px] p-6 rounded-[33px]">
+      <div class="border-[#007582] border-[1px] p-6 py-10 rounded-[33px]">
         <h4
           class="text-[#2F929C] text-[45.909px] font-EBGaramond500 tracking-[ -0.51px] leading-[50.283px] !font-normal"
         >
@@ -225,7 +225,7 @@ const pro = [
           <button class="btn-brand w-full font-Satoshi400">Upgrade to Pro</button>
         </div>
       </div>
-      <div class="border-[#007582] border-[1px] p-10 rounded-[33px]">
+      <div class="border-[#007582] border-[1px] p-6 py-10 rounded-[33px]">
         <h4
           class="text-[#2F929C] text-[45.909px] font-EBGaramond500 tracking-[ -0.51px] leading-[50.283px] !font-normal"
         >
