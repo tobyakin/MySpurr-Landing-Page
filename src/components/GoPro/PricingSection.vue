@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted } from "vue";
-
+import TalentGoProModal from "../Modal/TalentGoProModal.vue";
 const tab = ref("USD");
 const activetab = ref("monthly");
 
@@ -69,6 +69,7 @@ const pro = [
 ];
 </script>
 <template>
+  <TalentGoProModal />
   <div class="flex flex-col gap-20 mt-20">
     <div class="flex w-[60%] flex-row justify-center mx-auto">
       <button
