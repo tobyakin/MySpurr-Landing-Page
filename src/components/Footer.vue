@@ -180,7 +180,7 @@ const getYear = new Date().getFullYear();
               <router-link to="/"> Learning </router-link>
             </li>
             <li class="text-[13.933px] font-Satoshi400 lg:leading-[36.062px]">
-              <router-link to="/"> Go Pro </router-link>
+              <router-link to="/goPro"> Go Pro </router-link>
             </li>
           </ul>
         </div>
