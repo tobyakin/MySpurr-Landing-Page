@@ -96,13 +96,17 @@ const pro = [
         Bill Monthly
       </h4>
       <div
-        class="border-[#2F929C] w-[100px] rounded-full p-1 px-[4px] border-2 gap-2 justify-between flex-row flex"
+        class="border-[#2F929C] w-[120px] rounded-full p-1 px-[8px] border-2 gap-2 justify-between flex-row flex"
       >
         <a
           role="button"
-          class="p-4 h-[35.512px] w-[35.512px] rounded-full"
+          class="p-4 h-[35.512px] w-[35.512px] rounded-full transition ease-in-out duration-700"
           @click="activateTab('monthly')"
-          :class="[activetab === 'monthly' ? 'bg-[#007582]' : 'bg-none']"
+          :class="[
+            activetab === 'monthly'
+              ? 'bg-[#007582] -translate-x-[0.2rem] transition ease-in-out duration-700'
+              : 'bg-none',
+          ]"
         >
           <slot name="tab1"></slot>
         </a>
@@ -110,7 +114,11 @@ const pro = [
           role="button"
           class="p-4 h-[35.512px] w-[35.512px] rounded-full"
           @click="activateTab('yearly')"
-          :class="[activetab === 'yearly' ? 'bg-[#007582]' : 'bg-none']"
+          :class="[
+            activetab === 'yearly'
+              ? 'bg-[#007582] translate-x-[0.2rem] transition ease-in-out duration-700'
+              : 'bg-none',
+          ]"
         >
           <slot name="tab2"></slot>
         </a>
