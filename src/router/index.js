@@ -10,6 +10,8 @@ import ContactUs from '@/views/ContactUs.vue'
 import FQAs from '@/views/FQAs.vue'
 import AboutView from '@/views/AboutView.vue'
 import InternshipView from '@/views/InternshipView.vue'
+import CaseStudyPage from '@/views/CaseStudy/CaseStudyPage.vue'
+import GoPro from '@/views/GoPro.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -67,6 +69,16 @@ const router = createRouter({
       path: '/talent-profile',
       name: 'talent-profile',
       component: TalentProfile
+    },
+    {
+      path: '/goPro',
+      name: 'goPro',
+      component: GoPro
+    },
+    {
+      path: '/case-study',
+      name: 'case-study',
+      component: CaseStudyPage
     }
   ],
   scrollBehavior(to, from, savedPosition) {
