@@ -31,6 +31,24 @@ const useFaqStore = defineStore('help', {
           blog_description:
             "n today's digital age, having a strong online presence is essential for any business to thrive. With so many businesses competing for attention online, it's important to stand out from the crowd and make your mark. Here are 10 ways to boost your business online presence and help you reach your target audience.",
           created_at: '16 Jul 2018'
+        },
+        {
+          slug: 4,
+          cover_image: SampleThree,
+          title: 'How to Build a Successful Career in the Creative Industry',
+          blog_category: 'Creativity and Design',
+          blog_description:
+            "n today's digital age, having a strong online presence is essential for any business to thrive. With so many businesses competing for attention online, it's important to stand out from the crowd and make your mark. Here are 10 ways to boost your business online presence and help you reach your target audience.",
+          created_at: '16 Jul 2018'
+        },
+        {
+          slug: 5,
+          cover_image: SampleThree,
+          title: 'How to Build a Successful Career in the Creative Industry',
+          blog_category: 'Creativity and Design',
+          blog_description:
+            "n today's digital age, having a strong online presence is essential for any business to thrive. With so many businesses competing for attention online, it's important to stand out from the crowd and make your mark. Here are 10 ways to boost your business online presence and help you reach your target audience.",
+          created_at: '16 Jul 2018'
         }
       ],
       help: [
