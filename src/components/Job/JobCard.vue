@@ -47,7 +47,7 @@
       </div>
     </div>
     <div
-      class="flex flex-row gap-6 w-full overflow-hidden cursor-move mt-6 hide-scrollbar overflow-x-auto"
+      class="flex flex-row gap-6 w-full overflow-hidden mt-6 hide-scrollbar overflow-x-auto"
     >
       <img
         v-for="img in Porfolio"

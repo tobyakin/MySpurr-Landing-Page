@@ -12,6 +12,7 @@ import AboutView from '@/views/AboutView.vue'
 import InternshipView from '@/views/InternshipView.vue'
 import CaseStudyPage from '@/views/CaseStudy/CaseStudyPage.vue'
 import GoPro from '@/views/GoPro.vue'
+import SinglePortfolio from '@/views/Portfolio/SinglePortfolio.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -59,6 +60,11 @@ const router = createRouter({
       path: '/internship',
       name: 'internship',
       component: InternshipView
+    },
+    {
+      path: '/single-portfolio/:slug',
+      name: 'single-portfolio',
+      component: SinglePortfolio
     },
     {
       path: '/contact-us',
