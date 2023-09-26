@@ -1,46 +1,24 @@
 <script setup>
-import { defineAsyncComponent } from 'vue'
-import SearchBarIcon from '@/components/icons/searchBarIcon.vue'
-import Navbar from '@/components/Navbar/Navbar.vue'
-import Footer from '@/components/Footer.vue'
-const FormGroup = defineAsyncComponent(() => import('@/components/Form/Input/FormGroup.vue'))
-import BlogCard from '@/components/Blog/BlogCard.vue'
-import useFaqStore from '@/stores/faq'
-import { ref, computed, onMounted } from 'vue'
+import { defineAsyncComponent } from "vue";
+import SearchBarIcon from "@/components/icons/searchBarIcon.vue";
+import Navbar from "@/components/Navbar/Navbar.vue";
+import Footer from "@/components/Footer.vue";
+const FormGroup = defineAsyncComponent(() =>
+  import("@/components/Form/Input/FormGroup.vue")
+);
+import Arrow from "@/components/icons/paginationArrow.vue";
+import BlogCard from "@/components/Blog/BlogCard.vue";
+import useFaqStore from "@/stores/faq";
+import { ref, computed, onMounted } from "vue";
 // import { storeToRefs } from "pinia";
-import SampleThree from '@/assets/img/sampleThree.webp'
-import WorkFlow from '@/components/Bander/WorkFlow.vue'
+import WorkFlow from "@/components/Bander/WorkFlow.vue";
 
-const tab = ref('ALL')
-const filteredTab = ref([])
-const blogPost = [
-  {
-    slug: 1,
-    cover_image: SampleThree,
-    title: 'How to Build a Successful Career in the Creative Industry',
-    blog_category: 'career development',
-    blog_description: 'trdfgfg',
-    created_at: '16 Jul 2018'
-  },
-  {
-    slug: 2,
-    cover_image: SampleThree,
-    title: 'How to Build a Successful Career in the Creative Industry',
-    blog_category: 'Company news',
-    blog_description: 'trdfgfg',
-    created_at: '16 Jul 2018'
-  },
-  {
-    slug: 3,
-    cover_image: SampleThree,
-    title: 'How to Build a Successful Career in the Creative Industry',
-    blog_category: 'Creativity and Design',
-    blog_description: 'trdfgfg',
-    created_at: '16 Jul 2018'
-  }
-]
-const store = useFaqStore()
+const tab = ref("ALL");
+const filteredTab = ref([]);
+
+const store = useFaqStore();
 // const { blog } = storeToRefs(store);
+
 // const pages = computed(() => {
 //   const divsor = Math.floor(blog.value.meta.current_page / 3);
 //   console.log(blog.value.meta.current_page % 3);
@@ -55,7 +33,9 @@ const store = useFaqStore()
 // onMounted(async () => {
 //   await store.getBlog();
 // });
-
+onMounted(() => {
+  filterTab("ALL");
+});
 // const goToPage = (page) => {
 //   store.getBlog(page);
 // };
@@ -67,14 +47,60 @@ const store = useFaqStore()
 // function goToPrevPage(page) {
 //   store.getBlog(page);
 // }
+// Compute the list of page numbers to display
+const displayedPageNumbers = computed(() => {
+  const maxDisplayedPages = 5;
+  const startPage = Math.max(currentPage.value - Math.floor(maxDisplayedPages / 2), 1);
+  const endPage = Math.min(startPage + maxDisplayedPages - 1, totalPages.value);
+  const pageNumbers = [];
 
-const filterTab = (category) => {
-  tab.value = category
-  filteredTab.value = []
-  if (category != 'ALL') {
-    filteredTab.value = store.blogPost.filter((item) => item.blog_category == category)
+  for (let i = startPage; i <= endPage; i++) {
+    pageNumbers.push(i);
+  }
+
+  return pageNumbers;
+});
+
+const itemsPerPage = 6; // Number of items to display per page
+const currentPage = ref(1); // Calculate the total number of pages
+const totalPages = computed(() => Math.ceil(store.blogPost.length / itemsPerPage));
+
+// Function to navigate to a specific page
+function goToPage(page) {
+  if (page >= 1 && page <= totalPages.value) {
+    currentPage.value = page;
   }
 }
+// Compute the paginated data
+const paginatedData = computed(() => {
+  const start = (currentPage.value - 1) * itemsPerPage;
+  const end = start + itemsPerPage;
+  return store.blogPost.slice(start, end);
+});
+
+// Function to navigate to the previous page
+// function previousPage() {
+//   if (currentPage.value > 1) {
+//     currentPage.value--;
+//   }
+// }
+
+// // Function to navigate to the next page
+// function nextPage() {
+//   if (currentPage.value < totalPages.value) {
+//     currentPage.value++;
+//   }
+// }
+const filterTab = (category) => {
+  tab.value = category;
+  if (category != "ALL") {
+    filteredTab.value = paginatedData.value.filter(
+      (item) => item.blog_category == category
+    );
+  } else {
+    filteredTab.value = paginatedData.value;
+  }
+};
 </script>
 
 <template>
@@ -121,7 +147,7 @@ const filterTab = (category) => {
                 href="javascript:void(0)"
                 @click="filterTab('Creativity and Design')"
                 :class="{
-                  'border-b-[#007582] border-b-[2.224px]': tab == 'Creativity and Design'
+                  'border-b-[#007582] border-b-[2.224px]': tab == 'Creativity and Design',
                 }"
                 class="px-0 py-2 hover:border-b-[#007582]"
               >
@@ -133,7 +159,7 @@ const filterTab = (category) => {
                 href="javascript:void(0)"
                 @click="filterTab('Creative inspiration')"
                 :class="{
-                  'border-b-[#007582] border-b-[2.224px]': tab == 'Creative inspiration'
+                  'border-b-[#007582] border-b-[2.224px]': tab == 'Creative inspiration',
                 }"
                 class="px-0 py-2 hover:border-b-[#007582]"
               >
@@ -145,7 +171,7 @@ const filterTab = (category) => {
                 href="javascript:void(0)"
                 @click="filterTab('Case Studies')"
                 :class="{
-                  'border-b-[#007582] border-b-[2.224px]': tab == 'Case Studies'
+                  'border-b-[#007582] border-b-[2.224px]': tab == 'Case Studies',
                 }"
                 class="px-0 py-2 hover:border-b-[#007582]"
               >
@@ -157,7 +183,8 @@ const filterTab = (category) => {
                 href="javascript:void(0)"
                 @click="filterTab('Interviews and features')"
                 :class="{
-                  'border-b-[#007582] border-b-[2.224px]': tab == 'Interviews and features'
+                  'border-b-[#007582] border-b-[2.224px]':
+                    tab == 'Interviews and features',
                 }"
                 class="px-0 py-2 hover:border-b-[#007582]"
               >
@@ -169,7 +196,7 @@ const filterTab = (category) => {
                 href="javascript:void(0)"
                 @click="filterTab('Company news')"
                 :class="{
-                  'border-b-[#007582] border-b-[2.224px]': tab == 'Company news'
+                  'border-b-[#007582] border-b-[2.224px]': tab == 'Company news',
                 }"
                 class="px-0 py-2 hover:border-b-[#007582]"
               >
@@ -181,7 +208,8 @@ const filterTab = (category) => {
                 href="javascript:void(0)"
                 @click="filterTab('Industry News and Insights')"
                 :class="{
-                  'border-b-[#007582] border-b-[2.224px]': tab == 'Industry News and Insights'
+                  'border-b-[#007582] border-b-[2.224px]':
+                    tab == 'Industry News and Insights',
                 }"
                 class="px-0 py-2 hover:border-b-[#007582]"
               >
@@ -189,7 +217,7 @@ const filterTab = (category) => {
               </a>
             </li>
           </ul>
-          <div
+          <!-- <div
             v-if="store.blogPost.length && tab == 'ALL'"
             class="md:grid md:grid-cols-3 gap-10 my-10 min-h-screen flex-wrap"
           >
@@ -203,8 +231,8 @@ const filterTab = (category) => {
               :blog_category="blog.blog_category"
               :blog="blog"
             />
-          </div>
-          <div v-else class="md:grid md:grid-cols-3 gap-10 my-10 min-h-screen flex-wrap">
+          </div> -->
+          <div class="md:grid md:grid-cols-3 gap-10 my-10 min-h-screen flex-wrap">
             <BlogCard
               v-for="blog in filteredTab"
               :key="blog"
@@ -216,38 +244,60 @@ const filterTab = (category) => {
               :blog="blog"
             />
           </div>
+          <div class="mt-12 flex w-[60%] flex-row justify-center mx-auto">
+            <button
+              v-for="pageNumber in displayedPageNumbers"
+              :key="pageNumber"
+              :class="[
+                'border-[#007582] p-4 py-2 font-Satoshi500 text-[22.621px] items-center flex',
+                pageNumber === 1
+                  ? 'border-t-2 border-b-2 border-l-2 rounded-l-[6.032px]'
+                  : 'border-y-2 border-r-2',
+                pageNumber === currentPage ? 'bg-[#007582] text-white' : '',
+              ]"
+              @click="goToPage(pageNumber)"
+            >
+              {{ pageNumber }}
+            </button>
+            <button
+              @click="goToPage(currentPage + 5)"
+              class="border-[#007582] border-r-2 border-y-2 p-4 py-2 rounded-r-[6.032px] font-Satoshi500 text-[22.621px] items-center flex"
+            >
+              <Arrow />
+            </button>
+          </div>
           <WorkFlow />
           <!-- <ul
-              v-if="blog.links"
-              class="flex items-center gap-2 w-full text-sm justify-center"
+            v-if="blog.links"
+            class="flex items-center gap-2 w-full text-sm justify-center"
+          >
+            <li
+              v-if="blog.links.prev"
+              class="px-5 py-1 cursor-pointer rounded-3xl text-xs"
+              @click="goToPrevPage(blog.meta.current_page - 1)"
             >
-              <li
-                v-if="blog.links.prev"
-                class="px-5 py-1 cursor-pointer rounded-3xl text-xs"
-                @click="goToPrevPage(blog.meta.current_page - 1)"
-              >
-                Prev
-              </li>
-              <li
-                v-for="page in pages"
-                :key="page"
-                class="px-5 py-1 cursor-pointer rounded-3xl text-xs"
-                :class="{
-                  'bg-[#878787] text-white': blog.meta.current_page === page,
-                  'bg-white': blog.meta.current_page !== page,
-                }"
-                @click="goToPage(page)"
-              >
-                {{ page }}
-              </li>
-              <li
-                v-if="blog.links.next"
-                class="px-5 py-1 text-xs cursor-pointer rounded-3xl bg-[#3A3A3A] text-white"
-                @click="goToNextPage(blog.meta.current_page + 1)"
-              >
-                Older
-              </li>
-            </ul> -->
+              Prev
+            </li>
+            <li
+              v-for="page in pages"
+              :key="page"
+              class="px-5 py-1 cursor-pointer rounded-3xl text-xs"
+              :class="{
+                'bg-[#878787] text-white': blog.meta.current_page === page,
+                'bg-white': blog.meta.current_page !== page,
+              }"
+              @click="goToPage(page)"
+            >
+              {{ page }}
+            </li>
+            <li
+              v-if="blog.links.next"
+              class="px-5 py-1 text-xs cursor-pointer rounded-3xl bg-[#3A3A3A] text-white"
+              @click="goToNextPage(blog.meta.current_page + 1)"
+            >
+              Older
+            </li>
+          </ul> -->
         </div>
       </div>
     </div>
