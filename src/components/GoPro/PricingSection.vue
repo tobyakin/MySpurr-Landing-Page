@@ -27,24 +27,14 @@ const talentBasic = [
   { item: "Creative portfolio on your domain" },
   { item: "Showcase your designs" },
   { item: "Access to MySpurr job board" },
-  { item: "Dedicated wallet for payments" },
   { item: "Access to free resources" },
   { item: "Access to community" },
   { item: "Career coaching and mentorship" },
-];
-const talentPro = [
-  { item: "Everything in basic" },
-  { item: "Priority visibility in hiring feeds" },
-  { item: "Send customizable invoices" },
-  { item: "Create a team account for your agency" },
-  { item: "Message business directly" },
-  { item: "Access to MySpurr learning" },
 ];
 const businessBasic = [
   { item: "Business portfolio on your domain" },
   { item: "Post jobs " },
   { item: "Access to MySpurr talent board" },
-  { item: "Dedicated wallet for payments" },
   { item: "Access to free resources" },
   { item: "Access to community" },
   { item: "Stats and analytics" },
@@ -52,20 +42,20 @@ const businessBasic = [
 const businessPro = [
   { item: "Everything in basic" },
   { item: "Dedicated account support" },
+  { item: "Dedicated wallet" },
   { item: "Customized hiring solutions" },
   { item: "Chat and schedule calls with talent" },
   { item: "Access to learning for your team" },
   { item: "Access to internship program" },
 ];
-const pro = [
-  { item: "Access to a diverse talent pool" },
-  { item: "Customized talent search" },
-  { item: "Priority job listing" },
-  { item: "Dedicated account support" },
-  { item: "Exclusive talent pools" },
-  { item: "Bulk hiring options" },
-  { item: "Chat and schedule calls with talent" },
-  { item: "Access exclusive content and events" },
+const talentPro = [
+  { item: "Everything in basic" },
+  { item: "Priority visibility in hiring feeds" },
+  { item: "Dedicated wallet" },
+  { item: "Send customized invoices" },
+  { item: "Create a team account for your agency" },
+  { item: "Message business directly" },
+  { item: "Access to MySpurr learning" },
 ];
 </script>
 <template>
@@ -128,8 +118,10 @@ const pro = [
         Bill Yearly
       </h4>
     </div>
-    <div class="grid lg:grid-cols-3 grid-cols-1 gap-4">
-      <div class="border-[#007582] border-[1px] p-6 py-10 rounded-[33px]">
+    <div class="grid lg:grid-cols-2 container grid-cols-1 gap-[112px]">
+      <div
+        class="border-[#007582] border-[1px] lg:p-[45px] p-[20px] py-[42.27px] rounded-[33px]"
+      >
         <h4
           class="text-[#2F929C] text-[45.909px] font-EBGaramond500 tracking-[ -0.51px] leading-[50.283px] !font-normal"
         >
@@ -150,7 +142,7 @@ const pro = [
             </h4>
           </div>
         </div>
-        <hr class="text-[#254035AB] my-[60px]" />
+        <!-- <hr class="text-[#254035AB] my-[60px]" />
         <h4
           class="text-[#2F929C] text-[45.909px] font-EBGaramond500 tracking-[ -0.51px] leading-[50.283px] !font-normal"
         >
@@ -179,9 +171,11 @@ const pro = [
         </div>
         <div class="w-full mt-10">
           <button class="btn-brand w-full font-Satoshi400">Upgrade to Pro</button>
-        </div>
+        </div> -->
       </div>
-      <div class="border-[#007582] border-[1px] p-6 py-10 rounded-[33px]">
+      <div
+        class="border-[#007582] border-[1px] lg:p-[45px] p-[20px] py-[42.27px] rounded-[33px]"
+      >
         <h4
           class="text-[#2F929C] text-[45.909px] font-EBGaramond500 tracking-[ -0.51px] leading-[50.283px] !font-normal"
         >
@@ -202,7 +196,7 @@ const pro = [
             </h4>
           </div>
         </div>
-        <hr class="text-[#254035AB] my-[60px]" />
+        <!-- <hr class="text-[#254035AB] my-[60px]" />
         <h4
           class="text-[#2F929C] text-[45.909px] font-EBGaramond500 tracking-[ -0.51px] leading-[50.283px] !font-normal"
         >
@@ -232,9 +226,11 @@ const pro = [
         </div>
         <div class="w-full mt-10">
           <button class="btn-brand w-full font-Satoshi400">Upgrade to Pro</button>
-        </div>
+        </div> -->
       </div>
-      <div class="border-[#007582] border-[1px] p-6 py-10 rounded-[33px]">
+      <div
+        class="border-[#007582] border-[1px] lg:p-[45px] p-[20px] py-[42.27px] rounded-[33px]"
+      >
         <h4
           class="text-[#2F929C] text-[45.909px] font-EBGaramond500 tracking-[ -0.51px] leading-[50.283px] !font-normal"
         >
@@ -251,7 +247,47 @@ const pro = [
         </p>
 
         <div class="flex flex-col gap-2 mt-10">
-          <div v-for="item in pro" :key="item" class="flex flex-row items-center gap-2">
+          <div
+            v-for="item in talentPro"
+            :key="item"
+            class="flex flex-row items-center gap-2"
+          >
+            <img src="@/assets/svg/circleTick.svg" alt="" />
+            <h4 class="text-[#000000B2] text-[16px] font-Satoshi400 leading-[31.132px]">
+              {{ item.item }}
+            </h4>
+          </div>
+        </div>
+        <div class="w-full mt-10">
+          <button class="btn-brand w-full font-Satoshi400">Upgrade to Pro</button>
+        </div>
+
+        <div></div>
+      </div>
+      <div
+        class="border-[#007582] border-[1px] lg:p-[45px] p-[20px] py-[42.27px] rounded-[33px]"
+      >
+        <h4
+          class="text-[#2F929C] text-[45.909px] font-EBGaramond500 tracking-[ -0.51px] leading-[50.283px] !font-normal"
+        >
+          Pro
+        </h4>
+        <p class="font-Satoshi400 text-[16px] leading-[31.132px] text-[#000000B2]">
+          For Business/HR Managers
+        </p>
+        <h4 class="text-[#2F929C] text-[36px] font-Satoshi700 mt-6 leading-[52.234px]">
+          $10/mo
+        </h4>
+        <p class="font-Satoshi400 text-[16px] leading-[31.132px] text-[#000000B2]">
+          when billed yearly
+        </p>
+
+        <div class="flex flex-col gap-2 mt-10">
+          <div
+            v-for="item in businessPro"
+            :key="item"
+            class="flex flex-row items-center gap-2"
+          >
             <img src="@/assets/svg/circleTick.svg" alt="" />
             <h4 class="text-[#000000B2] text-[16px] font-Satoshi400 leading-[31.132px]">
               {{ item.item }}

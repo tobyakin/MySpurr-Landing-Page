@@ -1,0 +1,1 @@
+import{e as s,o as t,c as r,r as a,m as o}from"./index-585daf5f.js";const c={};function n(e,l){return t(),r("label",o(e.$attrs,{class:"font-Satoshi500 text-[15.606px]"}),[a(e.$slots,"default")],16)}const m=s(c,[["render",n]]);export{m as default};
