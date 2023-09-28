@@ -1,17 +1,26 @@
 <script setup>
 import Navbar from "@/components/Navbar/Navbar.vue";
 import Footer from "@/components/Footer.vue";
-import { defineAsyncComponent } from "vue";
+import { defineAsyncComponent, onMounted } from "vue";
+import { storeToRefs } from "pinia";
 import GoPro from "@/components/Bander/GoPro.vue";
 import Arrow from "@/components/icons/paginationArrow.vue";
 import JobCard from "@/components/Job/JobCard.vue";
 import Subscribe from "@/components/Bander/Subscribe.vue";
+import { useTalentsStore } from "@/stores/talents";
+const talentsStore = useTalentsStore();
+const { talent } = storeToRefs(talentsStore);
+
 const FormGroup = defineAsyncComponent(() =>
   import("@/components/Form/Input/FormGroup.vue")
 );
 const FormSelectGroup = defineAsyncComponent(() =>
   import("@/components/Form/Input/SelectGroup.vue")
 );
+onMounted(async () => {
+  await talentsStore.allTalents();
+  console.log("talents", talent.value.data);
+});
 </script>
 
 <template>
@@ -106,7 +115,7 @@ const FormSelectGroup = defineAsyncComponent(() =>
         </p>
       </div>
       <div class="mt-14 flex flex-col gap-8">
-        <JobCard class="w-full" v-for="item in 10" :key="item" />
+        <JobCard class="w-full" v-for="item in talent.data" :key="item" :talent="item" />
       </div>
       <div class="mt-12 flex w-[60%] flex-row justify-center mx-auto">
         <button

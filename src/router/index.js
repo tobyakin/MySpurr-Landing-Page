@@ -72,7 +72,7 @@ const router = createRouter({
       component: ContactUs
     },
     {
-      path: '/talent-profile',
+      path: '/talent-profile/:slug',
       name: 'talent-profile',
       component: TalentProfile
     },
