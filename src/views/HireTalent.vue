@@ -17,9 +17,6 @@ const FormGroup = defineAsyncComponent(() =>
 const FormSelectGroup = defineAsyncComponent(() =>
   import("@/components/Form/Input/SelectGroup.vue")
 );
-const talentsData = computed(() => {
-  return talent.value.data;
-});
 // Define a ref to keep track of the current page
 const currentPage = ref(1);
 
@@ -37,7 +34,7 @@ const paginatedTalent = computed(() => {
   return talentData.value.slice(startIndex, endIndex);
 });
 const totalPages = computed(() =>
-  Math.ceil(talentsData.value.length / pagination.value.per_page)
+  Math.ceil(talentData.value.length / pagination.value.per_page)
 );
 
 // Function to change the current page
@@ -67,7 +64,7 @@ watch(currentPage, (newPage) => {
 onMounted(async () => {
   await talentsStore.allTalents();
   console.log("talents", talent.value.data);
-  console.log("is array", Array.isArray(talentsData.value));
+  console.log("is array", Array.isArray(talentData.value));
 });
 </script>
 
