@@ -66,11 +66,6 @@ const currentPage = ref(1); // Calculate the total number of pages
 const totalPages = computed(() => Math.ceil(store.blogPost.length / itemsPerPage));
 
 // Function to navigate to a specific page
-function goToPage(page) {
-  if (page >= 1 && page <= totalPages.value) {
-    currentPage.value = page;
-  }
-}
 // Compute the paginated data
 const paginatedData = computed(() => {
   const start = (currentPage.value - 1) * itemsPerPage;

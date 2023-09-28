@@ -3,8 +3,8 @@ import { defineStore } from 'pinia'
 import { getAllTalents, getOneTalents } from '@/services/Talents'
 
 export const useTalentsStore = defineStore('talents', () => {
-  const talent = ref([])
-  const singleTalent = ref([])
+  const talent = ref({})
+  const singleTalent = ref({})
 
   const allTalents = async () => {
     try {

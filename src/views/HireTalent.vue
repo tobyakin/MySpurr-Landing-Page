@@ -1,7 +1,7 @@
 <script setup>
 import Navbar from "@/components/Navbar/Navbar.vue";
 import Footer from "@/components/Footer.vue";
-import { defineAsyncComponent, onMounted } from "vue";
+import { defineAsyncComponent, onMounted, computed, ref, watch } from "vue";
 import { storeToRefs } from "pinia";
 import GoPro from "@/components/Bander/GoPro.vue";
 import Arrow from "@/components/icons/paginationArrow.vue";
@@ -17,9 +17,57 @@ const FormGroup = defineAsyncComponent(() =>
 const FormSelectGroup = defineAsyncComponent(() =>
   import("@/components/Form/Input/SelectGroup.vue")
 );
+const talentsData = computed(() => {
+  return talent.value.data;
+});
+// Define a ref to keep track of the current page
+const currentPage = ref(1);
+
+// Create a computed property to access the talent data
+const talentData = computed(() => talent.value?.data || []);
+
+// Create a computed property to access the pagination data
+const pagination = computed(() => talent.value?.pagination || {});
+
+// Create a computed property to paginate the talent data
+const paginatedTalent = computed(() => {
+  const perPage = pagination.value.per_page;
+  const startIndex = (currentPage.value - 1) * perPage;
+  const endIndex = startIndex + perPage;
+  return talentData.value.slice(startIndex, endIndex);
+});
+const totalPages = computed(() =>
+  Math.ceil(talentsData.value.length / pagination.value.per_page)
+);
+
+// Function to change the current page
+const setPage = (page) => {
+  if (page >= 1 && page <= (pagination.value.last_page || 1)) {
+    currentPage.value = page;
+  }
+};
+const displayedPageNumbers = computed(() => {
+  const maxDisplayedPages = 5;
+  const startPage = Math.max(currentPage.value - Math.floor(maxDisplayedPages / 2), 1);
+  const endPage = Math.min(startPage + maxDisplayedPages - 1, totalPages.value);
+  const pageNumbers = [];
+
+  for (let i = startPage; i <= endPage; i++) {
+    pageNumbers.push(i);
+  }
+
+  return pageNumbers;
+});
+
+// You can also watch the currentPage to react to page changes
+watch(currentPage, (newPage) => {
+  console.log("Current Page:", newPage);
+});
+
 onMounted(async () => {
   await talentsStore.allTalents();
   console.log("talents", talent.value.data);
+  console.log("is array", Array.isArray(talentsData.value));
 });
 </script>
 
@@ -115,21 +163,30 @@ onMounted(async () => {
         </p>
       </div>
       <div class="mt-14 flex flex-col gap-8">
-        <JobCard class="w-full" v-for="item in talent.data" :key="item" :talent="item" />
+        <JobCard
+          class="w-full"
+          v-for="item in paginatedTalent"
+          :key="item"
+          :talent="item"
+        />
       </div>
       <div class="mt-12 flex w-[60%] flex-row justify-center mx-auto">
         <button
-          v-for="i in 4"
-          :key="i"
-          :class="
-            i == 1
-              ? 'border-[#007582] border-x-2 border-t-2 border-b-2 p-4 py-2 rounded-l-[6.032px] font-Satoshi500 text-[22.621px] items-center flex'
-              : 'border-[#007582] border-y-2 border-r-2 p-4 py-2 font-Satoshi500 text-[22.621px] items-center flex'
-          "
+          v-for="pageNumber in displayedPageNumbers"
+          :key="pageNumber"
+          :class="[
+            'border-[#007582] p-4 py-2 font-Satoshi500 text-[22.621px] items-center flex',
+            pageNumber === 1
+              ? 'border-t-2 border-b-2 border-l-2 rounded-l-[6.032px]'
+              : 'border-y-2 border-r-2',
+            pageNumber === currentPage ? 'bg-[#007582] text-white' : '',
+          ]"
+          @click="setPage(pageNumber)"
         >
-          {{ i }}
+          {{ pageNumber }}
         </button>
         <button
+          @click="setPage(currentPage + 5)"
           class="border-[#007582] border-r-2 border-y-2 p-4 py-2 rounded-r-[6.032px] font-Satoshi500 text-[22.621px] items-center flex"
         >
           <Arrow />
