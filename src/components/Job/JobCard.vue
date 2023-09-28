@@ -18,20 +18,20 @@
           </div>
           <div class="lg:text-left text-center">
             <p class="text-[#000000] text-[20.839px] font-Satoshi500 leading-[19.739px]">
-              Julia Ark
+              {{ talent.first_name }}
             </p>
             <p
               class="text-[#00000066] text-[16.699px] leading-[20.739px] font-Satoshi400"
             >
-              Graphic Designer
+              {{ talent.skill_title }} Graphic Designer
             </p>
             <div class="flex items-center gap-2">
               <p class="lg:text-[19.319px] text-[14px] text-[#244034] font-Satoshi500">
-                $30k -$50k/yr
+                {{ talent.compensation }} $30k -$50k/yr
               </p>
               <div class="h-[6px] bg-[#010101e2] w-[6px] rounded-full"></div>
               <p class="text-[#244034] lg:text-[19.319px] text-[14px] font-Satoshi500">
-                California, US
+                {{ talent.skill_title }} California, US
               </p>
             </div>
           </div>
@@ -57,7 +57,10 @@
         alt=""
       />
     </div>
-    <router-link to="/talent-profile" class="flex items-center gap-4 mt-6">
+    <router-link
+      :to="{ name: 'talent-profile', params: { slug: talent.uniqueId } }"
+      class="flex items-center gap-4 mt-6"
+    >
       <p class="lg:text-[20.699px] text-[14px] font-Satoshi500 text-[#244034]">
         View Profile
       </p>
@@ -86,4 +89,7 @@ const Porfolio = [
   { img: SampleThree },
   { img: SampleFour },
 ];
+defineProps({
+  talent: Object,
+});
 </script>

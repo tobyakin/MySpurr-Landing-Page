@@ -11,7 +11,7 @@
           <JobAvater inputClasses="!h-[89.536px] !w-[89.536px]" class="" />
           <div class="lg:text-left text-center">
             <p class="text-[#000000] text-[17.518px] font-Satoshi500 leading-[31.739px]">
-              Julia Ark
+              {{ talents?.first_name }}
             </p>
             <p
               class="text-[#00000066] text-[14.598px] leading-[31.739px] font-Satoshi400"
@@ -172,7 +172,8 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted, computed } from "vue";
+import { storeToRefs } from "pinia";
 import JobAvater from "@/components/Avater/JobAvater.vue";
 import Navbar from "@/components/Navbar/Navbar.vue";
 import Footer from "@/components/Footer.vue";
@@ -189,6 +190,22 @@ import SampleFour from "@/assets/img/sampleFour.webp";
 import RateStar from "@/components/icons/rateStar.vue";
 import CertificateBadge from "@/components/icons/certificateBadge.vue";
 import CalenderWithPen from "@/components/icons/calenderWithPen.vue";
+import { useRouter, useRoute } from "vue-router";
+import { useTalentsStore } from "@/stores/talents";
+const talentsStore = useTalentsStore();
+const { singleTalent } = storeToRefs(talentsStore);
+const route = useRoute();
+const router = useRouter();
+
+const talents = computed(() => {
+  return singleTalent.value.data;
+});
+
+onMounted(async () => {
+  await talentsStore.getSingleTalent(route.params.slug);
+  console.log("single talents", talents.value);
+});
+
 const Porfolio = [
   { img: SampleOne },
   { img: SampleTwo },
