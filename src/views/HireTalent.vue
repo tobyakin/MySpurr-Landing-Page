@@ -63,8 +63,6 @@ watch(currentPage, (newPage) => {
 
 onMounted(async () => {
   await talentsStore.allTalents();
-  console.log("talents", talent.value.data);
-  console.log("is array", Array.isArray(talentData.value));
 });
 </script>
 
