@@ -154,7 +154,9 @@ onMounted(async () => {
       <GoPro />
       <div class="my-10">
         <p class="text-[#00000066] font-Satoshi400 text-[23.998px]">
-          All <span class="text-[#000000] font-Satoshi500">1,270</span> candidates found
+          All
+          <span class="text-[#000000] font-Satoshi500">{{ paginatedTalent.length }}</span>
+          candidates found
         </p>
       </div>
       <div class="mt-14 flex flex-col gap-8">
