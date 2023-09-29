@@ -11,16 +11,16 @@
           <JobAvater inputClasses="!h-[89.536px] !w-[89.536px]" class="" />
           <div class="lg:text-left text-center">
             <p class="text-[#000000] text-[17.518px] font-Satoshi500 leading-[31.739px]">
-              {{ talents?.first_name }}
+              {{ talents?.first_name }} {{ talents?.last_name }}
             </p>
             <p
-              class="text-[#00000066] text-[14.598px] leading-[31.739px] font-Satoshi400"
+              class="text-[#00000066] text-[14.598px] capitalize leading-[31.739px] font-Satoshi400"
             >
-              Graphic Designer
+              {{ talents?.skill_title }}
             </p>
             <div class="flex items-center gap-2">
               <p class="lg:text-[13.625px] text-[14px] text-[#244034] font-Satoshi500">
-                $30k -$50k/yr
+                ${{ talents?.compensation }}/yr
               </p>
               <div class="h-[6px] bg-[#010101e2] w-[6px] rounded-full"></div>
               <p class="text-[#244034] lg:text-[13.625px] text-[14px] font-Satoshi500">
@@ -59,32 +59,21 @@
           <p class="text-[28px] text-[#000] font-Satoshi500">Overview</p>
           <div class="text-[#000000BF] font-Satoshi400 text-[16px] mt-4 leading-[35px]">
             <p>
-              Hello my name is Nicole Wells and web developer from Portland. In pharetra
-              orci dignissim, blandit mi semper, ultricies diam. Suspendisse malesuada
-              suscipit nunc non volutpat. Sed porta nulla id orci laoreet tempor non
-              consequat enim. Sed vitae aliquam velit. Aliquam ante erat, blandit at
-              pretium et, accumsan ac est. Integer vehicula rhoncus molestie. Morbi ornare
-              ipsum sed sem condimentum, et pulvinar tortor luctus. Suspendisse
-              condimentum lorem ut elementum aliquam.
+              {{ talents?.portfolio_description }}
             </p>
-            <p class="mt-4">
-              Mauris nec erat ut libero vulputate pulvinar. Aliquam ante erat, blandit at
-              pretium et, accumsan ac est. Integer vehicula rhoncus molestie. Morbi ornare
-              ipsum sed sem condimentum, et pulvinar tortor luctus. Suspendisse
-              condimentum lorem ut elementum aliquam. Mauris nec erat ut libero vulputate
-              pulvinar.
-            </p>
+            <!-- <p class="mt-4"></p> -->
           </div>
           <p class="text-[28px] text-[#000] font-Satoshi500 mb-4 mt-6">Skills</p>
           <div class="flex gap-4 flex-wrap">
             <div
-              v-for="item in 10"
+              v-for="item in talents?.top_skills"
               :key="item"
               class="bg-[#EFF6F3] rounded-full p-5 py-3 text-[17px] font-Satoshi400 text-[#276A4D]"
             >
-              Figma
+              {{ item.name }}
             </div>
             <div
+              v-if="talents?.top_skills > 10"
               class="bg-[#D2F34C] rounded-full p-4 py-3 text-[17px] font-Satoshi400 text-[#000000]"
             >
               3+

@@ -23,15 +23,15 @@
             <p
               class="text-[#00000066] text-[16.699px] leading-[20.739px] font-Satoshi400"
             >
-              {{ talent.skill_title }} Graphic Designer
+              {{ talent.skill_title }}
             </p>
             <div class="flex items-center gap-2">
               <p class="lg:text-[19.319px] text-[14px] text-[#244034] font-Satoshi500">
-                {{ talent.compensation }} $30k -$50k/yr
+                ${{ talent.compensation }}/yr
               </p>
               <div class="h-[6px] bg-[#010101e2] w-[6px] rounded-full"></div>
               <p class="text-[#244034] lg:text-[19.319px] text-[14px] font-Satoshi500">
-                {{ talent.skill_title }} California, US
+                California, US
               </p>
             </div>
           </div>
