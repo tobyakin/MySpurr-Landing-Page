@@ -19,6 +19,7 @@
           <div class="lg:text-left text-center">
             <p class="text-[#000000] text-[20.839px] font-Satoshi500 leading-[19.739px]">
               {{ talent.first_name }}
+              {{ talent.last_name }}
             </p>
             <p
               class="text-[#00000066] text-[16.699px] leading-[20.739px] font-Satoshi400"
