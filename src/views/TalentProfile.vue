@@ -66,17 +66,17 @@
           <p class="text-[28px] text-[#000] font-Satoshi500 mb-4 mt-6">Skills</p>
           <div class="flex gap-4 flex-wrap">
             <div
-              v-for="item in talents?.top_skills"
-              :key="item"
+              v-for="(item, index) in talents?.top_skills.slice(0, 10)"
+              :key="item.name"
               class="bg-[#EFF6F3] rounded-full p-5 py-3 text-[17px] font-Satoshi400 text-[#276A4D]"
             >
               {{ item.name }}
             </div>
             <div
-              v-if="talents?.top_skills > 10"
+              v-if="talents?.top_skills.length > 10"
               class="bg-[#D2F34C] rounded-full p-4 py-3 text-[17px] font-Satoshi400 text-[#000000]"
             >
-              3+
+              {{ talents?.top_skills.length - 10 }}+
             </div>
           </div>
           <p class="text-[28px] text-[#000] font-Satoshi500 mb-12 mt-8">Education</p>
