@@ -3,7 +3,7 @@ import Navbar from "@/components/Navbar/Navbar.vue";
 import Footer from "@/components/Footer.vue";
 import SectionOne from "@/components/About/SectionOne.vue";
 import SectionTwo from "@/components/About/SectionTwo.vue";
-import AppOccupant from "@/components/Bander/AppOccupant.vue";
+import AppOccupant from "@/components/Bander/UserCounter.vue";
 import WorkFlow from "@/components/Bander/WorkFlow.vue";
 import SectionThree from "@/components/About/SectionThree.vue";
 </script>
