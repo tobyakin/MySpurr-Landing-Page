@@ -17,6 +17,7 @@ const FormGroup = defineAsyncComponent(() =>
 const FormSelectGroup = defineAsyncComponent(() =>
   import("@/components/Form/Input/SelectGroup.vue")
 );
+
 // Define a ref to keep track of the current page
 const currentPage = ref(1);
 

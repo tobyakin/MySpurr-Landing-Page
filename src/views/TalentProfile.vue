@@ -20,11 +20,11 @@
             </p>
             <div class="flex items-center gap-2">
               <p class="lg:text-[13.625px] text-[14px] text-[#244034] font-Satoshi500">
-                ${{ talents?.compensation }}/yr
+                ${{ talents?.rate }}/yr
               </p>
               <div class="h-[6px] bg-[#010101e2] w-[6px] rounded-full"></div>
               <p class="text-[#244034] lg:text-[13.625px] text-[14px] font-Satoshi500">
-                California, US
+                {{ talents?.location }}
               </p>
             </div>
           </div>
@@ -59,32 +59,36 @@
           <p class="text-[28px] text-[#000] font-Satoshi500">Overview</p>
           <div class="text-[#000000BF] font-Satoshi400 text-[16px] mt-4 leading-[35px]">
             <p>
-              {{ talents?.portfolio_description }}
+              {{ talents?.overview }}
             </p>
             <!-- <p class="mt-4"></p> -->
+            <!-- .slice(0, 10) -->
+            <!--               
+ -->
+            <!--               {{ talents?.top_skills.length - 10 }}+
+ -->
           </div>
           <p class="text-[28px] text-[#000] font-Satoshi500 mb-4 mt-6">Skills</p>
           <div class="flex gap-4 flex-wrap">
             <div
-              v-for="(item, index) in talents?.top_skills.slice(0, 10)"
+              v-for="(item, index) in talents?.top_skills"
               :key="item.name"
               class="bg-[#EFF6F3] rounded-full p-5 py-3 text-[17px] font-Satoshi400 text-[#276A4D]"
             >
               {{ item.name }}
             </div>
             <div
-              v-if="talents?.top_skills.length > 10"
-              class="bg-[#D2F34C] rounded-full p-4 py-3 text-[17px] font-Satoshi400 text-[#000000]"
-            >
-              {{ talents?.top_skills.length - 10 }}+
-            </div>
+              class="bg-[#D2F34C] hidden rounded-full p-4 py-3 text-[17px] font-Satoshi400 text-[#000000]"
+            ></div>
           </div>
           <p class="text-[28px] text-[#000] font-Satoshi500 mb-12 mt-8">Education</p>
-          <SampleFive :items="items" />
+          <EducationDetails :items="talents?.education" />
+          <!-- <SampleFive :items="items" /> -->
+
           <p class="text-[28px] text-[#000] font-Satoshi500 mb-12 mt-8">
             Work Experience
           </p>
-          <SampleFive :items="workItems" />
+          <WorkExperience :items="talents?.employment" />
           <p class="text-[28px] text-[#000] font-Satoshi500 mb-12 mt-8">Portfolio</p>
           <div
             class="flex flex-row gap-4 w-full overflow-hidden cursor-move mt-6 hide-scrollbar overflow-x-auto"
@@ -128,16 +132,28 @@
           <div
             class="bg-[#E9FAFB] p-8 border-[#F6F6F6] border-[1px] flex flex-col gap-12 mt-4 rounded-[15px]"
           >
-            <div v-for="i in 5" :key="i" class="flex items-center gap-5">
+            <div
+              v-for="i in talents?.certificate"
+              :key="i"
+              class="flex items-center gap-5"
+            >
               <CertificateBadge />
               <div>
-                <p class="text-[15px] text-[#000] font-Satoshi500">Graphics Design</p>
+                <a
+                  target="_blank"
+                  :href="i.certificate_link"
+                  class="text-[15px] text-[#000] font-Satoshi500 hover:text-brand overflow-hidden"
+                >
+                  {{ i.title }}
+                </a>
                 <p class="text-[14px] leading-[20px] text-[#31795A] font-Satoshi500">
-                  Cousera
+                  {{ i.institute }}
                 </p>
                 <div class="flex items-center gap-2">
                   <CalenderWithPen />
-                  <p class="font-Satoshi500 text-[12.9px] text-[#000000]">2015</p>
+                  <p class="font-Satoshi500 text-[12.9px] text-[#000000]">
+                    {{ i.certificate_year }}
+                  </p>
                 </div>
               </div>
             </div>
@@ -172,6 +188,8 @@ import InstagramIcon from "@/components/icons/instagramIcon.vue";
 import BeIcon from "@/components/icons/beIcon.vue";
 import TwitterIcon from "@/components/icons/twitterIcon.vue";
 import SampleFive from "@/components/genericComponents/sampleFive.vue";
+import WorkExperience from "@/components/genericComponents/WorkExperience.vue";
+import EducationDetails from "@/components/genericComponents/EducationDetails.vue";
 import SampleOne from "@/assets/img/sampleOne.webp";
 import SampleTwo from "@/assets/img/sampleTwo.webp";
 import SampleThree from "@/assets/img/sampleThree.webp";
