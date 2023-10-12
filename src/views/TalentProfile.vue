@@ -20,7 +20,7 @@
             </p>
             <div class="flex items-center gap-2">
               <p class="lg:text-[13.625px] text-[14px] text-[#244034] font-Satoshi500">
-                ${{ talents?.rate }}/yr
+                ${{ talents?.rate }}/hr
               </p>
               <div class="h-[6px] bg-[#010101e2] w-[6px] rounded-full"></div>
               <p class="text-[#244034] lg:text-[13.625px] text-[14px] font-Satoshi500">

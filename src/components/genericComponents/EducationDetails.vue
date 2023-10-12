@@ -28,7 +28,9 @@
                 {{ item.start_date }} -
                 {{ item.end_date }}
               </p>
-              <p class="text-[#000000BF] text-[16px]">{{ item.content }}</p>
+              <p class="text-[#000000BF] text-[16px] flex flex-wrap overflow-auto">
+                {{ item.description }}
+              </p>
             </div>
           </div>
         </div>
