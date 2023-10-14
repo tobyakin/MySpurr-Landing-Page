@@ -1,32 +1,30 @@
 <script setup>
-import { ref } from "vue";
-import { useRoute } from "vue-router";
+import { ref } from 'vue'
+import { useRoute } from 'vue-router'
 
-import SearchBarIcon from "@/components/icons/searchBarIcon.vue";
-const body = document.querySelector("body");
-body.classList.remove("overflow-hidden");
-const showMobile = ref(false);
-const route = useRoute();
+import SearchBarIcon from '@/components/icons/searchBarIcon.vue'
+const body = document.querySelector('body')
+body.classList.remove('overflow-hidden')
+const showMobile = ref(false)
+const route = useRoute()
 
 const toogleMobileMenu = () => {
-  const body = document.querySelector("body");
-  showMobile.value = !showMobile.value;
+  const body = document.querySelector('body')
+  showMobile.value = !showMobile.value
   if (showMobile.value) {
-    body.classList.add("overflow-hidden");
+    body.classList.add('overflow-hidden')
   } else {
-    body.classList.remove("overflow-hidden");
+    body.classList.remove('overflow-hidden')
   }
-};
+}
 
-const landingUrl = import.meta.env.VITE_LANDING_PAGE;
+const dashboardUrl = import.meta.env.VITE_DASHBOARD
 </script>
 <template>
   <div class="sticky top-0 z-30 bg-[#ffffff]">
     <div class="!max-w-[93%] container mx-auto">
       <header class="py-[18px]">
-        <div
-          class="lg:px-[15px] mx-auto flex items-center justify-between font-Satoshi700"
-        >
+        <div class="lg:px-[15px] mx-auto flex items-center justify-between font-Satoshi700">
           <div class="flex items-center justify-between space-x-4 lg:space-x-6">
             <router-link to="/">
               <img
@@ -61,9 +59,7 @@ const landingUrl = import.meta.env.VITE_LANDING_PAGE;
                   :class="route.name === 'business' ? 'text-[#2F929C] ' : ''"
                   class="p-[10px] pr-0 flex justify-start rounded-[5px]"
                 >
-                  <span class="place-self-center text-[16px] leading-[21.6px]"
-                    >For Business
-                  </span>
+                  <span class="place-self-center text-[16px] leading-[21.6px]">For Business </span>
                 </router-link>
               </li>
               <li>
@@ -72,9 +68,7 @@ const landingUrl = import.meta.env.VITE_LANDING_PAGE;
                   :class="route.name === 'learn' ? 'text-[#2F929C] ' : ''"
                   class="p-[10px] pr-0 flex justify-start rounded-[5px]"
                 >
-                  <span class="place-self-center text-[16px] leading-[21.6px]"
-                    >Learn
-                  </span>
+                  <span class="place-self-center text-[16px] leading-[21.6px]">Learn </span>
                 </router-link>
               </li>
               <li>
@@ -83,9 +77,7 @@ const landingUrl = import.meta.env.VITE_LANDING_PAGE;
                   :class="route.name === 'hire-talent' ? 'text-[#2F929C] ' : ''"
                   class="p-[10px] pr-0 flex justify-start rounded-[5px]"
                 >
-                  <span class="place-self-center text-[16px] leading-[21.6px]"
-                    >Hire Talent
-                  </span>
+                  <span class="place-self-center text-[16px] leading-[21.6px]">Hire Talent </span>
                 </router-link>
               </li>
             </ul>
@@ -94,7 +86,7 @@ const landingUrl = import.meta.env.VITE_LANDING_PAGE;
             <a
               role="button"
               target="_blank"
-              :href="landingUrl + 'login'"
+              :href="dashboardUrl + 'login'"
               class="btn-light font-Satoshi500 !text-[16px]"
             >
               Sign in
@@ -102,7 +94,7 @@ const landingUrl = import.meta.env.VITE_LANDING_PAGE;
             <a
               role="button"
               target="_blank"
-              :href="landingUrl + 'signup'"
+              :href="dashboardUrl + 'signup'"
               class="btn-brand font-Satoshi500"
               >Start for free
             </a>
@@ -139,12 +131,7 @@ const landingUrl = import.meta.env.VITE_LANDING_PAGE;
                 </g>
                 <defs>
                   <clipPath id="clip0_2694_20501">
-                    <rect
-                      width="39"
-                      height="39"
-                      fill="white"
-                      transform="translate(0.772461 0.5)"
-                    />
+                    <rect width="39" height="39" fill="white" transform="translate(0.772461 0.5)" />
                   </clipPath>
                 </defs>
               </svg>
@@ -180,9 +167,7 @@ const landingUrl = import.meta.env.VITE_LANDING_PAGE;
                   :class="route.name === 'business' ? 'text-[#2F929C] ' : ''"
                   class="p-[10px] px-0 flex justify-start rounded-[5px]"
                 >
-                  <span class="place-self-center text-[16px] leading-[21.6px]"
-                    >For Business
-                  </span>
+                  <span class="place-self-center text-[16px] leading-[21.6px]">For Business </span>
                 </router-link>
               </li>
               <li>
@@ -191,9 +176,7 @@ const landingUrl = import.meta.env.VITE_LANDING_PAGE;
                   :class="route.name === 'learn' ? 'text-[#2F929C] ' : ''"
                   class="p-[10px] px-0 flex justify-start rounded-[5px]"
                 >
-                  <span class="place-self-center text-[16px] leading-[21.6px]"
-                    >Learn
-                  </span>
+                  <span class="place-self-center text-[16px] leading-[21.6px]">Learn </span>
                 </router-link>
               </li>
               <li>
@@ -202,9 +185,7 @@ const landingUrl = import.meta.env.VITE_LANDING_PAGE;
                   :class="route.name === 'hire-talent' ? 'text-[#2F929C] ' : ''"
                   class="p-[10px] px-0 flex justify-start rounded-[5px]"
                 >
-                  <span class="place-self-center text-[16px] leading-[21.6px]"
-                    >Hire Talent
-                  </span>
+                  <span class="place-self-center text-[16px] leading-[21.6px]">Hire Talent </span>
                 </router-link>
               </li>
             </ul>
@@ -212,7 +193,7 @@ const landingUrl = import.meta.env.VITE_LANDING_PAGE;
               <a
                 role="button"
                 target="_blank"
-                :href="landingUrl + 'login'"
+                :href="dashboardUrl + 'login'"
                 class="btn-light font-Satoshi500 !text-[16px]"
               >
                 Sign in
@@ -220,7 +201,7 @@ const landingUrl = import.meta.env.VITE_LANDING_PAGE;
               <a
                 role="button"
                 target="_blank"
-                :href="landingUrl + 'signup'"
+                :href="dashboardUrl + 'signup'"
                 class="btn-brand font-Satoshi500"
                 >Start for free
               </a>

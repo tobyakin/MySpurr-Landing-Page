@@ -2,7 +2,9 @@
   <div
     class="lg:my-40 my-10 py-10 border-t-[#EBEBEB] border-b-[#EBEBEB] border-t-[1px] border-b-[1px]"
   >
-    <div class="flex lg:flex-nowrap flex-wrap lg:gap-0 gap-10 items-center justify-between">
+    <div
+      class="flex lg:flex-nowrap flex-wrap lg:gap-0 gap-10 items-center justify-between"
+    >
       <div class="w-full">
         <h2
           class="text-[#101621] w-full text-[30px] lg:text-[40px] text-center lg:text-left leading-[29px] lg:leading-[44px] font-EBGaramond500"
@@ -25,6 +27,7 @@
         </div>
         <div>
           <a
+            :href="dashboardUrl + 'signup'"
             role="button"
             class="bg-brand p-3 mx-auto rounded-full px-10 text-white text-[16px] font-Satoshi400"
             >Start for free
@@ -34,3 +37,6 @@
     </div>
   </div>
 </template>
+<script setup>
+const dashboardUrl = import.meta.env.VITE_DASHBOARD;
+</script>

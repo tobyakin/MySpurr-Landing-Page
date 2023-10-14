@@ -6,9 +6,18 @@
       Want to browse more, subscribe to MySpurr Pro
     </p>
     <button
+      @click="redirectToGoPro"
       class="btn-brand !bg-[#6BA336] border-none !text-[#E6F1F3] p-5 py-2 rounded-l-[6.032px] font-Satoshi500 text-[22.621px] items-center flex"
     >
       Go Pro
     </button>
   </div>
 </template>
+<script setup>
+import { useRouter } from "vue-router";
+const router = useRouter();
+
+const redirectToGoPro = () => {
+  router.push({ name: "goPro" });
+};
+</script>

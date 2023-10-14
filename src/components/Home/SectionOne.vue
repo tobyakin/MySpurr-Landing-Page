@@ -17,7 +17,8 @@
           enhance your skills with MySpurr
         </p>
         <div class="flex">
-          <a role="button" class="btn-brand font-Satoshi400"> Start for free </a
+          <a :href="dashboardUrl + 'signup'" role="button" class="btn-brand font-Satoshi400">
+            Start for free </a
           ><!---->
         </div>
       </div>
@@ -36,6 +37,7 @@
 import mainbg from '@/assets/img/sectionOnebg.webp'
 import PlayButton from '@/components/icons/playButton.vue'
 const image = mainbg
+const dashboardUrl = import.meta.env.VITE_DASHBOARD
 </script>
 
 <style scoped>

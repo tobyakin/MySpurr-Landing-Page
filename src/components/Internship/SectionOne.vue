@@ -13,11 +13,16 @@
         </h1>
         <p class="text-[22px] text-white font-Satoshi400 my-8 md:my-6">
           We empower graduates and undergraduates with diverse,
-          <br class="md:block hidden" />skill-enhancing internships while enabling businesses to tap
-          into fresh talent.
+          <br class="md:block hidden" />skill-enhancing internships while enabling
+          businesses to tap into fresh talent.
         </p>
         <div class="flex">
-          <a role="button" class="btn-brand font-Satoshi400"> Start for free </a
+          <a
+            :href="dashboardUrl + 'signup'"
+            role="button"
+            class="btn-brand font-Satoshi400"
+          >
+            Start for free </a
           ><!---->
         </div>
       </div>
@@ -33,17 +38,17 @@
   </div>
 </template>
 <script setup>
-import mainbg from '@/assets/img/internBg.png'
-import PlayButton from '@/components/icons/playButton.vue'
-const image = mainbg
+import mainbg from "@/assets/img/internBg.png";
+import PlayButton from "@/components/icons/playButton.vue";
+const image = mainbg;
+const dashboardUrl = import.meta.env.VITE_DASHBOARD;
 </script>
 
 <style scoped>
 .background {
   background-size: cover;
   background-blend-mode: overlay;
-  background:
-    linear-gradient(
+  background: linear-gradient(
       from 270deg at 50% 50%,
       rgba(15, 14, 14, 0.28) 184.15632963180542deg,
       rgba(13, 11, 11, 0.33) 270.5531358718872deg,
