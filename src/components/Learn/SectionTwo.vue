@@ -19,7 +19,9 @@
     :reverseOnMobile="true"
   />
   <div class="flex justify-center items-center pb-[6rem]">
-    <a role="button" class="btn-brand font-Satoshi400"> Start Free Trial </a>
+    <a :href="dashboardUrl + 'signup'" role="button" class="btn-brand font-Satoshi400">
+      Start for free
+    </a>
   </div>
 </template>
 
@@ -65,5 +67,5 @@ const section4List3 = ref([
   },
 ]);
 
-// const registerUrl = import.meta.env.VITE_DASHBOARD_BASEURL;
+const dashboardUrl = import.meta.env.VITE_DASHBOARD;
 </script>

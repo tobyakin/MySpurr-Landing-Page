@@ -19,9 +19,17 @@
         <div
           class="flex lg:flex-row flex-col lg:justify-start justify-center lg:items-start items-center gap-4 mt-8"
         >
-          <button class="btn-brand font-Satoshi400 w-[193.602px] text-[16px] !px-0">
-            Sign Up for internships</button
-          ><button class="btn-brand font-Satoshi400 w-[193.602px]">Contact us</button>
+          <a
+            :href="dashboardUrl + 'signup'"
+            class="btn-brand font-Satoshi400 text-center w-[193.602px] text-[16px] !px-0"
+          >
+            Sign Up for internships</a
+          ><button
+            @click="redirectToContectUs"
+            class="btn-brand font-Satoshi400 w-[193.602px]"
+          >
+            Contact us
+          </button>
         </div>
       </div>
       <!-- <img class="rounded-[29.842px]" src="@/assets/img/internbander.png" alt="" /> -->
@@ -31,6 +39,13 @@
 <script setup>
 import mainbg from "@/assets/img/internbander.png";
 const image = mainbg;
+const dashboardUrl = import.meta.env.VITE_DASHBOARD;
+import { useRouter } from "vue-router";
+const router = useRouter();
+
+const redirectToContectUs = () => {
+  router.push({ name: "contact-us" });
+};
 </script>
 
 <style scoped>

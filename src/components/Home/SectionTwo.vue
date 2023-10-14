@@ -26,7 +26,9 @@
     :reverseOnMobile="true"
   />
   <div class="flex justify-center items-center pb-[6rem]">
-    <a role="button" class="btn-brand font-Satoshi400"> Start Free Trial </a>
+    <a :href="dashboardUrl + 'signup'" role="button" class="btn-brand font-Satoshi400">
+      Start for free
+    </a>
   </div>
 </template>
 
@@ -41,6 +43,7 @@ const BuildHeading = ` <span class="font-Satoshi700">Build</span> your Creative 
 const DiscoverHeading = ` <span class="font-Satoshi700">Discover </span> <br class="md:block hidden" /> job Opportunities`;
 const ConnectHeading = ` <span class="font-Satoshi700">Connect</span>  with top  <br class="md:block hidden" /> businesses`;
 const GrowHeading = ` <span class="font-Satoshi700">Grow </span> with a <br class="md:block hidden" /> Community`;
+const dashboardUrl = import.meta.env.VITE_DASHBOARD;
 
 const section4List1 = ref([
   {

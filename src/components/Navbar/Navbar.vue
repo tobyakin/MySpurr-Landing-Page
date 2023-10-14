@@ -18,7 +18,7 @@ const toogleMobileMenu = () => {
   }
 };
 
-const landingUrl = import.meta.env.VITE_LANDING_PAGE;
+const dashboardUrl = import.meta.env.VITE_DASHBOARD;
 </script>
 <template>
   <div class="sticky top-0 z-30 bg-[#ffffff]">
@@ -31,7 +31,7 @@ const landingUrl = import.meta.env.VITE_LANDING_PAGE;
             <router-link to="/">
               <img
                 src="@/assets/Logobeta.png"
-                class="h-[35px] md:h-[39.421px] w-auto"
+                class="h-[70px] md:h-[49.421px] w-auto"
                 alt="MySpurr logo"
               />
             </router-link>
@@ -94,7 +94,7 @@ const landingUrl = import.meta.env.VITE_LANDING_PAGE;
             <a
               role="button"
               target="_blank"
-              :href="landingUrl + 'login'"
+              :href="dashboardUrl + 'login'"
               class="btn-light font-Satoshi500 !text-[16px]"
             >
               Sign in
@@ -102,10 +102,10 @@ const landingUrl = import.meta.env.VITE_LANDING_PAGE;
             <a
               role="button"
               target="_blank"
-              :href="landingUrl + 'signup'"
+              :href="dashboardUrl + 'signup'"
               class="btn-brand font-Satoshi500"
-              >Start free trial</a
-            >
+              >Start for free
+            </a>
           </div>
           <div class="lg:hidden">
             <button @click="toogleMobileMenu">
@@ -212,7 +212,7 @@ const landingUrl = import.meta.env.VITE_LANDING_PAGE;
               <a
                 role="button"
                 target="_blank"
-                :href="landingUrl + 'login'"
+                :href="dashboardUrl + 'login'"
                 class="btn-light font-Satoshi500 !text-[16px]"
               >
                 Sign in
@@ -220,10 +220,10 @@ const landingUrl = import.meta.env.VITE_LANDING_PAGE;
               <a
                 role="button"
                 target="_blank"
-                :href="landingUrl + 'signup'"
+                :href="dashboardUrl + 'signup'"
                 class="btn-brand font-Satoshi500"
-                >Start free trial</a
-              >
+                >Start for free
+              </a>
             </div>
           </div>
         </div>

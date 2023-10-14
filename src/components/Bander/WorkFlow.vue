@@ -27,12 +27,16 @@
         </div>
         <div>
           <a
+            :href="dashboardUrl + 'signup'"
             role="button"
             class="bg-brand p-3 mx-auto rounded-full px-10 text-white text-[16px] font-Satoshi400"
-            >Start free trial
+            >Start for free
           </a>
         </div>
       </div>
     </div>
   </div>
 </template>
+<script setup>
+const dashboardUrl = import.meta.env.VITE_DASHBOARD;
+</script>
