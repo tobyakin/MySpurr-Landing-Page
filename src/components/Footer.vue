@@ -12,8 +12,8 @@ const getYear = new Date().getFullYear();
       <div class="w-auto">
         <div class="mb-4">
           <img
-            src="@/assets/whiteLogo.png"
-            class="h-[40px] md:h-[27.53px] w-auto"
+            src="@/assets/LogoBetaLight.png"
+            class="h-[80px] md:h-[47.53px] w-auto"
             alt=""
           />
         </div>

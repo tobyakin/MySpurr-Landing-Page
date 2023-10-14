@@ -1,35 +1,37 @@
 <script setup>
-import { ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { ref } from "vue";
+import { useRoute } from "vue-router";
 
-import SearchBarIcon from '@/components/icons/searchBarIcon.vue'
-const body = document.querySelector('body')
-body.classList.remove('overflow-hidden')
-const showMobile = ref(false)
-const route = useRoute()
+import SearchBarIcon from "@/components/icons/searchBarIcon.vue";
+const body = document.querySelector("body");
+body.classList.remove("overflow-hidden");
+const showMobile = ref(false);
+const route = useRoute();
 
 const toogleMobileMenu = () => {
-  const body = document.querySelector('body')
-  showMobile.value = !showMobile.value
+  const body = document.querySelector("body");
+  showMobile.value = !showMobile.value;
   if (showMobile.value) {
-    body.classList.add('overflow-hidden')
+    body.classList.add("overflow-hidden");
   } else {
-    body.classList.remove('overflow-hidden')
+    body.classList.remove("overflow-hidden");
   }
-}
+};
 
-const dashboardUrl = import.meta.env.VITE_DASHBOARD
+const dashboardUrl = import.meta.env.VITE_DASHBOARD;
 </script>
 <template>
   <div class="sticky top-0 z-30 bg-[#ffffff]">
     <div class="!max-w-[93%] container mx-auto">
       <header class="py-[18px]">
-        <div class="lg:px-[15px] mx-auto flex items-center justify-between font-Satoshi700">
+        <div
+          class="lg:px-[15px] mx-auto flex items-center justify-between font-Satoshi700"
+        >
           <div class="flex items-center justify-between space-x-4 lg:space-x-6">
             <router-link to="/">
               <img
                 src="@/assets/Logobeta.png"
-                class="h-[35px] md:h-[39.421px] w-auto"
+                class="h-[70px] md:h-[49.421px] w-auto"
                 alt="MySpurr logo"
               />
             </router-link>
@@ -59,7 +61,9 @@ const dashboardUrl = import.meta.env.VITE_DASHBOARD
                   :class="route.name === 'business' ? 'text-[#2F929C] ' : ''"
                   class="p-[10px] pr-0 flex justify-start rounded-[5px]"
                 >
-                  <span class="place-self-center text-[16px] leading-[21.6px]">For Business </span>
+                  <span class="place-self-center text-[16px] leading-[21.6px]"
+                    >For Business
+                  </span>
                 </router-link>
               </li>
               <li>
@@ -68,7 +72,9 @@ const dashboardUrl = import.meta.env.VITE_DASHBOARD
                   :class="route.name === 'learn' ? 'text-[#2F929C] ' : ''"
                   class="p-[10px] pr-0 flex justify-start rounded-[5px]"
                 >
-                  <span class="place-self-center text-[16px] leading-[21.6px]">Learn </span>
+                  <span class="place-self-center text-[16px] leading-[21.6px]"
+                    >Learn
+                  </span>
                 </router-link>
               </li>
               <li>
@@ -77,7 +83,9 @@ const dashboardUrl = import.meta.env.VITE_DASHBOARD
                   :class="route.name === 'hire-talent' ? 'text-[#2F929C] ' : ''"
                   class="p-[10px] pr-0 flex justify-start rounded-[5px]"
                 >
-                  <span class="place-self-center text-[16px] leading-[21.6px]">Hire Talent </span>
+                  <span class="place-self-center text-[16px] leading-[21.6px]"
+                    >Hire Talent
+                  </span>
                 </router-link>
               </li>
             </ul>
@@ -131,7 +139,12 @@ const dashboardUrl = import.meta.env.VITE_DASHBOARD
                 </g>
                 <defs>
                   <clipPath id="clip0_2694_20501">
-                    <rect width="39" height="39" fill="white" transform="translate(0.772461 0.5)" />
+                    <rect
+                      width="39"
+                      height="39"
+                      fill="white"
+                      transform="translate(0.772461 0.5)"
+                    />
                   </clipPath>
                 </defs>
               </svg>
@@ -167,7 +180,9 @@ const dashboardUrl = import.meta.env.VITE_DASHBOARD
                   :class="route.name === 'business' ? 'text-[#2F929C] ' : ''"
                   class="p-[10px] px-0 flex justify-start rounded-[5px]"
                 >
-                  <span class="place-self-center text-[16px] leading-[21.6px]">For Business </span>
+                  <span class="place-self-center text-[16px] leading-[21.6px]"
+                    >For Business
+                  </span>
                 </router-link>
               </li>
               <li>
@@ -176,7 +191,9 @@ const dashboardUrl = import.meta.env.VITE_DASHBOARD
                   :class="route.name === 'learn' ? 'text-[#2F929C] ' : ''"
                   class="p-[10px] px-0 flex justify-start rounded-[5px]"
                 >
-                  <span class="place-self-center text-[16px] leading-[21.6px]">Learn </span>
+                  <span class="place-self-center text-[16px] leading-[21.6px]"
+                    >Learn
+                  </span>
                 </router-link>
               </li>
               <li>
@@ -185,7 +202,9 @@ const dashboardUrl = import.meta.env.VITE_DASHBOARD
                   :class="route.name === 'hire-talent' ? 'text-[#2F929C] ' : ''"
                   class="p-[10px] px-0 flex justify-start rounded-[5px]"
                 >
-                  <span class="place-self-center text-[16px] leading-[21.6px]">Hire Talent </span>
+                  <span class="place-self-center text-[16px] leading-[21.6px]"
+                    >Hire Talent
+                  </span>
                 </router-link>
               </li>
             </ul>
