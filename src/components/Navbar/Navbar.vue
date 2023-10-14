@@ -30,8 +30,8 @@ const landingUrl = import.meta.env.VITE_LANDING_PAGE;
           <div class="flex items-center justify-between space-x-4 lg:space-x-6">
             <router-link to="/">
               <img
-                src="@/assets/Logo.png"
-                class="h-[30px] md:h-[34.421px] w-auto"
+                src="@/assets/Logobeta.png"
+                class="h-[35px] md:h-[39.421px] w-auto"
                 alt="MySpurr logo"
               />
             </router-link>
