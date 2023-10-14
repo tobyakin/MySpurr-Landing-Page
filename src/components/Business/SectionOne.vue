@@ -17,7 +17,7 @@
           projects with MySpurr
         </p>
         <div class="flex">
-          <a role="button" class="btn-brand font-Satoshi400"> Start Free Trial </a
+          <a role="button" class="btn-brand font-Satoshi400"> Start for free </a
           ><!---->
         </div>
       </div>

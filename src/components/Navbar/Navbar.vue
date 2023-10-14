@@ -104,8 +104,8 @@ const landingUrl = import.meta.env.VITE_LANDING_PAGE;
               target="_blank"
               :href="landingUrl + 'signup'"
               class="btn-brand font-Satoshi500"
-              >Start free trial</a
-            >
+              >Start for free
+            </a>
           </div>
           <div class="lg:hidden">
             <button @click="toogleMobileMenu">
@@ -222,8 +222,8 @@ const landingUrl = import.meta.env.VITE_LANDING_PAGE;
                 target="_blank"
                 :href="landingUrl + 'signup'"
                 class="btn-brand font-Satoshi500"
-                >Start free trial</a
-              >
+                >Start for free
+              </a>
             </div>
           </div>
         </div>

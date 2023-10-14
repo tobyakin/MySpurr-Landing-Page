@@ -16,7 +16,7 @@
           <br class="md:block hidden" />a successful career in the dynamic world of creativity.
         </p>
         <div class="flex">
-          <a role="button" class="btn-brand font-Satoshi400"> Start Free Trial </a
+          <a role="button" class="btn-brand font-Satoshi400"> Start for free </a
           ><!---->
         </div>
       </div>
