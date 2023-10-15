@@ -10,7 +10,9 @@
         >
           <JobAvater inputClasses="!h-[89.536px] !w-[89.536px]" class="" />
           <div class="lg:text-left text-center">
-            <p class="text-[#000000] text-[17.518px] font-Satoshi500 leading-[31.739px]">
+            <p
+              class="text-[#000000] text-[17.518px] capitalize font-Satoshi500 leading-[31.739px]"
+            >
               {{ talents?.first_name }} {{ talents?.last_name }}
             </p>
             <p
