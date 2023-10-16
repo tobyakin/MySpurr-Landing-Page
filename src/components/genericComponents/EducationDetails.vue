@@ -8,9 +8,9 @@
           <div v-for="(item, index) in items" :key="item" class="flex gap-3">
             <div class="">
               <div
-                class="h-12 w-12 text-[#31795A] bg-[#EFF6F3] flex justify-center items-center rounded-full"
+                class="h-12 w-12 text-[#31795A] bg-[#EFF6F3] flex justify-center text-center items-center rounded-full"
               >
-                {{ index + 1 }}
+                <span class="grid place-content-center"> {{ index + 1 }} </span>
               </div>
               <div v-if="index + 1 != items.length" class="flex justify-center">
                 <div class="h-16 bg-[#EFF6F3] my-4 w-[0.8px]"></div>
