@@ -17,7 +17,9 @@
             <GreenIcon class="absolute top-2 right-3" />
           </div>
           <div class="lg:text-left text-center">
-            <p class="text-[#000000] text-[20.839px] font-Satoshi500 leading-[19.739px]">
+            <p
+              class="text-[#000000] text-[20.839px] capitalize font-Satoshi500 leading-[19.739px]"
+            >
               {{ talent.first_name }}
               {{ talent.last_name }}
             </p>

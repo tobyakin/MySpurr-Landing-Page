@@ -8,7 +8,7 @@
           <div v-for="(item, index) in items" :key="item" class="flex gap-3">
             <div class="">
               <div
-                class="h-12 w-12 text-[#31795A] bg-[#EFF6F3] flex justify-center items-center rounded-full"
+                class="h-12 w-12 text-[#31795A] bg-[#EFF6F3] flex justify-center text-center items-center rounded-full"
               >
                 {{ index + 1 }}
               </div>

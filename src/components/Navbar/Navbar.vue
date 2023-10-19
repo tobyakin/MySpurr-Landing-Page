@@ -31,7 +31,7 @@ const dashboardUrl = import.meta.env.VITE_DASHBOARD;
             <router-link to="/">
               <img
                 src="@/assets/Logobeta.png"
-                class="h-[70px] md:h-[49.421px] w-auto"
+                class="h-[40px] md:h-[49.421px] w-auto"
                 alt="MySpurr logo"
               />
             </router-link>
