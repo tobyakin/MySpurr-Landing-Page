@@ -10,11 +10,11 @@
         >
           <div class="relative h-[100.955px] w-[100.955px] rounded-full">
             <img
-              src="@/assets/img/icon.webp"
+              :src="talent?.image ? talent?.image : 'src/assets/img/icon.webp'"
               class="h-[100.955px] w-[100.955px] rounded-full"
               alt=""
             />
-            <GreenIcon class="absolute top-2 right-3" />
+            <GreenIcon class="absolute top-1 right-3" />
           </div>
           <div class="lg:text-left text-center">
             <p
