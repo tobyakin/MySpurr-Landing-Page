@@ -26,19 +26,23 @@
             <div
               class="flex lg:flex-row flex-col items-center lg:justify-normal justify-center gap-6"
             >
-              <JobAvater inputClasses="!h-[89.536px] !w-[89.536px]" class="" />
-              <div class="lg:text-left text-center">
-                <p
-                  class="text-[#000000] text-[17.518px] capitalize font-Satoshi500 leading-[31.739px]"
-                >
-                  {{ talents?.first_name }} {{ talents?.last_name }}
-                </p>
-                <p
-                  class="text-[#00000066] text-[14.598px] capitalize leading-[31.739px] font-Satoshi400"
-                >
-                  {{ talents?.skill_title }}
-                </p>
-                <div class="flex items-center gap-2">
+          <JobAvater
+            :imageUrl="talents?.image"
+            inputClasses="!h-[89.536px] !w-[89.536px]"
+            class=""
+          />
+          <div class="lg:text-left text-center">
+            <p
+              class="text-[#000000] text-[17.518px] capitalize font-Satoshi500 leading-[31.739px]"
+            >
+              {{ talents?.first_name }} {{ talents?.last_name }}
+            </p>
+            <p
+              class="text-[#00000066] text-[14.598px] capitalize leading-[31.739px] font-Satoshi400"
+            >
+              {{ talents?.skill_title }}
+            </p>
+            <div class="flex items-center gap-2">
                   <p
                     class="lg:text-[13.625px] text-[14px] text-[#244034] font-Satoshi500"
                   >
