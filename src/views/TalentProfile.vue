@@ -61,8 +61,8 @@
               class="flex flex-col items-center lg:justify-normal justify-center gap-6"
             >
               <div class="flex items-center gap-3">
-                <button>
-                  <LinkdeinIcon />
+            <a v-if="talents?.linkedin" :href="talents?.linkedin" target="_blank">
+              <LinkdeinIcon />
                 </button>
                 <button>
                   <InstagramIcon />
