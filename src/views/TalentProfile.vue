@@ -130,8 +130,10 @@
                 class="flex flex-row gap-4 w-full overflow-hidden cursor-move mt-6 hide-scrollbar overflow-x-auto"
               >
                 <img
-                  v-for="img in Porfolio"
-                  :key="img"
+              @click="redirectToSinglePortFolio(index)"
+              role="button"
+              v-for="(img, index) in talents?.portfolio"
+              :key="img"
                   :src="img.img"
                   class="h-[214.078px] flex flex-col w-auto rounded-lg"
                   alt=""
