@@ -19,30 +19,30 @@
       ref="html2Pdf"
     >
       <template v-slot:pdf-content>
-        <div id="talent-cv" class="py-20 container talent-cv">
+        <div id="element-to-convert" class="py-20 container talent-cv">
           <div
             class="bg-[#E9FAFB] border-[#F6F6F6] flex lg:flex-row flex-col gap-5 justify-between items-center border-[1px] rounded-[15px] p-6 px-14"
           >
             <div
               class="flex lg:flex-row flex-col items-center lg:justify-normal justify-center gap-6"
             >
-          <JobAvater
-            :imageUrl="talents?.image"
-            inputClasses="!h-[89.536px] !w-[89.536px]"
-            class=""
-          />
-          <div class="lg:text-left text-center">
-            <p
-              class="text-[#000000] text-[17.518px] capitalize font-Satoshi500 leading-[31.739px]"
-            >
-              {{ talents?.first_name }} {{ talents?.last_name }}
-            </p>
-            <p
-              class="text-[#00000066] text-[14.598px] capitalize leading-[31.739px] font-Satoshi400"
-            >
-              {{ talents?.skill_title }}
-            </p>
-            <div class="flex items-center gap-2">
+              <JobAvater
+                :imageUrl="talents?.image"
+                inputClasses="!h-[89.536px] !w-[89.536px]"
+                class=""
+              />
+              <div class="lg:text-left text-center">
+                <p
+                  class="text-[#000000] text-[17.518px] capitalize font-Satoshi500 leading-[31.739px]"
+                >
+                  {{ talents?.first_name }} {{ talents?.last_name }}
+                </p>
+                <p
+                  class="text-[#00000066] text-[14.598px] capitalize leading-[31.739px] font-Satoshi400"
+                >
+                  {{ talents?.skill_title }}
+                </p>
+                <div class="flex items-center gap-2">
                   <p
                     class="lg:text-[13.625px] text-[14px] text-[#244034] font-Satoshi500"
                   >
@@ -61,18 +61,18 @@
               class="flex flex-col items-center lg:justify-normal justify-center gap-6"
             >
               <div class="flex items-center gap-3">
-            <a v-if="talents?.linkedin" :href="talents?.linkedin" target="_blank">
-              <LinkdeinIcon />
-                </button>
-                <button>
+                <a v-if="talents?.linkedin" :href="talents?.linkedin" target="_blank">
+                  <LinkdeinIcon />
+                </a>
+                <a v-if="talents?.instagram" :href="talents?.instagram" target="_blank">
                   <InstagramIcon />
-                </button>
-                <button>
+                </a>
+                <a v-if="talents?.behance" :href="talents?.behance" target="_blank">
                   <BeIcon />
-                </button>
-                <button>
+                </a>
+                <a v-if="talents?.twitter" :href="talents?.twitter" target="_blank">
                   <TwitterIcon />
-                </button>
+                </a>
               </div>
               <div class="flex items-center gap-5">
                 <button>
@@ -130,11 +130,11 @@
                 class="flex flex-row gap-4 w-full overflow-hidden cursor-move mt-6 hide-scrollbar overflow-x-auto"
               >
                 <img
-              @click="redirectToSinglePortFolio(index)"
-              role="button"
-              v-for="(img, index) in talents?.portfolio"
-              :key="img"
-                  :src="img.img"
+                  @click="redirectToSinglePortFolio(index)"
+                  role="button"
+                  v-for="(img, index) in talents?.portfolio"
+                  :key="img"
+                  :src="img.cover_image"
                   class="h-[214.078px] flex flex-col w-auto rounded-lg"
                   alt=""
                 />
@@ -169,7 +169,7 @@
                 </div>
               </div>
             </div>
-            <div class="lg:w-[30%] p-4">
+            <div class="lg:w-[30%] w-full p-4">
               <p class="text-[28px] text-[#000] font-Satoshi500">Certificates</p>
               <div
                 class="bg-[#E9FAFB] p-8 border-[#F6F6F6] border-[1px] flex flex-col gap-12 mt-4 rounded-[15px]"
@@ -201,7 +201,7 @@
                 </div>
                 <div class="">
                   <button
-                    @click="generateReport"
+                    @click="exportToPDF"
                     class="btn-brand !border-none !w-full !py-2 !text-[#FFFFFF] text-center !bg-[#31795A]"
                   >
                     <span class="mb-2">Download CV</span>
@@ -245,17 +245,32 @@ import CalenderWithPen from "@/components/icons/calenderWithPen.vue";
 import { useRouter, useRoute } from "vue-router";
 import { useTalentsStore } from "@/stores/talents";
 import Vue3Html2pdf from "vue3-html2pdf";
+import html2pdf from "html2pdf.js";
 
-const html2Pdf = ref(null);
+// const html2Pdf = ref(null);
 
-const generateReport = () => {
-  html2Pdf.value.generatePdf();
+// const generateReport = () => {
+//   html2Pdf.value.generatePdf();
+// };
+const exportToPDF = () => {
+  html2pdf(document.getElementById("element-to-convert"), {
+    margin: 1,
+    filename: `${talents?.value.first_name}-talent-cv`,
+    image: { type: "jpeg", quality: 0.98 },
+    html2canvas: { scale: 1.5, logging: true, useCORS: true },
+    jsPDF: { unit: "in", format: "a2", orientation: "portrait" },
+  });
 };
-
 const talentsStore = useTalentsStore();
 const { singleTalent } = storeToRefs(talentsStore);
 const route = useRoute();
 const router = useRouter();
+const redirectToSinglePortFolio = (index) => {
+  router.push({
+    name: "single-portfolio",
+    params: { slug: index },
+  });
+};
 
 const talents = computed(() => singleTalent.value?.data || []);
 
