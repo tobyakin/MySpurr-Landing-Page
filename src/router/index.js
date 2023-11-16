@@ -19,7 +19,10 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      component: HomeView,
+      meta: {
+        title: 'Home'
+      }
     },
     {
       path: '/business',
@@ -27,8 +30,8 @@ const router = createRouter({
       component: BusinessView
     },
     {
-      path: '/learn',
-      name: 'learn',
+      path: '/courses',
+      name: 'courses',
       component: LearnView
     },
     {

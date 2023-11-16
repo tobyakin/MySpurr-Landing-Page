@@ -159,7 +159,7 @@ onMounted(async () => {
               <a
                 role="button"
                 class="bg-brand p-3 mx-auto rounded-full px-10 text-white text-[16px] font-Satoshi400"
-                >Start for free
+                >Sign up for free
               </a>
             </div>
           </div>

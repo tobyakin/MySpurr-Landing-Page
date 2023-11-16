@@ -20,7 +20,7 @@
   />
   <div class="flex justify-center items-center pb-[6rem]">
     <a :href="dashboardUrl + 'signup'" role="button" class="btn-brand font-Satoshi400">
-      Start for free
+      Sign up for free
     </a>
   </div>
 </template>
@@ -31,9 +31,9 @@ import ImageOne from "@/assets/img/skill.webp";
 import ImageTwo from "@/assets/img/career.webp";
 import ImageThree from "@/assets/img/expert.webp";
 import SampleOne from "@/components/genericComponents/sampleOne.vue";
-const HeadingOne = ` Tailored  <span class="font-Satoshi700">Skill</span>    <br class="md:block hidden" /> Enhancement`;
-const HeadingTwo = ` <span class="font-Satoshi700">Expert-Led  </span>  <br class="md:block hidden" /> Guidance`;
-const HeadingThree = ` <span class="font-Satoshi700">Career </span>   <br class="md:block hidden" /> Empowerment`;
+const HeadingOne = ` Tailored  <span class="font-Satoshi700">skill</span>    <br class="md:block hidden" /> enhancement`;
+const HeadingTwo = ` <span class="font-Satoshi700">Expert-led  </span>  <br class="md:block hidden" /> guidance`;
+const HeadingThree = ` <span class="font-Satoshi700">Career </span>   <br class="md:block hidden" /> empowerment`;
 
 const section4List1 = ref([
   {

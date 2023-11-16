@@ -12,13 +12,17 @@
           creative career
         </h1>
         <p class="text-[22px] text-white font-Satoshi400 my-8 md:my-6">
-          Find job opportunities, build your portfolio and
+          Find creative job opportunities, build your portfolio
           <br class="md:block hidden" />
-          enhance your skills with MySpurr
+          and enhance your skills with MySpurr
         </p>
         <div class="flex">
-          <a :href="dashboardUrl + 'signup'" role="button" class="btn-brand font-Satoshi400">
-            Start for free </a
+          <a
+            :href="dashboardUrl + 'signup'"
+            role="button"
+            class="btn-brand font-Satoshi400"
+          >
+            Sign up for free </a
           ><!---->
         </div>
       </div>
@@ -34,10 +38,10 @@
   </div>
 </template>
 <script setup>
-import mainbg from '@/assets/img/sectionOnebg.webp'
-import PlayButton from '@/components/icons/playButton.vue'
-const image = mainbg
-const dashboardUrl = import.meta.env.VITE_DASHBOARD
+import mainbg from "@/assets/img/sectionOnebg.webp";
+import PlayButton from "@/components/icons/playButton.vue";
+const image = mainbg;
+const dashboardUrl = import.meta.env.VITE_DASHBOARD;
 </script>
 
 <style scoped>

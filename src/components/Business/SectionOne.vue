@@ -18,7 +18,7 @@
         </p>
         <div class="flex">
           <a :href="dashboardUrl + 'signup'" role="button" class="btn-brand font-Satoshi400">
-            Start for free </a
+            Sign up for free </a
           ><!---->
         </div>
       </div>

@@ -27,7 +27,7 @@
   />
   <div class="flex justify-center items-center pb-[6rem]">
     <a :href="dashboardUrl + 'signup'" role="button" class="btn-brand font-Satoshi400">
-      Start for free
+      Sign up for free
     </a>
   </div>
 </template>
@@ -39,10 +39,10 @@ import Connect from "@/assets/img/connect.webp";
 import Discover from "@/assets/img/discover.webp";
 import Grow from "@/assets/img/grow.webp";
 import SampleOne from "@/components/genericComponents/sampleOne.vue";
-const BuildHeading = ` <span class="font-Satoshi700">Build</span> your Creative <br class="md:block hidden" /> Portfolio`;
-const DiscoverHeading = ` <span class="font-Satoshi700">Discover </span> <br class="md:block hidden" /> job Opportunities`;
+const BuildHeading = ` <span class="font-Satoshi700">Build</span> your creative <br class="md:block hidden" /> career`;
+const DiscoverHeading = ` <span class="font-Satoshi700">Discover </span> <br class="md:block hidden" /> job opportunities`;
 const ConnectHeading = ` <span class="font-Satoshi700">Connect</span>  with top  <br class="md:block hidden" /> businesses`;
-const GrowHeading = ` <span class="font-Satoshi700">Grow </span> with a <br class="md:block hidden" /> Community`;
+const GrowHeading = ` <span class="font-Satoshi700">Grow </span> with a <br class="md:block hidden" /> community`;
 const dashboardUrl = import.meta.env.VITE_DASHBOARD;
 
 const section4List1 = ref([
@@ -57,7 +57,7 @@ const section4List1 = ref([
 const section4List2 = ref([
   {
     text:
-      "Find new opportunities that match their skills and interests more easily with our advanced job search and recommendation system.",
+      "Find creative opportunities that match your skills and interests more easily with our advanced job board  and recommendation system.",
   },
   {
     text:
