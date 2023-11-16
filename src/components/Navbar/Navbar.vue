@@ -68,12 +68,12 @@ const dashboardUrl = import.meta.env.VITE_DASHBOARD;
               </li>
               <li>
                 <router-link
-                  to="/learn"
-                  :class="route.name === 'learn' ? 'text-[#2F929C] ' : ''"
+                  to="/courses"
+                  :class="route.name === 'courses' ? 'text-[#2F929C] ' : ''"
                   class="p-[10px] pr-0 flex justify-start rounded-[5px]"
                 >
                   <span class="place-self-center text-[16px] leading-[21.6px]"
-                    >Learn
+                    >Courses
                   </span>
                 </router-link>
               </li>
@@ -104,7 +104,7 @@ const dashboardUrl = import.meta.env.VITE_DASHBOARD;
               target="_blank"
               :href="dashboardUrl + 'signup'"
               class="btn-brand font-Satoshi500"
-              >Start for free
+              >Sign up for free
             </a>
           </div>
           <div class="lg:hidden">
@@ -187,12 +187,12 @@ const dashboardUrl = import.meta.env.VITE_DASHBOARD;
               </li>
               <li>
                 <router-link
-                  to="/learn"
+                  to="/courses"
                   :class="route.name === 'learn' ? 'text-[#2F929C] ' : ''"
                   class="p-[10px] px-0 flex justify-start rounded-[5px]"
                 >
                   <span class="place-self-center text-[16px] leading-[21.6px]"
-                    >Learn
+                    >Courses
                   </span>
                 </router-link>
               </li>
@@ -222,7 +222,7 @@ const dashboardUrl = import.meta.env.VITE_DASHBOARD;
                 target="_blank"
                 :href="dashboardUrl + 'signup'"
                 class="btn-brand font-Satoshi500"
-                >Start for free
+                >Sign up for free
               </a>
             </div>
           </div>
