@@ -20,11 +20,14 @@
           <a
             :href="dashboardUrl + 'signup'"
             role="button"
-            class="btn-brand font-Satoshi400"
+            class="btn-brand lg:!px-[10px] !px-0 items-center flex lg:w-[30%] lg:!text-base justify-center !text-[12px] w-full !font-Satoshi400"
           >
             Sign up for free
           </a>
-          <a role="button" class="btn-light-border !rounded-full font-Satoshi400">
+          <a
+            role="button"
+            class="btn-light-border !rounded-full lg:!px-[10px] !px-0 justify-center lg:!text-base !text-[10px] flex lg:w-[30%] w-full font-Satoshi400"
+          >
             Watch demo
           </a>
         </div>
