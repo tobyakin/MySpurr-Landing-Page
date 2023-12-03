@@ -16,36 +16,45 @@
           <br class="md:block hidden" />
           projects with MySpurr
         </p>
-        <div class="flex">
-          <a :href="dashboardUrl + 'signup'" role="button" class="btn-brand font-Satoshi400">
-            Sign up for free </a
-          ><!---->
+        <div class="flex gap-[26px]">
+          <a
+            :href="dashboardUrl + 'signup'"
+            role="button"
+            class="btn-brand lg:!px-[10px] !px-0 items-center flex lg:w-[30%] lg:!text-base justify-center !text-[12px] w-full !font-Satoshi400"
+          >
+            Sign up for free
+          </a>
+          <a
+            role="button"
+            class="btn-light-border !rounded-full lg:!px-[10px] !px-0 justify-center lg:!text-base !text-[10px] flex lg:w-[30%] w-full font-Satoshi400"
+          >
+            Watch demo
+          </a>
         </div>
       </div>
-      <div class="flex justify-center items-center gap-4">
+      <!-- <div class="flex justify-center items-center gap-4">
         <p class="font-Satoshi700 text-[20px] text-white">How to use MySpurr</p>
         <button
           class="bg-[#EDF0B8] rounded-full p-4 h-[76.477px] w-[76.477px] items-center justify-center flex"
         >
           <PlayButton />
         </button>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
 <script setup>
-import mainbg from '@/assets/img/business.webp'
-import PlayButton from '@/components/icons/playButton.vue'
-const image = mainbg
-const dashboardUrl = import.meta.env.VITE_DASHBOARD
+import mainbg from "@/assets/img/business.webp";
+// import PlayButton from "@/components/icons/playButton.vue";
+const image = mainbg;
+const dashboardUrl = import.meta.env.VITE_DASHBOARD;
 </script>
 
 <style scoped>
 .background {
   background-size: cover;
   background-blend-mode: overlay;
-  background:
-    linear-gradient(
+  background: linear-gradient(
       from 270deg at 50% 50%,
       rgba(15, 14, 14, 0.28) 184.15632963180542deg,
       rgba(13, 11, 11, 0.33) 270.5531358718872deg,

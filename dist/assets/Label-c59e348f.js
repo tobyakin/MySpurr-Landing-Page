@@ -1,1 +1,0 @@
-import{h as s,o as t,c as a,i as o,m as r}from"./index-495cb209.js";const c={};function n(e,l){return t(),a("label",r(e.$attrs,{class:"font-Satoshi500 text-[15.606px]"}),[o(e.$slots,"default")],16)}const m=s(c,[["render",n]]);export{m as default};

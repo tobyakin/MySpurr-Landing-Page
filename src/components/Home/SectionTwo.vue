@@ -34,10 +34,10 @@
 
 <script setup>
 import { ref } from "vue";
-import Build from "@/assets/img/build.webp";
-import Connect from "@/assets/img/connect.webp";
-import Discover from "@/assets/img/discover.webp";
-import Grow from "@/assets/img/grow.webp";
+import Build from "@/assets/img/build.png";
+import Connect from "@/assets/img/connect.png";
+import Discover from "@/assets/img/discover.png";
+import Grow from "@/assets/img/grow.png";
 import SampleOne from "@/components/genericComponents/sampleOne.vue";
 const BuildHeading = ` <span class="font-Satoshi700">Build</span> your creative <br class="md:block hidden" /> career`;
 const DiscoverHeading = ` <span class="font-Satoshi700">Discover </span> <br class="md:block hidden" /> job opportunities`;
