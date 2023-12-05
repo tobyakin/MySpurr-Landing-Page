@@ -2,7 +2,7 @@
   <div :class="inputClasses" class="relative h-[126.955px] w-[126.955px] rounded-full">
     <img
       :class="inputClasses"
-      :src="imageUrl ? imageUrl : 'src/assets/img/icon.webp'"
+      :src="imageUrl ? imageUrl : Icon"
       class="h-[126.955px] w-[126.955px] rounded-full"
       :alt="imgAlt"
     />
@@ -11,6 +11,7 @@
 </template>
 <script setup>
 import GreenIcon from "@/components/icons/greenIcon.vue";
+import Icon from "@/assets/img/icon.webp";
 defineProps({
   imgAlt: String,
   inputClasses: String,

@@ -228,3 +228,9 @@ ol {
 .Vue-Toastification__toast--success svg {
   @apply !text-green-500
 }
+.editor ul{
+  list-style-type: disc !important;
+}
+.editor p{
+  @apply  flex flex-wrap break-words text-justify
+}

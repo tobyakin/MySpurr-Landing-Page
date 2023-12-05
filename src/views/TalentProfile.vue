@@ -277,8 +277,6 @@ const talents = computed(() => singleTalent.value?.data || []);
 
 onMounted(async () => {
   await talentsStore.getSingleTalent(route.params.slug);
-  console.log("single talents", talents.value);
-  console.log("is array", Array.isArray(talents.value));
 });
 
 const Porfolio = [
