@@ -1,4 +1,6 @@
 <script setup>
+import { computed, reactive } from "vue";
+import { useHead } from "@vueuse/head";
 import { defineAsyncComponent } from "vue";
 import Navbar from "@/components/Navbar/Navbar.vue";
 import Footer from "@/components/Footer.vue";
@@ -8,6 +10,25 @@ import WorkFlow from "@/components/Bander/WorkFlow.vue";
 const FormGroup = defineAsyncComponent(() =>
   import("@/components/Form/Input/FormGroup.vue")
 );
+const siteData = reactive({
+  title: `MySpurr | Contact Us`,
+  description: ``,
+});
+
+useHead({
+  // Can be static or computed
+  title: computed(() => siteData.title),
+  meta: [
+    {
+      name: `description`,
+      content: computed(() => siteData.description),
+    },
+    {
+      property: "keywords",
+      content: "contact us,",
+    },
+  ],
+});
 </script>
 
 <template>

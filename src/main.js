@@ -5,6 +5,8 @@ import { createPinia } from 'pinia'
 import 'animate.css'
 import Toast, { POSITION } from 'vue-toastification'
 import 'vue-toastification/dist/index.css'
+import { createHead } from '@vueuse/head'
+
 
 import App from './App.vue'
 import router from './router'
@@ -14,6 +16,5 @@ app.use(Toast, { position: POSITION.TOP_RIGHT })
 
 app.use(createPinia())
 app.use(router)
-
+app.use(createHead())
 app.mount('#app')
-document.title = 'MySpurr | Creative talent hiring'

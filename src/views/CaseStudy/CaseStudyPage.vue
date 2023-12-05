@@ -1,4 +1,5 @@
 <script setup>
+import { useHead } from "@vueuse/head";
 import { defineAsyncComponent } from "vue";
 import SearchBarIcon from "@/components/icons/searchBarIcon.vue";
 import Navbar from "@/components/Navbar/Navbar.vue";
@@ -8,7 +9,7 @@ const FormGroup = defineAsyncComponent(() =>
 );
 import CaseStudyCard from "@/components/CaseStudy/CaseStudyCard.vue";
 import useFaqStore from "@/stores/faq";
-import { ref, computed, onMounted } from "vue";
+import { ref, computed, reactive, onMounted } from "vue";
 // import { storeToRefs } from "pinia";
 import SampleThree from "@/assets/img/sampleThree.webp";
 import WorkFlow from "@/components/Bander/WorkFlow.vue";
@@ -78,6 +79,25 @@ const filterTab = (category) => {
     filteredTab.value = store.blogPost.filter((item) => item.blog_category == category);
   }
 };
+const siteData = reactive({
+  title: `MySpurr | Case Study `,
+  description: ``,
+});
+
+useHead({
+  // Can be static or computed
+  title: computed(() => siteData.title),
+  meta: [
+    {
+      name: `description`,
+      content: computed(() => siteData.description),
+    },
+    {
+      property: "keywords",
+      content: "Case Study,",
+    },
+  ],
+});
 </script>
 
 <template>

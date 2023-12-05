@@ -1,7 +1,8 @@
 <script setup>
 import Navbar from "@/components/Navbar/Navbar.vue";
 import Footer from "@/components/Footer.vue";
-import { defineAsyncComponent, onMounted, computed, ref, watch } from "vue";
+import { defineAsyncComponent, onMounted, computed, reactive, ref, watch } from "vue";
+import { useHead } from "@vueuse/head";
 import { storeToRefs } from "pinia";
 import GoPro from "@/components/Bander/GoPro.vue";
 import Arrow from "@/components/icons/paginationArrow.vue";
@@ -10,6 +11,25 @@ import Subscribe from "@/components/Bander/Subscribe.vue";
 import { useTalentsStore } from "@/stores/talents";
 const talentsStore = useTalentsStore();
 const { talent } = storeToRefs(talentsStore);
+const siteData = reactive({
+  title: `MySpurr | Hire talent`,
+  description: ``,
+});
+
+useHead({
+  // Can be static or computed
+  title: computed(() => siteData.title),
+  meta: [
+    {
+      name: `description`,
+      content: computed(() => siteData.description),
+    },
+    {
+      property: "keywords",
+      content: "",
+    },
+  ],
+});
 
 const FormGroup = defineAsyncComponent(() =>
   import("@/components/Form/Input/FormGroup.vue")

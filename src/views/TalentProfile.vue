@@ -222,7 +222,8 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from "vue";
+import { ref, onMounted, computed, reactive } from "vue";
+import { useHead } from "@vueuse/head";
 import { storeToRefs } from "pinia";
 import JobAvater from "@/components/Avater/JobAvater.vue";
 import Navbar from "@/components/Navbar/Navbar.vue";
@@ -315,6 +316,24 @@ const workItems = ref([
       "Morbi ornare ipsum sed sem condimentum, et pulvinar tortor luctus. Suspendisse condimentum lorem ut elementum aliquam et pulvinar tortor luctus.",
   },
 ]);
+const siteData = reactive({
+  title: `MySpurr | Talent ${talents.value?.first_name}`,
+  description: ``,
+});
+
+useHead({
+  title: `MySpurr | Talent ${talents.value?.first_name}`,
+  meta: [
+    {
+      name: `description`,
+      content: computed(() => siteData.description),
+    },
+    {
+      property: "keywords",
+      content: "Courses, learn",
+    },
+  ],
+});
 </script>
 
 <style></style>

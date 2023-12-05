@@ -1,4 +1,6 @@
 <script setup>
+import { computed, reactive } from "vue";
+import { useHead } from "@vueuse/head";
 import Navbar from "@/components/Navbar/Navbar.vue";
 import Footer from "@/components/Footer.vue";
 import WorkFlow from "@/components/Bander/WorkFlow.vue";
@@ -10,7 +12,25 @@ const tab = ref("ALL");
 const filteredTab = ref([]);
 
 // const faqs = store.faqs;
+const siteData = reactive({
+  title: `MySpurr | FAQs`,
+  description: ``,
+});
 
+useHead({
+  // Can be static or computed
+  title: computed(() => siteData.title),
+  meta: [
+    {
+      name: `description`,
+      content: computed(() => siteData.description),
+    },
+    {
+      property: "keywords",
+      content: "faqs",
+    },
+  ],
+});
 const toogleFaq = (index) => {
   store.faqs[index].showContent = !store.faqs[index].showContent;
 };
