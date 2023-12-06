@@ -6,11 +6,11 @@
       >
         <div class="lg:w-auto lg:pl-8">
           <h1
-            class="font-Satoshi700 text-[#007582] text-[30px] lg:text-[40px] leading-[35px] lg:leading-[45.6px] mb-8"
+            class="font-Satoshi700 text-[#007582] text-[30px] lg:text-[38px] leading-[35px] lg:leading-[45.6px] mb-4"
           >
             Why Choose MySpurr Internships?
           </h1>
-          <div class="flex-col flex gap-6">
+          <div class="flex-col flex gap-3">
             <div
               v-for="item in lists"
               :key="item"
@@ -28,7 +28,7 @@
       </div>
       <div class="w-auto">
         <img
-          class="h-[100%] w-[100%] rounded-r-[6px] hidden lg:block"
+          class="h-full w-[100%] rounded-r-[6px] hidden lg:block"
           src="@/assets/img/woman_with_books.png"
           alt=""
         />
