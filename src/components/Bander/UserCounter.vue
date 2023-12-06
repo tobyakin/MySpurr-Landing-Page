@@ -51,7 +51,7 @@
   </div>
 </template>
 <script setup>
-import { ref, watchEffect, nextTick } from "vue";
+import { ref, watchEffect, nextTick, onMounted } from "vue";
 
 const creativeTalents = ref(0);
 const paymentProcessed = ref(0);
@@ -60,7 +60,7 @@ const availableCountries = ref(0);
 
 const targetValues = {
   creativeTalents: 300,
-  paymentProcessed: 4000, // Change this to the actual value
+  paymentProcessed: 4855, // Change this to the actual value
   supportedBusinesses: 15,
   availableCountries: 1,
 };
@@ -98,11 +98,24 @@ watchEffect(() => {
     if (boundingBox.top < window.innerHeight && boundingBox.bottom >= 0) {
       // Start counting animation when the element is in the viewport
       incrementValue(creativeTalents, targetValues.creativeTalents, 50); // Adjust the interval duration if needed
-      incrementValue(paymentProcessed, targetValues.paymentProcessed, 50); // Adjust the interval duration if needed
+      incrementValue(paymentProcessed, targetValues.paymentProcessed, 10); // Adjust the interval duration if needed
       incrementValue(supportedBusinesses, targetValues.supportedBusinesses, 50); // Adjust the interval duration if needed
       incrementValue(availableCountries, targetValues.availableCountries, 50); // Adjust the interval duration if needed
     }
   })();
+});
+onMounted(async () => {
+  await nextTick(); // Wait for the DOM to be fully initialized
+  const boundingBox = document.querySelector(".counter").getBoundingClientRect();
+
+  // Check if the element is in the viewport
+  if (boundingBox.top < window.innerHeight && boundingBox.bottom >= 0) {
+    // Start counting animation when the element is in the viewport
+    incrementValue(creativeTalents, targetValues.creativeTalents, 50); // Adjust the interval duration if needed
+    incrementValue(paymentProcessed, targetValues.paymentProcessed, 10); // Adjust the interval duration if needed
+    incrementValue(supportedBusinesses, targetValues.supportedBusinesses, 50); // Adjust the interval duration if needed
+    incrementValue(availableCountries, targetValues.availableCountries, 50); // Adjust the interval duration if needed
+  }
 });
 </script>
 

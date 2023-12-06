@@ -132,9 +132,9 @@ useHead({
       </div>
 
       <div>
-        <div class="font-Satoshi400 lg:my-10 lg:pb-10">
-          <ul
-            class="hidden my-24 md:flex text-sm justify-between font-semibold flex-wrap gap-y-[40px]"
+        <div class="font-Satoshi400 lg:my-10 lg:pb-10 flex flex-col">
+          <!-- <ul
+            class="hidden my-24 text-sm justify-between font-semibold flex-wrap gap-y-[40px]"
           >
             <li>
               <a
@@ -298,12 +298,13 @@ useHead({
                 Brand strategy
               </a>
             </li>
-          </ul>
+          </ul> -->
           <div
             v-if="store.blogPost.length && tab == 'ALL'"
-            class="md:grid md:grid-cols-6 gap-10 my-10 flex-wrap"
+            class="md:grid md:grid-cols-6 gap-10 my-10 h-full flex-wrap"
           >
             <CaseStudyCard
+              class="h-fit"
               v-for="blog in store.blogPost"
               :key="blog"
               :image="blog.cover_image"
@@ -314,8 +315,9 @@ useHead({
               :blog="blog"
             />
           </div>
-          <div v-else class="md:grid md:grid-cols-6 gap-10 my-10 min-h-screen flex-wrap">
+          <div v-else class="md:grid md:grid-cols-6 gap-10 my-10 min-h-fit flex-wrap">
             <CaseStudyCard
+              class="h-fit"
               v-for="blog in filteredTab"
               :key="blog"
               :image="blog.cover_image"
