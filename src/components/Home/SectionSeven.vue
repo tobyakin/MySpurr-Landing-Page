@@ -47,19 +47,20 @@ const Guides = [
   {
     image: ImageOne,
     skills: "Developer, Code",
-    heading: "Print, publishing qui visual layout mockups.",
+    heading: ` Unlocking Creative Excellence: A Guide to Talent Sourcing in the Creative Industry
+`,
     name: "Rashed Kabir",
   },
   {
     image: ImageTwo,
     skills: "Design, Art",
-    heading: "Designer’s checklist for every UX/UI project.",
+    heading: ` Crafting Compelling Portfolios: Strategies for Effective Creative Showcase`,
     name: "Julie Margot",
   },
   {
     image: ImageThree,
     skills: "Solution, Work",
-    heading: "Make more productive work flow in few steps.",
+    heading: `Revolutionizing Recruitment: The MySpurr Approach to Creative Hiring`,
     name: "Jubayer Al Hasan",
   },
 ];
