@@ -90,7 +90,7 @@ const dashboardUrl = import.meta.env.VITE_DASHBOARD;
               </li>
             </ul>
           </div>
-          <div class="hidden lg:flex items-center gap-4">
+          <div class="invisible items-center gap-4">
             <a
               role="button"
               target="_blank"
@@ -208,7 +208,7 @@ const dashboardUrl = import.meta.env.VITE_DASHBOARD;
                 </router-link>
               </li>
             </ul>
-            <div class="flex flex-col mt-12 items-center gap-4">
+            <div class="flex flex-col invisible mt-12 items-center gap-4">
               <a
                 role="button"
                 target="_blank"

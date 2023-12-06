@@ -16,7 +16,7 @@
         v-for="logo in BrandLogos"
         :key="logo"
         :src="logo.image"
-        class="lg:h-[60px] h-[30px] w-full"
+        class="lg:h-[40px] h-[30px] w-full"
         alt=""
       />
     </div>

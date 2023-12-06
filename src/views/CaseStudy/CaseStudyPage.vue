@@ -103,10 +103,10 @@ useHead({
 <template>
   <div>
     <Navbar />
-    <div class="py-20 lg:!pt-[200px] container">
+    <div class="py-20 lg:!pt-[100px] px-[40px]">
       <div class="flex flex-col items-center text-center justify-between">
         <h4
-          class="text-[#011B1F] font-EBGaramond400 lg:text-[84px] text-[35px] leading-10 lg:leading-[98.526px] tracking-[-1px]"
+          class="text-[#011B1F] font-EBGaramond400 lg:text-[70px] text-[35px] leading-10 lg:leading-[78.526px] tracking-[-1px]"
         >
           Explore our curated collection <br class="md:block hidden" />
           of exceptional portfolio projects
@@ -301,7 +301,7 @@ useHead({
           </ul>
           <div
             v-if="store.blogPost.length && tab == 'ALL'"
-            class="md:grid md:grid-cols-4 gap-10 my-10 flex-wrap"
+            class="md:grid md:grid-cols-6 gap-10 my-10 flex-wrap"
           >
             <CaseStudyCard
               v-for="blog in store.blogPost"
@@ -314,7 +314,7 @@ useHead({
               :blog="blog"
             />
           </div>
-          <div v-else class="md:grid md:grid-cols-4 gap-10 my-10 min-h-screen flex-wrap">
+          <div v-else class="md:grid md:grid-cols-6 gap-10 my-10 min-h-screen flex-wrap">
             <CaseStudyCard
               v-for="blog in filteredTab"
               :key="blog"
@@ -344,7 +344,7 @@ useHead({
               <Arrow />
             </button>
           </div>
-          <WorkFlow />
+          <WorkFlow class="container" />
 
           <!-- <ul
               v-if="blog.links"

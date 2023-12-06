@@ -21,7 +21,7 @@
         >
           <a
             :href="dashboardUrl + 'signup'"
-            class="btn-brand font-Satoshi400 text-center w-[193.602px] text-[16px] !px-0"
+            class="btn-brand font-Satoshi400 hidden text-center w-[193.602px] text-[16px] !px-0"
           >
             Sign Up for internships</a
           ><button
