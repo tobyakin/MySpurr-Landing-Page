@@ -30,7 +30,7 @@
               </p>
               <div
                 v-html="item.description"
-                class="text-[#000000BF] text-[16px] flex flex-wrap overflow-auto"
+                class="text-[#000000BF] editor text-[16px] flex flex-wrap overflow-auto"
               ></div>
             </div>
           </div>
