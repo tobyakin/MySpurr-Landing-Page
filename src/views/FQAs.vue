@@ -198,7 +198,7 @@ const filterTab = (category) => {
               </div>
             </div>
             <div v-if="faq.showContent" class="p-4">
-              <h3 class="text-sm font-Satoshi400 mb-4">{{ faq.content }}</h3>
+              <div v-html="faq.content" class="text-[16px] font-Satoshi400 mb-4"></div>
               <ul>
                 <li class="lg:flex mb-4" v-for="list in faq.sub_content" :key="list">
                   <h3 class="font-Satoshi700 lg:mr-2">{{ list.heading }}</h3>

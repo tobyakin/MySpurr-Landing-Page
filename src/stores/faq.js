@@ -85,7 +85,7 @@ const useFaqStore = defineStore('help', {
           blog_description:
             "n today's digital age, having a strong online presence is essential for any business to thrive. With so many businesses competing for attention online, it's important to stand out from the crowd and make your mark. Here are 10 ways to boost your business online presence and help you reach your target audience.",
           created_at: '16 Jul 2018'
-        },
+        }
       ],
       help: [
         {
@@ -672,32 +672,32 @@ const useFaqStore = defineStore('help', {
       faqs: [
         {
           name: 'What is MySpurr?',
-          content: '',
+          content: `<p>- MySpurr is a digital platform that connects creative talents and businesses to opportunities, resources, and networks to help them grow and succeed.</p>`,
           showContent: false
         },
         {
-          name: 'How do you find different criteria in your process?',
-          content: '',
+          name: 'How can I sign up for MySpurr?',
+          content: `<p>- You can sign up for MySpurr by visiting our website and clicking the "Sign Up" button. You'll be prompted to create an account and fill out some basic information about yourself or your business.</p>`,
           showContent: false
         },
         {
-          name: 'How does MySpurr work for creatives?',
-          content: '',
+          name: 'Is MySpurr only for creatives in Nigeria?',
+          content: `<p></p>`,
           showContent: false
         },
         {
           name: 'How does MySpurr work for businesses?',
-          content: '',
+          content: `<p></p>`,
           showContent: false
         },
         {
           name: 'How much does it cost to use MySpurr?',
-          content: '',
+          content: `<p></p>`,
           showContent: false
         },
         {
           name: 'Do you recomWhat types of creative talents can I find on MySpurr?mend Pay as you go or Pre pay?',
-          content: '',
+          content: `<p></p>`,
           showContent: false
         },
         {

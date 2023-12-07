@@ -29,34 +29,34 @@
       <div class="w-auto">
         <img
           class="h-full w-[100%] rounded-r-[6px] hidden lg:block"
-          src="@/assets/img/woman_with_books.png"
+          src="@/assets/img/woman_with_books.webp"
           alt=""
         />
       </div>
       <!-- <div class="lg:hidden block">
-        <img class="rounded-t-[18px]" src="@/assets/img/intern.png" alt="" />
+        <img class="rounded-t-[18px]" src="@/assets/img/intern.webp" alt="" />
       </div> -->
     </div>
   </section>
 </template>
 <script setup>
-import { ref } from "vue";
+import { ref } from 'vue'
 const lists = ref([
   {
-    heading: " Diverse Opportunities",
-    text: `Explore a wide range of internship opportunities across various industries and fields.`,
+    heading: ' Diverse Opportunities',
+    text: `Explore a wide range of internship opportunities across various industries and fields.`
   },
   {
-    heading: "Quality Partnerships",
-    text: `We partner with reputable businesses committed to nurturing and empowering emerging talent.`,
+    heading: 'Quality Partnerships',
+    text: `We partner with reputable businesses committed to nurturing and empowering emerging talent.`
   },
   {
-    heading: "Skill Enhancement",
-    text: `Gain hands-on experience, develop new skills, and build your professional network.`,
+    heading: 'Skill Enhancement',
+    text: `Gain hands-on experience, develop new skills, and build your professional network.`
   },
   {
-    heading: "Career Growth",
-    text: "Kickstart your career journey and open doors to future job opportunities.",
-  },
-]);
+    heading: 'Career Growth',
+    text: 'Kickstart your career journey and open doors to future job opportunities.'
+  }
+])
 </script>
