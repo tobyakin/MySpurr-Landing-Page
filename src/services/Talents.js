@@ -21,3 +21,13 @@ export const getOneTalents = async (uuid) => {
     throw error
   }
 }
+export const getSingleTalentPortfolio = async (id) => {
+  try {
+    let res = await axios.get(`portfolio/single/${id}`)
+    catchAxiosSuccess(res)
+    return res.data
+  } catch (error) {
+    catchAxiosError(error)
+    throw error
+  }
+}
