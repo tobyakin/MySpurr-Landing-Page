@@ -75,7 +75,7 @@
                 </a>
               </div>
               <div class="flex items-center gap-5">
-                <button>
+                <button @click="copyUrl()">
                   <SearchIconVeritical />
                 </button>
                 <button
@@ -247,6 +247,10 @@ import { useRouter, useRoute } from "vue-router";
 import { useTalentsStore } from "@/stores/talents";
 import Vue3Html2pdf from "vue3-html2pdf";
 import html2pdf from "html2pdf.js";
+import { useClipboard } from "@vueuse/core";
+import { useToast } from "vue-toastification";
+
+const toast = useToast();
 
 // const html2Pdf = ref(null);
 
@@ -279,41 +283,24 @@ onMounted(async () => {
   await talentsStore.getSingleTalent(route.params.id);
 });
 
-const Porfolio = [
-  { img: SampleOne },
-  { img: SampleTwo },
-  { img: SampleThree },
-  { img: SampleFour },
-];
+let source = window.location.href;
+const { copy, copied, isSupported } = useClipboard({ source });
+const copyUrl = () => {
+  if (isSupported) {
+    if (copied) {
+      console.log(source);
+      copy(source);
+      toast.success("Link Copied", {
+        timeout: 4000,
+      });
+    }
+  } else {
+    toast.error("Your browser does not support Clipboard API", {
+      timeout: 4000,
+    });
+  }
+};
 
-const items = ref([
-  {
-    heading: "University of Boston",
-    name: "Bachelor Degree of Design",
-    content:
-      "Mauris nec erat ut libero vulputate pulvinar. Aliquam ante erat, blandit at pretium et, accumsan ac est.",
-  },
-  {
-    heading: "Design Collage",
-    name: "UI/UX Design Course",
-    content:
-      "Morbi ornare ipsum sed sem condimentum, et pulvinar tortor luctus. Suspendisse condimentum lorem ut elementum aliquam et pulvinar tortor luctus.",
-  },
-]);
-const workItems = ref([
-  {
-    heading: "02/03/18 - 13/05/20",
-    name: "Product Designer (Google)",
-    content:
-      "Morbi ornare ipsum sed sem condimentum, et pulvinar tortor luctus. Suspendisse condimentum lorem ut elementum aliquam et pulvinar tortor luctus.",
-  },
-  {
-    heading: "02/03/18 - 13/05/20",
-    name: "UI/UX Engineer (Adobe)",
-    content:
-      "Morbi ornare ipsum sed sem condimentum, et pulvinar tortor luctus. Suspendisse condimentum lorem ut elementum aliquam et pulvinar tortor luctus.",
-  },
-]);
 const siteData = reactive({
   title: `MySpurr | Talent ${talents.value?.first_name}`,
   description: ``,
