@@ -302,12 +302,12 @@ const copyUrl = () => {
 };
 
 const siteData = reactive({
-  title: `MySpurr | Talent ${talents.value?.first_name}`,
+  title: `MySpurr |  ${singleTalent.value?.data?.first_name || ""}`,
   description: ``,
 });
 
 useHead({
-  title: `MySpurr | Talent ${talents.value?.first_name}`,
+  title: siteData.title,
   meta: [
     {
       name: `description`,
