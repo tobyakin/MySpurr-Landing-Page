@@ -9,6 +9,8 @@ import Arrow from "@/components/icons/paginationArrow.vue";
 import JobCard from "@/components/Job/JobCard.vue";
 import Subscribe from "@/components/Bander/Subscribe.vue";
 import { useTalentsStore } from "@/stores/talents";
+import FormGroup from "@/components/Form/Input/FormGroup.vue";
+import FormSelectGroup from "@/components/Form/Input/SelectGroup.vue";
 const talentsStore = useTalentsStore();
 const { talent } = storeToRefs(talentsStore);
 const siteData = reactive({
@@ -31,12 +33,12 @@ useHead({
   ],
 });
 
-const FormGroup = defineAsyncComponent(() =>
-  import("@/components/Form/Input/FormGroup.vue")
-);
-const FormSelectGroup = defineAsyncComponent(() =>
-  import("@/components/Form/Input/SelectGroup.vue")
-);
+// const FormGroup = defineAsyncComponent(() =>
+//   import("@/components/Form/Input/FormGroup.vue")
+// );
+// const FormSelectGroup = defineAsyncComponent(() =>
+//   import("@/components/Form/Input/SelectGroup.vue")
+// );
 
 // Define a ref to keep track of the current page
 const currentPage = ref(1);
