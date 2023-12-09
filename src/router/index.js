@@ -61,7 +61,7 @@ const router = createRouter({
       component: AboutView
     },
     {
-      path: '/view-blog/:slug',
+      path: '/view-blog/:id',
       name: 'SingleBlog',
       component: SingleBlog
     },
@@ -81,7 +81,7 @@ const router = createRouter({
       component: InternshipView
     },
     {
-      path: '/single-portfolio/:slug',
+      path: '/single-portfolio/:id',
       name: 'single-portfolio',
       component: SinglePortfolio
     },
@@ -91,7 +91,7 @@ const router = createRouter({
       component: ContactUs
     },
     {
-      path: '/:name/:slug',
+      path: '/:name/:id',
       name: 'talent-profile',
       component: TalentProfile
     },

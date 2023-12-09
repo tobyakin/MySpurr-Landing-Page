@@ -8,53 +8,55 @@
         <div class="flex flex-col gap-2">
           <p class="text-[#244034c5] text-[13.076px] font-Satoshi400">Creative work</p>
           <p class="text-[#244034] text-[13.076px] font-Satoshi500">
-            Brand identity design
+            {{ portfolio.title }}
           </p>
         </div>
         <div class="flex flex-col gap-2">
           <p class="text-[#244034c5] text-[13.076px] font-Satoshi400">Tags</p>
-          <p class="text-[#244034] text-[13.076px] font-Satoshi500">
-            Branding, finance, motion
-          </p>
+          <div v-for="tag in portfolio.tags" :key="tag" class="flex">
+            <p class="text-[#244034] text-[13.076px] font-Satoshi500">
+              {{ tag.name }}
+            </p>
+          </div>
         </div>
         <div class="flex flex-col gap-2">
           <p class="text-[#244034c5] text-[13.076px] font-Satoshi400">Client</p>
-          <p class="text-[#244034] text-[13.076px] font-Satoshi500">Trigon Media LTD</p>
+          <p class="text-[#244034] text-[13.076px] font-Satoshi500">
+            {{ portfolio.client_name }}
+          </p>
         </div>
         <div class="flex flex-col gap-2">
           <p class="text-[#244034c5] text-[13.076px] font-Satoshi400">Job Type</p>
-          <p class="text-[#244034] text-[13.076px] font-Satoshi500">Fulltime</p>
+          <p class="text-[#244034] text-[13.076px] font-Satoshi500">
+            {{ portfolio.job_type }}
+          </p>
         </div>
         <div class="flex flex-col gap-2">
           <p class="text-[#244034c5] text-[13.076px] font-Satoshi400">Rate</p>
-          <p class="text-[#244034] text-[13.076px] font-Satoshi500">50k-60k/year</p>
+          <p class="text-[#244034] text-[13.076px] font-Satoshi500">
+            {{ portfolio.rate }}
+          </p>
         </div>
         <div class="flex flex-col gap-2">
           <p class="text-[#244034c5] text-[13.076px] font-Satoshi400">Location</p>
-          <p class="text-[#244034] text-[13.076px] font-Satoshi500">Spain, Baecelona</p>
+          <p class="text-[#244034] text-[13.076px] font-Satoshi500">
+            {{ portfolio.location }}
+          </p>
         </div>
       </div>
       <div class="flex flex-col mt-10 gap-20 w-full">
-        <img src="@/assets/img/porfolioOne.png" alt="" />
-        <img src="@/assets/img/porfolioTwo.png" alt="" />
-        <div class="flex flex-col gap-8">
-          <h4
-            class="text-[32px] font-Satoshi700 leading-[38.327px] lg:leading-[16.327px]"
-          >
-            Control your business in one place.
-          </h4>
-          <p class="text-[22.621px] font-Satoshi400 leading-[39.327px]">
-            Blent is a Business Intelligence platform dedicated to the Hospitality
-            industry. We are delighted to have worked on the new branding project, where
-            our primary aim was to capture a Swiss traditional mood with a touch of modern
-            startup flair. Even though combining a strict Swiss style with a slightly
-            playful startup vibe was a tricky task, we're proud to say that we've achieved
-            a fantastic result.
-          </p>
+        <img
+          :src="portfolio.cover_image"
+          alt="cover image"
+          class="rounded-[13.076px] h-[50%] mx-auto"
+        />
+        <div class="w-full">
+          <div
+            v-html="portfolio.body"
+            class="my-4 leading-[32px] editor mt-4 font-Satoshi400 w-full tracking-[-0.003rem] text-[20px]"
+          ></div>
         </div>
-        <img src="@/assets/img/porfolioFour.png" alt="" />
-        <img src="@/assets/img/porfolioThree.png" alt="" />
-        <img src="@/assets/img/porfolioFour.png" alt="" />
+
         <div class="flex flex-row justify-center gap-5 items-center">
           <button class="relative">
             <div
@@ -241,11 +243,19 @@
 </template>
 
 <script setup>
+import { ref, onMounted, computed, reactive } from "vue";
+import { useRouter, useRoute } from "vue-router";
 import WorkFlow from "@/components/Bander/WorkFlow.vue";
 import Navbar from "@/components/Navbar/Navbar.vue";
 import Footer from "@/components/Footer.vue";
 import CaseStudyCard from "@/components/CaseStudy/CaseStudyCard.vue";
 import SampleThree from "@/assets/img/sampleThree.webp";
+import { storeToRefs } from "pinia";
+import { useTalentsStore } from "@/stores/talents";
+const talentsStore = useTalentsStore();
+const { talentPortfolio } = storeToRefs(talentsStore);
+const route = useRoute();
+const router = useRouter();
 
 const blogPost = [
   {
@@ -281,6 +291,11 @@ const blogPost = [
     created_at: "16 Jul 2018",
   },
 ];
+const portfolio = computed(() => talentPortfolio.value?.data || []);
+
+onMounted(async () => {
+  await talentsStore.SingleTalentPortfolio(route.params.id);
+});
 </script>
 
 <style></style>

@@ -232,5 +232,16 @@ ol {
   list-style-type: disc !important;
 }
 .editor p{
-  @apply  flex flex-wrap break-words text-justify
+  @apply   break-words text-justify font-Satoshi400 my-4 
+}
+.ql-align-center img {
+  text-align: center !important;
+  justify-content: justify;
+  @apply mx-auto
+}
+.ql-align-justify {
+  text-align: justify !important;
+}
+.ql-align-right {
+  text-align: right !important;
 }

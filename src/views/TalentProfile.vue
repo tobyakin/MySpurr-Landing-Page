@@ -130,7 +130,7 @@
                 class="flex flex-row gap-4 w-full overflow-hidden cursor-move mt-6 hide-scrollbar overflow-x-auto"
               >
                 <img
-                  @click="redirectToSinglePortFolio(index)"
+                  @click="redirectToSinglePortFolio(img.id)"
                   role="button"
                   v-for="(img, index) in talents?.portfolio"
                   :key="img"
@@ -266,17 +266,17 @@ const talentsStore = useTalentsStore();
 const { singleTalent } = storeToRefs(talentsStore);
 const route = useRoute();
 const router = useRouter();
-const redirectToSinglePortFolio = (index) => {
+const redirectToSinglePortFolio = (id) => {
   router.push({
     name: "single-portfolio",
-    params: { slug: index },
+    params: { id: id },
   });
 };
 
 const talents = computed(() => singleTalent.value?.data || []);
 
 onMounted(async () => {
-  await talentsStore.getSingleTalent(route.params.slug);
+  await talentsStore.getSingleTalent(route.params.id);
 });
 
 const Porfolio = [

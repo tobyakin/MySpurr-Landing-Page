@@ -23,7 +23,7 @@ export const getOneTalents = async (uuid) => {
 }
 export const getSingleTalentPortfolio = async (id) => {
   try {
-    let res = await axios.get(`portfolio/single/${id}`)
+    let res = await axios.get(`talent/portfolio/single/${id}`)
     catchAxiosSuccess(res)
     return res.data
   } catch (error) {

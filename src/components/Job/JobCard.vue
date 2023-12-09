@@ -63,7 +63,7 @@
     <router-link
       :to="{
         name: 'talent-profile',
-        params: { slug: talent.uniqueId, name: talent.first_name },
+        params: { id: talent.uniqueId, name: talent.first_name },
       }"
       class="flex items-center gap-4 mt-6"
     >
