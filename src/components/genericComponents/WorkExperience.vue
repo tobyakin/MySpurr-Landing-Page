@@ -30,7 +30,7 @@
               </p>
               <div
                 v-html="item.description"
-                class="text-[#000000BF] editor text-[16px] flex flex-wrap overflow-auto"
+                class="my-4 leading-[32px] editor mt-4 font-Satoshi400 w-full tracking-[-0.003rem] text-[16px]"
               ></div>
             </div>
           </div>
