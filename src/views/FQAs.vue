@@ -161,10 +161,14 @@ const filterTab = (category) => {
 
       <div class="py-16">
         <ul class="flex flex-col font-Satoshi500 text-[#404041]">
-          <li v-for="(faq, index) in store.faqs" :key="faq">
+          <li
+            v-for="(faq, index) in store.faqs"
+            :key="faq"
+            class="border-b-[#00000014] border-b-[1px]"
+          >
             <div
               @click="toogleFaq(index)"
-              class="py-8 px-6 flex justify-between items-center cursor-pointer border-b-[#00000014] border-b-[1px] text-xl"
+              class="py-8 px-6 flex justify-between items-center cursor-pointer text-xl"
             >
               <div>{{ faq.name }}</div>
               <div>
