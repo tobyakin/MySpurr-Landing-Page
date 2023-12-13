@@ -21,18 +21,34 @@ const router = createRouter({
       name: 'home',
       component: HomeView,
       meta: {
-        title: 'Home'
+        title: 'MySpurr | Home',
+        metaTags: [
+          {
+            name: 'description',
+            content: ''
+          },
+          {
+            property: 'keywords',
+            content: ''
+          }
+        ]
       }
     },
     {
       path: '/business',
       name: 'business',
-      component: BusinessView
+      component: BusinessView,
+      meta: {
+        title: 'MySpurr | Business'
+      }
     },
     {
       path: '/courses',
       name: 'courses',
-      component: LearnView
+      component: LearnView,
+      meta: {
+        title: 'MySpurr | Courses'
+      }
     },
     {
       path: '/blog',
@@ -45,7 +61,7 @@ const router = createRouter({
       component: AboutView
     },
     {
-      path: '/view-blog/:slug',
+      path: '/view-blog/:id',
       name: 'SingleBlog',
       component: SingleBlog
     },
@@ -65,7 +81,7 @@ const router = createRouter({
       component: InternshipView
     },
     {
-      path: '/single-portfolio/:slug',
+      path: '/single-portfolio/:id',
       name: 'single-portfolio',
       component: SinglePortfolio
     },
@@ -75,7 +91,7 @@ const router = createRouter({
       component: ContactUs
     },
     {
-      path: '/:name/:slug',
+      path: '/:name/:id',
       name: 'talent-profile',
       component: TalentProfile
     },

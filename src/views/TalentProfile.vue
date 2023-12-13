@@ -42,7 +42,7 @@
                 >
                   {{ talents?.skill_title }}
                 </p>
-                <div class="flex items-center gap-2">
+                <div class="flex items-center lg:justify-start justify-center gap-2">
                   <p
                     class="lg:text-[13.625px] text-[14px] text-[#244034] font-Satoshi500"
                   >
@@ -75,7 +75,7 @@
                 </a>
               </div>
               <div class="flex items-center gap-5">
-                <button>
+                <button @click="copyUrl()">
                   <SearchIconVeritical />
                 </button>
                 <button
@@ -130,7 +130,7 @@
                 class="flex flex-row gap-4 w-full overflow-hidden cursor-move mt-6 hide-scrollbar overflow-x-auto"
               >
                 <img
-                  @click="redirectToSinglePortFolio(index)"
+                  @click="redirectToSinglePortFolio(img.id)"
                   role="button"
                   v-for="(img, index) in talents?.portfolio"
                   :key="img"
@@ -222,7 +222,8 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from "vue";
+import { ref, onMounted, computed, reactive } from "vue";
+import { useHead } from "@vueuse/head";
 import { storeToRefs } from "pinia";
 import JobAvater from "@/components/Avater/JobAvater.vue";
 import Navbar from "@/components/Navbar/Navbar.vue";
@@ -246,6 +247,10 @@ import { useRouter, useRoute } from "vue-router";
 import { useTalentsStore } from "@/stores/talents";
 import Vue3Html2pdf from "vue3-html2pdf";
 import html2pdf from "html2pdf.js";
+import { useClipboard } from "@vueuse/core";
+import { useToast } from "vue-toastification";
+
+const toast = useToast();
 
 // const html2Pdf = ref(null);
 
@@ -265,56 +270,55 @@ const talentsStore = useTalentsStore();
 const { singleTalent } = storeToRefs(talentsStore);
 const route = useRoute();
 const router = useRouter();
-const redirectToSinglePortFolio = (index) => {
+const redirectToSinglePortFolio = (id) => {
   router.push({
     name: "single-portfolio",
-    params: { slug: index },
+    params: { id: id },
   });
 };
 
 const talents = computed(() => singleTalent.value?.data || []);
 
 onMounted(async () => {
-  await talentsStore.getSingleTalent(route.params.slug);
-  console.log("single talents", talents.value);
-  console.log("is array", Array.isArray(talents.value));
+  await talentsStore.getSingleTalent(route.params.id);
 });
 
-const Porfolio = [
-  { img: SampleOne },
-  { img: SampleTwo },
-  { img: SampleThree },
-  { img: SampleFour },
-];
+let source = window.location.href;
+const { copy, copied, isSupported } = useClipboard({ source });
+const copyUrl = () => {
+  if (isSupported) {
+    if (copied) {
+      console.log(source);
+      copy(source);
+      toast.success("Link Copied", {
+        timeout: 4000,
+      });
+    }
+  } else {
+    toast.error("Your browser does not support Clipboard API", {
+      timeout: 4000,
+    });
+  }
+};
 
-const items = ref([
-  {
-    heading: "University of Boston",
-    name: "Bachelor Degree of Design",
-    content:
-      "Mauris nec erat ut libero vulputate pulvinar. Aliquam ante erat, blandit at pretium et, accumsan ac est.",
-  },
-  {
-    heading: "Design Collage",
-    name: "UI/UX Design Course",
-    content:
-      "Morbi ornare ipsum sed sem condimentum, et pulvinar tortor luctus. Suspendisse condimentum lorem ut elementum aliquam et pulvinar tortor luctus.",
-  },
-]);
-const workItems = ref([
-  {
-    heading: "02/03/18 - 13/05/20",
-    name: "Product Designer (Google)",
-    content:
-      "Morbi ornare ipsum sed sem condimentum, et pulvinar tortor luctus. Suspendisse condimentum lorem ut elementum aliquam et pulvinar tortor luctus.",
-  },
-  {
-    heading: "02/03/18 - 13/05/20",
-    name: "UI/UX Engineer (Adobe)",
-    content:
-      "Morbi ornare ipsum sed sem condimentum, et pulvinar tortor luctus. Suspendisse condimentum lorem ut elementum aliquam et pulvinar tortor luctus.",
-  },
-]);
+const siteData = reactive({
+  title: `MySpurr |  ${singleTalent.value?.data?.first_name || ""}`,
+  description: ``,
+});
+
+useHead({
+  title: siteData.title,
+  meta: [
+    {
+      name: `description`,
+      content: computed(() => siteData.description),
+    },
+    {
+      property: "keywords",
+      content: "Courses, learn",
+    },
+  ],
+});
 </script>
 
 <style></style>

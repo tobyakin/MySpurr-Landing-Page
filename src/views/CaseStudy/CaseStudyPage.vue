@@ -1,4 +1,5 @@
 <script setup>
+import { useHead } from "@vueuse/head";
 import { defineAsyncComponent } from "vue";
 import SearchBarIcon from "@/components/icons/searchBarIcon.vue";
 import Navbar from "@/components/Navbar/Navbar.vue";
@@ -8,7 +9,7 @@ const FormGroup = defineAsyncComponent(() =>
 );
 import CaseStudyCard from "@/components/CaseStudy/CaseStudyCard.vue";
 import useFaqStore from "@/stores/faq";
-import { ref, computed, onMounted } from "vue";
+import { ref, computed, reactive, onMounted } from "vue";
 // import { storeToRefs } from "pinia";
 import SampleThree from "@/assets/img/sampleThree.webp";
 import WorkFlow from "@/components/Bander/WorkFlow.vue";
@@ -78,15 +79,34 @@ const filterTab = (category) => {
     filteredTab.value = store.blogPost.filter((item) => item.blog_category == category);
   }
 };
+const siteData = reactive({
+  title: `MySpurr | Case Study `,
+  description: ``,
+});
+
+useHead({
+  // Can be static or computed
+  title: computed(() => siteData.title),
+  meta: [
+    {
+      name: `description`,
+      content: computed(() => siteData.description),
+    },
+    {
+      property: "keywords",
+      content: "Case Study,",
+    },
+  ],
+});
 </script>
 
 <template>
   <div>
     <Navbar />
-    <div class="py-20 lg:!pt-[200px] container">
+    <div class="py-20 lg:!pt-[100px] px-[40px]">
       <div class="flex flex-col items-center text-center justify-between">
         <h4
-          class="text-[#011B1F] font-EBGaramond400 lg:text-[84px] text-[35px] leading-10 lg:leading-[98.526px] tracking-[-1px]"
+          class="text-[#011B1F] font-EBGaramond400 lg:text-[70px] text-[35px] leading-10 lg:leading-[78.526px] tracking-[-1px]"
         >
           Explore our curated collection <br class="md:block hidden" />
           of exceptional portfolio projects
@@ -112,9 +132,9 @@ const filterTab = (category) => {
       </div>
 
       <div>
-        <div class="font-Satoshi400 lg:my-10 lg:pb-10">
-          <ul
-            class="hidden my-24 md:flex text-sm justify-between font-semibold flex-wrap gap-y-[40px]"
+        <div class="font-Satoshi400 lg:my-10 lg:pb-10 flex flex-col">
+          <!-- <ul
+            class="hidden my-24 text-sm justify-between font-semibold flex-wrap gap-y-[40px]"
           >
             <li>
               <a
@@ -278,12 +298,13 @@ const filterTab = (category) => {
                 Brand strategy
               </a>
             </li>
-          </ul>
+          </ul> -->
           <div
             v-if="store.blogPost.length && tab == 'ALL'"
-            class="md:grid md:grid-cols-4 gap-10 my-10 flex-wrap"
+            class="md:grid md:grid-cols-6 gap-10 my-10 h-full flex-wrap"
           >
             <CaseStudyCard
+              class="h-fit"
               v-for="blog in store.blogPost"
               :key="blog"
               :image="blog.cover_image"
@@ -294,8 +315,9 @@ const filterTab = (category) => {
               :blog="blog"
             />
           </div>
-          <div v-else class="md:grid md:grid-cols-4 gap-10 my-10 min-h-screen flex-wrap">
+          <div v-else class="md:grid md:grid-cols-6 gap-10 my-10 min-h-fit flex-wrap">
             <CaseStudyCard
+              class="h-fit"
               v-for="blog in filteredTab"
               :key="blog"
               :image="blog.cover_image"
@@ -324,7 +346,7 @@ const filterTab = (category) => {
               <Arrow />
             </button>
           </div>
-          <WorkFlow />
+          <WorkFlow class="container" />
 
           <!-- <ul
               v-if="blog.links"

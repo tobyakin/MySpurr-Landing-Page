@@ -21,7 +21,7 @@
         <div class="flex lg:flex-row flex-col items-center gap-6">
           <img
             src="@/assets/img/BrandCEO.webp"
-            class="w-[103.116px] h-[103.116px] rounded-full"
+            class="w-[70px] h-[68px] rounded-full"
             alt=""
           />
           <div>
@@ -35,7 +35,7 @@
         </div>
         <div>
           <h4
-            class="text-[#007582] font-Satoshi500 text-[30px] leading-[35px] lg:text-left text-center lg:text-[52.263px]"
+            class="text-[#007582] font-Satoshi500 text-[30px] leading-[47px] lg:text-left text-center lg:text-[46px]"
           >
             Inspiration from <br class="md:block hidden" />
             Passion
@@ -55,8 +55,8 @@
           best lives by doing what they love. Our journey has begun and it’s with a simple
           idea:
           <span class="text-[#007582] font-Satoshi500"
-            >Provide a platform where creativity could thrive, talents could flourish, and
-            dreams could take flight.</span
+            >Provide a platform where creativity thrives, talents flourish, and dreams
+            take flight.</span
           >
         </p>
       </div>

@@ -1,7 +1,7 @@
 <template>
   <div class="w-full font-Satoshi400" :class="{ 'md:w-[45%]': two, 'md:w-[31%]': three }">
     <div class="">
-      <router-link :to="{ name: 'SingleBlog', params: { slug: blog.slug } }">
+      <router-link :to="{ name: 'SingleBlog', params: { id: blog.slug } }">
         <img class="w-full h-auto max-h-[283.472px] rounded-lg" :src="image" />
       </router-link>
       <div class="flex justify-between text-sm mt-6">
@@ -14,7 +14,7 @@
           {{ dateFormat(props.date) }}
         </button> -->
       </div>
-      <router-link :to="{ name: 'SingleBlog', params: { slug: blog.slug } }">
+      <router-link :to="{ name: 'SingleBlog', params: { id: blog.slug } }">
         <h3
           class="font-bold font-Satoshi500 text-[26.457px] leading-[37.796px] text-[#007582] my-4"
         >

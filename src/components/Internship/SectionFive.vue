@@ -21,31 +21,28 @@
         >
           <a
             :href="dashboardUrl + 'signup'"
-            class="btn-brand font-Satoshi400 text-center w-[193.602px] text-[16px] !px-0"
+            class="btn-brand font-Satoshi400 hidden text-center w-[193.602px] text-[16px] !px-0"
           >
             Sign Up for internships</a
-          ><button
-            @click="redirectToContectUs"
-            class="btn-brand font-Satoshi400 w-[193.602px]"
-          >
+          ><button @click="redirectToContectUs" class="btn-brand font-Satoshi400 w-[193.602px]">
             Contact us
           </button>
         </div>
       </div>
-      <!-- <img class="rounded-[29.842px]" src="@/assets/img/internbander.png" alt="" /> -->
+      <!-- <img class="rounded-[29.842px]" src="@/assets/img/internbander.webp" alt="" /> -->
     </div>
   </section>
 </template>
 <script setup>
-import mainbg from "@/assets/img/internbander.png";
-const image = mainbg;
-const dashboardUrl = import.meta.env.VITE_DASHBOARD;
-import { useRouter } from "vue-router";
-const router = useRouter();
+import mainbg from '@/assets/img/internbander.webp'
+const image = mainbg
+const dashboardUrl = import.meta.env.VITE_DASHBOARD
+import { useRouter } from 'vue-router'
+const router = useRouter()
 
 const redirectToContectUs = () => {
-  router.push({ name: "contact-us" });
-};
+  router.push({ name: 'contact-us' })
+}
 </script>
 
 <style scoped>

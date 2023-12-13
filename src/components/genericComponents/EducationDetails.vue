@@ -28,9 +28,10 @@
                 {{ item.start_date }} -
                 {{ item.end_date }}
               </p>
-              <p class="text-[#000000BF] text-[16px] flex flex-wrap overflow-auto">
-                {{ item.description }}
-              </p>
+              <div
+                v-html="item.description"
+                class="my-4 leading-[32px] editor mt-4 font-Satoshi400 w-full tracking-[-0.003rem] text-[16px]"
+              ></div>
             </div>
           </div>
         </div>
@@ -40,15 +41,13 @@
 </template>
 
 <script setup>
-const props = defineProps({
+defineProps({
   sectionInfo: Array,
   text: String,
   image: String,
   list: Array,
   items: Array,
 });
-
-console.log(props.sectionInfo);
 </script>
 
 <style scoped></style>

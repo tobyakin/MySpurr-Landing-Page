@@ -163,7 +163,7 @@ const getYear = new Date().getFullYear();
               <router-link to="/contact-us"> Contact </router-link>
             </li>
             <li class="text-[13.933px] font-Satoshi400 lg:leading-[36.062px]">
-              <router-link to="/"> Advertise </router-link>
+              <router-link to=""> Advertise </router-link>
             </li>
           </ul>
         </div>
@@ -171,7 +171,7 @@ const getYear = new Date().getFullYear();
           <h5 class="font-Satoshi500 text-[19.67px] mb-4 lg:mb-8">Product</h5>
           <ul class="flex flex-col lg:gap-2">
             <li class="text-[13.933px] font-Satoshi400 lg:leading-[36.062px]">
-              <router-link to="/"> Take a tour </router-link>
+              <router-link to=""> Take a tour </router-link>
             </li>
             <li class="text-[13.933px] font-Satoshi400 lg:leading-[36.062px]">
               <router-link to="/internship"> Internships </router-link>
@@ -188,16 +188,16 @@ const getYear = new Date().getFullYear();
           <h5 class="font-Satoshi500 text-[19.67px] mb-4 lg:mb-8">Legal</h5>
           <ul class="flex flex-col lg:gap-2">
             <li class="text-[13.933px] font-Satoshi400 lg:leading-[36.062px]">
-              <router-link to="/"> Terms of use </router-link>
+              <router-link to=""> Terms of use </router-link>
             </li>
             <li class="text-[13.933px] font-Satoshi400 lg:leading-[36.062px]">
-              <router-link to="/"> Terms & Conditions </router-link>
+              <router-link to=""> Terms & Conditions </router-link>
             </li>
             <li class="text-[13.933px] font-Satoshi400 lg:leading-[36.062px]">
-              <router-link to="/"> Privacy </router-link>
+              <router-link to=""> Privacy </router-link>
             </li>
             <li class="text-[13.933px] font-Satoshi400 lg:leading-[36.062px]">
-              <router-link to="/"> Cookie policy </router-link>
+              <router-link to=""> Cookie policy </router-link>
             </li>
           </ul>
         </div>

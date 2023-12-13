@@ -16,7 +16,7 @@
           <br class="md:block hidden" />skill-enhancing internships while enabling businesses to tap
           into fresh talent.
         </p>
-        <div class="flex">
+        <div class="flex invisible">
           <a :href="dashboardUrl + 'signup'" role="button" class="btn-brand font-Satoshi400">
             Sign up for free </a
           ><!---->
@@ -34,7 +34,7 @@
   </div>
 </template>
 <script setup>
-import mainbg from '@/assets/img/internBg.png'
+import mainbg from '@/assets/img/internBg.webp'
 import PlayButton from '@/components/icons/playButton.vue'
 const image = mainbg
 const dashboardUrl = import.meta.env.VITE_DASHBOARD

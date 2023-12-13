@@ -11,8 +11,7 @@
             Go Pro to unlock this feature as a business.
           </h1>
           <p class="text-[#000000] text-[16px] font-Satoshi400 leading-[147%]">
-            Achieve your business hiring goals and drive success in the ever-evolving
-            world.
+            Achieve your business hiring goals and drive success in the ever-evolving world.
           </p>
           <div class="flex-col flex gap-[40px] mt-4">
             <div
@@ -36,7 +35,7 @@
       <div class="w-auto rounded-[50.063px]">
         <img
           class="h-[100%] w-[100%] rounded-r-[50.063px] lg:block"
-          src="/src/assets/img/businessGoPro.png"
+          src="/src/assets/img/businessGoPro.webp"
           alt=""
         />
       </div></div
@@ -44,24 +43,24 @@
 </template>
 
 <script setup>
-import CenteredLargeModal from "./CenteredLargeModal.vue";
+import CenteredLargeModal from './CenteredLargeModal.vue'
 const items = [
   {
-    content: ` Tailor your talent search with customized solutions to find the perfect creative professional.`,
+    content: ` Tailor your talent search with customized solutions to find the perfect creative professional.`
   },
   {
-    content: ` Enjoy dedicated support for your MySpurr account, ensuring a seamless experience.`,
+    content: ` Enjoy dedicated support for your MySpurr account, ensuring a seamless experience.`
   },
   {
-    content: `  Showcase your job openings to a curated pool of top talents with our premium listing feature.`,
+    content: `  Showcase your job openings to a curated pool of top talents with our premium listing feature.`
   },
   {
-    content: `Access a world of creative knowledge and upskill with curated courses for your teams`,
+    content: `Access a world of creative knowledge and upskill with curated courses for your teams`
   },
   {
-    content: ` Bridge the gap between talent and opportunity with our platform for graduate internships.`,
-  },
-];
+    content: ` Bridge the gap between talent and opportunity with our platform for graduate internships.`
+  }
+]
 </script>
 
 <style></style>
