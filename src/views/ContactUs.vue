@@ -28,6 +28,14 @@ const formData = ref({
   subject: "",
   message: "",
 });
+const errorsMsg = {
+  email: "",
+};
+
+const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+const isValidEmail = computed(() => {
+  return emailRegex.test(formData.value.email);
+});
 
 const validateForm = () => {
   // Reset errorsMsg
@@ -41,11 +49,22 @@ const validateForm = () => {
     errors.name = true;
     isValid = false;
   }
-
-  if (!formData.value.email) {
+  if (!formData.value.email.trim()) {
     errors.email = true;
     isValid = false;
+  } else if (!isValidEmail.value) {
+    errors.email = true;
+    errorsMsg.email = "Email is invalid";
+    isValid = false;
+  } else {
+    errors.email = false;
+    errorsMsg.email = "";
   }
+
+  // if (!formData.value.email) {
+  //   errors.email = true;
+  //   isValid = false;
+  // }
   if (!formData.value.message) {
     errors.message = true;
     isValid = false;
@@ -171,10 +190,18 @@ useHead({
         ><button
           @click="onFinish"
           :disabled="loading"
-          :class="loading ? 'cursor-not-allowed' : ''"
+          :class="
+            (loading ? 'cursor-not-allowed' : '',
+            errors.email ? '!bg-red-500 !border-red-500' : '')
+          "
           class="btn-brand !text-white"
         >
-          <span v-if="!loading">Send Message</span>
+          <span v-if="!loading"
+            ><p v-if="errors.email" class="">
+              {{ errorsMsg.email }}
+            </p>
+            <p v-else>Send Message</p>
+          </span>
           <Loader class="my-2" v-else />
         </button>
       </div>
