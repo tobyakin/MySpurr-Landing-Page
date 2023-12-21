@@ -175,7 +175,7 @@ useHead({
           class="btn-brand !text-white"
         >
           <span v-if="!loading">Send Message</span>
-          <Loader v-else />
+          <Loader class="my-2" v-else />
         </button>
       </div>
       <WorkFlow />
