@@ -53,9 +53,9 @@
       class="flex flex-row gap-6 w-full overflow-hidden mt-6 hide-scrollbar overflow-x-auto"
     >
       <img
-        v-for="img in Porfolio"
-        :key="img"
-        :src="img.img"
+        v-for="item in talent?.portfolio"
+        :key="item"
+        :src="item?.cover_image"
         class="h-[140.078px] flex flex-col w-auto rounded-lg"
         alt=""
       />
