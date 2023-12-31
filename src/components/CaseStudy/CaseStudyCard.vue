@@ -1,19 +1,19 @@
 <template>
   <div class="w-full font-Satoshi400" :class="{ 'md:w-[45%]': two, 'md:w-[31%]': three }">
     <div class="">
-      <router-link :to="{ name: 'single-portfolio', params: { id: blog.slug } }">
+      <router-link :to="{ name: 'single-portfolio', params: { id: blog.id } }">
         <img class="w-full h-auto max-h-[283.472px] rounded-lg" :src="image" />
       </router-link>
       <div>
         <div class="flex items-center justify-between gap-2 py-4 mt-2">
           <div>
             <h3 class="font-Satoshi500 text-[12.778px] leading-[16.327px] text-[#000000]">
-              Julia Ark
+              {{ heading }}
             </h3>
             <p
               class="font-Satoshi400 text-[10.648px] leading-[16.327px] text-[#00000066]"
             >
-              Graphic Designer
+              {{ blog?.user?.first_name }}
             </p>
           </div>
 
