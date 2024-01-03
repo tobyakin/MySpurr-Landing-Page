@@ -11,7 +11,7 @@
 </template>
 <script setup>
 import GreenIcon from "@/components/icons/greenIcon.vue";
-import Icon from "@/assets/img/icon.webp";
+import Icon from "@/assets/defultAvater.png";
 defineProps({
   imgAlt: String,
   inputClasses: String,

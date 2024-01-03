@@ -10,10 +10,13 @@ const FormGroup = defineAsyncComponent(() =>
 import CaseStudyCard from "@/components/CaseStudy/CaseStudyCard.vue";
 import useFaqStore from "@/stores/faq";
 import { ref, computed, reactive, onMounted } from "vue";
-// import { storeToRefs } from "pinia";
+import { storeToRefs } from "pinia";
 import SampleThree from "@/assets/img/sampleThree.webp";
 import WorkFlow from "@/components/Bander/WorkFlow.vue";
 import Arrow from "@/components/icons/paginationArrow.vue";
+import { usePorfolioStore } from "@/stores/portfolios";
+const PorfolioStore = usePorfolioStore();
+const { talentPortfolios } = storeToRefs(PorfolioStore);
 
 const tab = ref("ALL");
 const filteredTab = ref([]);
@@ -97,6 +100,9 @@ useHead({
       content: "Case Study,",
     },
   ],
+});
+onMounted(async () => {
+  await PorfolioStore.allPorfolio();
 });
 </script>
 
@@ -305,14 +311,11 @@ useHead({
           >
             <CaseStudyCard
               class="h-fit"
-              v-for="blog in store.blogPost"
-              :key="blog"
-              :image="blog.cover_image"
-              :heading="blog.title"
-              :text="blog.blog_description"
-              :date="blog.created_at"
-              :blog_category="blog.blog_category"
-              :blog="blog"
+              v-for="portfolio in talentPortfolios?.data"
+              :key="portfolio.id"
+              :image="portfolio?.cover_image"
+              :heading="portfolio?.title"
+              :blog="portfolio"
             />
           </div>
           <div v-else class="md:grid md:grid-cols-6 gap-10 my-10 min-h-fit flex-wrap">

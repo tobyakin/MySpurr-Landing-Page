@@ -10,7 +10,7 @@
         >
           <div class="relative h-[100.955px] w-[100.955px] rounded-full">
             <img
-              :src="talent?.image ? talent?.image : 'src/assets/img/icon.webp'"
+              :src="talent?.image ? talent?.image : Icon"
               class="h-[100.955px] w-[100.955px] rounded-full"
               alt=""
             />
@@ -30,11 +30,11 @@
             </p>
             <div class="flex items-center gap-2">
               <p class="lg:text-[19.319px] text-[14px] text-[#244034] font-Satoshi500">
-                ${{ talent.compensation }}/hr
+                ${{ talent.rate }}/hr
               </p>
               <div class="h-[6px] bg-[#010101e2] w-[6px] rounded-full"></div>
               <p class="text-[#244034] lg:text-[19.319px] text-[14px] font-Satoshi500">
-                California, US
+                {{ talent.location }}
               </p>
             </div>
           </div>
@@ -53,9 +53,9 @@
       class="flex flex-row gap-6 w-full overflow-hidden mt-6 hide-scrollbar overflow-x-auto"
     >
       <img
-        v-for="img in Porfolio"
-        :key="img"
-        :src="img.img"
+        v-for="item in talent?.portfolio"
+        :key="item"
+        :src="item?.cover_image"
         class="h-[140.078px] flex flex-col w-auto rounded-lg"
         alt=""
       />
@@ -84,6 +84,7 @@ import SampleTwo from "@/assets/img/sampleTwo.webp";
 import SampleThree from "@/assets/img/sampleThree.webp";
 import SampleFour from "@/assets/img/sampleFour.webp";
 import ArrowRight from "@/components/icons/arrowRight.vue";
+import Icon from "@/assets/defultAvater.png";
 
 const Porfolio = [
   { img: SampleOne },
