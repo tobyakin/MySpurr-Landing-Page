@@ -10,7 +10,7 @@
         >
           <div class="relative h-[100.955px] w-[100.955px] rounded-full">
             <img
-              :src="talent?.image ? talent?.image : 'src/assets/img/icon.webp'"
+              :src="talent?.image ? talent?.image : Icon"
               class="h-[100.955px] w-[100.955px] rounded-full"
               alt=""
             />
@@ -84,6 +84,7 @@ import SampleTwo from "@/assets/img/sampleTwo.webp";
 import SampleThree from "@/assets/img/sampleThree.webp";
 import SampleFour from "@/assets/img/sampleFour.webp";
 import ArrowRight from "@/components/icons/arrowRight.vue";
+import Icon from "@/assets/defultAvater.png";
 
 const Porfolio = [
   { img: SampleOne },
