@@ -20,7 +20,7 @@
             key="payment-processed"
             class="text-[#007582] w-full text-[50px] lg:text-[80.526px] leading-[29px] lg:leading-[120px] font-Satoshi700"
           >
-            ${{ formatNumber(paymentProcessed) }}
+            $4k
           </h2>
         </transition>
         <p class="text-[#007582] font-Satoshi400 text-[18.286px]">payment processed</p>
