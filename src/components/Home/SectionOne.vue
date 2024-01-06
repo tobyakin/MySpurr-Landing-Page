@@ -1,5 +1,6 @@
 <template>
   <div
+    loading="lazy"
     class="min-h-[630px] flex items-center background py-20"
     :style="{ backgroundImage: `url(${image})` }"
   >

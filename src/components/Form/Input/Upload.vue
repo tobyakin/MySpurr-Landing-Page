@@ -5,6 +5,7 @@
       <p class="">max 10MB each.</p>
       <CloudUploadIcon class="mx-auto mt-4" />
       <img
+        loading="lazy"
         v-for="(imageUrl, index) in imageUrls"
         :key="index"
         :src="imageUrl"

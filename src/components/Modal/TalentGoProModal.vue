@@ -34,6 +34,7 @@
       </div>
       <div class="w-auto">
         <img
+          loading="lazy"
           class="h-[100%] w-[100%] rounded-r-[50.063px] lg:block"
           src="/src/assets/img/talentGoPro.webp"
           alt=""

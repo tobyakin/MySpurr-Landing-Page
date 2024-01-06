@@ -32,8 +32,8 @@ onMounted(async () => {
     <div class="py-20 container">
       <div class="font-Satoshi400 my-16">
         <div class="">
-          <img :src="blogbg" class="h-[630px]" alt="" />
-          <!-- <img
+          <img loading="lazy" :src="blogbg" class="h-[630px]" alt="" />
+          <!-- <img loading="lazy"  
             :src="singleBlog.cover_image"
             class="h-auto cursor-pointer w-full object-cover rounded-xl"
             alt=""
@@ -75,12 +75,12 @@ onMounted(async () => {
                 "
                 target="_blank"
               >
-                <img class="h-4 w-4" src="@/assets/img/facebook.svg" alt="" />
+                <img loading="lazy"   class="h-4 w-4" src="@/assets/img/facebook.svg" alt="" />
               </a>
             </div>
             <div>
               <a :href="share.pinterest(url)" target="_blank">
-                <img class="h-4 w-4" src="@/assets/img/pinterest.svg" alt="" />
+                <img loading="lazy"   class="h-4 w-4" src="@/assets/img/pinterest.svg" alt="" />
               </a>
             </div> -->
             <div>
@@ -92,7 +92,7 @@ onMounted(async () => {
                 "
                 target="_blank"
               >
-                <img class="h-4 w-4" src="@/assets/img/linkedin.svg" alt="" />
+                <img loading="lazy"   class="h-4 w-4" src="@/assets/img/linkedin.svg" alt="" />
               </a> -->
             </div>
             <div>
@@ -109,7 +109,7 @@ onMounted(async () => {
                 "
                 target="_blank"
               >
-                <img class="h-4 w-4" src="@/assets/img/twitter.svg" alt="" />
+                <img loading="lazy"   class="h-4 w-4" src="@/assets/img/twitter.svg" alt="" />
               </a> -->
             </div>
           </div>

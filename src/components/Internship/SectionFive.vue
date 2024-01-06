@@ -29,7 +29,7 @@
           </button>
         </div>
       </div>
-      <!-- <img class="rounded-[29.842px]" src="@/assets/img/internbander.webp" alt="" /> -->
+      <!-- <img loading="lazy"   class="rounded-[29.842px]" src="@/assets/img/internbander.webp" alt="" /> -->
     </div>
   </section>
 </template>

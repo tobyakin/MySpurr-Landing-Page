@@ -2,7 +2,7 @@
   <div class="w-full font-Satoshi400" :class="{ 'md:w-[45%]': two, 'md:w-[31%]': three }">
     <div class="">
       <router-link :to="{ name: 'SingleBlog', params: { id: blog.slug } }">
-        <img class="w-full h-auto max-h-[283.472px] rounded-lg" :src="image" />
+        <img loading="lazy" class="w-full h-auto max-h-[283.472px] rounded-lg" :src="image" />
       </router-link>
       <div class="flex justify-between text-sm mt-6">
         <button
@@ -29,7 +29,7 @@
 </template>
 
 <script setup>
-import dayjs from "dayjs";
+import dayjs from 'dayjs'
 const props = defineProps({
   image: String,
   heading: String,
@@ -38,12 +38,12 @@ const props = defineProps({
   three: Boolean,
   date: String,
   blog_category: String,
-  blog: Object,
-});
+  blog: Object
+})
 
 const dateFormat = (date) => {
-  return dayjs(date).format("DD MMMM YYYY");
-};
+  return dayjs(date).format('DD MMMM YYYY')
+}
 </script>
 
 <style scoped></style>
