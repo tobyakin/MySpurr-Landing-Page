@@ -13,7 +13,7 @@
     </div>
     <div class="flex lg:flex-row flex-col gap-5 pt-[40px]">
       <div v-for="item in Guides" :key="item" class="flex-col flex gap-4 h-auto">
-        <img :src="item.image" alt="" />
+        <img loading="lazy" :src="item.image" alt="" />
         <div class="flex hidden flex-col gap-5">
           <span class="text-[#00000059] font-Satoshi400 text-[16px] leading-[25px] ml-5 my-[10px]">
             {{ item.skills }}</span

@@ -14,6 +14,7 @@
       ></iframe
       ><button class="animate__bounceOut w-full" @click="changeScreen(0, 1)" v-if="steps[0]">
         <img
+          loading="lazy"
           class="w-full lg:h-[630px] h-[50vh] rounded-[14px]"
           src="@/assets/img/videoBg.webp"
           alt=""

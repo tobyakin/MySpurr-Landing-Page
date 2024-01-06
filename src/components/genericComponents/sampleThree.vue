@@ -11,7 +11,7 @@
       'bg-[#6769C2] md:h-[656px] text-white': lightBlue,
       'bg-[#6769C2] lg:h-[700px] text-white': crowdImg,
       ' md:h-[656px] text-black': noBg,
-      'overflow-hidden': overflow,
+      'overflow-hidden': overflow
     }"
     class="py-28 text-white"
   >
@@ -42,7 +42,7 @@
             'bg-[#F9F9F9] text-[#F50C40]': whiteButton,
             'bg-[#F9F9F9] text-brand': whiteButtonBlueText,
             'bg-[#6769C2]': lightBlueButton,
-            'bg-[#DD4A6B]': pinkButton,
+            'bg-[#DD4A6B]': pinkButton
           }"
           class="h-auto px-20 text-center py-3 font-Satoshi500 cursor-pointer rounded-[4px] text-[16px] md:w-80"
         >
@@ -53,18 +53,19 @@
       <!-- absolute h-[716px] -top-24 right-0 left-0 -->
       <div class="md:relative w-full hidden lg:block">
         <img
+          loading="lazy"
           :class="{
             'absolute  top-[15rem] right-0 h-auto': imgAbsolute,
             'absolute  top-[0.9rem] right-0 h-auto w-[100%]': pouchImg,
             ' absolute  2xl:top-[0rem] lg:top-[14rem] right-0 h-auto w-full': crowdImg,
             ' absolute  2xl:top-[0rem] lg:top-[10rem] right-0 h-auto w-full': multiImg,
             ' absolute  top-[0rem] right-0 h-auto w-[80%]': checkoutImg,
-            ' absolute  top-[0rem] right-0 h-auto w-full': mposImg,
+            ' absolute  top-[0rem] right-0 h-auto w-full': mposImg
           }"
           class="   "
           :src="image"
         />
-        <!-- <img
+        <!-- <img loading="lazy"  
           class="absolute right-0 left-0  mx-auto"
           src="@/assets/blog/squareonFace.svg"
         /> -->
@@ -108,8 +109,8 @@ const props = defineProps({
   multiImg: Boolean,
   checkoutImg: Boolean,
   mposImg: Boolean,
-  noBg: Boolean,
-});
+  noBg: Boolean
+})
 </script>
 
 <style scoped></style>

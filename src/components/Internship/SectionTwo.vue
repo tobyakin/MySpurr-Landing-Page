@@ -28,13 +28,14 @@
       </div>
       <div class="w-auto">
         <img
+          loading="lazy"
           class="h-full w-[100%] rounded-r-[6px] hidden lg:block"
           src="@/assets/img/woman_with_books.webp"
           alt=""
         />
       </div>
       <!-- <div class="lg:hidden block">
-        <img class="rounded-t-[18px]" src="@/assets/img/intern.webp" alt="" />
+        <img loading="lazy"   class="rounded-t-[18px]" src="@/assets/img/intern.webp" alt="" />
       </div> -->
     </div>
   </section>

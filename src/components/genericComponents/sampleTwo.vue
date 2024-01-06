@@ -9,7 +9,7 @@
           'text-[#4DDD76]': green,
           'text-[#6769C2]': lightBlue,
           'text-[#C59D10]': orange,
-          'text-[#DD4A6B]': pink,
+          'text-[#DD4A6B]': pink
         }"
         class="md:text-4xl w-full text-[28px] font-Satoshi700 my-8 lg:pb-20 pb-6 md:text-center"
       >
@@ -21,19 +21,15 @@
           :key="info"
           class="flex flex-col my-10 md:my-0 lg:gap-3 items-center text-center"
         >
-          <img class="w-10 h-10" :src="info.image" />
+          <img loading="lazy" class="w-10 h-10" :src="info.image" />
           <!-- <div class="h-[64px] w-[66.67px] flex justify-center items-center bg-brand rounded-lg lg:hidden">
-                <img src="@/assets/icons/lock.svg" alt="">
+                <img loading="lazy"   src="@/assets/icons/lock.svg" alt="">
             </div> -->
 
-          <h6
-            class="font-Satoshi700 lg:py-4 py-2 text-[20px] leading-[22.4px] text-[#333333]"
-          >
+          <h6 class="font-Satoshi700 lg:py-4 py-2 text-[20px] leading-[22.4px] text-[#333333]">
             {{ info.heading }}
           </h6>
-          <p
-            class="text-base font-Satoshi500 text-[16px] leading-[21.6px] text-[#333333]"
-          >
+          <p class="text-base font-Satoshi500 text-[16px] leading-[21.6px] text-[#333333]">
             {{ info.text }}
           </p>
         </div>
@@ -55,10 +51,10 @@ const props = defineProps({
   green: Boolean,
   lightBlue: Boolean,
   pink: Boolean,
-  orange: Boolean,
-});
+  orange: Boolean
+})
 
-console.log(props.sectionInfo);
+console.log(props.sectionInfo)
 </script>
 
 <style scoped></style>

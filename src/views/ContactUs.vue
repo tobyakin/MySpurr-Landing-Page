@@ -1,64 +1,64 @@
 <script setup>
-import { computed, reactive, ref, watch } from "vue";
-import { useHead } from "@vueuse/head";
-import Loader from "@/components/UI/Loader.vue";
-import Navbar from "@/components/Navbar/Navbar.vue";
-import Footer from "@/components/Footer.vue";
-import LocationIcon from "@/components/icons/locationIcon.vue";
-import MailIcon from "@/components/icons/mailIcon.vue";
-import WorkFlow from "@/components/Bander/WorkFlow.vue";
-import FormGroup from "@/components/Form/Input/FormGroup.vue";
-import AuthInput from "@/components/Form/Input/AuthInput.vue";
-import { sendMessage } from "@/services/ContactUs";
+import { computed, reactive, ref, watch } from 'vue'
+import { useHead } from '@vueuse/head'
+import Loader from '@/components/UI/Loader.vue'
+import Navbar from '@/components/Navbar/Navbar.vue'
+import Footer from '@/components/Footer.vue'
+import LocationIcon from '@/components/icons/locationIcon.vue'
+import MailIcon from '@/components/icons/mailIcon.vue'
+import WorkFlow from '@/components/Bander/WorkFlow.vue'
+import FormGroup from '@/components/Form/Input/FormGroup.vue'
+import AuthInput from '@/components/Form/Input/AuthInput.vue'
+import { sendMessage } from '@/services/ContactUs'
 
-let loading = ref(false);
+let loading = ref(false)
 const siteData = reactive({
   title: `MySpurr | Contact Us`,
-  description: ``,
-});
+  description: ``
+})
 const errors = reactive({
   name: false,
   email: false,
   subject: false,
-  message: false,
-});
+  message: false
+})
 const formData = ref({
-  name: "",
-  email: "",
-  subject: "",
-  message: "",
-});
+  name: '',
+  email: '',
+  subject: '',
+  message: ''
+})
 const errorsMsg = {
-  email: "",
-};
+  email: ''
+}
 
-const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/
 const isValidEmail = computed(() => {
-  return emailRegex.test(formData.value.email);
-});
+  return emailRegex.test(formData.value.email)
+})
 
 const validateForm = () => {
   // Reset errorsMsg
   Object.keys(errors).forEach((key) => {
-    errors[key] = false;
-  });
+    errors[key] = false
+  })
   // Perform validation before submission
-  let isValid = true;
+  let isValid = true
 
   if (!formData.value.name) {
-    errors.name = true;
-    isValid = false;
+    errors.name = true
+    isValid = false
   }
   if (!formData.value.email.trim()) {
-    errors.email = true;
-    isValid = false;
+    errors.email = true
+    isValid = false
   } else if (!isValidEmail.value) {
-    errors.email = true;
-    errorsMsg.email = "Email is invalid";
-    isValid = false;
+    errors.email = true
+    errorsMsg.email = 'Email is invalid'
+    isValid = false
   } else {
-    errors.email = false;
-    errorsMsg.email = "";
+    errors.email = false
+    errorsMsg.email = ''
   }
 
   // if (!formData.value.email) {
@@ -66,75 +66,73 @@ const validateForm = () => {
   //   isValid = false;
   // }
   if (!formData.value.message) {
-    errors.message = true;
-    isValid = false;
+    errors.message = true
+    isValid = false
   }
-  return isValid; // Only return false if there are validation errors
-};
+  return isValid // Only return false if there are validation errors
+}
 const clearInputErrors = () => {
   Object.keys(errors).forEach((key) => {
-    errors[key] = false;
-  });
-};
+    errors[key] = false
+  })
+}
 
 watch(formData.value, () => {
-  clearInputErrors();
-});
+  clearInputErrors()
+})
 const onFinish = async () => {
-  loading.value = true;
+  loading.value = true
   if (!validateForm()) {
-    loading.value = false;
-    return;
+    loading.value = false
+    return
   }
   let payload = {
     name: formData.value.name,
     email: formData.value.email,
     subject: formData.value.subject,
-    message: formData.value.message,
-  };
-  try {
-    let res = await sendMessage(payload);
-    loading.value = false;
-    return res;
-  } catch (error) {
-    return error;
-  } finally {
-    loading.value = false;
+    message: formData.value.message
   }
-};
+  try {
+    let res = await sendMessage(payload)
+    loading.value = false
+    return res
+  } catch (error) {
+    return error
+  } finally {
+    loading.value = false
+  }
+}
 useHead({
   // Can be static or computed
   title: computed(() => siteData.title),
   meta: [
     {
       name: `description`,
-      content: computed(() => siteData.description),
+      content: computed(() => siteData.description)
     },
     {
-      property: "keywords",
-      content: "contact us,",
-    },
-  ],
-});
+      property: 'keywords',
+      content: 'contact us,'
+    }
+  ]
+})
 </script>
 
 <template>
   <div>
     <Navbar />
     <div class="py-20 container">
-      <h4
-        class="font-EBGaramond500 lg:text-[72px] text-[30px] my-10 text-center text-[#007582]"
-      >
+      <h4 class="font-EBGaramond500 lg:text-[72px] text-[30px] my-10 text-center text-[#007582]">
         Get in touch
       </h4>
-      <div><img src="@/assets/img/contactUs.webp" class="lg:h-[569.031px]" alt="" /></div>
+      <div>
+        <img loading="lazy" src="@/assets/img/contactUs.webp" class="lg:h-[569.031px]" alt="" />
+      </div>
       <div class="flex lg:flex-row flex-col justify-center my-24 gap-20">
         <div class="flex flex-col gap-2 items-center text-center">
           <LocationIcon />
           <h4 class="text-[#141518] text-[24px] font-Satoshi500">Our Address</h4>
-          <p class="text-[#878787] font-Satoshi400 text-[17px] text-center">
-            Abuja,Nigeria
-          </p>
+          <p class="text-[#878787] font-Satoshi400 text-[17px] text-center">Abuja,Nigeria</p>
         </div>
         <div class="flex flex-col gap-2 items-center text-center">
           <MailIcon />
@@ -191,8 +189,7 @@ useHead({
           @click="onFinish"
           :disabled="loading"
           :class="
-            (loading ? 'cursor-not-allowed' : '',
-            errors.email ? '!bg-red-500 !border-red-500' : '')
+            (loading ? 'cursor-not-allowed' : '', errors.email ? '!bg-red-500 !border-red-500' : '')
           "
           class="btn-brand !text-white"
         >

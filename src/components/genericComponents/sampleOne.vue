@@ -3,7 +3,7 @@
     <div
       :class="{
         'lg:flex-row-reverse ': reverse,
-        'lg:flex-row flex-col-reverse ': reverseOnMobile,
+        'lg:flex-row flex-col-reverse ': reverseOnMobile
       }"
       class="flex lg:gap-24 gap-8 items-center justify-center flex-wrap lg:flex-nowrap"
     >
@@ -25,7 +25,7 @@
         </div>
       </div>
       <div class="lg:w-1/2">
-        <img class="w-full" :src="image" />
+        <img loading="lazy" class="w-full" :src="image" />
       </div>
     </div>
   </div>
@@ -39,9 +39,9 @@ const props = defineProps({
   list: Array,
   reverse: Boolean,
   reverseOnMobile: Boolean,
-  hideListArea: Boolean,
-});
-console.log(props.sectionInfo);
+  hideListArea: Boolean
+})
+console.log(props.sectionInfo)
 </script>
 
 <style scoped></style>

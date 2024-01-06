@@ -19,7 +19,7 @@
           <a target="_blank" :href="item.tweetUrl" role="button" class="w-full">
             <div class="flex justify-stretch items-center gap-3 w-full">
               <div class="">
-                <img width="40" alt="" :src="item.img" class="rounded-full" />
+                <img loading="lazy" width="40" alt="" :src="item.img" class="rounded-full" />
               </div>
               <div class="flex justify-between w-full items-center">
                 <div class="w-[80%]">
