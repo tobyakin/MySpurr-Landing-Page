@@ -1,15 +1,44 @@
+<script setup>
+import { computed, reactive } from "vue";
+import { useHead } from "@vueuse/head";
+import Navbar from "@/components/Navbar/Navbar.vue";
+import Footer from "@/components/Footer.vue";
+import SectionOne from "@/components/About/SectionOne.vue";
+import SectionTwo from "@/components/About/SectionTwo.vue";
+import AppOccupant from "@/components/Bander/UserCounter.vue";
+import WorkFlow from "@/components/Bander/WorkFlow.vue";
+import SectionThree from "@/components/About/SectionThree.vue";
+const siteData = reactive({
+  title: `MySpurr | About Us`,
+  description: ``,
+});
+
+useHead({
+  // Can be static or computed
+  title: computed(() => siteData.title),
+  meta: [
+    {
+      name: `description`,
+      content: computed(() => siteData.description),
+    },
+    {
+      property: "keywords",
+      content: "About us,",
+    },
+  ],
+});
+</script>
+
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+  <div>
+    <Navbar />
+    <SectionOne />
+    <SectionTwo />
+    <AppOccupant />
+    <SectionThree />
+    <WorkFlow class="container" />
+    <Footer />
   </div>
 </template>
 
-<style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
-}
-</style>
+<style scoped></style>
