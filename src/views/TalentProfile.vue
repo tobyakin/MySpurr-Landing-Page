@@ -43,17 +43,23 @@
                   {{ talents?.skill_title }}
                 </p>
                 <div class="flex items-center lg:justify-start justify-center gap-2">
-                  <p class="lg:text-[13.625px] text-[14px] text-[#244034] font-Satoshi500">
+                  <p
+                    class="lg:text-[13.625px] text-[14px] text-[#244034] font-Satoshi500"
+                  >
                     ${{ talents?.rate }}/hr
                   </p>
                   <div class="h-[6px] bg-[#010101e2] w-[6px] rounded-full"></div>
-                  <p class="text-[#244034] lg:text-[13.625px] text-[14px] font-Satoshi500">
+                  <p
+                    class="text-[#244034] lg:text-[13.625px] text-[14px] font-Satoshi500"
+                  >
                     {{ talents?.location }}
                   </p>
                 </div>
               </div>
             </div>
-            <div class="flex flex-col items-center lg:justify-normal justify-center gap-6">
+            <div
+              class="flex flex-col items-center lg:justify-normal justify-center gap-6"
+            >
               <div class="flex items-center gap-3">
                 <a v-if="talents?.linkedin" :href="talents?.linkedin" target="_blank">
                   <LinkdeinIcon />
@@ -75,7 +81,9 @@
                 <button
                   class="btn-brand !bg-[#31795A] !border-none text-center flex items-start !py-2 !text-white"
                 >
-                  <span style="display: grid; place-content: center" class="">Message</span>
+                  <span style="display: grid; place-content: center" class=""
+                    >Message</span
+                  >
                 </button>
               </div>
             </div>
@@ -83,7 +91,9 @@
           <div class="flex flex-col lg:flex-row mt-10 w-full">
             <div class="lg:w-[70%] p-4">
               <p class="text-[28px] text-[#000] font-Satoshi500">Overview</p>
-              <div class="text-[#000000BF] font-Satoshi400 text-[16px] mt-4 leading-[35px]">
+              <div
+                class="text-[#000000BF] font-Satoshi400 text-[16px] mt-4 leading-[35px]"
+              >
                 <p>
                   {{ talents?.overview }}
                 </p>
@@ -111,7 +121,9 @@
               <EducationDetails :items="talents?.education" />
               <!-- <SampleFive :items="items" /> -->
 
-              <p class="text-[28px] text-[#000] font-Satoshi500 mb-12 mt-8">Work Experience</p>
+              <p class="text-[28px] text-[#000] font-Satoshi500 mb-12 mt-8">
+                Work Experience
+              </p>
               <WorkExperience :items="talents?.employment" />
               <p class="text-[28px] text-[#000] font-Satoshi500 mb-12 mt-8">Portfolio</p>
               <div
@@ -135,20 +147,26 @@
                   :key="i"
                   class="border-[#2440341A] border-[1.265px] rounded-[9.732px] p-6"
                 >
-                  <p class="text-[#001E00] font-Satoshi400 text-[16px] mb-4 tracking-[0.6px]">
+                  <p
+                    class="text-[#001E00] font-Satoshi400 text-[16px] mb-4 tracking-[0.6px]"
+                  >
                     Find B2B Partners for UK and US Online Tutoring Company
                   </p>
                   <div class="flex items-center gap-1 font-Satoshi400 mb-2">
                     <RateStar v-for="i in 5" :key="i" />
                     <span class="text-[#001E00] text-[14px]">5.00 </span
-                    ><span class="text-[#5E6D55] text-[12px]">Dec 15, 2022 - Feb 2, 2023</span>
+                    ><span class="text-[#5E6D55] text-[12px]"
+                      >Dec 15, 2022 - Feb 2, 2023</span
+                    >
                   </div>
                   <p
                     class="text-[#001E00] font-Satoshi400 italic text-[13px] mb-4 tracking-[0.6px]"
                   >
                     "Great lead generation for education companies"
                   </p>
-                  <p class="text-[#5E6D55] font-Satoshi400 text-[14px]">Private earnings</p>
+                  <p class="text-[#5E6D55] font-Satoshi400 text-[14px]">
+                    Private earnings
+                  </p>
                 </div>
               </div>
             </div>
@@ -157,7 +175,11 @@
               <div
                 class="bg-[#E9FAFB] p-8 border-[#F6F6F6] border-[1px] flex flex-col gap-12 mt-4 rounded-[15px]"
               >
-                <div v-for="i in talents?.certificate" :key="i" class="flex items-center gap-5">
+                <div
+                  v-for="i in talents?.certificate"
+                  :key="i"
+                  class="flex items-center gap-5"
+                >
                   <CertificateBadge />
                   <div class="flex flex-col gap-0 h-auto">
                     <a
@@ -189,7 +211,8 @@
               </div>
               <p class="text-[20px] text-[#000] font-Satoshi500 mt-16">Location</p>
               <div class="flex flex-col gap-12 mt-4 rounded-[15px]">
-                <img loading="lazy" src="@/assets/img/Map.webp" alt="" />
+                <!-- <img loading="lazy" src="@/assets/img/Map.webp" alt="" /> -->
+                <Map :lat="talents?.latitude" :lng="talents?.longitude" />
               </div>
             </div>
           </div>
@@ -201,35 +224,36 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed, reactive } from 'vue'
-import { useHead } from '@vueuse/head'
-import { storeToRefs } from 'pinia'
-import JobAvater from '@/components/Avater/JobAvater.vue'
-import Navbar from '@/components/Navbar/Navbar.vue'
-import Footer from '@/components/Footer.vue'
-import SearchIconVeritical from '@/components/icons/searchIconVeritical.vue'
-import LinkdeinIcon from '@/components/icons/linkdeinIcon.vue'
-import InstagramIcon from '@/components/icons/instagramIcon.vue'
-import BeIcon from '@/components/icons/beIcon.vue'
-import TwitterIcon from '@/components/icons/twitterIcon.vue'
-import SampleFive from '@/components/genericComponents/sampleFive.vue'
-import WorkExperience from '@/components/genericComponents/WorkExperience.vue'
-import EducationDetails from '@/components/genericComponents/EducationDetails.vue'
-import SampleOne from '@/assets/img/sampleOne.webp'
-import SampleTwo from '@/assets/img/sampleTwo.webp'
-import SampleThree from '@/assets/img/sampleThree.webp'
-import SampleFour from '@/assets/img/sampleFour.webp'
-import RateStar from '@/components/icons/rateStar.vue'
-import CertificateBadge from '@/components/icons/certificateBadge.vue'
-import CalenderWithPen from '@/components/icons/calenderWithPen.vue'
-import { useRouter, useRoute } from 'vue-router'
-import { useTalentsStore } from '@/stores/talents'
-import Vue3Html2pdf from 'vue3-html2pdf'
-import html2pdf from 'html2pdf.js'
-import { useClipboard } from '@vueuse/core'
-import { useToast } from 'vue-toastification'
+import { ref, onMounted, computed, reactive, defineAsyncComponent } from "vue";
+import { useHead } from "@vueuse/head";
+import { storeToRefs } from "pinia";
+import JobAvater from "@/components/Avater/JobAvater.vue";
+import Navbar from "@/components/Navbar/Navbar.vue";
+import Footer from "@/components/Footer.vue";
+import SearchIconVeritical from "@/components/icons/searchIconVeritical.vue";
+import LinkdeinIcon from "@/components/icons/linkdeinIcon.vue";
+import InstagramIcon from "@/components/icons/instagramIcon.vue";
+import BeIcon from "@/components/icons/beIcon.vue";
+import TwitterIcon from "@/components/icons/twitterIcon.vue";
+import SampleFive from "@/components/genericComponents/sampleFive.vue";
+import WorkExperience from "@/components/genericComponents/WorkExperience.vue";
+import EducationDetails from "@/components/genericComponents/EducationDetails.vue";
+import SampleOne from "@/assets/img/sampleOne.webp";
+import SampleTwo from "@/assets/img/sampleTwo.webp";
+import SampleThree from "@/assets/img/sampleThree.webp";
+import SampleFour from "@/assets/img/sampleFour.webp";
+import RateStar from "@/components/icons/rateStar.vue";
+import CertificateBadge from "@/components/icons/certificateBadge.vue";
+import CalenderWithPen from "@/components/icons/calenderWithPen.vue";
+import { useRouter, useRoute } from "vue-router";
+import { useTalentsStore } from "@/stores/talents";
+import Vue3Html2pdf from "vue3-html2pdf";
+import html2pdf from "html2pdf.js";
+import { useClipboard } from "@vueuse/core";
+import { useToast } from "vue-toastification";
+const Map = defineAsyncComponent(() => import("@/components/Map/Map.vue"));
 
-const toast = useToast()
+const toast = useToast();
 
 // const html2Pdf = ref(null);
 
@@ -237,67 +261,67 @@ const toast = useToast()
 //   html2Pdf.value.generatePdf();
 // };
 const exportToPDF = () => {
-  html2pdf(document.getElementById('element-to-convert'), {
+  html2pdf(document.getElementById("element-to-convert"), {
     margin: 1,
     filename: `${talents?.value.first_name}-talent-cv`,
-    image: { type: 'jpeg', quality: 0.98 },
+    image: { type: "jpeg", quality: 0.98 },
     html2canvas: { scale: 1.5, logging: true, useCORS: true },
-    jsPDF: { unit: 'in', format: 'a2', orientation: 'portrait' }
-  })
-}
-const talentsStore = useTalentsStore()
-const { singleTalent } = storeToRefs(talentsStore)
-const route = useRoute()
-const router = useRouter()
+    jsPDF: { unit: "in", format: "a2", orientation: "portrait" },
+  });
+};
+const talentsStore = useTalentsStore();
+const { singleTalent } = storeToRefs(talentsStore);
+const route = useRoute();
+const router = useRouter();
 const redirectToSinglePortFolio = (id) => {
   router.push({
-    name: 'single-portfolio',
-    params: { id: id }
-  })
-}
+    name: "single-portfolio",
+    params: { id: id },
+  });
+};
 
-const talents = computed(() => singleTalent.value?.data || [])
+const talents = computed(() => singleTalent.value?.data || []);
 
 onMounted(async () => {
-  await talentsStore.getSingleTalent(route.params.id)
-})
+  await talentsStore.getSingleTalent(route.params.id);
+});
 
-let source = window.location.href
-const { copy, copied, isSupported } = useClipboard({ source })
+let source = window.location.href;
+const { copy, copied, isSupported } = useClipboard({ source });
 const copyUrl = () => {
   if (isSupported) {
     if (copied) {
-      console.log(source)
-      copy(source)
-      toast.success('Link Copied', {
-        timeout: 4000
-      })
+      console.log(source);
+      copy(source);
+      toast.success("Link Copied", {
+        timeout: 4000,
+      });
     }
   } else {
-    toast.error('Your browser does not support Clipboard API', {
-      timeout: 4000
-    })
+    toast.error("Your browser does not support Clipboard API", {
+      timeout: 4000,
+    });
   }
-}
+};
 
 const siteData = reactive({
-  title: `MySpurr |  ${singleTalent.value?.data?.first_name || ''}`,
-  description: ``
-})
+  title: `MySpurr |  ${singleTalent.value?.data?.first_name || ""}`,
+  description: ``,
+});
 
 useHead({
   title: siteData.title,
   meta: [
     {
       name: `description`,
-      content: computed(() => siteData.description)
+      content: computed(() => siteData.description),
     },
     {
-      property: 'keywords',
-      content: 'Courses, learn'
-    }
-  ]
-})
+      property: "keywords",
+      content: "Courses, learn",
+    },
+  ],
+});
 </script>
 
 <style></style>
