@@ -51,8 +51,7 @@ export default {
       geojson: null,
       fillColor: "#e4ce7f",
       url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-      attribution:
-        '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+      attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>',
       marker: latLng(this.lat, this.lng),
     };
   },
