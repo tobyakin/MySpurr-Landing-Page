@@ -18,7 +18,7 @@
         </p>
       </div>
       <div
-        class="flex lg:flex-nowrap flex-wrap invisible gap-8 lg:gap-1 justify-center lg:justify-end w-full lg:py-14 py-3 font-Satoshi500"
+        class="flex lg:flex-nowrap flex-wrap gap-8 lg:gap-1 justify-center lg:justify-end w-full lg:py-14 py-3 font-Satoshi500"
       >
         <div>
           <a target="_blank" role="button" class="btn-light text-[18px]">

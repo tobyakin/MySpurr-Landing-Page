@@ -16,7 +16,7 @@
           <br class="md:block hidden" />a successful career in the dynamic world of
           creativity.
         </p>
-        <div class="flex invisible gap-[26px]">
+        <div class="flex gap-[26px]">
           <a
             :href="dashboardUrl + 'signup'"
             role="button"
