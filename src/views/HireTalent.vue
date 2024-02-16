@@ -11,6 +11,8 @@ import Subscribe from "@/components/Bander/Subscribe.vue";
 import { useTalentsStore } from "@/stores/talents";
 import FormGroup from "@/components/Form/Input/FormGroup.vue";
 import FormSelectGroup from "@/components/Form/Input/SelectGroup.vue";
+import { useQuery } from "vue-query";
+
 const talentsStore = useTalentsStore();
 const { talent } = storeToRefs(talentsStore);
 const siteData = reactive({
@@ -84,8 +86,24 @@ watch(currentPage, (newPage) => {
   console.log("Current Page:", newPage);
 });
 
-onMounted(async () => {
-  await talentsStore.allTalents();
+// onMounted(async () => {
+//   await talentsStore.allTalents();
+// });
+const getTalentsData = async () => {
+  let response = await talentsStore.allTalents();
+  return response;
+};
+const fetchData = async () => {
+  await Promise.all([getTalentsData()]);
+};
+fetchData();
+
+useQuery(["talents"], getTalentsData, {
+  retry: 10,
+  staleTime: 10000,
+  onSuccess: (data) => {
+    talent.value = data;
+  },
 });
 </script>
 

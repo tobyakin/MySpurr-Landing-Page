@@ -7,6 +7,7 @@ import Toast, { POSITION } from 'vue-toastification'
 import 'vue-toastification/dist/index.css'
 import { createHead } from '@vueuse/head'
 import Vue3Autocounter from 'vue3-autocounter'
+import { VueQueryPlugin } from 'vue-query'
 
 
 import App from './App.vue'
@@ -18,6 +19,7 @@ const app = createApp(App)
 app.use(Toast, { position: POSITION.TOP_RIGHT })
 app.component('QuillEditor', QuillEditor)
 app.component('vue3-autocounter', Vue3Autocounter)
+app.use(VueQueryPlugin)
 app.use(createPinia())
 app.use(router)
 app.use(createHead())
