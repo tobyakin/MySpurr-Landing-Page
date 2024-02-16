@@ -8,12 +8,12 @@
         <div class="flex flex-col gap-2">
           <p class="text-[#244034c5] text-[13.076px] font-Satoshi400">Creative work</p>
           <p class="text-[#244034] text-[13.076px] font-Satoshi500">
-            {{ portfolio.title }}
+            {{ portfolio?.title }}
           </p>
         </div>
         <div class="flex flex-col gap-2">
           <p class="text-[#244034c5] text-[13.076px] font-Satoshi400">Tags</p>
-          <div v-for="tag in portfolio.tags" :key="tag" class="flex">
+          <div v-for="tag in portfolio?.tags" :key="tag" class="flex">
             <p class="text-[#244034] text-[13.076px] font-Satoshi500">
               {{ tag.name }}
             </p>
@@ -22,38 +22,38 @@
         <div class="flex flex-col gap-2">
           <p class="text-[#244034c5] text-[13.076px] font-Satoshi400">Client</p>
           <p class="text-[#244034] text-[13.076px] font-Satoshi500">
-            {{ portfolio.client_name }}
+            {{ portfolio?.client_name }}
           </p>
         </div>
         <div class="flex flex-col gap-2">
           <p class="text-[#244034c5] text-[13.076px] font-Satoshi400">Job Type</p>
           <p class="text-[#244034] text-[13.076px] font-Satoshi500">
-            {{ portfolio.job_type }}
+            {{ portfolio?.job_type }}
           </p>
         </div>
         <div class="flex flex-col gap-2">
           <p class="text-[#244034c5] text-[13.076px] font-Satoshi400">Rate</p>
           <p class="text-[#244034] text-[13.076px] font-Satoshi500">
-            {{ portfolio.rate }}
+            {{ portfolio?.rate }}
           </p>
         </div>
         <div class="flex flex-col gap-2">
           <p class="text-[#244034c5] text-[13.076px] font-Satoshi400">Location</p>
           <p class="text-[#244034] text-[13.076px] font-Satoshi500">
-            {{ portfolio.location }}
+            {{ portfolio?.location }}
           </p>
         </div>
       </div>
       <div class="flex flex-col mt-10 gap-20 w-full">
         <img
           loading="lazy"
-          :src="portfolio.cover_image"
+          :src="portfolio?.cover_image"
           alt="cover image"
           class="rounded-[13.076px] h-[50%] mx-auto"
         />
         <div class="w-full">
           <div
-            v-html="portfolio.body"
+            v-html="portfolio?.body"
             class="my-4 leading-[32px] editor mt-4 font-Satoshi400 w-full tracking-[-0.003rem] text-[20px]"
           ></div>
         </div>
