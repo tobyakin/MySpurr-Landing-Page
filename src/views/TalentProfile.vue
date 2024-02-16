@@ -252,6 +252,7 @@ import html2pdf from "html2pdf.js";
 import { useClipboard } from "@vueuse/core";
 import { useToast } from "vue-toastification";
 const Map = defineAsyncComponent(() => import("@/components/Map/Map.vue"));
+import { useQuery } from "vue-query";
 
 const toast = useToast();
 
@@ -282,9 +283,9 @@ const redirectToSinglePortFolio = (id) => {
 
 const talents = computed(() => singleTalent.value?.data || []);
 
-onMounted(async () => {
-  await talentsStore.getSingleTalent(route.params.id);
-});
+// onMounted(async () => {
+//   await talentsStore.getSingleTalent(route.params.id);
+// });
 
 let source = window.location.href;
 const { copy, copied, isSupported } = useClipboard({ source });
@@ -321,6 +322,22 @@ useHead({
       content: "Courses, learn",
     },
   ],
+});
+const getTalentsProfileData = async () => {
+  let response = await talentsStore.getSingleTalent(route.params.id);
+  return response;
+};
+const fetchData = async () => {
+  await Promise.all([getTalentsProfileData()]);
+};
+fetchData();
+
+useQuery(["talentsProfile"], getTalentsProfileData, {
+  retry: 10,
+  staleTime: 10000,
+  onSuccess: (data) => {
+    singleTalent.value = data;
+  },
 });
 </script>
 

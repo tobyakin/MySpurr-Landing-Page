@@ -17,6 +17,7 @@ import Arrow from "@/components/icons/paginationArrow.vue";
 import { usePorfolioStore } from "@/stores/portfolios";
 const PorfolioStore = usePorfolioStore();
 const { talentPortfolios } = storeToRefs(PorfolioStore);
+import { useQuery } from "vue-query";
 
 const tab = ref("ALL");
 const filteredTab = ref([]);
@@ -101,8 +102,24 @@ useHead({
     },
   ],
 });
-onMounted(async () => {
-  await PorfolioStore.allPorfolio();
+// onMounted(async () => {
+//   await PorfolioStore.allPorfolio();
+// });
+const getAllTalentPortfolio = async () => {
+  let response = await PorfolioStore.allPorfolio();
+  return response;
+};
+const fetchData = async () => {
+  await Promise.all([getAllTalentPortfolio()]);
+};
+fetchData();
+
+useQuery(["talents"], getAllTalentPortfolio, {
+  retry: 10,
+  staleTime: 10000,
+  onSuccess: (data) => {
+    talentPortfolios.value = data;
+  },
 });
 </script>
 
