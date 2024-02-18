@@ -20,6 +20,7 @@
           class="flex lg:flex-row flex-col lg:justify-start justify-center lg:items-start items-center gap-4 mt-8"
         >
           <a
+            target="_blank"
             :href="dashboardUrl + 'signup'"
             class="btn-brand font-Satoshi400 text-center w-[193.602px] text-[16px] !px-0"
           >

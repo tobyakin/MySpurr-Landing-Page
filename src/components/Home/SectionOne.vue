@@ -19,6 +19,7 @@
         </p>
         <div class="flex gap-[26px]">
           <a
+            target="_blank"
             :href="dashboardUrl + 'signup'"
             role="button"
             class="btn-brand lg:!px-[10px] !px-0 items-center flex lg:w-[40%] lg:!text-base justify-center !text-[12px] w-full !font-Satoshi400"
