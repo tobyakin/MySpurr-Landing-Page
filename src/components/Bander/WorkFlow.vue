@@ -27,6 +27,7 @@
         </div>
         <div>
           <a
+            target="_blank"
             :href="dashboardUrl + 'signup'"
             role="button"
             class="bg-brand p-3 mx-auto rounded-full px-10 text-white text-[16px] font-Satoshi400"

@@ -19,7 +19,12 @@
     :reverseOnMobile="true"
   />
   <div class="flex justify-center items-center pb-[6rem]">
-    <a :href="dashboardUrl + 'signup'" role="button" class="btn-brand font-Satoshi400">
+    <a
+      target="_blank"
+      :href="dashboardUrl + 'signup'"
+      role="button"
+      class="btn-brand font-Satoshi400"
+    >
       Sign up for free
     </a>
   </div>

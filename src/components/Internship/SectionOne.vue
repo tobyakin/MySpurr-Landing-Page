@@ -18,6 +18,7 @@
         </p>
         <div class="flex">
           <a
+            target="_blank"
             :href="dashboardUrl + 'signup'"
             role="button"
             class="btn-brand font-Satoshi400"
