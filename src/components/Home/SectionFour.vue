@@ -2,16 +2,21 @@
   <div class="py-20 container">
     <div class="flex lg:flex-row flex-col justify-between">
       <h2
-        class="text-dimBrand text-[43px] lg:text-[50px] !font-semibold leading-[68.056px] lg:leading-[74px] font-EBGaramond500 mb-8"
+        class="text-dimBrand text-[43px] lg:text-[50px] !font-semibold leading-[68.056px] lg:leading-[74px] font-EBGaramond500 !mb-8"
       >
         New job listing
       </h2>
       <div class="flex items-center">
-        <p class="text-[13.279px] font-Satoshi500 text-dimBrand">Explore all jobs</p>
+        <button
+          @click="redirectToJobPage"
+          class="text-[13.279px] font-Satoshi500 text-dimBrand"
+        >
+          Explore all jobs
+        </button>
       </div>
     </div>
     <div
-      class="grid grid-rows-1 hide-scrollbar my-8 border-[0.83px] rounded-[8.3px] border-[#DBE8E5]"
+      class="grid grid-rows-1 hide-scrollbar !my-8 border-[0.83px] rounded-[8.3px] border-[#DBE8E5]"
     >
       <div
         v-for="item in 4"
@@ -45,9 +50,9 @@
             </p>
           </div>
           <div class="flex items-center gap-3">
-            <button class="rounded-full border-[#97A6A8] border-[0.496px] p-3">
+            <!-- <button class="rounded-full border-[#97A6A8] border-[0.496px] p-3">
               <BookMarkIcon />
-            </button>
+            </button> -->
             <button class="rounded-full border-[#97A6A8] border-[0.496px] p-2">
               <ShareIcon /></button
             ><button class="btn-brand !text-[9.959px] !py-2 !px-6">APPLY</button>
@@ -67,6 +72,14 @@
   </div>
 </template>
 <script setup>
+import { useRoute, useRouter } from "vue-router";
 import BookMarkIcon from "@/components/icons/bookMarkIcon.vue";
 import ShareIcon from "@/components/icons/shareOutline.vue";
+const router = useRouter();
+
+const redirectToJobPage = () => {
+  router.push({
+    name: "jobs",
+  });
+};
 </script>

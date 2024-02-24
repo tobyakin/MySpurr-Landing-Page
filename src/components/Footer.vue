@@ -1,7 +1,7 @@
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive } from "vue";
 
-const getYear = new Date().getFullYear()
+const getYear = new Date().getFullYear();
 </script>
 
 <template>
@@ -10,7 +10,7 @@ const getYear = new Date().getFullYear()
       class="container py-[50px] flex lg:flex-row flex-col justify-center lg:justify-between gap-[90px] lg:gap-[130px] !pb-[60px] lg:py-[90px]"
     >
       <div class="w-auto">
-        <div class="mb-4">
+        <div class="!mb-4">
           <img
             loading="lazy"
             src="@/assets/LogoBetaLight.png"
@@ -19,18 +19,20 @@ const getYear = new Date().getFullYear()
           />
         </div>
         <div class="flex lg:flex-cols-2 flex-col gap-1 justify-center lg:justify-between">
-          <h3 class="font-Satoshi500 text-[14.753px] leading-[22.2px] opacity-[0.6000000238418579]">
+          <h3
+            class="font-Satoshi500 text-[14.753px] leading-[22.2px] opacity-[0.6000000238418579]"
+          >
             support@myspurr.net
           </h3>
           <hr
-            class="bg-[#80BAC0] h-[2px] lg:w-full w-[50%] justify-start my-3 ml-0 mr-[50%] lg:mr-[65%]"
+            class="bg-[#80BAC0] h-[2px] lg:w-full w-[50%] justify-start !my-3 ml-0 mr-[50%] lg:mr-[65%]"
           />
 
           <div
             class="text-[14px] justify-between lg:flex flex-col block opacity-[0.6000000238418579] font-Satoshi500"
           >
             <!-- <hr
-              class="bg-[#80BAC0] h-[2px] lg:w-[35%] w-[50%] justify-start my-3 ml-0 mr-[50%] lg:mr-[65%]"
+              class="bg-[#80BAC0] h-[2px] lg:w-[35%] w-[50%] justify-start !my-3 ml-0 mr-[50%] lg:mr-[65%]"
             /> -->
 
             <div class="flex gap-2 justify-start lg:mt-0 mt-4">
@@ -79,7 +81,11 @@ const getYear = new Date().getFullYear()
                   />
                 </svg>
               </a>
-              <a href="https://www.linkedin.com/company/usemyspurr/" target="_blank" role="button">
+              <a
+                href="https://www.linkedin.com/company/usemyspurr/"
+                target="_blank"
+                role="button"
+              >
                 <svg
                   width="36"
                   height="37"
@@ -99,12 +105,18 @@ const getYear = new Date().getFullYear()
                     d="M27.7409 25.9994V19.3611C27.7409 16.0986 27.0448 13.6064 23.2728 13.6064C21.4542 13.6064 20.2417 14.6033 19.7478 15.5549H19.7029V13.901H16.1329V25.9994H19.86V19.9955C19.86 18.4096 20.1519 16.8916 22.0828 16.8916C23.9913 16.8916 24.0138 18.6815 24.0138 20.0861V25.9768H27.7409V25.9994Z"
                     fill="white"
                   />
-                  <path d="M10.3282 13.6064H13.9557V25.9994H10.3282V13.6064Z" fill="white" />
+                  <path
+                    d="M10.3282 13.6064H13.9557V25.9994H10.3282V13.6064Z"
+                    fill="white"
+                  />
                   <path
                     d="M11.7791 7.77441C10.5775 7.77441 9.60266 8.74893 9.60266 9.95008C9.60266 11.1512 10.5775 12.1484 11.7791 12.1484C12.9808 12.1484 13.9556 11.1512 13.9556 9.95008C13.9556 8.74893 12.9808 7.77441 11.7791 7.77441Z"
                     fill="white"
                   /></svg></a
-              ><a href="https://www.facebook.com/usemyspurr/" target="_blank" role="button"
+              ><a
+                href="https://www.facebook.com/usemyspurr/"
+                target="_blank"
+                role="button"
                 ><svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="36"
@@ -134,7 +146,7 @@ const getYear = new Date().getFullYear()
         class="flex flex-col lg:flex-row lg:justify-around gap-10 text-left justify-start w-full"
       >
         <div>
-          <h5 class="font-Satoshi500 text-[19.67px] mb-4 lg:mb-8">Links</h5>
+          <h5 class="font-Satoshi500 text-[19.67px] !mb-4 lg:!mb-8">Links</h5>
           <ul class="flex flex-col lg:gap-2">
             <li class="text-[13.933px] font-Satoshi400 lg:leading-[36.062px]">
               <router-link to="/about-us"> About </router-link>
@@ -157,7 +169,7 @@ const getYear = new Date().getFullYear()
           </ul>
         </div>
         <div>
-          <h5 class="font-Satoshi500 text-[19.67px] mb-4 lg:mb-8">Product</h5>
+          <h5 class="font-Satoshi500 text-[19.67px] !mb-4 lg:!mb-8">Product</h5>
           <ul class="flex flex-col lg:gap-2">
             <li class="text-[13.933px] font-Satoshi400 lg:leading-[36.062px]">
               <router-link to=""> Take a tour </router-link>
@@ -174,7 +186,7 @@ const getYear = new Date().getFullYear()
           </ul>
         </div>
         <div>
-          <h5 class="font-Satoshi500 text-[19.67px] mb-4 lg:mb-8">Legal</h5>
+          <h5 class="font-Satoshi500 text-[19.67px] !mb-4 lg:!mb-8">Legal</h5>
           <ul class="flex flex-col lg:gap-2">
             <li class="text-[13.933px] font-Satoshi400 lg:leading-[36.062px]">
               <router-link to=""> Terms of use </router-link>
@@ -193,7 +205,7 @@ const getYear = new Date().getFullYear()
       </div>
     </div>
     <div class="flex justify-center">
-      <p class="my-2 font-Satoshi400 text-[12.294px] tewxt-[#fff] opacity-[0.6]">
+      <p class="!my-2 font-Satoshi400 text-[12.294px] tewxt-[#fff] opacity-[0.6]">
         Copyright @ {{ getYear }} A Trigon Media Product.
       </p>
     </div>

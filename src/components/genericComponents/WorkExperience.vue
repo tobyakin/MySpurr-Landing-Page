@@ -13,7 +13,7 @@
                 {{ index + 1 }}
               </div>
               <div v-if="index + 1 != items.length" class="flex justify-center">
-                <div class="h-16 bg-[#EFF6F3] my-4 w-[0.8px]"></div>
+                <div class="h-16 bg-[#EFF6F3] !my-4 w-[0.8px]"></div>
               </div>
             </div>
             <div>
@@ -25,12 +25,12 @@
                 {{ item.title }}
                 ({{ item.company_name }})
               </h1>
-              <p class="text-[14px] font-Satoshi500 mb-2 text-[#31795A]">
+              <p class="text-[14px] font-Satoshi500 !mb-2 text-[#31795A]">
                 {{ item.employment_type }}
               </p>
               <div
                 v-html="item.description"
-                class="my-4 leading-[32px] editor mt-4 font-Satoshi400 w-full tracking-[-0.003rem] text-[16px]"
+                class="!my-4 leading-[32px] editor mt-4 font-Satoshi400 w-full tracking-[-0.003rem] text-[16px]"
               ></div>
             </div>
           </div>

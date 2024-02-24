@@ -2,7 +2,7 @@
   <div class="py-20 container">
     <div class="flex justify-between">
       <h2
-        class="text-dimBrand text-[43px] lg:text-[50px] !font-semibold leading-[68.056px] lg:leading-[74px] font-EBGaramond500 mb-8"
+        class="text-dimBrand text-[43px] lg:text-[50px] !font-semibold leading-[68.056px] lg:leading-[74px] font-EBGaramond500 !mb-8"
       >
         New job listing
       </h2>
@@ -11,7 +11,7 @@
       </div>
     </div>
     <div
-      class="grid grid-rows-1 hide-scrollbar my-8 border-[0.83px] rounded-[8.3px] border-[#DBE8E5]"
+      class="grid grid-rows-1 hide-scrollbar !my-8 border-[0.83px] rounded-[8.3px] border-[#DBE8E5]"
     >
       <div
         v-for="item in 4"

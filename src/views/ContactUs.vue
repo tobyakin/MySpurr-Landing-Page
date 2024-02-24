@@ -122,13 +122,13 @@ useHead({
   <div>
     <Navbar />
     <div class="py-20 container">
-      <h4 class="font-EBGaramond500 lg:text-[72px] text-[30px] my-10 text-center text-[#007582]">
+      <h4 class="font-EBGaramond500 lg:text-[72px] text-[30px] !my-10 text-center text-[#007582]">
         Get in touch
       </h4>
       <div>
         <img loading="lazy" src="@/assets/img/contactUs.webp" class="lg:h-[569.031px]" alt="" />
       </div>
-      <div class="flex lg:flex-row flex-col justify-center my-24 gap-20">
+      <div class="flex lg:flex-row flex-col justify-center !my-24 gap-20">
         <div class="flex flex-col gap-2 items-center text-center">
           <LocationIcon />
           <h4 class="text-[#141518] text-[24px] font-Satoshi500">Our Address</h4>
@@ -199,7 +199,7 @@ useHead({
             </p>
             <p v-else>Send Message</p>
           </span>
-          <Loader class="my-2" v-else />
+          <Loader class="!my-2" v-else />
         </button>
       </div>
       <WorkFlow />

@@ -13,14 +13,14 @@
                 {{ index + 1 }}
               </div>
               <div v-if="index + 1 != items.length" class="flex justify-center">
-                <div class="h-16 bg-[#EFF6F3] my-4 w-[0.8px]"></div>
+                <div class="h-16 bg-[#EFF6F3] !my-4 w-[0.8px]"></div>
               </div>
             </div>
             <div>
               <h1 class="text-[14px] font-Satoshi500 mb-0 text-[#31795A]">
                 {{ item.heading }}
               </h1>
-              <h1 class="text-[18px] font-Satoshi500 mb-2 text-[#000000]">
+              <h1 class="text-[18px] font-Satoshi500 !mb-2 text-[#000000]">
                 {{ item.name }}
               </h1>
               <p class="text-[#000000BF] text-[16px]">{{ item.content }}</p>

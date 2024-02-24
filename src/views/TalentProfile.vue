@@ -104,7 +104,7 @@
                 <!--               {{ talents?.top_skills.length - 10 }}+
  -->
               </div>
-              <p class="text-[28px] text-[#000] font-Satoshi500 mb-4 mt-6">Skills</p>
+              <p class="text-[28px] text-[#000] font-Satoshi500 !mb-4 mt-6">Skills</p>
               <div class="flex gap-4 flex-wrap">
                 <div
                   v-for="(item, index) in talents?.top_skills"
@@ -117,15 +117,15 @@
                   class="bg-[#D2F34C] hidden rounded-full p-4 py-3 text-[17px] font-Satoshi400 text-[#000000]"
                 ></div>
               </div>
-              <p class="text-[28px] text-[#000] font-Satoshi500 mb-12 mt-8">Education</p>
+              <p class="text-[28px] text-[#000] font-Satoshi500 !mb-12 mt-8">Education</p>
               <EducationDetails :items="talents?.education" />
               <!-- <SampleFive :items="items" /> -->
 
-              <p class="text-[28px] text-[#000] font-Satoshi500 mb-12 mt-8">
+              <p class="text-[28px] text-[#000] font-Satoshi500 !mb-12 mt-8">
                 Work Experience
               </p>
               <WorkExperience :items="talents?.employment" />
-              <p class="text-[28px] text-[#000] font-Satoshi500 mb-12 mt-8">Portfolio</p>
+              <p class="text-[28px] text-[#000] font-Satoshi500 !mb-12 mt-8">Portfolio</p>
               <div
                 class="flex flex-row gap-4 w-full overflow-hidden cursor-move mt-6 hide-scrollbar overflow-x-auto"
               >
@@ -140,7 +140,7 @@
                   alt=""
                 />
               </div>
-              <p class="text-[28px] text-[#000] font-Satoshi500 mb-12 mt-8">Reviews</p>
+              <p class="text-[28px] text-[#000] font-Satoshi500 !mb-12 mt-8">Reviews</p>
               <div class="flex flex-col gap-4">
                 <div
                   v-for="i in 3"
@@ -148,11 +148,11 @@
                   class="border-[#2440341A] border-[1.265px] rounded-[9.732px] p-6"
                 >
                   <p
-                    class="text-[#001E00] font-Satoshi400 text-[16px] mb-4 tracking-[0.6px]"
+                    class="text-[#001E00] font-Satoshi400 text-[16px] !mb-4 tracking-[0.6px]"
                   >
                     Find B2B Partners for UK and US Online Tutoring Company
                   </p>
-                  <div class="flex items-center gap-1 font-Satoshi400 mb-2">
+                  <div class="flex items-center gap-1 font-Satoshi400 !mb-2">
                     <RateStar v-for="i in 5" :key="i" />
                     <span class="text-[#001E00] text-[14px]">5.00 </span
                     ><span class="text-[#5E6D55] text-[12px]"
@@ -160,7 +160,7 @@
                     >
                   </div>
                   <p
-                    class="text-[#001E00] font-Satoshi400 italic text-[13px] mb-4 tracking-[0.6px]"
+                    class="text-[#001E00] font-Satoshi400 italic text-[13px] !mb-4 tracking-[0.6px]"
                   >
                     "Great lead generation for education companies"
                   </p>
@@ -205,7 +205,7 @@
                     @click="exportToPDF"
                     class="btn-brand !border-none !w-full !py-2 !text-[#FFFFFF] text-center !bg-[#31795A]"
                   >
-                    <span class="mb-2">Download CV</span>
+                    <span class="!mb-2">Download CV</span>
                   </button>
                 </div>
               </div>

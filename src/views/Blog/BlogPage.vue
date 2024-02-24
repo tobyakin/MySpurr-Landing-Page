@@ -1,22 +1,20 @@
 <script setup>
-import { defineAsyncComponent } from "vue";
-import SearchBarIcon from "@/components/icons/searchBarIcon.vue";
-import Navbar from "@/components/Navbar/Navbar.vue";
-import Footer from "@/components/Footer.vue";
-const FormGroup = defineAsyncComponent(() =>
-  import("@/components/Form/Input/FormGroup.vue")
-);
-import Arrow from "@/components/icons/paginationArrow.vue";
-import BlogCard from "@/components/Blog/BlogCard.vue";
-import useFaqStore from "@/stores/faq";
-import { ref, computed, onMounted } from "vue";
+import { defineAsyncComponent } from 'vue'
+import SearchBarIcon from '@/components/icons/searchBarIcon.vue'
+import Navbar from '@/components/Navbar/Navbar.vue'
+import Footer from '@/components/Footer.vue'
+const FormGroup = defineAsyncComponent(() => import('@/components/Form/Input/FormGroup.vue'))
+import Arrow from '@/components/icons/paginationArrow.vue'
+import BlogCard from '@/components/Blog/BlogCard.vue'
+import useFaqStore from '@/stores/faq'
+import { ref, computed, onMounted } from 'vue'
 // import { storeToRefs } from "pinia";
-import WorkFlow from "@/components/Bander/WorkFlow.vue";
+import WorkFlow from '@/components/Bander/WorkFlow.vue'
 
-const tab = ref("ALL");
-const filteredTab = ref([]);
+const tab = ref('ALL')
+const filteredTab = ref([])
 
-const store = useFaqStore();
+const store = useFaqStore()
 // const { blog } = storeToRefs(store);
 
 // const pages = computed(() => {
@@ -34,8 +32,8 @@ const store = useFaqStore();
 //   await store.getBlog();
 // });
 onMounted(() => {
-  filterTab("ALL");
-});
+  filterTab('ALL')
+})
 // const goToPage = (page) => {
 //   store.getBlog(page);
 // };
@@ -49,29 +47,29 @@ onMounted(() => {
 // }
 // Compute the list of page numbers to display
 const displayedPageNumbers = computed(() => {
-  const maxDisplayedPages = 5;
-  const startPage = Math.max(currentPage.value - Math.floor(maxDisplayedPages / 2), 1);
-  const endPage = Math.min(startPage + maxDisplayedPages - 1, totalPages.value);
-  const pageNumbers = [];
+  const maxDisplayedPages = 5
+  const startPage = Math.max(currentPage.value - Math.floor(maxDisplayedPages / 2), 1)
+  const endPage = Math.min(startPage + maxDisplayedPages - 1, totalPages.value)
+  const pageNumbers = []
 
   for (let i = startPage; i <= endPage; i++) {
-    pageNumbers.push(i);
+    pageNumbers.push(i)
   }
 
-  return pageNumbers;
-});
+  return pageNumbers
+})
 
-const itemsPerPage = 6; // Number of items to display per page
-const currentPage = ref(1); // Calculate the total number of pages
-const totalPages = computed(() => Math.ceil(store.blogPost.length / itemsPerPage));
+const itemsPerPage = 6 // Number of items to display per page
+const currentPage = ref(1) // Calculate the total number of pages
+const totalPages = computed(() => Math.ceil(store.blogPost.length / itemsPerPage))
 
 // Function to navigate to a specific page
 // Compute the paginated data
 const paginatedData = computed(() => {
-  const start = (currentPage.value - 1) * itemsPerPage;
-  const end = start + itemsPerPage;
-  return store.blogPost.slice(start, end);
-});
+  const start = (currentPage.value - 1) * itemsPerPage
+  const end = start + itemsPerPage
+  return store.blogPost.slice(start, end)
+})
 
 // Function to navigate to the previous page
 // function previousPage() {
@@ -87,15 +85,13 @@ const paginatedData = computed(() => {
 //   }
 // }
 const filterTab = (category) => {
-  tab.value = category;
-  if (category != "ALL") {
-    filteredTab.value = paginatedData.value.filter(
-      (item) => item.blog_category == category
-    );
+  tab.value = category
+  if (category != 'ALL') {
+    filteredTab.value = paginatedData.value.filter((item) => item.blog_category == category)
   } else {
-    filteredTab.value = paginatedData.value;
+    filteredTab.value = paginatedData.value
   }
-};
+}
 </script>
 
 <template>
@@ -123,9 +119,9 @@ const filterTab = (category) => {
         get insight into Africa’s creative marketplace.
       </p>
       <div>
-        <div class="font-Satoshi400 my-10 pb-10">
+        <div class="font-Satoshi400 !my-10 pb-10">
           <ul
-            class="hidden my-24 md:flex text-sm justify-between font-semibold flex-wrap gap-y-[40px]"
+            class="hidden !my-24 md:flex text-sm justify-between font-semibold flex-wrap gap-y-[40px]"
           >
             <li>
               <a
@@ -142,7 +138,7 @@ const filterTab = (category) => {
                 href="javascript:void(0)"
                 @click="filterTab('Creativity and Design')"
                 :class="{
-                  'border-b-[#007582] border-b-[2.224px]': tab == 'Creativity and Design',
+                  'border-b-[#007582] border-b-[2.224px]': tab == 'Creativity and Design'
                 }"
                 class="px-0 py-2 hover:border-b-[#007582]"
               >
@@ -154,7 +150,7 @@ const filterTab = (category) => {
                 href="javascript:void(0)"
                 @click="filterTab('Creative inspiration')"
                 :class="{
-                  'border-b-[#007582] border-b-[2.224px]': tab == 'Creative inspiration',
+                  'border-b-[#007582] border-b-[2.224px]': tab == 'Creative inspiration'
                 }"
                 class="px-0 py-2 hover:border-b-[#007582]"
               >
@@ -166,7 +162,7 @@ const filterTab = (category) => {
                 href="javascript:void(0)"
                 @click="filterTab('Case Studies')"
                 :class="{
-                  'border-b-[#007582] border-b-[2.224px]': tab == 'Case Studies',
+                  'border-b-[#007582] border-b-[2.224px]': tab == 'Case Studies'
                 }"
                 class="px-0 py-2 hover:border-b-[#007582]"
               >
@@ -178,8 +174,7 @@ const filterTab = (category) => {
                 href="javascript:void(0)"
                 @click="filterTab('Interviews and features')"
                 :class="{
-                  'border-b-[#007582] border-b-[2.224px]':
-                    tab == 'Interviews and features',
+                  'border-b-[#007582] border-b-[2.224px]': tab == 'Interviews and features'
                 }"
                 class="px-0 py-2 hover:border-b-[#007582]"
               >
@@ -191,7 +186,7 @@ const filterTab = (category) => {
                 href="javascript:void(0)"
                 @click="filterTab('Company news')"
                 :class="{
-                  'border-b-[#007582] border-b-[2.224px]': tab == 'Company news',
+                  'border-b-[#007582] border-b-[2.224px]': tab == 'Company news'
                 }"
                 class="px-0 py-2 hover:border-b-[#007582]"
               >
@@ -203,8 +198,7 @@ const filterTab = (category) => {
                 href="javascript:void(0)"
                 @click="filterTab('Industry News and Insights')"
                 :class="{
-                  'border-b-[#007582] border-b-[2.224px]':
-                    tab == 'Industry News and Insights',
+                  'border-b-[#007582] border-b-[2.224px]': tab == 'Industry News and Insights'
                 }"
                 class="px-0 py-2 hover:border-b-[#007582]"
               >
@@ -214,7 +208,7 @@ const filterTab = (category) => {
           </ul>
           <!-- <div
             v-if="store.blogPost.length && tab == 'ALL'"
-            class="md:grid md:grid-cols-3 gap-10 my-10 min-h-screen flex-wrap"
+            class="md:grid md:grid-cols-3 gap-10 !my-10 min-h-screen flex-wrap"
           >
             <BlogCard
               v-for="blog in store.blogPost"
@@ -227,7 +221,7 @@ const filterTab = (category) => {
               :blog="blog"
             />
           </div> -->
-          <div class="md:grid md:grid-cols-3 gap-10 my-10 min-h-screen flex-wrap">
+          <div class="md:grid md:grid-cols-3 gap-10 !my-10 min-h-screen flex-wrap">
             <BlogCard
               v-for="blog in filteredTab"
               :key="blog"
@@ -248,7 +242,7 @@ const filterTab = (category) => {
                 pageNumber === 1
                   ? 'border-t-2 border-b-2 border-l-2 rounded-l-[6.032px]'
                   : 'border-y-2 border-r-2',
-                pageNumber === currentPage ? 'bg-[#007582] text-white' : '',
+                pageNumber === currentPage ? 'bg-[#007582] text-white' : ''
               ]"
               @click="goToPage(pageNumber)"
             >

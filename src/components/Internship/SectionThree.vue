@@ -1,7 +1,7 @@
 <template>
-  <section class="container my-16 lg:my-16">
+  <section class="container !my-16 lg:!my-16">
     <h4
-      class="lg:text-[72px] text-[40px] font-EBGaramond500 leading-[40px] lg:leading-[67.5px] mb-10"
+      class="lg:text-[72px] text-[40px] font-EBGaramond500 leading-[40px] lg:leading-[67.5px] !mb-10"
     >
       It’s easy to get started
     </h4>
@@ -11,7 +11,7 @@
         :key="item"
         class="w-full bg-[#FBFBEE] flex flex-col text-center rounded-[4.71px] items-center lg:px-8 px-4 py-12 lg:p-8"
       >
-        <h4 class="text-[#007582] font-Satoshi500 text-[23px] leading-[24.15px] mb-3">
+        <h4 class="text-[#007582] font-Satoshi500 text-[23px] leading-[24.15px] !mb-3">
           {{ item.heading }}
         </h4>
         <p class="text-[#011B1F] text-[14px] font-Satoshi400 lg:leading-[16.87px]">

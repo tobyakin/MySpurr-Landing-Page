@@ -13,6 +13,8 @@ import InternshipView from '@/views/InternshipView.vue'
 import CaseStudyPage from '@/views/CaseStudy/CaseStudyPage.vue'
 import GoPro from '@/views/GoPro.vue'
 import SinglePortfolio from '@/views/Portfolio/SinglePortfolio.vue'
+import AllJobs from '@/views/Job/AllJobs.vue'
+import JobDetails from '@/views/Job/JobDetails.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -48,6 +50,22 @@ const router = createRouter({
       component: LearnView,
       meta: {
         title: 'MySpurr | Courses'
+      }
+    },
+    {
+      path: '/jobs',
+      name: 'jobs',
+      component: AllJobs,
+      meta: {
+        title: 'MySpurr | Jobs'
+      }
+    },
+    {
+      path: '/job-details/:id',
+      name: 'job-details',
+      component: JobDetails,
+      meta: {
+        title: 'MySpurr | Jobs'
       }
     },
     {

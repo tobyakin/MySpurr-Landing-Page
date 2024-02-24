@@ -6,12 +6,12 @@
     <div class="flex container gap-8 py-8 lg:flex-row flex-col-reverse justify-between">
       <div class="lg:py-12 py-4">
         <h1
-          class="md:text-[79.379px] text-[40px] font-normal mb-6 text-white md:leading-[71.441px] leading-[45px] font-EBGaramond500"
+          class="md:text-[79.379px] text-[40px] font-normal !mb-6 text-white md:leading-[71.441px] leading-[45px] font-EBGaramond500"
         >
           Connect your aspirations <br class="md:block hidden" />
           with opportunities.
         </h1>
-        <p class="text-[22px] text-white font-Satoshi400 my-8 md:my-6">
+        <p class="text-[22px] text-white font-Satoshi400 !my-8 md:!my-6">
           We empower graduates and undergraduates with diverse,
           <br class="md:block hidden" />skill-enhancing internships while enabling
           businesses to tap into fresh talent.

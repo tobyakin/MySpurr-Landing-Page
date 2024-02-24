@@ -1,7 +1,7 @@
 <template>
-  <section class="container my-16 lg:my-16">
+  <section class="container !my-16 lg:!my-16">
     <h4
-      class="lg:text-[70px] text-[#007582] text-[40px] font-EBGaramond500 leading-[40px] lg:leading-[67.5px] mb-20"
+      class="lg:text-[70px] text-[#007582] text-[40px] font-EBGaramond500 leading-[40px] lg:leading-[67.5px] !mb-20"
     >
       The journey from student to professional has never been more promising.
     </h4>

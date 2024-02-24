@@ -2,7 +2,7 @@
   <div class="lg:py-20 py-[28px] container">
     <div class="flex lg:flex-row flex-col justify-center items-center lg:justify-between">
       <h2
-        class="text-dimBrand text-[43px] lg:text-[50px] text-center !font-semibold leading-[68.056px] lg:leading-[74px] font-EBGaramond500 mb-4 lg:mb-8"
+        class="text-dimBrand text-[43px] lg:text-[50px] text-center !font-semibold leading-[68.056px] lg:leading-[74px] font-EBGaramond500 !mb-4 lg:mb-8"
       >
         MySpurr Guides
       </h2>
@@ -15,11 +15,13 @@
         <img loading="lazy" :src="item.image" alt="" />
         <div class="flex flex-col gap-3 lg:gap-5">
           <span
-            class="text-[#00000059] lg:block hidden font-Satoshi400 text-[16px] leading-[25px] ml-5 my-[10px]"
+            class="text-[#00000059] lg:block hidden font-Satoshi400 text-[16px] leading-[25px] ml-5 !my-[10px]"
           >
             {{ item.skills }}</span
           >
-          <p class="text-[#000000] overflow-hidden text-[20px] font-Satoshi500 leading-[30px]">
+          <p
+            class="text-[#000000] overflow-hidden text-[20px] font-Satoshi500 leading-[30px]"
+          >
             {{ item.heading }}
           </p>
           <p class="text-[#0000004D] text-[16px] font-Satoshi500 flex items-center gap-2">
@@ -28,7 +30,7 @@
         </div>
       </div>
     </div>
-    <div class="flex my-[40px] justify-center items-center">
+    <div class="flex !my-[40px] justify-center items-center">
       <button class="text-[13.279px] font-Satoshi500 btn-brand">Explore More</button>
     </div>
 
@@ -36,30 +38,30 @@
   </div>
 </template>
 <script setup>
-import ImageOne from '@/assets/img/unsplash.webp'
-import ImageTwo from '@/assets/img/woman.webp'
-import ImageThree from '@/assets/img/man_working_office_holding_money.webp'
-import WorkFlow from '@/components/Bander/WorkFlow.vue'
+import ImageOne from "@/assets/img/unsplash.webp";
+import ImageTwo from "@/assets/img/woman.webp";
+import ImageThree from "@/assets/img/man_working_office_holding_money.webp";
+import WorkFlow from "@/components/Bander/WorkFlow.vue";
 
 const Guides = [
   {
     image: ImageOne,
-    skills: 'Developer, Code',
+    skills: "Developer, Code",
     heading: ` Unlocking Creative Excellence: A Guide to Talent Sourcing in the Creative Industry
 `,
-    name: 'Rashed Kabir'
+    name: "Rashed Kabir",
   },
   {
     image: ImageTwo,
-    skills: 'Design, Art',
+    skills: "Design, Art",
     heading: ` Crafting Compelling Portfolios: Strategies for Effective Creative Showcase`,
-    name: 'Julie Margot'
+    name: "Julie Margot",
   },
   {
     image: ImageThree,
-    skills: 'Solution, Work',
+    skills: "Solution, Work",
     heading: `Revolutionizing Recruitment: The MySpurr Approach to Creative Hiring`,
-    name: 'Jubayer Al Hasan'
-  }
-]
+    name: "Jubayer Al Hasan",
+  },
+];
 </script>

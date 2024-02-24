@@ -19,13 +19,13 @@
       </svg>
       <div class="justify-start w-full items-start mb-8 flex flex-col">
         <h2
-          class="text-white text-[50px] lg:text-[62px] leading-[50px] lg:leading-[76px] font-Satoshi400 mt-2 lg:mt-4 mb-8"
+          class="text-white text-[50px] lg:text-[62px] leading-[50px] lg:leading-[76px] font-Satoshi400 mt-2 lg:mt-4 !mb-8"
         >
           Let’s get started <br class="md:block hidden" />
           It’s <span class="text-brand">simple.</span>
         </h2>
         <p
-          class="text-[20px] text-white leading-[30px] lg:leading-[30px] font-Satoshi400 my-8 md:my-6"
+          class="text-[20px] text-white leading-[30px] lg:leading-[30px] font-Satoshi400 !my-8 md:!my-6"
         >
           Get access to our top 1% talent as well as a complete set of
           <br class="md:block hidden" />

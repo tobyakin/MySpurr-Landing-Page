@@ -54,7 +54,7 @@
         <div class="w-full">
           <div
             v-html="portfolio?.body"
-            class="my-4 leading-[32px] editor mt-4 font-Satoshi400 w-full tracking-[-0.003rem] text-[20px]"
+            class="!my-4 leading-[32px] editor mt-4 font-Satoshi400 w-full tracking-[-0.003rem] text-[20px]"
           ></div>
         </div>
 
@@ -125,26 +125,18 @@
                 </svg>
               </div>
               <div class="lg:text-left text-center">
-                <p
-                  class="text-[#000000] text-[20.839px] font-Satoshi500 leading-[19.739px]"
-                >
+                <p class="text-[#000000] text-[20.839px] font-Satoshi500 leading-[19.739px]">
                   Julia Ark
                 </p>
-                <p
-                  class="text-[#00000066] text-[16.699px] leading-[20.739px] font-Satoshi400"
-                >
+                <p class="text-[#00000066] text-[16.699px] leading-[20.739px] font-Satoshi400">
                   Graphic Designer
                 </p>
                 <div class="flex items-center gap-2">
-                  <p
-                    class="lg:text-[19.319px] text-[14px] text-[#244034] font-Satoshi500"
-                  >
+                  <p class="lg:text-[19.319px] text-[14px] text-[#244034] font-Satoshi500">
                     $30k -$50k/yr
                   </p>
                   <div class="h-[6px] bg-[#010101e2] w-[6px] rounded-full"></div>
-                  <p
-                    class="text-[#244034] lg:text-[19.319px] text-[14px] font-Satoshi500"
-                  >
+                  <p class="text-[#244034] lg:text-[19.319px] text-[14px] font-Satoshi500">
                     California, US
                   </p>
                 </div>
@@ -158,9 +150,7 @@
           </div>
         </div>
         <div class="flex lg:flex-row flex-col gap-5 w-full">
-          <div
-            class="rounded-[22.343px] p-6 px-8 border-[0.508px] border-[#254035]/[0.6] w-full"
-          >
+          <div class="rounded-[22.343px] p-6 px-8 border-[0.508px] border-[#254035]/[0.6] w-full">
             <div class="flex lg:flex-row flex-col gap-[54.841px]">
               <img
                 loading="lazy"
@@ -183,7 +173,7 @@
                 </div>
               </div>
             </div>
-            <hr class="text-[#254035AB] my-[30px]" />
+            <hr class="text-[#254035AB] !my-[30px]" />
             <div class="flex flex-col gap-[29.45px]">
               <div v-for="i in 3" :key="i" class="flex items-center gap-4">
                 <img
@@ -222,9 +212,7 @@
             </div>
           </div>
         </div>
-        <h4 class="text-[#101621] text-[25px] leading-[62px] font-Satoshi500">
-          You may also like
-        </h4>
+        <h4 class="text-[#101621] text-[25px] leading-[62px] font-Satoshi500">You may also like</h4>
 
         <div class="flex lg:flex-row flex-col gap-5 w-full">
           <CaseStudyCard
@@ -247,76 +235,76 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed, reactive } from "vue";
-import { useRouter, useRoute } from "vue-router";
-import WorkFlow from "@/components/Bander/WorkFlow.vue";
-import Navbar from "@/components/Navbar/Navbar.vue";
-import Footer from "@/components/Footer.vue";
-import CaseStudyCard from "@/components/CaseStudy/CaseStudyCard.vue";
-import SampleThree from "@/assets/img/sampleThree.webp";
-import { storeToRefs } from "pinia";
-import { useTalentsStore } from "@/stores/talents";
-const talentsStore = useTalentsStore();
-const { talentPortfolio } = storeToRefs(talentsStore);
-const route = useRoute();
-const router = useRouter();
-import { useQuery } from "vue-query";
+import { ref, onMounted, computed, reactive } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
+import WorkFlow from '@/components/Bander/WorkFlow.vue'
+import Navbar from '@/components/Navbar/Navbar.vue'
+import Footer from '@/components/Footer.vue'
+import CaseStudyCard from '@/components/CaseStudy/CaseStudyCard.vue'
+import SampleThree from '@/assets/img/sampleThree.webp'
+import { storeToRefs } from 'pinia'
+import { useTalentsStore } from '@/stores/talents'
+const talentsStore = useTalentsStore()
+const { talentPortfolio } = storeToRefs(talentsStore)
+const route = useRoute()
+const router = useRouter()
+import { useQuery } from 'vue-query'
 
 const blogPost = [
   {
     slug: 1,
     cover_image: SampleThree,
-    title: "How to Build a Successful Career in the Creative Industry",
-    blog_category: "career development",
-    blog_description: "trdfgfg",
-    created_at: "16 Jul 2018",
+    title: 'How to Build a Successful Career in the Creative Industry',
+    blog_category: 'career development',
+    blog_description: 'trdfgfg',
+    created_at: '16 Jul 2018'
   },
   {
     slug: 2,
     cover_image: SampleThree,
-    title: "How to Build a Successful Career in the Creative Industry",
-    blog_category: "Company news",
-    blog_description: "trdfgfg",
-    created_at: "16 Jul 2018",
+    title: 'How to Build a Successful Career in the Creative Industry',
+    blog_category: 'Company news',
+    blog_description: 'trdfgfg',
+    created_at: '16 Jul 2018'
   },
   {
     slug: 3,
     cover_image: SampleThree,
-    title: "How to Build a Successful Career in the Creative Industry",
-    blog_category: "Creativity and Design",
-    blog_description: "trdfgfg",
-    created_at: "16 Jul 2018",
+    title: 'How to Build a Successful Career in the Creative Industry',
+    blog_category: 'Creativity and Design',
+    blog_description: 'trdfgfg',
+    created_at: '16 Jul 2018'
   },
   {
     slug: 4,
     cover_image: SampleThree,
-    title: "How to Build a Successful Career in the Creative Industry",
-    blog_category: "Creativity and Design",
-    blog_description: "trdfgfg",
-    created_at: "16 Jul 2018",
-  },
-];
-const portfolio = computed(() => talentPortfolio.value?.data || []);
+    title: 'How to Build a Successful Career in the Creative Industry',
+    blog_category: 'Creativity and Design',
+    blog_description: 'trdfgfg',
+    created_at: '16 Jul 2018'
+  }
+]
+const portfolio = computed(() => talentPortfolio.value?.data || [])
 
 // onMounted(async () => {
 //   await talentsStore.SingleTalentPortfolio(route.params.id);
 // });
 const getSingleTalentPortfolio = async () => {
-  let response = await talentsStore.SingleTalentPortfolio(route.params.id);
-  return response;
-};
+  let response = await talentsStore.SingleTalentPortfolio(route.params.id)
+  return response
+}
 const fetchData = async () => {
-  await Promise.all([getSingleTalentPortfolio()]);
-};
-fetchData();
+  await Promise.all([getSingleTalentPortfolio()])
+}
+fetchData()
 
-useQuery(["talents"], getSingleTalentPortfolio, {
+useQuery(['talents'], getSingleTalentPortfolio, {
   retry: 10,
   staleTime: 10000,
   onSuccess: (data) => {
-    talentPortfolio.value = data;
-  },
-});
+    talentPortfolio.value = data
+  }
+})
 </script>
 
 <style></style>

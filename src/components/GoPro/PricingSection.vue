@@ -132,7 +132,7 @@ const talentPro = [
             </h4>
           </div>
         </div>
-        <!-- <hr class="text-[#254035AB] my-[60px]" />
+        <!-- <hr class="text-[#254035AB] !my-[60px]" />
         <h4
           class="text-[#2F929C] text-[45.909px] font-EBGaramond500 tracking-[ -0.51px] leading-[50.283px] !font-normal"
         >
@@ -178,7 +178,7 @@ const talentPro = [
             </h4>
           </div>
         </div>
-        <!-- <hr class="text-[#254035AB] my-[60px]" />
+        <!-- <hr class="text-[#254035AB] !my-[60px]" />
         <h4
           class="text-[#2F929C] text-[45.909px] font-EBGaramond500 tracking-[ -0.51px] leading-[50.283px] !font-normal"
         >

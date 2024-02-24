@@ -7,12 +7,12 @@
     <div class="flex container gap-8 py-8 lg:flex-row flex-col justify-between">
       <div class="lg:py-12 py-4">
         <h1
-          class="md:text-[79.379px] text-[40px] font-normal mb-6 text-white md:leading-[71.441px] leading-[45px] font-EBGaramond500"
+          class="md:text-[79.379px] text-[40px] font-normal !mb-6 text-white md:leading-[71.441px] leading-[45px] font-EBGaramond500"
         >
           Super charge your <br class="md:block hidden" />
           creative career
         </h1>
-        <p class="text-[22px] text-white font-Satoshi400 my-8 md:my-6">
+        <p class="text-[22px] text-white font-Satoshi400 !my-8 md:!my-6">
           Find creative job opportunities, build your portfolio
           <br class="md:block hidden" />
           and enhance your skills with MySpurr
