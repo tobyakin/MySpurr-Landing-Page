@@ -32,7 +32,7 @@ defineProps({
         <img
           v-else
           class="h-[61.011px] w-[61.011px] rounded-full"
-          src="@/assets/image/jobIcon.svg"
+          src="@/assets/img/jobIcon.svg"
           alt=""
         />
       </div>
