@@ -16,7 +16,7 @@
       </div>
       <router-link :to="{ name: 'SingleBlog', params: { id: blog.slug } }">
         <h3
-          class="font-bold font-Satoshi500 text-[26.457px] leading-[37.796px] text-[#007582] my-4"
+          class="font-bold font-Satoshi500 text-[26.457px] leading-[37.796px] text-[#007582] !my-4"
         >
           {{ props.heading }}
         </h3>

@@ -1,11 +1,6 @@
 <template>
-  <div
-    id="counterSection"
-    class="lg:my-40 counter my-20 lg:p-40 p-10 lg:py-20 bg-[#FBFBEE]"
-  >
-    <div
-      class="flex lg:flex-row flex-col gap-10 items-center lg:justify-between justify-center"
-    >
+  <div id="counterSection" class="lg:!my-40 counter !my-20 lg:p-40 p-10 lg:py-20 bg-[#FBFBEE]">
+    <div class="flex lg:flex-row flex-col gap-10 items-center lg:justify-between justify-center">
       <div class="text-center h-full">
         <vue3-autocounter
           class="text-[#007582] w-full text-[50px] lg:text-[80.526px] leading-[29px] lg:leading-[120px] font-Satoshi700"
@@ -100,42 +95,42 @@
   </div>
 </template>
 <script setup>
-import { ref, onMounted, watch, reactive } from "vue";
+import { ref, onMounted, watch, reactive } from 'vue'
 // import { useScroll } from "@vueuse/core";
 
 // const creativeTalents = ref(0);
 // const paymentProcessed = ref(0);
 // const supportedBusinesses = ref(0);
 // const availableCountries = ref(0);
-let counter = ref(null);
+let counter = ref(null)
 
 const targetValues = {
   creativeTalents: 300,
   paymentProcessed: 4,
   supportedBusinesses: 15,
-  availableCountries: 1,
-};
+  availableCountries: 1
+}
 let startcount = reactive({
   creativeTalents: true,
   paymentProcessed: true,
   supportedBusinesses: true,
-  availableCountries: true,
-});
+  availableCountries: true
+})
 const onScroll = () => {
-  startcount.creativeTalents = true;
-  startcount.paymentProcessed = true;
-  startcount.supportedBusinesses = true;
-  startcount.availableCountries = true;
-};
+  startcount.creativeTalents = true
+  startcount.paymentProcessed = true
+  startcount.supportedBusinesses = true
+  startcount.availableCountries = true
+}
 
 onMounted(() => {
-  const counterSection = document.querySelector("#counterSection");
-  window.addEventListener("scroll", () => {
+  const counterSection = document.querySelector('#counterSection')
+  window.addEventListener('scroll', () => {
     if (window.scrollY == counterSection.clientHeight) {
-      onScroll();
+      onScroll()
     }
-  });
-});
+  })
+})
 </script>
 
 <style scoped>

@@ -9,7 +9,7 @@
       'bg-[#F50C40] text-[#ffffff]': red,
       'bg-[#6769C2] text-[#ffffff]': lightBlue,
     }"
-    class="mb-20 font-Satoshi400 flex items-center py-12 border-2 md:mt-16"
+    class="!mb-20 font-Satoshi400 flex items-center py-12 border-2 md:mt-16"
   >
     <div class="flex container flex-col gap-8 text-center items-center py-20">
       <p

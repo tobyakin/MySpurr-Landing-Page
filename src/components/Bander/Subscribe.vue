@@ -7,7 +7,7 @@
     </p>
     <div
       :class="errors.email ? 'border-[#DA5252] border' : 'border-none'"
-      class="bg-[#0000000A] p-4 lg:px-10 px-4 flex lg:flex-row flex-col my-4 items-center gap-3 rounded-[11.158px]"
+      class="bg-[#0000000A] p-4 lg:px-10 px-4 flex lg:flex-row flex-col !my-4 items-center gap-3 rounded-[11.158px]"
     >
       <FormGroup
         placeholder="Enter your email"
@@ -21,7 +21,7 @@
         class="btn-brand"
       >
         <span v-if="!loading">Subscribe</span>
-        <Loader class="my-2" v-else />
+        <Loader class="!my-2" v-else />
       </button>
     </div>
     <span
@@ -35,76 +35,76 @@
   </div>
 </template>
 <script setup>
-import { defineAsyncComponent, reactive, watch, computed, ref } from "vue";
-import { subscribe } from "@/services/Subscribe";
-import Loader from "@/components/UI/Loader.vue";
+import { defineAsyncComponent, reactive, watch, computed, ref } from 'vue'
+import { subscribe } from '@/services/Subscribe'
+import Loader from '@/components/UI/Loader.vue'
 
-let email = ref("");
-let loading = ref(false);
+let email = ref('')
+let loading = ref(false)
 const errors = reactive({
-  email: false,
-});
+  email: false
+})
 const errorsMsg = {
-  email: "",
-};
+  email: ''
+}
 
-const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/
 const isValidEmail = computed(() => {
-  return emailRegex.test(email.value);
-});
+  return emailRegex.test(email.value)
+})
 
 const validateForm = () => {
   // Reset errorsMsg
   Object.keys(errors).forEach((key) => {
-    errors[key] = false;
-  });
+    errors[key] = false
+  })
   // Perform validation before submission
-  let isValid = true;
+  let isValid = true
 
   if (!email.value.trim()) {
-    errors.email = true;
-    errorsMsg.email = "Email is required";
-    isValid = false;
+    errors.email = true
+    errorsMsg.email = 'Email is required'
+    isValid = false
   } else if (!isValidEmail.value) {
-    errors.email = true;
-    errorsMsg.email = "Email is invalid";
-    isValid = false;
+    errors.email = true
+    errorsMsg.email = 'Email is invalid'
+    isValid = false
   } else {
-    errors.email = false;
-    errorsMsg.email = "";
+    errors.email = false
+    errorsMsg.email = ''
   }
-  return isValid; // Only return false if there are validation errors
-};
+  return isValid // Only return false if there are validation errors
+}
 const clearInputErrors = () => {
   Object.keys(errors).forEach((key) => {
-    errors[key] = false;
-  });
+    errors[key] = false
+  })
   Object.keys(errorsMsg).forEach((key) => {
-    errorsMsg[key] = "";
-  });
-};
+    errorsMsg[key] = ''
+  })
+}
 
 watch(email.value, () => {
-  clearInputErrors();
-});
+  clearInputErrors()
+})
 const onFinish = async () => {
-  loading.value = true;
+  loading.value = true
   if (!validateForm()) {
-    loading.value = false;
-    return;
+    loading.value = false
+    return
   }
   let payload = {
-    email: email.value,
-  };
-  try {
-    let res = await subscribe(payload);
-    loading.value = false;
-    return res;
-  } catch (error) {
-    return error;
-  } finally {
-    loading.value = false;
+    email: email.value
   }
-};
-const FormGroup = defineAsyncComponent(() => import("@/components/Form/Input/Input.vue"));
+  try {
+    let res = await subscribe(payload)
+    loading.value = false
+    return res
+  } catch (error) {
+    return error
+  } finally {
+    loading.value = false
+  }
+}
+const FormGroup = defineAsyncComponent(() => import('@/components/Form/Input/Input.vue'))
 </script>

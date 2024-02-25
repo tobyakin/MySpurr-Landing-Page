@@ -9,7 +9,7 @@
         </h2>
       </div>
       <div
-        class="md:grid md:grid-cols-3 flex flex-col hide-scrollbar overflow-y-scroll gap-4 my-4 mb-[50px]"
+        class="md:grid md:grid-cols-3 flex flex-col hide-scrollbar overflow-y-scroll gap-4 !my-4 mb-[50px]"
       >
         <div
           v-for="item in tweetPost"

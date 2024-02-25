@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="min-h-[650px] background py-20"
-    :style="{ backgroundImage: `url(${image})` }"
-  >
+  <div class="min-h-[650px] background py-20" :style="{ backgroundImage: `url(${image})` }">
     <div class="container">
       <svg
         width="65"
@@ -19,13 +16,13 @@
       </svg>
       <div class="justify-start w-full items-start mb-8 flex flex-col">
         <h2
-          class="text-white text-[50px] lg:text-[62px] leading-[50px] lg:leading-[76px] font-Satoshi400 mt-2 lg:mt-4 mb-8"
+          class="text-white text-[50px] lg:text-[62px] leading-[50px] lg:leading-[76px] font-Satoshi400 mt-2 lg:mt-4 !mb-8"
         >
           Let’s get started <br class="md:block hidden" />
           It’s <span class="text-brand">simple.</span>
         </h2>
         <p
-          class="text-[20px] text-white leading-[30px] lg:leading-[30px] font-Satoshi400 my-8 md:my-6"
+          class="text-[20px] text-white leading-[30px] lg:leading-[30px] font-Satoshi400 !my-8 md:!my-6"
         >
           Get access to our top 1% talent as well as a complete set of
           <br class="md:block hidden" />
@@ -65,9 +62,7 @@
             <p class="font-Satoshi400 leading-[33px] text-black text-[22px]">
               It’s take 2 minute to open an acocunt.
             </p>
-            <p
-              class="font-Satoshi500 leading-[15px] mt-1 uppercase text-brand text-[12px]"
-            >
+            <p class="font-Satoshi500 leading-[15px] mt-1 uppercase text-brand text-[12px]">
               Open Acount
             </p>
           </div>
@@ -105,9 +100,7 @@
             <p class="font-Satoshi400 leading-[33px] text-black text-[22px]">
               Find talents or search your desire work.
             </p>
-            <p
-              class="font-Satoshi500 leading-[15px] mt-1 uppercase text-brand text-[12px]"
-            >
+            <p class="font-Satoshi500 leading-[15px] mt-1 uppercase text-brand text-[12px]">
               Apply FOR job or hire
             </p>
           </div>
@@ -145,9 +138,7 @@
             <p class="font-Satoshi400 leading-[33px] text-black text-[22px]">
               Get your work done quickly with MySpurr
             </p>
-            <p
-              class="font-Satoshi500 leading-[15px] mt-1 uppercase text-brand text-[12px]"
-            >
+            <p class="font-Satoshi500 leading-[15px] mt-1 uppercase text-brand text-[12px]">
               GROW WITH MYSPURR
             </p>
           </div>
@@ -158,8 +149,8 @@
 </template>
 
 <script setup>
-import mainbg from "@/assets/img/background.webp";
-const image = mainbg;
+import mainbg from '@/assets/img/background.webp'
+const image = mainbg
 </script>
 
 <style scoped>

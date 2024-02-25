@@ -1,12 +1,13 @@
 <script setup>
 import { ref } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 
 import SearchBarIcon from "@/components/icons/searchBarIcon.vue";
 const body = document.querySelector("body");
 body.classList.remove("overflow-hidden");
 const showMobile = ref(false);
 const route = useRoute();
+const router = useRouter();
 
 const toogleMobileMenu = () => {
   const body = document.querySelector("body");
@@ -19,6 +20,23 @@ const toogleMobileMenu = () => {
 };
 
 const dashboardUrl = import.meta.env.VITE_DASHBOARD;
+const redirectToJobPage = (searchQuery) => {
+  router.push({
+    name: "jobs",
+    query: { search: searchQuery },
+  });
+};
+const handleSearchInput = (event) => {
+  const searchQuery = event.target.value;
+  redirectToJobPage(searchQuery);
+};
+
+const redirectWithSearchQuery = () => {
+  const inputField = document.querySelector(".search-input");
+  if (inputField.value) {
+    redirectToJobPage(inputField.value);
+  }
+};
 </script>
 <template>
   <div class="sticky top-0 z-30 bg-[#ffffff]">
@@ -45,7 +63,9 @@ const dashboardUrl = import.meta.env.VITE_DASHBOARD;
                     class="w-full font-light font-Satoshi400 text-[14px] p-3 pl-9 pr-24 border-[#F0F0F0] border-[1px] opacity-[0.8029] rounded-[7px] text-sm"
                     placeholder=" Search here.."
                     type="text"
+                    @input="handleSearchInput"
                   /><button
+                    @click="redirectWithSearchQuery"
                     class="absolute right-0 top-3 font-Satoshi400 text-[16px] px-[21px] border-l-[#F0F0F0] border-l-[1px]"
                   >
                     Find job

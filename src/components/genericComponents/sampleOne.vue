@@ -1,5 +1,5 @@
 <template>
-  <div class="container py-12 md:my-28">
+  <div class="container py-12 md:!my-28">
     <div
       :class="{
         'lg:flex-row-reverse ': reverse,

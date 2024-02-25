@@ -11,7 +11,7 @@
           'text-[#C59D10]': orange,
           'text-[#DD4A6B]': pink
         }"
-        class="md:text-4xl w-full text-[28px] font-Satoshi700 my-8 lg:pb-20 pb-6 md:text-center"
+        class="md:text-4xl w-full text-[28px] font-Satoshi700 !my-8 lg:pb-20 pb-6 md:text-center"
       >
         {{ heading }}
       </h2>
@@ -19,7 +19,7 @@
         <div
           v-for="info in sectionInfo"
           :key="info"
-          class="flex flex-col my-10 md:my-0 lg:gap-3 items-center text-center"
+          class="flex flex-col !my-10 md:!my-0 lg:gap-3 items-center text-center"
         >
           <img loading="lazy" class="w-10 h-10" :src="info.image" />
           <!-- <div class="h-[64px] w-[66.67px] flex justify-center items-center bg-brand rounded-lg lg:hidden">

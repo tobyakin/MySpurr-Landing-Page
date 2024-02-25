@@ -30,7 +30,7 @@ onMounted(async () => {
   <div>
     <Navbar />
     <div class="py-20 container">
-      <div class="font-Satoshi400 my-16">
+      <div class="font-Satoshi400 !my-16">
         <div class="">
           <img loading="lazy" :src="blogbg" class="h-[630px]" alt="" />
           <!-- <img loading="lazy"  
@@ -61,7 +61,7 @@ onMounted(async () => {
         <div
           class="flex flex-col md:flex-row lg:pl-[10rem] pr-10 container pl-4 md:justify-between"
         >
-          <div class="my-4 flex gap-4">
+          <div class="!my-4 flex gap-4">
             <!-- <div>Published: {{ dayjs(singleBlog.created_at).format("DD.MM.YY") }}</div>
             <div>Last Updated: {{ dayjs(singleBlog.created_at).format("DD.MM.YY") }}</div> -->
           </div>
@@ -117,10 +117,10 @@ onMounted(async () => {
 
         <!-- <div
           v-html="singleBlog.body"
-          class="my-4 leading-[32px] lg:px-[10rem] mt-4 container px-4 tracking-[-0.003rem] text-[20px]"
+          class="!my-4 leading-[32px] lg:px-[10rem] mt-4 container px-4 tracking-[-0.003rem] text-[20px]"
         ></div> -->
       </div>
-      <div class="md:grid md:grid-cols-3 gap-10 my-10 min-h-screen flex-wrap">
+      <div class="md:grid md:grid-cols-3 gap-10 !my-10 min-h-screen flex-wrap">
         <BlogCard
           v-for="blog in filteredTab"
           :key="blog"
@@ -133,7 +133,7 @@ onMounted(async () => {
         />
       </div>
 
-      <div class="my-40 py-10 border-t-[#EBEBEB] border-b-[#EBEBEB] border-t-[1px] border-b-[1px]">
+      <div class="!my-40 py-10 border-t-[#EBEBEB] border-b-[#EBEBEB] border-t-[1px] border-b-[1px]">
         <div class="flex lg:flex-nowrap flex-wrap lg:gap-0 gap-10 items-center justify-between">
           <div class="w-full">
             <h2

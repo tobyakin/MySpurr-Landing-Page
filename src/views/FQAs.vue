@@ -52,7 +52,7 @@ const filterTab = (category) => {
   <div>
     <Navbar />
     <div class="py-20 container">
-      <div class="my-10">
+      <div class="!my-10">
         <h4
           class="font-EBGaramond500 lg:text-[64px] text-[30px] text-center text-[#007582]"
         >
@@ -64,7 +64,7 @@ const filterTab = (category) => {
       </div>
       <div class="font-Satoshi400">
         <ul
-          class="hidden my-24 md:flex text-sm justify-between font-semibold flex-wrap gap-y-[40px]"
+          class="hidden !my-24 md:flex text-sm justify-between font-semibold flex-wrap gap-y-[40px]"
         >
           <li>
             <a
@@ -211,7 +211,7 @@ const filterTab = (category) => {
             <div v-if="faq.showContent" class="p-4">
               <div v-html="faq.content" class="text-[16px] font-Satoshi400 mb-4"></div>
               <ul>
-                <li class="lg:flex mb-4" v-for="list in faq.sub_content" :key="list">
+                <li class="lg:flex !mb-4" v-for="list in faq.sub_content" :key="list">
                   <h3 class="font-Satoshi700 lg:mr-2">{{ list.heading }}</h3>
                   <p class="font-Satoshi400">{{ list.content }}</p>
                 </li>
@@ -264,7 +264,7 @@ const filterTab = (category) => {
             <div v-if="faq.showContent" class="p-4">
               <div v-html="faq.content" class="text-[16px] font-Satoshi400 mb-4"></div>
               <ul>
-                <li class="lg:flex mb-4" v-for="list in faq.sub_content" :key="list">
+                <li class="lg:flex !mb-4" v-for="list in faq.sub_content" :key="list">
                   <h3 class="font-Satoshi700 lg:mr-2">{{ list.heading }}</h3>
                   <p class="font-Satoshi400">{{ list.content }}</p>
                 </li>

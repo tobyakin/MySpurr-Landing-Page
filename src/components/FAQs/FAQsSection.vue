@@ -40,7 +40,7 @@
         <div v-if="faq.showContent" class="p-4">
           <h3 class="text-sm font-Satoshi400 mb-4">{{ faq.content }}</h3>
           <ul>
-            <li class="lg:flex mb-4" v-for="list in faq.sub_content" :key="list">
+            <li class="lg:flex !mb-4" v-for="list in faq.sub_content" :key="list">
               <h3 class="font-Satoshi700 lg:mr-2">{{ list.heading }}</h3>
               <p class="font-Satoshi400">{{ list.content }}</p>
             </li>
