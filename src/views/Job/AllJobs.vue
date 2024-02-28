@@ -249,14 +249,14 @@ onMounted(async () => {
             </button>
           </div>
         </div>
-        <div class="mt-14 flex flex-col gap-8">
+        <!-- <div class="mt-14 flex flex-col gap-8">
           <JobRowCard
             class="min-w-[95%] lg:min-w-[45%]"
             v-for="item in Job.data"
             :key="item"
             :job="item"
           />
-        </div>
+        </div> -->
         <div class="mt-14 flex flex-col gap-8">
           <JobRowCard
             class="min-w-[95%] lg:min-w-[45%]"

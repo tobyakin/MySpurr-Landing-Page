@@ -1,12 +1,14 @@
 <script setup>
 import CalenderIcon from "@/components/icons/outlineCalenderIcon.vue";
-import LocationIcon from "@/components/icons/locationIcon.vue";
+import LocationIcon from "@/components/icons/joblocationIcon.vue";
 import TimerIcon from "@/components/icons/timerIcon.vue";
 import CircleBookMarkIcon from "@/components/icons/circleBookMarkIcon.vue";
 import SearchIcon from "@/components/icons/circleSearchIcon.vue";
 import MatchIcon from "@/components/icons/matchIcon.vue";
 import VerifyIcon from "@/components/icons/verifyIcon.vue";
 import { useRouter } from "vue-router";
+import { useJobsStore } from "@/stores/jobs";
+let store = useJobsStore();
 
 const router = useRouter();
 
@@ -80,7 +82,7 @@ defineProps({
               <div
                 class="flex gap-1 text-[10px] lg:text-[14.334px] text-[#DA5252] items-center font-Satoshi500"
               >
-                <CalenderIcon /><span class="py-[0.25px]">{{ job?.weekly_hours }}</span>
+                <CalenderIcon /><span class="py-[0.25px]">{{ job?.date_created }}</span>
               </div>
               <div
                 class="flex gap-1 text-[10px] lg:text-[14.334px] text-[#DA5252] items-center font-Satoshi500"
@@ -89,11 +91,11 @@ defineProps({
                   >{{ job?.state }}, {{ job?.country }}</span
                 >
               </div>
-              <div
+              <!-- <div
                 class="flex gap-1 text-[10px] lg:text-[14.334px] text-[#DA5252] items-center font-Satoshi500"
               >
-                <TimerIcon /><span class="py-[0.25px]"></span>
-              </div>
+                <TimerIcon /><span class="py-[0.25px]">{{ job?.date_created }}</span>
+              </div> -->
             </div>
           </div>
           <div class="flex lg:flex-row flex-col gap-4 justify-between mt-2">
@@ -111,9 +113,6 @@ defineProps({
               class="flex lg:justify-normal lg:flex-row flex-col justify-between items-center gap-4"
             >
               <div class="flex items-center gap-4">
-                <button class="">
-                  <CircleBookMarkIcon />
-                </button>
                 <button class="">
                   <SearchIcon />
                 </button>

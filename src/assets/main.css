@@ -236,6 +236,8 @@ ol {
 .editor ul {
   list-style-type: disc !important;
   /* list-style:circle !important */
+    @apply break-words text-justify font-Satoshi400 mt-2 !text-[14px] leading-5;
+
 }
 .editor p {
   @apply break-words text-justify font-Satoshi400 !my-4;
