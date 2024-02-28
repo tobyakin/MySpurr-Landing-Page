@@ -118,7 +118,7 @@ defineProps({
                 </button>
               </div>
               <button
-                @click="redirectToJobDetails(job?.id)"
+                @click="redirectToJobDetails(job?.slug)"
                 :disabled="job?.application_status === 'applied'"
                 :class="
                   job?.application_status === 'applied'
