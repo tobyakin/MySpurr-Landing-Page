@@ -13,7 +13,7 @@ export const getAllJobs = async () => {
 }
 export const viewJobsDetailsBySlug = async (slug) => {
   try {
-    let res = await axios.get(`list-jobs/${slug}`, {})
+    let res = await axios.get(`list-jobs/${slug}`)
     return res.data
   } catch (error) {
     catchAxiosError(error)

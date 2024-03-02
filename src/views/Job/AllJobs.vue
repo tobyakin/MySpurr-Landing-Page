@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, onMounted, reactive, watch } from "vue";
+import { ref, computed, onMounted, reactive, watch, watchEffect } from "vue";
 import { storeToRefs } from "pinia";
 // import VueSlider from "vue-slider-component";
 import "vue-slider-component/theme/antd.css";
@@ -13,9 +13,11 @@ import { useJobsStore } from "@/stores/jobs";
 import FormGroup from "@/components/Form/Input/FormGroup.vue";
 import Label from "@/components/Form/Input/Label.vue";
 import WorkFlow from "@/components/Bander/WorkFlow.vue";
+import { useRouter } from "vue-router";
 
 const jobsStore = useJobsStore();
 const { Job } = storeToRefs(jobsStore);
+const router = useRouter();
 
 // let store = useStore();
 
@@ -25,6 +27,7 @@ const sortInput = reactive({
   Location: "",
   experienceLevel: "",
   Category: "",
+  currency: "",
 });
 let rateMin = ref(null);
 let rateMax = ref(null);
@@ -51,6 +54,19 @@ watch(range, (newRange) => {
 });
 
 const currentPage = ref(1);
+const Experience = [
+  { name: "Beginner ", year: "(1-2 yrs)" },
+  { name: "Intermediate ", year: "(3-5 yrs)" },
+  { name: "Expert ", year: "(6-10 yrs)" },
+  { name: "More than", year: " 10yrs" },
+];
+const CandidateType = [
+  "Freelance",
+  "Full-time ",
+  "Part-time ",
+  "Internship ",
+  "Contract ",
+];
 
 // Create a computed property to paginate the talent data
 const paginatedTalent = computed(() => {
@@ -113,18 +129,25 @@ const filteredJobs = computed(() => {
       )
     );
   }
+  if (sortInput.currency) {
+    filtered = filtered.filter((item) =>
+      item.currency.toLowerCase().includes(sortInput.currency.toLowerCase())
+    );
+  }
 
   // Filtering by Rate within the specified range
   if (rateMin.value || rateMax.value) {
     filtered = filtered.filter((item) => {
-      const rate = parseFloat(item.rate);
-      const min = rateMin.value ? parseFloat(rateMin.value) : Number.MIN_SAFE_INTEGER;
-      const max = rateMax.value ? parseFloat(rateMax.value) : Number.MAX_SAFE_INTEGER;
+      const salaryMin = parseFloat(item.salary_min);
+      const salaryMax = parseFloat(item.salary_max);
+      const min =
+        rateMin.value !== null ? parseFloat(rateMin.value) : Number.MIN_SAFE_INTEGER;
+      const max =
+        rateMax.value !== null ? parseFloat(rateMax.value) : Number.MAX_SAFE_INTEGER;
 
-      return rate >= min && rate <= max;
+      return salaryMax >= min && salaryMin <= max;
     });
   }
-
   return filtered;
 });
 const resetFilters = () => {
@@ -133,6 +156,7 @@ const resetFilters = () => {
   sortInput.Location = "";
   sortInput.experienceLevel = "";
   sortInput.Category = "";
+  sortInput.currency = "";
   rateMin.value = "";
   rateMax.value = "";
 };
@@ -142,6 +166,13 @@ watch(currentPage, (newPage) => {
 });
 onMounted(async () => {
   await jobsStore.allJobs();
+});
+watchEffect(() => {
+  const searchQuery = router.currentRoute.value.query.search;
+  if (searchQuery) {
+    // Set the search query in your component's data
+    sortInput.name = searchQuery;
+  }
 });
 </script>
 
@@ -183,7 +214,32 @@ onMounted(async () => {
             ></FormGroup>
           </div>
           <div class="flex lg:flex-row flex-col gap-8">
-            <FormGroup
+            <div class="flex flex-col w-full text-left">
+              <Label class="font-Satoshi500 !text-[15.606px] !mb-2">Job Type</Label>
+              <div
+                class="w-full font-light font-Satoshi400 bg-white !p-0 border-[#EDEDED] border-[0.509px] opacity-[0.8029] rounded-[6.828px] text-[12.68px]"
+              >
+                <a-select
+                  placeholder="Job Type"
+                  :bordered="false"
+                  :show-arrow="false"
+                  class="w-full !outline-none !px-0"
+                  show-search
+                  v-model:value="sortInput.jobType"
+                >
+                  <a-select-option disabled>Job Type</a-select-option>
+                  <a-select-option
+                    v-for="item in CandidateType"
+                    :key="item"
+                    :value="item"
+                  >
+                    {{ item }}
+                  </a-select-option>
+                </a-select>
+              </div>
+            </div>
+
+            <!-- <FormGroup
               v-model="sortInput.jobType"
               labelClasses="font-Satoshi500 text-[15.606px]"
               label=" Job Type"
@@ -191,8 +247,34 @@ onMounted(async () => {
               placeholder="Name or keyword"
               type="text"
               inputClasses="w-full mt-2 font-light font-Satoshi400 !p-2 border-[#EDEDED] border-[0.509px] opacity-[0.8029] rounded-[6.828px] text-[12.68px]"
-            ></FormGroup>
-            <FormGroup
+            ></FormGroup> -->
+            <div class="flex flex-col w-full text-left">
+              <Label class="font-Satoshi500 !text-[15.606px] !mb-2"
+                >Experience Level</Label
+              >
+              <div
+                class="w-full font-light font-Satoshi400 bg-white !p-0 border-[#EDEDED] border-[0.509px] opacity-[0.8029] rounded-[6.828px] text-[12.68px]"
+              >
+                <a-select
+                  placeholder="Experience Level"
+                  :bordered="false"
+                  :show-arrow="false"
+                  class="w-full !outline-none !px-0"
+                  show-search
+                  v-model:value="sortInput.experienceLevel"
+                >
+                  <a-select-option disabled>Experience Level</a-select-option>
+                  <a-select-option
+                    v-for="item in Experience"
+                    :key="item"
+                    :value="item.name"
+                  >
+                    {{ item.name }} {{ item.year }}
+                  </a-select-option>
+                </a-select>
+              </div>
+            </div>
+            <!-- <FormGroup
               v-model="sortInput.experienceLevel"
               labelClasses="font-Satoshi500 text-[15.606px]"
               label=" Experience Level"
@@ -200,11 +282,11 @@ onMounted(async () => {
               placeholder="Name or keyword"
               type="text"
               inputClasses="w-full mt-2 font-light font-Satoshi400 !p-2 border-[#EDEDED] border-[0.509px] opacity-[0.8029] rounded-[6.828px] text-[12.68px]"
-            ></FormGroup>
-            <div class="w-full">
-              <div class="flex flex-col justify-center">
+            ></FormGroup> -->
+            <div class="w-full flex flex-row gap-1">
+              <div class="flex flex-col w-full justify-center">
                 <Label class="font-Satoshi500 text-[15.606px]">Rate</Label>
-                <div class="flex items-center justify-center gap-1 mt-2">
+                <div class="flex items-center justify-center w-full gap-1 mt-2">
                   <input
                     class="w-full font-light font-Satoshi400 !p-2 border-[#EDEDED] border-[0.509px] opacity-[0.8029] rounded-[6.828px] text-[12.68px]"
                     type="number"
@@ -218,7 +300,8 @@ onMounted(async () => {
                     v-model="rateMax"
                     id="end"
                   />
-                  <div class="w-full">
+
+                  <!-- <div class="w-full">
                     <SelectGroup
                       labelClasses="font-Satoshi500 hidden text-[15.606px]"
                       name="Name"
@@ -227,9 +310,33 @@ onMounted(async () => {
                       :items="['USD', 'NGN']"
                       inputClasses="w-full mt-0 font-light font-Satoshi400 bg-white !p-2 border-[#EDEDED] border-[0.509px] opacity-[0.8029] rounded-[6.828px] text-[12.68px]"
                     />
-                  </div>
+                  </div> -->
                 </div>
               </div>
+              <div class="flex flex-col w-[30%] text-left">
+                <Label class="font-Satoshi500 !text-[15.606px] !mb-2">Currency</Label>
+                <div
+                  class="w-full font-light font-Satoshi400 bg-white !p-0 border-[#EDEDED] border-[0.509px] opacity-[0.8029] rounded-[6.828px] text-[12.68px]"
+                >
+                  <a-select
+                    placeholder=" currency"
+                    :bordered="false"
+                    :show-arrow="false"
+                    class="w-full !outline-none !px-0"
+                    show-search
+                    v-model:value="sortInput.currency"
+                  >
+                    <a-select-option
+                      v-for="item in ['USD', 'NGN']"
+                      :key="item"
+                      :value="item"
+                    >
+                      {{ item }}
+                    </a-select-option>
+                  </a-select>
+                </div>
+              </div>
+
               <div>
                 <!-- <vue-slider
                   v-model="range"

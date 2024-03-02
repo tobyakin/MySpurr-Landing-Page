@@ -14,6 +14,27 @@ import VerifyIcon from "@/components/icons/verifyIcon.vue";
 // let store = useStore();
 import { useJobsStore } from "@/stores/jobs";
 import { useNumberFomateStore } from "@/stores/numberFomate";
+import { useClipboard } from "@vueuse/core";
+import { useToast } from "vue-toastification";
+const toast = useToast();
+
+let source = window.location.href;
+const { copy, copied, isSupported } = useClipboard({ source });
+const copyUrl = () => {
+  if (isSupported) {
+    if (copied) {
+      console.log(source);
+      copy(source);
+      toast.success("Link Copied", {
+        timeout: 4000,
+      });
+    }
+  } else {
+    toast.error("Your browser does not support Clipboard API", {
+      timeout: 4000,
+    });
+  }
+};
 
 const store = useNumberFomateStore();
 
@@ -39,7 +60,11 @@ defineProps({ singleJob: Object });
       <div class="bg-[#E9FAFB] border-[0.735px] rounded-[17.104px] lg:p-10 p-6">
         <div class="flex lg:flex-row flex-col gap-3 w-full">
           <div>
-            <img class="h-[61.011px] w-[61.011px] rounded-full" src="" alt="" />
+            <img
+              class="h-[61.011px] w-[61.011px] object-cover rounded-full"
+              :src="JobDetails?.data?.company?.logo"
+              :alt="JobDetails?.data?.company?.business_name + `logo`"
+            />
           </div>
           <div class="w-full">
             <div class="flex lg:flex-row flex-col gap-4 justify-between">
@@ -61,7 +86,7 @@ defineProps({ singleJob: Object });
                       class="lg:w-[44.215px] lg:h-[44.215px] h-[40px] w-[40px]"
                     />
                   </button> -->
-                  <button class="">
+                  <button @click="copyUrl()" class="">
                     <SearchIcon
                       class="lg:w-[44.215px] lg:h-[44.215px] h-[40px] w-[40px]"
                     />
@@ -92,7 +117,7 @@ defineProps({ singleJob: Object });
               <div
                 v-for="skill in JobDetails?.data?.skills"
                 :key="skill"
-                class="bg-[#2F929C] font-Satoshi500 text-[7.58px] capitalize p-[4px] px-6 text-[#fff] rounded-full"
+                class="bg-[#2F929C] font-Satoshi500 text-[13.58px] capitalize p-[4px] px-6 text-[#fff] rounded-full"
               >
                 {{ skill.name }}
               </div>
@@ -106,6 +131,7 @@ defineProps({ singleJob: Object });
         <div class="flex flex-col gap-2">
           <p class="text-[#244034c5] text-[17.104px] font-Satoshi400">Salary</p>
           <p class="text-[#244034] text-[14.104px] font-Satoshi500">
+            {{ JobDetails?.data?.currency }}
             {{ store.abbr(JobDetails?.data?.salary_min) }}-
             {{ store.abbr(JobDetails?.data?.salary_max) }}/
             {{ JobDetails?.data?.salaray_type }}
@@ -201,7 +227,11 @@ defineProps({ singleJob: Object });
             </p>
             <div class="flex mt-8 gap-4">
               <div>
-                <img class="h-[61.011px] w-[61.011px] rounded-full" src="" alt="" />
+                <img
+                  class="h-[61.011px] w-[61.011px] rounded-full"
+                  :src="JobDetails?.data?.company?.logo"
+                  :alt="JobDetails?.data?.company?.business_name + `logo`"
+                />
               </div>
               <div>
                 <div class="flex gap-2 items-center">
@@ -215,16 +245,13 @@ defineProps({ singleJob: Object });
                     </p>
                   </div>
                 </div>
-                <div class="flex gap-3 mt-2 items-center">
+                <div class="flex gap-3 flex-wrap mt-2 items-center">
                   <div
+                    v-for="skill in JobDetails?.data?.company?.industry"
+                    :key="skill"
                     class="bg-[#2F929C] font-Satoshi500 text-[8.552px] capitalize p-[4px] px-4 text-[#fff] rounded-full"
                   >
-                    Creative Agency
-                  </div>
-                  <div
-                    class="bg-[#2F929C] font-Satoshi500 text-[8.552px] capitalize p-[4px] px-4 text-[#fff] rounded-full"
-                  >
-                    Design
+                    {{ skill.name }}
                   </div>
                 </div>
               </div>
@@ -237,7 +264,7 @@ defineProps({ singleJob: Object });
             <div
               class="text-[#000]/[0.75] font-Satoshi400 text-[12.546px] mt-6 leading-[24.689px]"
             >
-              <p>0 Jobs opened</p>
+              <p>{{ JobDetails?.data?.total_opened_jobs }} Jobs opened</p>
             </div>
 
             <hr class="border-[#2C4C50] border-[1.14px] !my-[26px]" />
@@ -246,11 +273,15 @@ defineProps({ singleJob: Object });
                 <p class="text-[#244034c5] text-[17.104px] font-Satoshi400">
                   Completed Jobs
                 </p>
-                <p class="text-[#244034] text-[17.104px] font-Satoshi500">0</p>
+                <p class="text-[#244034] text-[17.104px] font-Satoshi500">
+                  {{ JobDetails?.data?.completed_jobs }}
+                </p>
               </div>
               <div class="flex flex-col gap-2">
                 <p class="text-[#244034c5] text-[17.104px] font-Satoshi400">Hired Jobs</p>
-                <p class="text-[#244034] text-[17.104px] font-Satoshi500">0</p>
+                <p class="text-[#244034] text-[17.104px] font-Satoshi500">
+                  {{ JobDetails?.data?.hired_jobs }}
+                </p>
               </div>
             </div>
             <button

@@ -12,8 +12,8 @@ let store = useJobsStore();
 
 const router = useRouter();
 
-const redirectToJobDetails = (id) => {
-  router.push({ name: "job-details", params: { id } });
+const redirectToJobDetails = (slug) => {
+  router.push({ name: "job-details", params: { slug } });
 };
 defineProps({
   job: Object,
@@ -27,7 +27,7 @@ defineProps({
       <div>
         <img
           v-if="job?.company.business_name !== null"
-          class="h-[61.011px] w-[61.011px] rounded-full"
+          class="h-[61.011px] w-[61.011px] object-cover rounded-full"
           :src="job?.company.logo"
           alt=""
         />
@@ -74,7 +74,8 @@ defineProps({
           <div class="flex lg:flex-row flex-col gap-4 items-center">
             <div>
               <p class="text-[17.633px] font-Satoshi500 text-[#244034B2]">
-                {{ store.abbr(job?.salary_min) }}- {{ store.abbr(job?.salary_max) }}/
+                {{ job?.currency }} {{ store.abbr(job?.salary_min) }}-
+                {{ store.abbr(job?.salary_max) }}/
                 {{ job?.salaray_type }}
               </p>
             </div>
@@ -119,18 +120,9 @@ defineProps({
               </div>
               <button
                 @click="redirectToJobDetails(job?.slug)"
-                :disabled="job?.application_status === 'applied'"
-                :class="
-                  job?.application_status === 'applied'
-                    ? 'bg-gray-300 cursor-not-allowed'
-                    : 'bg-[#43D0DF]'
-                "
-                class="font-Satoshi500 uppercase text-[9.708px] p-3 px-12 text-[#000000] rounded-full"
+                class="font-Satoshi500 bg-[#43D0DF] uppercase text-[9.708px] p-3 px-12 text-[#000000] rounded-full"
               >
-                <span v-if="job?.application_status === 'applied'">
-                  {{ job?.application_status }}
-                </span>
-                <span v-else>APPLY</span>
+                <span>APPLY</span>
               </button>
             </div>
           </div>
