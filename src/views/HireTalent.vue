@@ -12,7 +12,7 @@ import { useTalentsStore } from "@/stores/talents";
 import FormGroup from "@/components/Form/Input/FormGroup.vue";
 import FormSelectGroup from "@/components/Form/Input/SelectGroup.vue";
 import Label from "@/components/Form/Input/Label.vue";
-
+import PagePreLoader from "@/components/UI/Loader/PagePreLoader.vue";
 import { useQuery } from "vue-query";
 
 const talentsStore = useTalentsStore();
@@ -410,6 +410,7 @@ const Experience = [
           candidates found
         </p>
       </div>
+      <!-- <PagePreLoader /> -->
       <div v-if="!filteredJobs" class="mt-14 flex flex-col gap-8">
         <JobCard
           class="w-full"
