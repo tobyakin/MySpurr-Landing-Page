@@ -100,12 +100,12 @@ const filteredJobs = computed(() => {
 
   // Filtering based on the search criteria
   if (sortInput.name) {
-    filtered = filtered.filter((item) =>
+    filtered = filtered?.filter((item) =>
       item.job_title.toLowerCase().includes(sortInput.name.toLowerCase())
     );
   }
   if (sortInput.jobType) {
-    filtered = filtered.filter((item) =>
+    filtered = filtered?.filter((item) =>
       item.job_type.toLowerCase().includes(sortInput.jobType.toLowerCase())
     );
   }
