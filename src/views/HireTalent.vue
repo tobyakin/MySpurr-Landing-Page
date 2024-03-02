@@ -12,7 +12,7 @@ import { useTalentsStore } from "@/stores/talents";
 import FormGroup from "@/components/Form/Input/FormGroup.vue";
 import FormSelectGroup from "@/components/Form/Input/SelectGroup.vue";
 import Label from "@/components/Form/Input/Label.vue";
-
+import PagePreLoader from "@/components/UI/Loader/PagePreLoader.vue";
 import { useQuery } from "vue-query";
 
 const talentsStore = useTalentsStore();
@@ -134,24 +134,26 @@ const filteredJobs = computed(() => {
     );
   }
 
-  // if (filterOptions.candidateType) {
-  //   filtered = filtered.filter((item) =>
-  //     item.experience.toLowerCase().includes(filterOptions.candidateType.toLowerCase())
-  //   );
-  // }
+  if (filterOptions.candidateType) {
+    filtered = filtered.filter((item) =>
+      item.employment_type
+        .toLowerCase()
+        .includes(filterOptions.candidateType.toLowerCase())
+    );
+  }
   // if (filterOptions.expertLevel) {
   //   filtered = filtered.filter((item) =>
   //     item.experience.toLowerCase().includes(filterOptions.expertLevel.toLowerCase())
   //   );
   // }
 
-  // if (filterOptions.qualification) {
-  //   filtered = filtered.filter((item) =>
-  //     item.skills.some((skill) =>
-  //       skill.name.toLowerCase().includes(filterOptions.qualification.toLowerCase())
-  //     )
-  //   );
-  // }
+  if (filterOptions.qualification) {
+    filtered = filtered.filter((item) =>
+      item.highest_education
+        .toLowerCase()
+        .includes(filterOptions.qualification.toLowerCase())
+    );
+  }
 
   // Filtering by Rate within the specified range
   if (rateMin.value || rateMax.value) {
@@ -196,13 +198,7 @@ useQuery(["talents"], getTalentsData, {
     talent.value = data;
   },
 });
-const CandidateType = [
-  "Freelance",
-  "Full-time ",
-  "Part-time ",
-  "Internship ",
-  "Contract ",
-];
+const CandidateType = ["Freelance", "Full-time", "Part-time", "Inernship", "Contract"];
 const qualification = ["Certificate", "Bachelors", "Masters ", "Doctorate "];
 const Experience = [
   { name: "Beginner ", year: "(1-2 yrs)" },
@@ -252,7 +248,7 @@ const Experience = [
           <div class="flex flex-col w-full text-left">
             <Label class="font-Satoshi500 !text-[17.792px] !mb-2">Experience</Label>
             <div
-              class="w-full mt-2 font-light font-Satoshi400 bg-white !p-0 border-[#EDEDED] border-[0.509px] opacity-[0.8029] rounded-[6.828px] text-[12.68px]"
+              class="w-full font-light font-Satoshi400 bg-white !p-0 border-[#EDEDED] border-[0.509px] opacity-[0.8029] rounded-[6.828px] text-[12.68px]"
             >
               <a-select
                 placeholder="Expert Level"
@@ -414,6 +410,7 @@ const Experience = [
           candidates found
         </p>
       </div>
+      <!-- <PagePreLoader /> -->
       <div v-if="!filteredJobs" class="mt-14 flex flex-col gap-8">
         <JobCard
           class="w-full"
