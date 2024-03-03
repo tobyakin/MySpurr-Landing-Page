@@ -129,6 +129,17 @@
               <div
                 class="flex flex-row gap-4 w-full overflow-hidden cursor-move mt-6 hide-scrollbar overflow-x-auto"
               >
+                <div
+                  v-if="!talents?.portfolio.length"
+                  class="flex flex-col w-full justify-center items-center"
+                >
+                  <p
+                    class="text-[28px] text-[#000] font-Satoshi400 text-center !mb-12 mt-8"
+                  >
+                    Uploaded portfolio can be viewed here
+                  </p>
+                </div>
+
                 <img
                   loading="lazy"
                   @click="redirectToSinglePortFolio(img.id)"

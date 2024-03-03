@@ -3,7 +3,7 @@
     <div
       class="flex md:gap-24 gap-8 items-center justify-center flex-wrap md:flex-nowrap"
     >
-      <div class="w-full flex text-[#31795A] flex-col gap-5">
+      <div class="w-full flex text-[#000000BF] font-Satoshi400 flex-col gap-5">
         <div class="w-full font-Satoshi400 flex flex-col gap-6">
           <div v-for="(item, index) in items" :key="item" class="flex gap-3">
             <div class="">
@@ -30,7 +30,7 @@
               </p>
               <div
                 v-html="item.description"
-                class="!my-4 leading-[32px] editor mt-4 font-Satoshi400 w-full tracking-[-0.003rem] text-[16px]"
+                class="!my-4 leading-[32px] !text-[#000000BF] editor mt-4 font-Satoshi400 w-full tracking-[-0.003rem] text-[16px]"
               ></div>
             </div>
           </div>
