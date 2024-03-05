@@ -236,14 +236,18 @@ ol {
 .editor ul {
   list-style-type: disc !important;
   /* list-style:circle !important */
-    @apply break-words text-justify font-Satoshi400 mt-2 ml-3 !text-[#000000BF] !text-[14px] leading-5;
+    @apply break-words text-justify font-Satoshi400 mt-2 ml-3 !text-[#000000BF] !text-[16px] leading-[25px];
 
 }
+.editor ul li {
+  @apply !mb-2
+}
+
 .editor p {
-  @apply break-words text-justify !text-[#000000BF] font-Satoshi400 !my-4;
+  @apply break-words text-justify !text-[#000000BF] text-[16px] font-Satoshi400 !my-4 leading-[35px];
 }
 .editor  span{
-  @apply break-words text-justify !text-[#000000BF] font-Satoshi400 !my-4;
+  @apply break-words text-justify !text-[#000000BF] text-[16px] font-Satoshi400 !my-4 leading-[35px];
 }
 .ql-align-center img {
   text-align: center !important;
