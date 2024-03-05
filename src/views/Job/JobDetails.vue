@@ -181,7 +181,7 @@ defineProps({ singleJob: Object });
 
             <div
               v-html="JobDetails?.data?.description"
-              class="text-[#000]/[0.75] editor font-Satoshi400 text-[12.546px] mt-4 leading-[24.689px]"
+              class="text-[#000]/[0.75] editor font-Satoshi400 text-[16.546px] mt-4 leading-[24.689px]"
             ></div>
 
             <p class="text-[16.236px] text-[#000] font-Satoshi500 !mb-4 mt-6">
@@ -189,7 +189,7 @@ defineProps({ singleJob: Object });
             </p>
             <div
               v-html="JobDetails?.data?.responsibilities"
-              class="text-[#000]/[0.75] font-Satoshi400 editor text-[12.546px] mt-4 leading-[24.689px]"
+              class="text-[#000]/[0.75] font-Satoshi400 editor text-[16.546px] mt-4 leading-[24.689px]"
             ></div>
 
             <p class="text-[16.236px] text-[#000] font-Satoshi500 !mb-4 mt-6">
@@ -197,7 +197,7 @@ defineProps({ singleJob: Object });
             </p>
             <div
               v-html="JobDetails?.data?.required_skills"
-              class="text-[#000]/[0.75] font-Satoshi400 editor text-[12.546px] leading-[24.689px]"
+              class="text-[#000]/[0.75] font-Satoshi400 editor text-[16.546px] mt-4 leading-[24.689px]"
             ></div>
 
             <p
@@ -208,7 +208,7 @@ defineProps({ singleJob: Object });
             </p>
             <div
               v-html="JobDetails?.data?.benefits"
-              class="text-[#000]/[0.75] font-Satoshi400 text-[12.546px] leading-[24.689px]"
+              class="text-[#000]/[0.75] font-Satoshi400 text-[16.546px] leading-[24.689px]"
             ></div>
           </div>
           <div>
