@@ -38,9 +38,14 @@
                   {{ talents?.first_name }} {{ talents?.last_name }}
                 </p>
                 <p
-                  class="text-[#00000066] text-[14.598px] capitalize leading-[31.739px] font-Satoshi400"
+                  class="text-[#00000066] text-[14.598px] flex gap-[8px] items-center capitalize leading-[31.739px] font-Satoshi400"
                 >
                   {{ talents?.skill_title }}
+                  <span
+                    v-if="talents?.experience_level"
+                    class="bg-[#00474F] rounded-full py-[0.5px] capitalize text-[10.519px] text-[#E6F1F3] font-medium px-[19px]"
+                    >{{ talents?.experience_level }}</span
+                  >
                 </p>
                 <div class="flex items-center lg:justify-start justify-center gap-2">
                   <p
