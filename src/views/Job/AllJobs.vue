@@ -14,6 +14,9 @@ import FormGroup from "@/components/Form/Input/FormGroup.vue";
 import Label from "@/components/Form/Input/Label.vue";
 import WorkFlow from "@/components/Bander/WorkFlow.vue";
 import { useRouter } from "vue-router";
+import Loader from "@/components/UI/Loader/Loader.vue";
+import { useQuery } from "vue-query";
+const loading = ref(false);
 
 const jobsStore = useJobsStore();
 const { Job } = storeToRefs(jobsStore);
@@ -165,7 +168,14 @@ watch(currentPage, (newPage) => {
   console.log("Current Page:", newPage);
 });
 onMounted(async () => {
-  await jobsStore.allJobs();
+  loading.value = true;
+  try {
+    await jobsStore.allJobs();
+    loading.value = false;
+  } catch (error) {
+    console.error(error);
+    loading.value = false;
+  }
 });
 watchEffect(() => {
   const searchQuery = router.currentRoute.value.query.search;
@@ -364,7 +374,7 @@ watchEffect(() => {
             :job="item"
           />
         </div> -->
-        <div class="mt-14 flex flex-col gap-8">
+        <div v-if="!loading" class="mt-14 flex flex-col gap-8">
           <JobRowCard
             class="min-w-[95%] lg:min-w-[45%]"
             v-for="item in filteredJobs"
@@ -372,6 +382,8 @@ watchEffect(() => {
             :job="item"
           />
         </div>
+        <Loader v-if="loading" />
+
         <div class="mt-12 flex w-[60%] flex-row justify-center mx-auto">
           <button
             v-for="pageNumber in displayedPageNumbers"

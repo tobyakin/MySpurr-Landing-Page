@@ -2,6 +2,7 @@
   <div>
     <Navbar />
     <Vue3Html2pdf
+      v-if="!isLoading"
       :show-layout="false"
       :float-layout="false"
       :enable-download="true"
@@ -134,7 +135,10 @@
               <div
                 class="flex flex-row gap-4 w-full overflow-hidden cursor-move mt-6 hide-scrollbar overflow-x-auto"
               >
-                <div class="flex flex-col w-full justify-center items-center">
+                <div
+                  v-if="talents?.portfolio?.length === 0"
+                  class="flex flex-col w-full justify-center items-center"
+                >
                   <p
                     class="text-[15px] text-[#000] font-Satoshi400 text-center !mb-12 mt-8"
                   >
@@ -143,14 +147,15 @@
                 </div>
 
                 <img
+                  v-else
                   loading="lazy"
                   @click="redirectToSinglePortFolio(img.id)"
                   role="button"
                   v-for="(img, index) in talents?.portfolio"
-                  :key="img"
-                  :src="img.cover_image"
-                  class="h-[214.078px] flex flex-col w-auto rounded-lg"
-                  alt=""
+                  :key="img?.id"
+                  :src="img?.cover_image"
+                  class="h-[268px] flex flex-col object-contain items-center w-[277.61px] rounded-[7px] bg-[#EDF0B8]/[20%]"
+                  :alt="img?.title"
                 />
               </div>
               <p class="text-[28px] text-[#000] hidden font-Satoshi500 !mb-12 mt-8">
@@ -234,6 +239,7 @@
         </div>
       </template>
     </Vue3Html2pdf>
+    <Loader v-if="isLoading" />
     <Footer />
   </div>
 </template>
@@ -268,9 +274,9 @@ import { useClipboard } from "@vueuse/core";
 import { useToast } from "vue-toastification";
 const Map = defineAsyncComponent(() => import("@/components/Map/Map.vue"));
 import { useQuery } from "vue-query";
-
+import Loader from "@/components/UI/Loader/Loader.vue";
 const toast = useToast();
-
+const loading = ref(false);
 // const html2Pdf = ref(null);
 
 // const generateReport = () => {
@@ -347,9 +353,15 @@ const fetchData = async () => {
 };
 fetchData();
 
-useQuery(["talentsProfile"], getTalentsProfileData, {
+const { isLoading } = useQuery(["talentsProfile"], getTalentsProfileData, {
   retry: 10,
   staleTime: 10000,
+  // onSettled: () => {
+  //   loading.value = false; // Set loading to false after query is settled
+  // },
+  // onError: () => {
+  //   loading.value = false; // Set loading to false on error
+  // },
   onSuccess: (data) => {
     singleTalent.value = data;
   },

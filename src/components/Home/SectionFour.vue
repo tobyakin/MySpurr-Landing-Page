@@ -16,37 +16,53 @@
       </div>
     </div>
     <div
+      v-if="!loading"
       class="grid grid-rows-1 hide-scrollbar !my-8 border-[0.83px] rounded-[8.3px] border-[#DBE8E5]"
     >
       <div
-        v-for="item in 4"
-        :key="item"
-        :class="item < 4 ? 'border-b-[0.83px] border-[#DBE8E5]' : ''"
+        v-for="(item, index) in Job?.data"
+        :key="item.id"
+        :class="item < index ? 'border-b-[0.83px] border-[#DBE8E5]' : ''"
         class="text-[#030303] p-9 flex lg:flex-row flex-col items-center gap-4 justify-between"
       >
         <div class="flex lg:flex-row flex-col lg:w-[70%] gap-[2.25rem]">
-          <div class="h-[41.498px] w-[39.176px] lg:block hidden bg-[#00000033]"></div>
+          <div class="h-[41.498px] w-[39.176px] lg:block hidden bg-[#00000033]">
+            <img
+              :src="item.company.logo"
+              class="object-cover h-[41.498px] w-[39.176px]"
+              alt=""
+            />
+          </div>
           <div class="flex lg:flex-row flex-col gap-[8%] w-full items-center">
             <p
               class="text-[#000000] font-Satoshi500 lg:text-left text-center text-[16.599px] leading-[26.558px]"
             >
-              Graphics Design & Expert in Illustration
+              {{ item.job_title }}
             </p>
-            <p class="text-[#43D0DF] font-Satoshi500 text-[12.449px]">Fulltime</p>
+            <p class="text-[#43D0DF] font-Satoshi500 text-[12.449px]">
+              {{ item.job_type }}
+            </p>
             <p
               class="flex gap-1 items-center text-[#00000080] font-Satoshi400 text-[13.279px]"
             >
-              18 Jul 2018 by <span class="font-Satoshi500 text-black">slack</span>
+              {{ item.date_created }}
+              <span class="font-Satoshi500 text-black">{{
+                item.company.business_name
+              }}</span>
             </p>
           </div>
         </div>
         <div
-          class="flex lg:flex-row flex-col lg:w-[30%] text-center lg:text-left gap-4 lg:items-end lg:justify-end"
+          class="flex lg:flex-row flex-col lg:w-[60%] text-center lg:text-left gap-4 lg:items-end lg:justify-end"
         >
           <div class="w-full">
-            <p class="text-[#20202099] font-Satoshi400 text-[12.449px]">Lagos, Nigeria</p>
-            <p class="text-[#000000] font-Satoshi500 text-[13.279px]">
-              Graphics Design, Artist
+            <p class="text-[#20202099] font-Satoshi400 text-[12.449px]">
+              {{ item.state }} , {{ item.country }}
+            </p>
+            <p
+              class="text-[#000000] flex flex-wrap gap-2 items-center font-Satoshi500 text-[13.279px]"
+            >
+              <span v-for="i in item.skills" :key="i">{{ i.name }},</span>
             </p>
           </div>
           <div class="flex items-center gap-3">
@@ -60,26 +76,51 @@
         </div>
       </div>
     </div>
+    <Loader v-if="loading" />
     <div class="flex lg:justify-center pt-8">
       <div class="bg-[#EFF6F3] border-[#D6ECE0] border-[0.83px] rounded-full p-2 px-3">
         <p class="text-[13.279px] text-center font-Satoshi500 leading-[16.599px]">
           Do you want to post a job for your company?
           <span class="text-dimBrand">We can help.</span
-          ><span class="text-dimBrand font-Satoshi400 underline">Click here</span>
+          ><a
+            :href="dashboardUrl + 'signup'"
+            target="_blank"
+            class="text-dimBrand font-Satoshi400 underline"
+            >Click here</a
+          >
         </p>
       </div>
     </div>
   </div>
 </template>
 <script setup>
+import { ref, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import BookMarkIcon from "@/components/icons/bookMarkIcon.vue";
 import ShareIcon from "@/components/icons/shareOutline.vue";
 const router = useRouter();
+import { storeToRefs } from "pinia";
+import { useJobsStore } from "@/stores/jobs";
+import Loader from "@/components/UI/Loader/Loader.vue";
+
+const jobsStore = useJobsStore();
+const { Job } = storeToRefs(jobsStore);
+const loading = ref(false);
+const dashboardUrl = import.meta.env.VITE_DASHBOARD;
 
 const redirectToJobPage = () => {
   router.push({
     name: "jobs",
   });
 };
+onMounted(async () => {
+  loading.value = true;
+  try {
+    await jobsStore.allJobs();
+    loading.value = false;
+  } catch (error) {
+    console.error(error);
+    loading.value = false;
+  }
+});
 </script>
