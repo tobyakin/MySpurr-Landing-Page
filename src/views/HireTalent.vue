@@ -14,6 +14,7 @@ import FormSelectGroup from "@/components/Form/Input/SelectGroup.vue";
 import Label from "@/components/Form/Input/Label.vue";
 import PagePreLoader from "@/components/UI/Loader/PagePreLoader.vue";
 import { useQuery } from "vue-query";
+import Loader from "@/components/UI/Loader/Loader.vue";
 
 const talentsStore = useTalentsStore();
 const { talent } = storeToRefs(talentsStore);
@@ -191,7 +192,7 @@ const fetchData = async () => {
 };
 fetchData();
 
-useQuery(["talents"], getTalentsData, {
+const { isLoading } = useQuery(["talents"], getTalentsData, {
   retry: 10,
   staleTime: 10000,
   onSuccess: (data) => {
@@ -411,7 +412,7 @@ const Experience = [
         </p>
       </div>
       <!-- <PagePreLoader /> -->
-      <div v-if="!filteredJobs" class="mt-14 flex flex-col gap-8">
+      <div v-if="!filteredJobs && isLoading" class="mt-14 flex flex-col gap-8">
         <JobCard
           class="w-full"
           v-for="item in paginatedTalent"
@@ -422,6 +423,8 @@ const Experience = [
       <div v-else class="mt-14 flex flex-col gap-8">
         <JobCard class="w-full" v-for="item in filteredJobs" :key="item" :talent="item" />
       </div>
+      <Loader v-if="isLoading" />
+
       <div class="mt-12 flex w-[60%] flex-row justify-center mx-auto">
         <button
           v-for="pageNumber in displayedPageNumbers"
