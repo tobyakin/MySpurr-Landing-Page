@@ -66,7 +66,7 @@ defineProps({
           @click="redirectToJobDetails(1)"
           class="bg-[#43D0DF] font-Satoshi500 text-[9.708px] p-3 px-6 text-[#000000] rounded-full"
         >
-          APPLY
+          Appy
         </button>
 
         <div class="flex gap-2 flex-row">

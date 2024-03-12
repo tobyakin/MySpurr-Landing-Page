@@ -75,7 +75,7 @@
               @click="redirectToJobDetails(item?.slug)"
               class="btn-brand !text-[9.959px] !py-2 !px-6"
             >
-              APPLY
+              Apply
             </button>
           </div>
         </div>

@@ -1,30 +1,30 @@
 <script setup>
-import { onMounted } from 'vue'
-import { useRoute } from 'vue-router'
+import { onMounted } from "vue";
+import { useRoute } from "vue-router";
 // import { useStore } from "@/stores/user";
-import CircleBookMarkIcon from '@/components/icons/circleBookMarkIcon.vue'
-import { storeToRefs } from 'pinia'
-import SearchIcon from '@/components/icons/circleSearchIcon.vue'
+import CircleBookMarkIcon from "@/components/icons/circleBookMarkIcon.vue";
+import { storeToRefs } from "pinia";
+import SearchIcon from "@/components/icons/circleSearchIcon.vue";
 // import CircleTick from "@/components/icons/circleTick.vue";
-import VerifyIcon from '@/components/icons/verifyIcon.vue'
+import VerifyIcon from "@/components/icons/verifyIcon.vue";
 // let store = useStore();
-import { useJobsStore } from '@/stores/jobs'
-import { useTabStore } from '@/stores/tab'
+import { useJobsStore } from "@/stores/jobs";
+import { useTabStore } from "@/stores/tab";
 
-const store = useTabStore()
+const store = useTabStore();
 
-const jobsStore = useJobsStore()
-const { singleJob } = storeToRefs(jobsStore)
-const route = useRoute()
+const jobsStore = useJobsStore();
+const { singleJob } = storeToRefs(jobsStore);
+const route = useRoute();
 // const router = useRouter();
 
-const emit = defineEmits(['apply'])
+const emit = defineEmits(["apply"]);
 const apply = () => {
-  emit('apply')
-}
+  emit("apply");
+};
 onMounted(async () => {
-  await jobsStore.getSingleJob(route.params.id)
-})
+  await jobsStore.getSingleJob(route.params.id);
+});
 </script>
 
 <template>
@@ -46,13 +46,17 @@ onMounted(async () => {
               </p>
               <div class="flex mt-1 gap-1">
                 <VerifyIcon class="w-4" />
-                <p class="text-[11.633px] font-Satoshi700 text-[#000000B2]">Verified Client.</p>
+                <p class="text-[11.633px] font-Satoshi700 text-[#000000B2]">
+                  Verified Client.
+                </p>
               </div>
             </div>
             <div>
               <div class="flex gap-2">
                 <button class="">
-                  <CircleBookMarkIcon class="lg:w-[44.215px] lg:h-[44.215px] h-[40px] w-[40px]" />
+                  <CircleBookMarkIcon
+                    class="lg:w-[44.215px] lg:h-[44.215px] h-[40px] w-[40px]"
+                  />
                 </button>
                 <button class="">
                   <SearchIcon class="lg:w-[44.215px] lg:h-[44.215px] h-[40px] w-[40px]" />
@@ -63,15 +67,19 @@ onMounted(async () => {
         </div>
       </div>
       <div class="flex flex-col justify-between mt-5 lg:mt-2">
-        <div class="flex lg:flex-row flex-col gap-6 items-center justify-between w-full lg:gap-3">
-          <p class="lg:text-[26.625px] capitalize text-[19px] font-Satoshi500 text-[#000000]">
+        <div
+          class="flex lg:flex-row flex-col gap-6 items-center justify-between w-full lg:gap-3"
+        >
+          <p
+            class="lg:text-[26.625px] capitalize text-[19px] font-Satoshi500 text-[#000000]"
+          >
             {{ singleJob?.data?.job_title }}
           </p>
           <button
             @click="apply"
             class="bg-[#43D0DF] font-Satoshi500 text-[9.708px] p-3 px-12 text-[#000000] rounded-full"
           >
-            APPLY
+            Apply
           </button>
         </div>
         <div class="flex justify-between lg:mt-2 mt-6">
@@ -145,19 +153,26 @@ onMounted(async () => {
             class="text-[#000]/[0.75] editor font-Satoshi400 text-[12.546px] mt-4 leading-[24.689px]"
           ></div>
 
-          <p class="text-[16.236px] text-[#000] font-Satoshi500 !mb-4 mt-6">Responsibilities</p>
+          <p class="text-[16.236px] text-[#000] font-Satoshi500 !mb-4 mt-6">
+            Responsibilities
+          </p>
           <div
             v-html="singleJob?.data?.responsibilities"
             class="text-[#000]/[0.75] font-Satoshi400 editor text-[12.546px] mt-4 leading-[24.689px]"
           ></div>
 
-          <p class="text-[16.236px] text-[#000] font-Satoshi500 !mb-4 mt-6">Required Skills:</p>
+          <p class="text-[16.236px] text-[#000] font-Satoshi500 !mb-4 mt-6">
+            Required Skills:
+          </p>
           <div
             v-html="singleJob?.data?.required_skills"
             class="text-[#000]/[0.75] font-Satoshi400 editor text-[12.546px] leading-[24.689px]"
           ></div>
 
-          <p v-if="singleJob?.data?.benefits" class="text-[16.236px] text-[#000] font-Satoshi500">
+          <p
+            v-if="singleJob?.data?.benefits"
+            class="text-[16.236px] text-[#000] font-Satoshi500"
+          >
             Benefits:
           </p>
           <div
@@ -170,13 +185,14 @@ onMounted(async () => {
             @click="apply"
             class="bg-[#43D0DF] font-Satoshi500 text-[9.708px] p-3 px-12 text-[#000000] rounded-full"
           >
-            APPLY
-          </button>
+Apply          </button>
         </div>
       </div>
       <div class="lg:w-[40%]">
         <div class="bg-[#E9FAFB] border-[0.735px] rounded-[17.104px] p-6">
-          <p class="font-Satoshi700 text-[17.104px] text-[#31795A]/[0.70]">About the Company</p>
+          <p class="font-Satoshi700 text-[17.104px] text-[#31795A]/[0.70]">
+            About the Company
+          </p>
           <div class="flex mt-8 gap-4">
             <div>
               <img
@@ -192,7 +208,9 @@ onMounted(async () => {
                 </p>
                 <div class="flex mt-1 gap-1">
                   <VerifyIcon class="w-4" />
-                  <p class="text-[10.646px] font-Satoshi700 text-[#000000B2]">Verified Client.</p>
+                  <p class="text-[10.646px] font-Satoshi700 text-[#000000B2]">
+                    Verified Client.
+                  </p>
                 </div>
               </div>
               <div class="flex gap-3 mt-2 items-center">
@@ -214,14 +232,18 @@ onMounted(async () => {
             class="text-[#000]/[0.75] editor font-Satoshi400 text-[12.546px] mt-6 leading-[24.689px]"
           ></div>
           <hr class="border-[#2C4C50] border-[1.14px] !my-[26px]" />
-          <div class="text-[#000]/[0.75] font-Satoshi400 text-[12.546px] mt-6 leading-[24.689px]">
+          <div
+            class="text-[#000]/[0.75] font-Satoshi400 text-[12.546px] mt-6 leading-[24.689px]"
+          >
             <p>0 Jobs opened</p>
           </div>
 
           <hr class="border-[#2C4C50] border-[1.14px] !my-[26px]" />
           <div class="flex rounded-[17.104px] mb-4 gap-6">
             <div class="flex flex-col gap-2">
-              <p class="text-[#244034c5] text-[17.104px] font-Satoshi400">Completed Jobs</p>
+              <p class="text-[#244034c5] text-[17.104px] font-Satoshi400">
+                Completed Jobs
+              </p>
               <p class="text-[#244034] text-[17.104px] font-Satoshi500">0</p>
             </div>
             <div class="flex flex-col gap-2">

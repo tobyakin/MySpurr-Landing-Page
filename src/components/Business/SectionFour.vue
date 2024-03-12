@@ -42,7 +42,7 @@
           </div>
           <div class="flex items-center gap-6">
             <button><BookMarkIcon /></button
-            ><button class="btn-brand !text-[9.959px] !py-2 !px-6">APPLY</button>
+            ><button class="btn-brand !text-[9.959px] !py-2 !px-6">Apply</button>
           </div>
         </div>
       </div>
