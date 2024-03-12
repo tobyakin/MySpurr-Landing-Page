@@ -71,7 +71,12 @@
             </button> -->
             <button class="rounded-full border-[#97A6A8] border-[0.496px] p-2">
               <ShareIcon /></button
-            ><button class="btn-brand !text-[9.959px] !py-2 !px-6">APPLY</button>
+            ><button
+              @click="redirectToJobDetails(item?.slug)"
+              class="btn-brand !text-[9.959px] !py-2 !px-6"
+            >
+              APPLY
+            </button>
           </div>
         </div>
       </div>
@@ -107,6 +112,10 @@ const jobsStore = useJobsStore();
 const { Job } = storeToRefs(jobsStore);
 const loading = ref(false);
 const dashboardUrl = import.meta.env.VITE_DASHBOARD;
+
+const redirectToJobDetails = (slug) => {
+  router.push({ name: "job-details", params: { slug } });
+};
 
 const redirectToJobPage = () => {
   router.push({

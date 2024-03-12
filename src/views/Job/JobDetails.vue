@@ -9,6 +9,7 @@ import Navbar from "@/components/Navbar/Navbar.vue";
 import Footer from "@/components/Footer.vue";
 import WorkFlow from "@/components/Bander/WorkFlow.vue";
 import Loader from "@/components/UI/Loader/Loader.vue";
+import { useRouter } from "vue-router";
 
 // import CircleTick from "@/components/icons/circleTick.vue";
 import VerifyIcon from "@/components/icons/verifyIcon.vue";
@@ -52,6 +53,12 @@ const apply = () => {
 // onMounted(async () => {
 //   await jobsStore.handleGetJobDetailsBySlug(route.params.slug);
 // });
+const router = useRouter();
+const url = import.meta.env.VITE_DASHBOARD;
+// const redirectToJobDetails = (slug) => {
+//   router.push({ name: "job-details", params: { slug } });
+// };
+
 defineProps({ singleJob: Object });
 onMounted(async () => {
   loading.value = true;
@@ -71,7 +78,7 @@ onUnmounted(() => {
 <template>
   <div>
     <Navbar />
-        <Loader v-if="loading" />
+    <Loader v-if="loading" />
 
     <div v-if="!loading" class="py-20 container">
       <div class="bg-[#E9FAFB] border-[0.735px] rounded-[17.104px] lg:p-10 p-6">
@@ -122,12 +129,13 @@ onUnmounted(() => {
             >
               {{ JobDetails?.data?.job_title }}
             </p>
-            <button
-              @click="apply"
+            <a
+              :href="url + `view/job/` + `${JobDetails?.data?.id}`"
+              target="_blank"
               class="bg-[#43D0DF] font-Satoshi500 text-[9.708px] p-3 px-12 text-[#000000] rounded-full"
             >
               APPLY
-            </button>
+            </a>
           </div>
           <div class="flex justify-between lg:mt-2 mt-6">
             <div class="flex gap-3 flex-wrap items-center">
@@ -229,12 +237,13 @@ onUnmounted(() => {
             ></div>
           </div>
           <div>
-            <button
-              @click="apply"
+            <a
+              :href="url + `view/job/` + `${JobDetails?.data?.id}`"
+              target="_blank"
               class="bg-[#43D0DF] font-Satoshi500 text-[9.708px] p-3 px-12 text-[#000000] rounded-full"
             >
               APPLY
-            </button>
+            </a>
           </div>
         </div>
         <div class="lg:w-[40%]">
