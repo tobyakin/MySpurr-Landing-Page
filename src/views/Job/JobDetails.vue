@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted } from "vue";
+import { onMounted, ref, onUnmounted } from "vue";
 import { useRoute } from "vue-router";
 // import { useStore } from "@/stores/user";
 import CircleBookMarkIcon from "@/components/icons/circleBookMarkIcon.vue";
@@ -8,6 +8,7 @@ import SearchIcon from "@/components/icons/circleSearchIcon.vue";
 import Navbar from "@/components/Navbar/Navbar.vue";
 import Footer from "@/components/Footer.vue";
 import WorkFlow from "@/components/Bander/WorkFlow.vue";
+import Loader from "@/components/UI/Loader/Loader.vue";
 
 // import CircleTick from "@/components/icons/circleTick.vue";
 import VerifyIcon from "@/components/icons/verifyIcon.vue";
@@ -17,6 +18,7 @@ import { useNumberFomateStore } from "@/stores/numberFomate";
 import { useClipboard } from "@vueuse/core";
 import { useToast } from "vue-toastification";
 const toast = useToast();
+const loading = ref(false);
 
 let source = window.location.href;
 const { copy, copied, isSupported } = useClipboard({ source });
@@ -47,16 +49,31 @@ const emit = defineEmits(["apply"]);
 const apply = () => {
   emit("apply");
 };
-onMounted(async () => {
-  await jobsStore.handleGetJobDetailsBySlug(route.params.slug);
-});
+// onMounted(async () => {
+//   await jobsStore.handleGetJobDetailsBySlug(route.params.slug);
+// });
 defineProps({ singleJob: Object });
+onMounted(async () => {
+  loading.value = true;
+  try {
+    await jobsStore.handleGetJobDetailsBySlug(route.params.slug);
+    loading.value = false;
+  } catch (error) {
+    console.error;
+    loading.value = false;
+  }
+});
+onUnmounted(() => {
+  JobDetails.value = null;
+});
 </script>
 
 <template>
   <div>
     <Navbar />
-    <div class="py-20 container">
+        <Loader v-if="loading" />
+
+    <div v-if="!loading" class="py-20 container">
       <div class="bg-[#E9FAFB] border-[0.735px] rounded-[17.104px] lg:p-10 p-6">
         <div class="flex lg:flex-row flex-col gap-3 w-full">
           <div>
