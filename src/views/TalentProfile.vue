@@ -2,7 +2,7 @@
   <div>
     <Navbar />
     <Vue3Html2pdf
-      v-if="!isLoading"
+      v-if="!loading"
       :show-layout="false"
       :float-layout="false"
       :enable-download="true"
@@ -239,13 +239,20 @@
         </div>
       </template>
     </Vue3Html2pdf>
-    <Loader v-if="isLoading" />
+    <Loader v-if="loading" />
     <Footer />
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted, computed, reactive, defineAsyncComponent } from "vue";
+import {
+  ref,
+  onMounted,
+  computed,
+  reactive,
+  onUnmounted,
+  defineAsyncComponent,
+} from "vue";
 import { useHead } from "@vueuse/head";
 import { storeToRefs } from "pinia";
 import JobAvater from "@/components/Avater/JobAvater.vue";
@@ -304,10 +311,19 @@ const redirectToSinglePortFolio = (id) => {
 
 const talents = computed(() => singleTalent.value?.data || []);
 
-// onMounted(async () => {
-//   await talentsStore.getSingleTalent(route.params.id);
-// });
-
+onMounted(async () => {
+  loading.value = true;
+  try {
+    await talentsStore.getSingleTalent(route.params.id);
+    loading.value = false;
+  } catch (error) {
+    console.error;
+    loading.value = false;
+  }
+});
+onUnmounted(() => {
+  singleTalent.value = null;
+});
 let source = window.location.href;
 const { copy, copied, isSupported } = useClipboard({ source });
 const copyUrl = () => {
@@ -353,19 +369,19 @@ const fetchData = async () => {
 };
 fetchData();
 
-const { isLoading } = useQuery(["talentsProfile"], getTalentsProfileData, {
-  retry: 10,
-  staleTime: 10000,
-  // onSettled: () => {
-  //   loading.value = false; // Set loading to false after query is settled
-  // },
-  // onError: () => {
-  //   loading.value = false; // Set loading to false on error
-  // },
-  onSuccess: (data) => {
-    singleTalent.value = data;
-  },
-});
+// const { isLoading } = useQuery(["talentsProfile"], getTalentsProfileData, {
+//   retry: 10,
+//   staleTime: 10000,
+//   // onSettled: () => {
+//   //   loading.value = false; // Set loading to false after query is settled
+//   // },
+//   // onError: () => {
+//   //   loading.value = false; // Set loading to false on error
+//   // },
+//   onSuccess: (data) => {
+//     singleTalent.value = data;
+//   },
+// });
 </script>
 
 <style></style>
