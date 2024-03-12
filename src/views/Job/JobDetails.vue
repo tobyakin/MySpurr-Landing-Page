@@ -55,9 +55,9 @@ const apply = () => {
 // });
 const router = useRouter();
 const url = import.meta.env.VITE_DASHBOARD;
-// const redirectToJobDetails = (slug) => {
-//   router.push({ name: "job-details", params: { slug } });
-// };
+const redirectToJobDetails = (slug) => {
+  window.open(url + `view/job/` + `${slug}`, "_blank");
+};
 
 defineProps({ singleJob: Object });
 onMounted(async () => {
@@ -129,13 +129,12 @@ onUnmounted(() => {
             >
               {{ JobDetails?.data?.job_title }}
             </p>
-            <a
-              :href="url + `view/job/` + `${JobDetails?.data?.id}`"
-              target="_blank"
-              class="bg-[#43D0DF] font-Satoshi500 text-[9.708px] p-3 px-12 text-[#000000] rounded-full"
+            <button
+              @click="redirectToJobDetails(JobDetails?.data?.id)"
+              class="bg-[#43D0DF] font-Satoshi500 text-[12.708px] p-3 px-12 text-[#000000] rounded-full"
             >
-              APPLY
-            </a>
+              Sign up to apply
+            </button>
           </div>
           <div class="flex justify-between lg:mt-2 mt-6">
             <div class="flex gap-3 flex-wrap items-center">
@@ -237,13 +236,12 @@ onUnmounted(() => {
             ></div>
           </div>
           <div>
-            <a
-              :href="url + `view/job/` + `${JobDetails?.data?.id}`"
-              target="_blank"
-              class="bg-[#43D0DF] font-Satoshi500 text-[9.708px] p-3 px-12 text-[#000000] rounded-full"
+            <button
+              @click="redirectToJobDetails(JobDetails?.data?.id)"
+              class="bg-[#43D0DF] font-Satoshi500 text-[12.708px] p-3 px-12 text-[#000000] rounded-full"
             >
-              APPLY
-            </a>
+              Sign up to apply
+            </button>
           </div>
         </div>
         <div class="lg:w-[40%]">
@@ -310,11 +308,11 @@ onUnmounted(() => {
                 </p>
               </div>
             </div>
-            <button
+            <!-- <button
               class="bg-[#31795A] rounded-full p-2 px-10 font-Satoshi500 text-[16.646px] text-white"
             >
               Message
-            </button>
+            </button> -->
           </div>
         </div>
       </div>
