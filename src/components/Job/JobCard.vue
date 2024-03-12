@@ -19,10 +19,15 @@
           </div>
           <div class="lg:text-left text-center">
             <p
-              class="text-[#000000] text-[20.839px] capitalize font-Satoshi500 leading-[19.739px]"
+              class="text-[#000000] text-[20.839px] flex gap-[8px] items-center capitalize font-Satoshi500 leading-[19.739px]"
             >
               {{ props?.talent.first_name }}
               {{ props?.talent.last_name }}
+              <span
+                v-if="props?.talent?.experience_level"
+                class="bg-[#00474F] rounded-full py-[0.5px] capitalize text-[10.519px] text-[#E6F1F3] font-medium px-[19px]"
+                >{{ props?.talent?.experience_level }}</span
+              >
             </p>
             <p
               class="text-[#00000066] text-[16.699px] leading-[20.739px] font-Satoshi400"
