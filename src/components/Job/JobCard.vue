@@ -1,6 +1,6 @@
 <template>
   <div class="border-[#2440341A] rounded-[11.799px] border-[1.794px] relative p-4 lg:p-8">
-    <RatedBadge class="absolute top-0 left-0" />
+    <!-- <RatedBadge class="absolute top-0 text-[#43D0DF] left-0" /> -->
     <div>
       <div
         class="w-full flex lg:flex-row flex-col lg:justify-between justify-center gap-8 items-center"
