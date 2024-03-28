@@ -47,7 +47,7 @@ export default {
       show: true,
       enableTooltip: true,
       zoom: 6,
-      center: [48, -1.219482],
+      center: latLng(this.lat, this.lng),
       geojson: null,
       fillColor: "#e4ce7f",
       url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
