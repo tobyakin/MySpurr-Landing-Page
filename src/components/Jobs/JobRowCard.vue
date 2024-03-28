@@ -24,18 +24,13 @@ defineProps({
     class="border-[#254035AB] border-[0.735px] bg-white rounded-[7.347px] lg:p-5 p-4 lg:px-6"
   >
     <div class="flex lg:flex-row flex-col gap-3 w-full">
-      <div>
+      <div
+        class="w-[71.011px] h-[61.011px] bg-[#EAEAEA] rounded-full flex justify-center items-center object-contain"
+      >
         <img
-          v-if="job?.company.business_name !== null"
           class="h-[61.011px] w-[61.011px] object-cover rounded-full"
           :src="job?.company.logo"
-          alt=""
-        />
-        <img
-          v-else
-          class="h-[61.011px] w-[61.011px] rounded-full"
-          src="@/assets/img/jobIcon.svg"
-          alt=""
+          :alt="job?.company.business_name"
         />
       </div>
       <div class="w-full">
