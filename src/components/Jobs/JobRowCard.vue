@@ -6,6 +6,7 @@ import CircleBookMarkIcon from "@/components/icons/circleBookMarkIcon.vue";
 import SearchIcon from "@/components/icons/circleSearchIcon.vue";
 import MatchIcon from "@/components/icons/matchIcon.vue";
 import VerifyIcon from "@/components/icons/verifyIcon.vue";
+import RatedBadge from "@/components/icons/ratedBadge.vue";
 import { useRouter } from "vue-router";
 import { useJobsStore } from "@/stores/jobs";
 let store = useJobsStore();
@@ -21,8 +22,13 @@ defineProps({
 </script>
 <template>
   <div
-    class="border-[#254035AB] border-[0.735px] bg-white rounded-[7.347px] lg:p-5 p-4 lg:px-6"
+    class="border-[#254035AB] relative border-[0.735px] bg-white rounded-[7.347px] lg:p-5 p-4 lg:px-6"
   >
+    <RatedBadge
+      v-if="job.is_highlighted === '1'"
+      class="absolute top-0 left-0 !text-red-600"
+    />
+
     <div class="flex lg:flex-row flex-col gap-3 w-full">
       <div
         class="w-[71.011px] h-[61.011px] bg-[#EAEAEA] rounded-full flex justify-center items-center object-contain"
