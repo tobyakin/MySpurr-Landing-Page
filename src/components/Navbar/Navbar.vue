@@ -41,7 +41,7 @@ const redirectWithSearchQuery = () => {
 };
 </script>
 <template>
-  <div class="sticky top-0 z-30 bg-[#ffffff]">
+  <div class="sticky top-0 z-30 bg-[#ffffff] exclude-from-print">
     <div class="!max-w-[93%] container mx-auto">
       <header class="py-[18px]">
         <div
