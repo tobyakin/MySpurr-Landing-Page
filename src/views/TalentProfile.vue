@@ -210,7 +210,7 @@
               <div class="">
                 <button
                   @click="printPage"
-                  class="btn-brand !border-none !w-full !py-2 !text-[#FFFFFF] text-center !bg-[#31795A]"
+                  class="btn-brand !border-none !w-full exclude-from-print !py-2 !text-[#FFFFFF] text-center !bg-[#31795A]"
                 >
                   <span class="!mb-2">Download CV</span>
                 </button>
