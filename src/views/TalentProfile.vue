@@ -209,7 +209,7 @@
               </div>
               <div class="">
                 <button
-                  @click="exportToPDF"
+                  @click="printPage"
                   class="btn-brand !border-none !w-full !py-2 !text-[#FFFFFF] text-center !bg-[#31795A]"
                 >
                   <span class="!mb-2">Download CV</span>
@@ -263,7 +263,7 @@ import CalenderWithPen from "@/components/icons/calenderWithPen.vue";
 import { useRouter, useRoute } from "vue-router";
 import { useTalentsStore } from "@/stores/talents";
 // import Vue3Html2pdf from "vue3-html2pdf";
-import html2pdf from "html2pdf.js";
+// import html2pdf from "html2pdf.js";
 import { useClipboard } from "@vueuse/core";
 import { useToast } from "vue-toastification";
 const Map = defineAsyncComponent(() => import("@/components/Map/Map.vue"));
@@ -276,15 +276,21 @@ const loading = ref(false);
 // const generateReport = () => {
 //   html2Pdf.value.generatePdf();
 // };
-const exportToPDF = () => {
-  html2pdf(document.getElementById("element-to-convert"), {
-    margin: 1,
-    filename: `${talents?.value.first_name}-talent-cv`,
-    image: { type: "jpeg", quality: 0.98 },
-    html2canvas: { scale: 2, logging: true, useCORS: true },
-    jsPDF: { unit: "in", format: "a3", orientation: "portrait" },
-  });
+
+const printPage = () => {
+  window.print();
 };
+// Function to generate Tailwind CSS styles for printing
+
+// const exportToPDF = () => {
+//   html2pdf(document.getElementById("element-to-convert"), {
+//     margin: 1,
+//     filename: `${talents?.value.first_name}-talent-cv`,
+//     image: { type: "jpeg", quality: 0.98 },
+//     html2canvas: { scale: 2, logging: true, useCORS: true },
+//     jsPDF: { unit: "in", format: "a3", orientation: "portrait" },
+//   });
+// };
 const talentsStore = useTalentsStore();
 const { singleTalent } = storeToRefs(talentsStore);
 const route = useRoute();
@@ -371,4 +377,17 @@ fetchData();
 // });
 </script>
 
-<style></style>
+<style>
+/* Hide the excluded section when printing */
+@media print {
+  .exclude-from-print {
+    display: none;
+  }
+
+  /* Set default print settings */
+  @page {
+    size: A2; /* Paper size */
+    margin: 0.5cm; /* Minimum margins */
+  }
+}
+</style>
