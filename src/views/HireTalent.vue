@@ -142,11 +142,13 @@ const filteredJobs = computed(() => {
         .includes(filterOptions.candidateType.toLowerCase())
     );
   }
-  // if (filterOptions.expertLevel) {
-  //   filtered = filtered.filter((item) =>
-  //     item.experience.toLowerCase().includes(filterOptions.expertLevel.toLowerCase())
-  //   );
-  // }
+  if (filterOptions.expertLevel) {
+    filtered = filtered.filter((item) =>
+      item.experience_level
+        .toLowerCase()
+        .includes(filterOptions.expertLevel.toLowerCase())
+    );
+  }
 
   if (filterOptions.qualification) {
     filtered = filtered.filter((item) =>
