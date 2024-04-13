@@ -62,11 +62,11 @@
     >
       <img
         loading="lazy"
-        v-for="item in props?.talent?.portfolio"
+        v-for="(item, index) in props?.talent?.portfolio"
         :key="item"
         :src="item?.featured_image"
-        class="h-[140.078px] flex flex-col w-auto rounded-lg"
-        alt=""
+        class="h-[140.078px] flex flex-col w-[285.44px] bg-[#EFF6F3] object-cover rounded-lg"
+        :alt="`portfolio` + `` + index + 1"
       />
     </div>
     <router-link

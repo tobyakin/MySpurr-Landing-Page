@@ -1,51 +1,53 @@
 <script setup>
-import { useHead } from '@vueuse/head'
-import { defineAsyncComponent } from 'vue'
-import SearchBarIcon from '@/components/icons/searchBarIcon.vue'
-import Navbar from '@/components/Navbar/Navbar.vue'
-import Footer from '@/components/Footer.vue'
-const FormGroup = defineAsyncComponent(() => import('@/components/Form/Input/FormGroup.vue'))
-import CaseStudyCard from '@/components/CaseStudy/CaseStudyCard.vue'
-import useFaqStore from '@/stores/faq'
-import { ref, computed, reactive, onMounted } from 'vue'
-import { storeToRefs } from 'pinia'
-import SampleThree from '@/assets/img/sampleThree.webp'
-import WorkFlow from '@/components/Bander/WorkFlow.vue'
-import Arrow from '@/components/icons/paginationArrow.vue'
-import { usePorfolioStore } from '@/stores/portfolios'
-const PorfolioStore = usePorfolioStore()
-const { talentPortfolios } = storeToRefs(PorfolioStore)
-import { useQuery } from 'vue-query'
+import { useHead } from "@vueuse/head";
+import { defineAsyncComponent } from "vue";
+import SearchBarIcon from "@/components/icons/searchBarIcon.vue";
+import Navbar from "@/components/Navbar/Navbar.vue";
+import Footer from "@/components/Footer.vue";
+const FormGroup = defineAsyncComponent(() =>
+  import("@/components/Form/Input/FormGroup.vue")
+);
+import CaseStudyCard from "@/components/CaseStudy/CaseStudyCard.vue";
+import useFaqStore from "@/stores/faq";
+import { ref, computed, reactive, onMounted } from "vue";
+import { storeToRefs } from "pinia";
+import SampleThree from "@/assets/img/sampleThree.webp";
+import WorkFlow from "@/components/Bander/WorkFlow.vue";
+import Arrow from "@/components/icons/paginationArrow.vue";
+import { usePorfolioStore } from "@/stores/portfolios";
+const PorfolioStore = usePorfolioStore();
+const { talentPortfolios } = storeToRefs(PorfolioStore);
+import { useQuery } from "vue-query";
 
-const tab = ref('ALL')
-const filteredTab = ref([])
+const tab = ref("ALL");
+const filteredTab = ref([]);
 const blogPost = [
   {
     slug: 1,
     cover_image: SampleThree,
-    title: 'How to Build a Successful Career in the Creative Industry',
-    blog_category: 'career development',
-    blog_description: 'trdfgfg',
-    created_at: '16 Jul 2018'
+    title: "How to Build a Successful Career in the Creative Industry",
+    blog_category: "career development",
+    blog_description: "trdfgfg",
+    created_at: "16 Jul 2018",
   },
   {
     slug: 2,
     cover_image: SampleThree,
-    title: 'How to Build a Successful Career in the Creative Industry',
-    blog_category: 'Company news',
-    blog_description: 'trdfgfg',
-    created_at: '16 Jul 2018'
+    title: "How to Build a Successful Career in the Creative Industry",
+    blog_category: "Company news",
+    blog_description: "trdfgfg",
+    created_at: "16 Jul 2018",
   },
   {
     slug: 3,
     cover_image: SampleThree,
-    title: 'How to Build a Successful Career in the Creative Industry',
-    blog_category: 'Creativity and Design',
-    blog_description: 'trdfgfg',
-    created_at: '16 Jul 2018'
-  }
-]
-const store = useFaqStore()
+    title: "How to Build a Successful Career in the Creative Industry",
+    blog_category: "Creativity and Design",
+    blog_description: "trdfgfg",
+    created_at: "16 Jul 2018",
+  },
+];
+const store = useFaqStore();
 // const { blog } = storeToRefs(store);
 // const pages = computed(() => {
 //   const divsor = Math.floor(blog.value.meta.current_page / 3);
@@ -75,16 +77,16 @@ const store = useFaqStore()
 // }
 
 const filterTab = (category) => {
-  tab.value = category
-  filteredTab.value = []
-  if (category != 'ALL') {
-    filteredTab.value = store.blogPost.filter((item) => item.blog_category == category)
+  tab.value = category;
+  filteredTab.value = [];
+  if (category != "ALL") {
+    filteredTab.value = store.blogPost.filter((item) => item.blog_category == category);
   }
-}
+};
 const siteData = reactive({
   title: `MySpurr | Case Study `,
-  description: ``
-})
+  description: ``,
+});
 
 useHead({
   // Can be static or computed
@@ -92,33 +94,33 @@ useHead({
   meta: [
     {
       name: `description`,
-      content: computed(() => siteData.description)
+      content: computed(() => siteData.description),
     },
     {
-      property: 'keywords',
-      content: 'Case Study,'
-    }
-  ]
-})
+      property: "keywords",
+      content: "Case Study,",
+    },
+  ],
+});
 // onMounted(async () => {
 //   await PorfolioStore.allPorfolio();
 // });
 const getAllTalentPortfolio = async () => {
-  let response = await PorfolioStore.allPorfolio()
-  return response
-}
+  let response = await PorfolioStore.allPorfolio();
+  return response;
+};
 const fetchData = async () => {
-  await Promise.all([getAllTalentPortfolio()])
-}
-fetchData()
+  await Promise.all([getAllTalentPortfolio()]);
+};
+fetchData();
 
-useQuery(['talents'], getAllTalentPortfolio, {
+useQuery(["talents"], getAllTalentPortfolio, {
   retry: 10,
   staleTime: 10000,
   onSuccess: (data) => {
-    talentPortfolios.value = data
-  }
-})
+    talentPortfolios.value = data;
+  },
+});
 </script>
 
 <template>
@@ -328,7 +330,7 @@ useQuery(['talents'], getAllTalentPortfolio, {
               class="h-fit"
               v-for="portfolio in talentPortfolios?.data"
               :key="portfolio.id"
-              :image="portfolio?.cover_image"
+              :image="portfolio?.featured_image"
               :heading="portfolio?.title"
               :blog="portfolio"
             />
@@ -338,7 +340,7 @@ useQuery(['talents'], getAllTalentPortfolio, {
               class="h-fit"
               v-for="blog in filteredTab"
               :key="blog"
-              :image="blog.cover_image"
+              :image="blog.featured_image"
               :heading="blog.title"
               :text="blog.blog_description"
               :date="blog.created_at"

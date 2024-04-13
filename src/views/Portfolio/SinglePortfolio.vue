@@ -3,9 +3,28 @@
     <Navbar />
     <div class="py-20 container">
       <div
-        class="bg-[#E9FAFB] border-[0.735px] flex lg:flex-row flex-col gap-8 justify-between rounded-[13.076px] mt-10 p-6 px-4 lg:px-[100px]"
+        class="bg-[#E9FAFB] border-[0.735px] flex lg:flex-row flex-col gap-8 justify-center rounded-[13.076px] mt-10 p-6 px-4 lg:px-[100px]"
       >
-        <div class="flex flex-col gap-2">
+        <div class="flex flex-row gap-2">
+          <p class="text-[#244034c5] text-[20.9px] font-Satoshi400">Category:</p>
+          <p class="text-[#244034] text-[20.9px] font-Satoshi500">
+            {{ category_id }}
+          </p>
+        </div>
+        <div class="flex flex-row gap-2">
+          <p class="text-[#244034c5] text-[20.9px] font-Satoshi400">Tags:</p>
+          <div></div>
+          <div class="flex flex-row gap-1">
+            <p
+              v-for="tag in portfolio.tags"
+              :key="tag"
+              class="text-[#244034] text-[20.9px] font-Satoshi500"
+            >
+              {{ tag }},
+            </p>
+          </div>
+        </div>
+        <!-- <div class="flex flex-col gap-2">
           <p class="text-[#244034c5] text-[13.076px] font-Satoshi400">Creative work</p>
           <p class="text-[#244034] text-[13.076px] font-Satoshi500">
             {{ portfolio?.title }}
@@ -42,23 +61,37 @@
           <p class="text-[#244034] text-[13.076px] font-Satoshi500">
             {{ portfolio?.location }}
           </p>
-        </div>
+        </div> -->
       </div>
-      <div class="flex flex-col mt-10 gap-20 w-full">
+      <div class="flex flex-col mt-10 gap-10 w-full">
+        <div class="w-full">
+          <h3
+            v-html="portfolio?.title"
+            class="leading-[16.33px] text-[#000000] font-Satoshi700 mt-4 text-[32px]"
+          ></h3>
+          <div
+            v-html="portfolio?.description"
+            class="!my-4 leading-[16.33px] portfolio_editor mt-4 font-Satoshi400 w-full !text-[22.62px]"
+          ></div>
+        </div>
+
         <img
           loading="lazy"
           :src="portfolio?.featured_image"
           alt="cover image"
-          class="rounded-[13.076px] h-[50%] mx-auto"
+          class="rounded-[13.076px] h-[505.52px] w-full bg-[#EFF6F3] object-cover mx-auto"
         />
-        <div class="w-full">
-          <div
-            v-html="portfolio?.body"
-            class="!my-4 leading-[32px] editor mt-4 font-Satoshi400 w-full tracking-[-0.003rem] text-[20px]"
-          ></div>
+        <div class="flex flex-col gap-10">
+          <img
+            v-for="image in portfolio?.project_image"
+            :key="image.id"
+            loading="lazy"
+            :src="image.image"
+            alt="cover image"
+            class="rounded-[13.076px] h-[505.52px] w-full bg-[#EFF6F3] object-cover mx-auto"
+          />
         </div>
-
-        <div class="flex flex-row justify-center gap-5 items-center">
+        <!-- <div class="flex flex-row justify-center gap-5 items-center">
           <button class="relative">
             <div
               class="p-1 rounded-full absolute top-[-5px] right-[-5px] h-[21.89px] w-[21.89px] text-[8.674px] font-Satoshi500 text-white bg-[#43D0DF]"
@@ -99,8 +132,8 @@
             </div>
             <img loading="lazy" src="@/assets/svg/share.svg" alt="" />
           </button>
-        </div>
-        <div class="container">
+        </div> -->
+        <!-- <div class="container">
           <div
             class="w-full flex lg:flex-row flex-col lg:justify-between justify-center gap-8 items-center"
           >
@@ -125,18 +158,26 @@
                 </svg>
               </div>
               <div class="lg:text-left text-center">
-                <p class="text-[#000000] text-[20.839px] font-Satoshi500 leading-[19.739px]">
+                <p
+                  class="text-[#000000] text-[20.839px] font-Satoshi500 leading-[19.739px]"
+                >
                   Julia Ark
                 </p>
-                <p class="text-[#00000066] text-[16.699px] leading-[20.739px] font-Satoshi400">
+                <p
+                  class="text-[#00000066] text-[16.699px] leading-[20.739px] font-Satoshi400"
+                >
                   Graphic Designer
                 </p>
                 <div class="flex items-center gap-2">
-                  <p class="lg:text-[19.319px] text-[14px] text-[#244034] font-Satoshi500">
+                  <p
+                    class="lg:text-[19.319px] text-[14px] text-[#244034] font-Satoshi500"
+                  >
                     $30k -$50k/yr
                   </p>
                   <div class="h-[6px] bg-[#010101e2] w-[6px] rounded-full"></div>
-                  <p class="text-[#244034] lg:text-[19.319px] text-[14px] font-Satoshi500">
+                  <p
+                    class="text-[#244034] lg:text-[19.319px] text-[14px] font-Satoshi500"
+                  >
                     California, US
                   </p>
                 </div>
@@ -150,7 +191,9 @@
           </div>
         </div>
         <div class="flex lg:flex-row flex-col gap-5 w-full">
-          <div class="rounded-[22.343px] p-6 px-8 border-[0.508px] border-[#254035]/[0.6] w-full">
+          <div
+            class="rounded-[22.343px] p-6 px-8 border-[0.508px] border-[#254035]/[0.6] w-full"
+          >
             <div class="flex lg:flex-row flex-col gap-[54.841px]">
               <img
                 loading="lazy"
@@ -211,19 +254,18 @@
               />
             </div>
           </div>
-        </div>
-        <h4 class="text-[#101621] text-[25px] leading-[62px] font-Satoshi500">You may also like</h4>
+        </div> -->
+        <h4 class="text-[#101621] text-[25px] leading-[62px] font-Satoshi500">
+          You may also like
+        </h4>
 
         <div class="flex lg:flex-row flex-col gap-5 w-full">
           <CaseStudyCard
-            v-for="blog in blogPost"
-            :key="blog"
-            :image="blog.cover_image"
-            :heading="blog.title"
-            :text="blog.blog_description"
-            :date="blog.created_at"
-            :blog_category="blog.blog_category"
-            :blog="blog"
+            v-for="portfolio in talentPortfolios?.data?.slice(0, 5)"
+            :key="portfolio.id"
+            :image="portfolio?.featured_image"
+            :heading="portfolio?.title"
+            :blog="portfolio"
           />
         </div>
       </div>
@@ -235,76 +277,98 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed, reactive } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
-import WorkFlow from '@/components/Bander/WorkFlow.vue'
-import Navbar from '@/components/Navbar/Navbar.vue'
-import Footer from '@/components/Footer.vue'
-import CaseStudyCard from '@/components/CaseStudy/CaseStudyCard.vue'
-import SampleThree from '@/assets/img/sampleThree.webp'
-import { storeToRefs } from 'pinia'
-import { useTalentsStore } from '@/stores/talents'
-const talentsStore = useTalentsStore()
-const { talentPortfolio } = storeToRefs(talentsStore)
-const route = useRoute()
-const router = useRouter()
-import { useQuery } from 'vue-query'
+import { ref, onMounted, computed, reactive } from "vue";
+import { useRouter, useRoute } from "vue-router";
+import WorkFlow from "@/components/Bander/WorkFlow.vue";
+import Navbar from "@/components/Navbar/Navbar.vue";
+import Footer from "@/components/Footer.vue";
+import CaseStudyCard from "@/components/CaseStudy/CaseStudyCard.vue";
+import SampleThree from "@/assets/img/sampleThree.webp";
+import { storeToRefs } from "pinia";
+import { useTalentsStore } from "@/stores/talents";
+const talentsStore = useTalentsStore();
+const { talentPortfolio } = storeToRefs(talentsStore);
+const route = useRoute();
+const router = useRouter();
+import { useQuery } from "vue-query";
+import { usePorfolioStore } from "@/stores/portfolios";
+const PorfolioStore = usePorfolioStore();
+const { talentPortfolios } = storeToRefs(PorfolioStore);
+import { useSkillsStore } from "@/stores/skills";
+const skillsStore = useSkillsStore();
+const { skills, jobTitle } = storeToRefs(skillsStore);
 
-const blogPost = [
-  {
-    slug: 1,
-    cover_image: SampleThree,
-    title: 'How to Build a Successful Career in the Creative Industry',
-    blog_category: 'career development',
-    blog_description: 'trdfgfg',
-    created_at: '16 Jul 2018'
-  },
-  {
-    slug: 2,
-    cover_image: SampleThree,
-    title: 'How to Build a Successful Career in the Creative Industry',
-    blog_category: 'Company news',
-    blog_description: 'trdfgfg',
-    created_at: '16 Jul 2018'
-  },
-  {
-    slug: 3,
-    cover_image: SampleThree,
-    title: 'How to Build a Successful Career in the Creative Industry',
-    blog_category: 'Creativity and Design',
-    blog_description: 'trdfgfg',
-    created_at: '16 Jul 2018'
-  },
-  {
-    slug: 4,
-    cover_image: SampleThree,
-    title: 'How to Build a Successful Career in the Creative Industry',
-    blog_category: 'Creativity and Design',
-    blog_description: 'trdfgfg',
-    created_at: '16 Jul 2018'
-  }
-]
-const portfolio = computed(() => talentPortfolio.value?.data || [])
+// const blogPost = [
+//   {
+//     slug: 1,
+//     cover_image: SampleThree,
+//     title: "How to Build a Successful Career in the Creative Industry",
+//     blog_category: "career development",
+//     blog_description: "trdfgfg",
+//     created_at: "16 Jul 2018",
+//   },
+//   {
+//     slug: 2,
+//     cover_image: SampleThree,
+//     title: "How to Build a Successful Career in the Creative Industry",
+//     blog_category: "Company news",
+//     blog_description: "trdfgfg",
+//     created_at: "16 Jul 2018",
+//   },
+//   {
+//     slug: 3,
+//     cover_image: SampleThree,
+//     title: "How to Build a Successful Career in the Creative Industry",
+//     blog_category: "Creativity and Design",
+//     blog_description: "trdfgfg",
+//     created_at: "16 Jul 2018",
+//   },
+//   {
+//     slug: 4,
+//     cover_image: SampleThree,
+//     title: "How to Build a Successful Career in the Creative Industry",
+//     blog_category: "Creativity and Design",
+//     blog_description: "trdfgfg",
+//     created_at: "16 Jul 2018",
+//   },
+// ];
+const portfolio = computed(() => talentPortfolio.value?.data || []);
+const category_id = computed(() => {
+  const foundCategory = skills?.value?.data?.find(
+    (category) => category.id === portfolio.value.category_id
+  );
+  return foundCategory ? foundCategory.name : null;
+});
+
+onMounted(async () => {
+  await talentsStore.SingleTalentPortfolio(route.params.id);
+  await PorfolioStore.allPorfolio();
+});
+onMounted(async () => {
+  await skillsStore.getskills();
+  await skillsStore.getJobTitles();
+});
 
 // onMounted(async () => {
-//   await talentsStore.SingleTalentPortfolio(route.params.id);
+//   await PorfolioStore.allPorfolio();
 // });
-const getSingleTalentPortfolio = async () => {
-  let response = await talentsStore.SingleTalentPortfolio(route.params.id)
-  return response
-}
-const fetchData = async () => {
-  await Promise.all([getSingleTalentPortfolio()])
-}
-fetchData()
 
-useQuery(['talents'], getSingleTalentPortfolio, {
-  retry: 10,
-  staleTime: 10000,
-  onSuccess: (data) => {
-    talentPortfolio.value = data
-  }
-})
+// const getSingleTalentPortfolio = async () => {
+//   let response = await talentsStore.SingleTalentPortfolio(route.params.id);
+//   return response;
+// };
+// const fetchData = async () => {
+//   await Promise.all([getSingleTalentPortfolio()]);
+// };
+// fetchData();
+
+// useQuery(["talents"], getSingleTalentPortfolio, {
+//   retry: 10,
+//   staleTime: 10000,
+//   onSuccess: (data) => {
+//     talentPortfolio.value = data;
+//   },
+// });
 </script>
 
 <style></style>
