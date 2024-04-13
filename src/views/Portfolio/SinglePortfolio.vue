@@ -47,7 +47,7 @@
       <div class="flex flex-col mt-10 gap-20 w-full">
         <img
           loading="lazy"
-          :src="portfolio?.cover_image"
+          :src="portfolio?.featured_image"
           alt="cover image"
           class="rounded-[13.076px] h-[50%] mx-auto"
         />
