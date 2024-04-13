@@ -52,7 +52,7 @@
 
               <button @click="copyUrl()"><SearchIcon /></button>
             </div>
-            <button class="btn-brand">Message</button>
+            <!-- <button class="btn-brand">Message</button> -->
           </div>
         </div>
       </div>
