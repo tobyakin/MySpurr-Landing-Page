@@ -249,6 +249,23 @@ ol {
 .editor  span{
   @apply break-words text-justify !text-[#000000BF] text-[16px] font-Satoshi400 !my-4 leading-[35px];
 }
+.portfolio_editor ul {
+  list-style-type: disc !important;
+  /* list-style:circle !important */
+    @apply break-words text-justify font-Satoshi400 mt-2 ml-3 !text-[#000000BF] !text-[22.62px] leading-[25px];
+
+}
+.portfolio_editor ul li {
+  @apply !mb-2
+}
+
+.portfolio_editor p {
+  @apply break-words text-justify !text-[#000000BF] text-[22.62px] font-Satoshi400 !my-4 leading-[35px];
+}
+.portfolio_editor  span{
+  @apply break-words text-justify !text-[#000000BF] text-[22.62px] font-Satoshi400 !my-4 leading-[35px];
+}
+
 .ql-align-center img {
   text-align: center !important;
   justify-content: justify;
