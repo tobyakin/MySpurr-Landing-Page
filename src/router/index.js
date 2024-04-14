@@ -15,6 +15,7 @@ import GoPro from '@/views/GoPro.vue'
 import SinglePortfolio from '@/views/Portfolio/SinglePortfolio.vue'
 import AllJobs from '@/views/Job/AllJobs.vue'
 import JobDetails from '@/views/Job/JobDetails.vue'
+import NotFoundPage from '@/views/NotFoundPage.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -122,6 +123,10 @@ const router = createRouter({
       path: '/case-study',
       name: 'case-study',
       component: CaseStudyPage
+    },
+    {
+      path: '/:catchAll(.*)',
+      component: NotFoundPage
     }
   ],
   scrollBehavior(to, from, savedPosition) {
