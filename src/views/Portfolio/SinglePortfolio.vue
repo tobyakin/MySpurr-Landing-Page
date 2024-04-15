@@ -1,7 +1,9 @@
 <template>
   <div>
     <Navbar />
-    <div class="py-20 container">
+    <Loader v-if="loading" />
+
+    <div v-else class="py-20 container">
       <div
         class="bg-[#E9FAFB] border-[0.735px] flex lg:flex-row flex-col gap-8 justify-center rounded-[13.076px] mt-10 p-6 px-4 lg:px-[100px]"
       >
@@ -255,29 +257,31 @@
             </div>
           </div>
         </div> -->
-        <h4 class="text-[#101621] text-[25px] leading-[62px] font-Satoshi500">
-          You may also like
-        </h4>
-
-        <div class="flex lg:flex-row flex-col gap-5 w-full">
-          <CaseStudyCard
-            v-for="portfolio in talentPortfolios?.data?.slice(0, 5)"
-            :key="portfolio.id"
-            :image="portfolio?.featured_image"
-            :heading="portfolio?.title"
-            :blog="portfolio"
-          />
-        </div>
       </div>
+    </div>
+    <div class="py-20 container">
+      <h4 class="text-[#101621] text-[25px] leading-[62px] font-Satoshi500">
+        You may also like
+      </h4>
 
+      <div class="flex lg:flex-row flex-col gap-5 w-full">
+        <CaseStudyCard
+          v-for="portfolio in talentPortfolios?.data?.slice(0, 5)"
+          :key="portfolio.id"
+          :image="portfolio?.featured_image"
+          :heading="portfolio?.title"
+          :blog="portfolio"
+        />
+      </div>
       <WorkFlow />
     </div>
+
     <Footer />
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted, computed, reactive } from "vue";
+import { ref, onMounted, computed, watchEffect, onUnmounted, reactive } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import WorkFlow from "@/components/Bander/WorkFlow.vue";
 import Navbar from "@/components/Navbar/Navbar.vue";
@@ -297,6 +301,8 @@ const { talentPortfolios } = storeToRefs(PorfolioStore);
 import { useSkillsStore } from "@/stores/skills";
 const skillsStore = useSkillsStore();
 const { skills, jobTitle } = storeToRefs(skillsStore);
+import Loader from "@/components/UI/Loader/Loader.vue";
+const loading = ref(false);
 
 // const blogPost = [
 //   {
@@ -341,14 +347,35 @@ const category_id = computed(() => {
 });
 
 onMounted(async () => {
-  await talentsStore.SingleTalentPortfolio(route.params.id);
-  await PorfolioStore.allPorfolio();
+  loading.value = true;
+  try {
+    await talentsStore.SingleTalentPortfolio(route.params.id);
+    await PorfolioStore.allPorfolio();
+    await skillsStore.getskills();
+    await skillsStore.getJobTitles();
+    loading.value = false;
+  } catch (error) {
+    console.error;
+    loading.value = false;
+  }
 });
-onMounted(async () => {
-  await skillsStore.getskills();
-  await skillsStore.getJobTitles();
+// Watch for changes in the route query parameters
+watchEffect(async () => {
+  loading.value = true;
+  try {
+    await talentsStore.SingleTalentPortfolio(route.params.id);
+    await PorfolioStore.allPorfolio();
+    await skillsStore.getskills();
+    await skillsStore.getJobTitles();
+    loading.value = false;
+  } catch (error) {
+    console.error;
+    loading.value = false;
+  }
 });
-
+onUnmounted(() => {
+  talentPortfolio.value = null;
+});
 // onMounted(async () => {
 //   await PorfolioStore.allPorfolio();
 // });

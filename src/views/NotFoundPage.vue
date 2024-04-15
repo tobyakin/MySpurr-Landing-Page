@@ -35,7 +35,7 @@ const redirectToHome = () => {
 <template>
   <div>
     <Navbar />
-    <div class="bg-[#ECFAFC] flex flex-col h-[80vh] py-6 justify-center text-center">
+    <div class="bg-[#ECFAFC] flex flex-col min-h-[80vh] py-6 justify-center text-center">
       <h1 class="text-[#244034] lg:text-[514.2px] text-5xl font-Satoshi500">404</h1>
 
       <p
