@@ -116,49 +116,59 @@
             <EducationDetails :items="talents?.education" />
             <!-- <SampleFive :items="items" /> -->
 
-            <p class="text-[28px] text-[#000] font-Satoshi500 !mb-12 mt-8">Work Experience</p>
+            <p class="text-[28px] text-[#000] font-Satoshi500 !mb-12 mt-8">
+              Work Experience
+            </p>
             <WorkExperience :items="talents?.employment" />
             <p class="text-[28px] text-[#000] font-Satoshi500 !mb-12 mt-8">Portfolio</p>
             <div
+              v-if="talents?.portfolio?.length === 0"
+              class="flex flex-col w-full justify-center items-center"
+            >
+              <p class="text-[15px] text-[#000] font-Satoshi400 text-center !mb-12 mt-8">
+                Uploaded portfolio can be viewed here
+              </p>
+            </div>
+
+            <div
+              v-else
               class="flex flex-row gap-4 w-full overflow-hidden cursor-move mt-6 hide-scrollbar overflow-x-auto"
             >
-              <div
-                v-if="talents?.portfolio?.length === 0"
-                class="flex flex-col w-full justify-center items-center"
-              >
-                <p class="text-[15px] text-[#000] font-Satoshi400 text-center !mb-12 mt-8">
-                  Uploaded portfolio can be viewed here
-                </p>
-              </div>
-
               <img
-                v-else
                 loading="lazy"
                 @click="redirectToSinglePortFolio(img.id)"
                 role="button"
                 v-for="(img, index) in talents?.portfolio"
                 :key="img?.id"
                 :src="img?.featured_image"
-                class="h-[268px] flex flex-col object-contain items-center w-[277.61px] rounded-[7px] bg-[#EDF0B8]/[20%]"
+                class="h-[268px] flex flex-col object-cover items-center w-[277.61px] rounded-[7px] bg-[#EDF0B8]/[20%]"
                 :alt="img?.title"
               />
             </div>
-            <p class="text-[28px] text-[#000] hidden font-Satoshi500 !mb-12 mt-8">Reviews</p>
+            <p class="text-[28px] text-[#000] hidden font-Satoshi500 !mb-12 mt-8">
+              Reviews
+            </p>
             <div class="flex flex-col gap-4 hidden">
               <div
                 v-for="i in 3"
                 :key="i"
                 class="border-[#2440341A] border-[1.265px] rounded-[9.732px] p-6"
               >
-                <p class="text-[#001E00] font-Satoshi400 text-[16px] !mb-4 tracking-[0.6px]">
+                <p
+                  class="text-[#001E00] font-Satoshi400 text-[16px] !mb-4 tracking-[0.6px]"
+                >
                   Find B2B Partners for UK and US Online Tutoring Company
                 </p>
                 <div class="flex items-center gap-1 font-Satoshi400 !mb-2">
                   <RateStar v-for="i in 5" :key="i" />
                   <span class="text-[#001E00] text-[14px]">5.00 </span
-                  ><span class="text-[#5E6D55] text-[12px]">Dec 15, 2022 - Feb 2, 2023</span>
+                  ><span class="text-[#5E6D55] text-[12px]"
+                    >Dec 15, 2022 - Feb 2, 2023</span
+                  >
                 </div>
-                <p class="text-[#001E00] font-Satoshi400 italic text-[13px] !mb-4 tracking-[0.6px]">
+                <p
+                  class="text-[#001E00] font-Satoshi400 italic text-[13px] !mb-4 tracking-[0.6px]"
+                >
                   "Great lead generation for education companies"
                 </p>
                 <p class="text-[#5E6D55] font-Satoshi400 text-[14px]">Private earnings</p>
@@ -170,7 +180,11 @@
             <div
               class="bg-[#E9FAFB] p-8 border-[#F6F6F6] border-[1px] flex flex-col gap-12 mt-4 rounded-[15px]"
             >
-              <div v-for="i in talents?.certificate" :key="i" class="flex items-center gap-5">
+              <div
+                v-for="i in talents?.certificate"
+                :key="i"
+                class="flex items-center gap-5"
+              >
                 <CertificateBadge />
                 <div class="flex flex-col gap-0 h-auto">
                   <a
@@ -216,38 +230,45 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed, reactive, onUnmounted, defineAsyncComponent } from 'vue'
-import { useHead } from '@vueuse/head'
-import { storeToRefs } from 'pinia'
-import JobAvater from '@/components/Avater/JobAvater.vue'
-import Navbar from '@/components/Navbar/Navbar.vue'
-import Footer from '@/components/Footer.vue'
-import SearchIconVeritical from '@/components/icons/searchIconVeritical.vue'
-import LinkdeinIcon from '@/components/icons/linkdeinIcon.vue'
-import InstagramIcon from '@/components/icons/instagramIcon.vue'
-import BeIcon from '@/components/icons/beIcon.vue'
-import TwitterIcon from '@/components/icons/twitterIcon.vue'
+import {
+  ref,
+  onMounted,
+  computed,
+  reactive,
+  onUnmounted,
+  defineAsyncComponent,
+} from "vue";
+import { useHead } from "@vueuse/head";
+import { storeToRefs } from "pinia";
+import JobAvater from "@/components/Avater/JobAvater.vue";
+import Navbar from "@/components/Navbar/Navbar.vue";
+import Footer from "@/components/Footer.vue";
+import SearchIconVeritical from "@/components/icons/searchIconVeritical.vue";
+import LinkdeinIcon from "@/components/icons/linkdeinIcon.vue";
+import InstagramIcon from "@/components/icons/instagramIcon.vue";
+import BeIcon from "@/components/icons/beIcon.vue";
+import TwitterIcon from "@/components/icons/twitterIcon.vue";
 // import SampleFive from "@/components/genericComponents/sampleFive.vue";
-import WorkExperience from '@/components/genericComponents/WorkExperience.vue'
-import EducationDetails from '@/components/genericComponents/EducationDetails.vue'
+import WorkExperience from "@/components/genericComponents/WorkExperience.vue";
+import EducationDetails from "@/components/genericComponents/EducationDetails.vue";
 // import SampleOne from "@/assets/img/sampleOne.webp";
 // import SampleTwo from "@/assets/img/sampleTwo.webp";
 // import SampleThree from "@/assets/img/sampleThree.webp";
 // import SampleFour from "@/assets/img/sampleFour.webp";
-import RateStar from '@/components/icons/rateStar.vue'
-import CertificateBadge from '@/components/icons/certificateBadge.vue'
-import CalenderWithPen from '@/components/icons/calenderWithPen.vue'
-import { useRouter, useRoute } from 'vue-router'
-import { useTalentsStore } from '@/stores/talents'
+import RateStar from "@/components/icons/rateStar.vue";
+import CertificateBadge from "@/components/icons/certificateBadge.vue";
+import CalenderWithPen from "@/components/icons/calenderWithPen.vue";
+import { useRouter, useRoute } from "vue-router";
+import { useTalentsStore } from "@/stores/talents";
 // import Vue3Html2pdf from "vue3-html2pdf";
 // import html2pdf from "html2pdf.js";
-import { useClipboard } from '@vueuse/core'
-import { useToast } from 'vue-toastification'
-const Map = defineAsyncComponent(() => import('@/components/Map/Map.vue'))
+import { useClipboard } from "@vueuse/core";
+import { useToast } from "vue-toastification";
+const Map = defineAsyncComponent(() => import("@/components/Map/Map.vue"));
 // import { useQuery } from "vue-query";
-import Loader from '@/components/UI/Loader/Loader.vue'
-const toast = useToast()
-const loading = ref(false)
+import Loader from "@/components/UI/Loader/Loader.vue";
+const toast = useToast();
+const loading = ref(false);
 // const html2Pdf = ref(null);
 
 // const generateReport = () => {
@@ -255,8 +276,8 @@ const loading = ref(false)
 // };
 
 const printPage = () => {
-  window.print()
-}
+  window.print();
+};
 // Function to generate Tailwind CSS styles for printing
 
 // const exportToPDF = () => {
@@ -268,76 +289,76 @@ const printPage = () => {
 //     jsPDF: { unit: "in", format: "a3", orientation: "portrait" },
 //   });
 // };
-const talentsStore = useTalentsStore()
-const { singleTalent } = storeToRefs(talentsStore)
-const route = useRoute()
-const router = useRouter()
+const talentsStore = useTalentsStore();
+const { singleTalent } = storeToRefs(talentsStore);
+const route = useRoute();
+const router = useRouter();
 const redirectToSinglePortFolio = (id) => {
   router.push({
-    name: 'single-portfolio',
-    params: { id: id }
-  })
-}
+    name: "single-portfolio",
+    params: { id: id },
+  });
+};
 
-const talents = computed(() => singleTalent.value?.data || [])
+const talents = computed(() => singleTalent.value?.data || []);
 
 onMounted(async () => {
-  loading.value = true
+  loading.value = true;
   try {
-    await talentsStore.getSingleTalent(route.params.id)
-    loading.value = false
+    await talentsStore.getSingleTalent(route.params.id);
+    loading.value = false;
   } catch (error) {
-    console.error
-    loading.value = false
+    console.error;
+    loading.value = false;
   }
-})
+});
 onUnmounted(() => {
-  singleTalent.value = null
-})
-let source = window.location.href
-const { copy, copied, isSupported } = useClipboard({ source })
+  singleTalent.value = null;
+});
+let source = window.location.href;
+const { copy, copied, isSupported } = useClipboard({ source });
 const copyUrl = () => {
   if (isSupported) {
     if (copied) {
-      console.log(source)
-      copy(source)
-      toast.success('Link Copied', {
-        timeout: 4000
-      })
+      console.log(source);
+      copy(source);
+      toast.success("Link Copied", {
+        timeout: 4000,
+      });
     }
   } else {
-    toast.error('Your browser does not support Clipboard API', {
-      timeout: 4000
-    })
+    toast.error("Your browser does not support Clipboard API", {
+      timeout: 4000,
+    });
   }
-}
+};
 
 const siteData = reactive({
-  title: `MySpurr |  ${singleTalent.value?.data?.first_name || ''}`,
-  description: ``
-})
+  title: `MySpurr |  ${singleTalent.value?.data?.first_name || ""}`,
+  description: ``,
+});
 
 useHead({
   title: siteData.title,
   meta: [
     {
       name: `description`,
-      content: computed(() => siteData.description)
+      content: computed(() => siteData.description),
     },
     {
-      property: 'keywords',
-      content: 'Courses, learn'
-    }
-  ]
-})
+      property: "keywords",
+      content: "Courses, learn",
+    },
+  ],
+});
 const getTalentsProfileData = async () => {
-  let response = await talentsStore.getSingleTalent(route.params.id)
-  return response
-}
+  let response = await talentsStore.getSingleTalent(route.params.id);
+  return response;
+};
 const fetchData = async () => {
-  await Promise.all([getTalentsProfileData()])
-}
-fetchData()
+  await Promise.all([getTalentsProfileData()]);
+};
+fetchData();
 
 // const { isLoading } = useQuery(["talentsProfile"], getTalentsProfileData, {
 //   retry: 10,

@@ -18,6 +18,8 @@ import { usePorfolioStore } from "@/stores/portfolios";
 const PorfolioStore = usePorfolioStore();
 const { talentPortfolios } = storeToRefs(PorfolioStore);
 import { useQuery } from "vue-query";
+import Loader from "@/components/UI/Loader/Loader.vue";
+const loading = ref(false);
 
 const tab = ref("ALL");
 const filteredTab = ref([]);
@@ -114,7 +116,7 @@ const fetchData = async () => {
 };
 fetchData();
 
-useQuery(["talents"], getAllTalentPortfolio, {
+const { isLoading } = useQuery(["talents"], getAllTalentPortfolio, {
   retry: 10,
   staleTime: 10000,
   onSuccess: (data) => {
@@ -126,6 +128,7 @@ useQuery(["talents"], getAllTalentPortfolio, {
 <template>
   <div>
     <Navbar />
+
     <div class="py-20 lg:!pt-[100px] px-[40px]">
       <div class="flex flex-col items-center text-center justify-between">
         <h4
@@ -322,6 +325,8 @@ useQuery(["talents"], getAllTalentPortfolio, {
               </a>
             </li>
           </ul> -->
+          <Loader v-if="isLoading" />
+
           <div
             v-if="store.blogPost.length && tab == 'ALL'"
             class="md:grid md:grid-cols-6 gap-10 !my-10 h-full flex-wrap"
