@@ -81,7 +81,7 @@
           loading="lazy"
           :src="portfolio?.featured_image"
           alt="cover image"
-          class="rounded-[13.076px] h-[505.52px] w-full bg-[#EFF6F3] object-cover mx-auto"
+          class="rounded-[13.076px] h-[505.52px] w-full bg-[#EFF6F3] object-contain mx-auto"
         />
         <div class="flex flex-col gap-10">
           <img
@@ -90,7 +90,7 @@
             loading="lazy"
             :src="image.image"
             alt="cover image"
-            class="rounded-[13.076px] h-[505.52px] w-full bg-[#EFF6F3] object-cover mx-auto"
+            class="rounded-[13.076px] h-[505.52px] w-full bg-[#EFF6F3] object-contain mx-auto"
           />
         </div>
         <!-- <div class="flex flex-row justify-center gap-5 items-center">
