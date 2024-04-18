@@ -61,6 +61,8 @@
       class="flex flex-row gap-6 w-full overflow-hidden mt-6 hide-scrollbar overflow-x-auto"
     >
       <img
+        @click="redirectToPortfolio(props?.talent.first_name, item.id)"
+        role="button"
         loading="lazy"
         v-for="(item, index) in props?.talent?.portfolio"
         :key="item"
@@ -93,6 +95,16 @@ import ArrowRight from "@/components/icons/arrowRight.vue";
 import Icon from "@/assets/defultAvater.png";
 import { useClipboard } from "@vueuse/core";
 import { useToast } from "vue-toastification";
+import { useRouter } from "vue-router";
+const router = useRouter();
+
+const redirectToPortfolio = (name, id) => {
+  router.push({
+    name: "single-portfolio",
+    params: { name: name, id: id },
+  });
+};
+
 const toast = useToast();
 
 const props = defineProps({
