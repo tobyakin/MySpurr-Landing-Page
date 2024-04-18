@@ -60,6 +60,14 @@
           </div>
           <div class="flex flex-col items-center lg:justify-normal justify-center gap-6">
             <div class="flex items-center gap-3">
+              <a
+                v-if="talents?.linkedin"
+                :href="`mailto:${talents?.email}`"
+                class="flex items-center mt-1"
+                target="_blank"
+              >
+                <mailoutline />
+              </a>
               <a v-if="talents?.linkedin" :href="talents?.linkedin" target="_blank">
                 <LinkdeinIcon />
               </a>
@@ -77,11 +85,11 @@
               <button @click="copyUrl()">
                 <SearchIconVeritical />
               </button>
-              <button
+              <!-- <button
                 class="btn-brand !bg-[#31795A] !border-none text-center flex items-start !py-2 !text-white"
               >
                 <span style="display: grid; place-content: center" class="">Message</span>
-              </button>
+              </button> -->
             </div>
           </div>
         </div>
@@ -248,6 +256,8 @@ import LinkdeinIcon from "@/components/icons/linkdeinIcon.vue";
 import InstagramIcon from "@/components/icons/instagramIcon.vue";
 import BeIcon from "@/components/icons/beIcon.vue";
 import TwitterIcon from "@/components/icons/twitterIcon.vue";
+import mailIcon from "@/components/icons/mailIcon.vue";
+import mailoutline from "@/components/icons/mailoutline.vue";
 // import SampleFive from "@/components/genericComponents/sampleFive.vue";
 import WorkExperience from "@/components/genericComponents/WorkExperience.vue";
 import EducationDetails from "@/components/genericComponents/EducationDetails.vue";
