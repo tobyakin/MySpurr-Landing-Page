@@ -1,7 +1,12 @@
 <template>
   <div class="w-full font-Satoshi400" :class="{ 'md:w-[45%]': two, 'md:w-[31%]': three }">
     <div class="">
-      <router-link :to="{ name: 'single-portfolio', params: { id: blog.id } }">
+      <router-link
+        :to="{
+          name: 'single-portfolio',
+          params: { name: blog?.user?.first_name, id: blog.id },
+        }"
+      >
         <img
           loading="lazy"
           class="w-full bg-[#EFF6F3] object-cover h-[188.32px] rounded-lg"

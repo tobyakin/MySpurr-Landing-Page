@@ -100,7 +100,7 @@ const router = createRouter({
       component: InternshipView
     },
     {
-      path: '/portfolio/:id',
+      path: '/portfolio/:name/:id',
       name: 'single-portfolio',
       component: SinglePortfolio
     },
