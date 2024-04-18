@@ -59,7 +59,11 @@ const getYear = new Date().getFullYear();
                 </svg>
               </a>
 
-              <a href="https://www.instagram.com/myspurr/" target="_blank" role="button">
+              <a
+                href="https://www.instagram.com/usemyspurr/"
+                target="_blank"
+                role="button"
+              >
                 <svg
                   width="36"
                   height="37"
@@ -151,9 +155,9 @@ const getYear = new Date().getFullYear();
             <li class="text-[13.933px] font-Satoshi400 lg:leading-[36.062px]">
               <router-link to="/about-us"> About </router-link>
             </li>
-            <li class="text-[13.933px] font-Satoshi400 lg:leading-[36.062px]">
+            <!-- <li class="text-[13.933px] font-Satoshi400 lg:leading-[36.062px]">
               <router-link to="/blog"> Blog </router-link>
-            </li>
+            </li> -->
             <li class="text-[13.933px] font-Satoshi400 lg:leading-[36.062px]">
               <router-link to="/case-study"> Case Study </router-link>
             </li>
@@ -163,17 +167,17 @@ const getYear = new Date().getFullYear();
             <li class="text-[13.933px] font-Satoshi400 lg:leading-[36.062px]">
               <router-link to="/contact-us"> Contact </router-link>
             </li>
-            <li class="text-[13.933px] font-Satoshi400 lg:leading-[36.062px]">
+            <!-- <li class="text-[13.933px] font-Satoshi400 lg:leading-[36.062px]">
               <router-link to=""> Advertise </router-link>
-            </li>
+            </li> -->
           </ul>
         </div>
         <div>
           <h5 class="font-Satoshi500 text-[19.67px] !mb-4 lg:!mb-8">Product</h5>
           <ul class="flex flex-col lg:gap-2">
-            <li class="text-[13.933px] font-Satoshi400 lg:leading-[36.062px]">
+            <!-- <li class="text-[13.933px] font-Satoshi400 lg:leading-[36.062px]">
               <router-link to=""> Take a tour </router-link>
-            </li>
+            </li> -->
             <li class="text-[13.933px] font-Satoshi400 lg:leading-[36.062px]">
               <router-link to="/internship"> Internships </router-link>
             </li>
@@ -195,11 +199,11 @@ const getYear = new Date().getFullYear();
               <router-link to=""> Terms & Conditions </router-link>
             </li>
             <li class="text-[13.933px] font-Satoshi400 lg:leading-[36.062px]">
-              <router-link to=""> Privacy </router-link>
+              <router-link to=""> Privacy Policy </router-link>
             </li>
-            <li class="text-[13.933px] font-Satoshi400 lg:leading-[36.062px]">
+            <!-- <li class="text-[13.933px] font-Satoshi400 lg:leading-[36.062px]">
               <router-link to=""> Cookie policy </router-link>
-            </li>
+            </li> -->
           </ul>
         </div>
       </div>
