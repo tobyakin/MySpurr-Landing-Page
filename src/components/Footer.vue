@@ -192,9 +192,9 @@ const getYear = new Date().getFullYear();
         <div>
           <h5 class="font-Satoshi500 text-[19.67px] !mb-4 lg:!mb-8">Legal</h5>
           <ul class="flex flex-col lg:gap-2">
-            <li class="text-[13.933px] font-Satoshi400 lg:leading-[36.062px]">
+            <!-- <li class="text-[13.933px] font-Satoshi400 lg:leading-[36.062px]">
               <router-link to=""> Terms of use </router-link>
-            </li>
+            </li> -->
             <li class="text-[13.933px] font-Satoshi400 lg:leading-[36.062px]">
               <router-link to=""> Terms & Conditions </router-link>
             </li>
