@@ -86,7 +86,7 @@ onUnmounted(() => {
           <div>
             <img
               class="h-[61.011px] w-[61.011px] object-cover rounded-full"
-              :src="JobDetails?.data?.company?.logo"
+              :src="JobDetails?.data?.company?.company_logo"
               :alt="JobDetails?.data?.company?.business_name + `logo`"
             />
           </div>
@@ -253,7 +253,7 @@ onUnmounted(() => {
               <div>
                 <img
                   class="h-[61.011px] w-[61.011px] rounded-full"
-                  :src="JobDetails?.data?.company?.logo"
+                  :src="JobDetails?.data?.company?.company_logo"
                   :alt="JobDetails?.data?.company?.business_name + `logo`"
                 />
               </div>
