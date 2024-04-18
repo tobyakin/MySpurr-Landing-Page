@@ -85,11 +85,11 @@
               <button @click="copyUrl()">
                 <SearchIconVeritical />
               </button>
-              <!-- <button
+              <button
                 class="btn-brand !bg-[#31795A] !border-none text-center flex items-start !py-2 !text-white"
               >
                 <span style="display: grid; place-content: center" class="">Message</span>
-              </button> -->
+              </button>
             </div>
           </div>
         </div>
