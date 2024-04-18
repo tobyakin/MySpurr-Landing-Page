@@ -103,7 +103,8 @@ let source = "";
 onMounted(() => {
   source =
     import.meta.env.VITE_LANDING_PAGE +
-    `${props?.talent?.first_name}/` +
+    `talent/` +
+    `${props?.talent?.first_name}-${props?.talent?.last_name}/` +
     props?.talent?.uniqueId;
 });
 
