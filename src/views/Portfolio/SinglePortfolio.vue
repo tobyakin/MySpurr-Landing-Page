@@ -83,7 +83,7 @@
           alt="cover image"
           class="rounded-[13.076px] h-full w-full bg-[#EFF6F3] object-contain mx-auto"
         />
-        <div class="flex flex-col gap-10">
+        <div v-if="portfolio?.project_image === null" class="flex flex-col gap-10">
           <img
             v-for="image in portfolio?.project_image"
             :key="image.id"
