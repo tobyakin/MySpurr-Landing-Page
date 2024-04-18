@@ -384,7 +384,8 @@ fetchData();
 
   /* Set default print settings */
   @page {
-    size: A2; /* Paper size */
+    size: A3 !important; /* Paper size */
+    layout: portrait !important; /* Orientation */
     margin: 0.5cm; /* Minimum margins */
   }
 }
