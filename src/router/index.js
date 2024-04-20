@@ -16,6 +16,7 @@ import SinglePortfolio from '@/views/Portfolio/SinglePortfolio.vue'
 import AllJobs from '@/views/Job/AllJobs.vue'
 import JobDetails from '@/views/Job/JobDetails.vue'
 import NotFoundPage from '@/views/NotFoundPage.vue'
+import PrivacyPolicy from '@/views/PrivacyPolicy.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -61,6 +62,15 @@ const router = createRouter({
         title: 'MySpurr | Jobs'
       }
     },
+    {
+      path: '/privacy-policy',
+      name: 'privacy-policy',
+      component: PrivacyPolicy,
+      meta: {
+        title: 'MySpurr | Privacy Policy'
+      }
+    },
+
     {
       path: '/job-details/:slug',
       name: 'job-details',
