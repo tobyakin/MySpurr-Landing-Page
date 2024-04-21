@@ -196,7 +196,7 @@ const getYear = new Date().getFullYear();
               <router-link to=""> Terms of use </router-link>
             </li> -->
             <li class="text-[13.933px] font-Satoshi400 lg:leading-[36.062px]">
-              <router-link to=""> Terms & Conditions </router-link>
+              <router-link to="/terms-and-conditions"> Terms & Conditions </router-link>
             </li>
             <li class="text-[13.933px] font-Satoshi400 lg:leading-[36.062px]">
               <router-link to="/privacy-policy"> Privacy Policy </router-link>

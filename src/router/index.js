@@ -17,6 +17,7 @@ import AllJobs from '@/views/Job/AllJobs.vue'
 import JobDetails from '@/views/Job/JobDetails.vue'
 import NotFoundPage from '@/views/NotFoundPage.vue'
 import PrivacyPolicy from '@/views/PrivacyPolicy.vue'
+import TermsAndConditions from '@/views/TermsAndConditions.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -66,6 +67,14 @@ const router = createRouter({
       path: '/privacy-policy',
       name: 'privacy-policy',
       component: PrivacyPolicy,
+      meta: {
+        title: 'MySpurr | Privacy Policy'
+      }
+    },
+    {
+      path: '/terms-and-conditions',
+      name: 'terms-and-conditions',
+      component: TermsAndConditions,
       meta: {
         title: 'MySpurr | Privacy Policy'
       }
