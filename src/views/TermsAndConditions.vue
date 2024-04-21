@@ -857,15 +857,16 @@ const data = [
 `,
       },
       {
-        text: `
+        text: `If any provision of these Terms and Conditions is found to be invalid or unenforceable by a court of competent jurisdiction, the invalidity or unenforceability of such provision shall not affect the validity or enforceability of the remaining provisions of these Terms and Conditions, which shall remain in full force and effect.
 `,
       },
       {
-        text: `
+        text: `MySpurr reserves the right to modify these Terms and Conditions at any time, and such modifications shall be effective immediately upon posting on our platform. Your continued use of the MySpurr platform after any such modifications constitutes your acceptance of the revised Terms and Conditions. It is your responsibility to review these Terms and Conditions periodically to stay informed of any changes.
+
 `,
       },
       {
-        text: `
+        text: `If you have any questions or concerns regarding the Applicable Laws/Jurisdiction section of our Terms and Conditions, please contact us at +234 8166813812. hello@myspurr.net
 `,
       },
     ],
