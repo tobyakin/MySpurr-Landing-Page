@@ -59,7 +59,7 @@ const data = [
             item: `<strong class="font-Satoshi700 font-extrabold">Secure Payment Processing: </strong> MySpurr facilitates secure payment processing for subscription fees, job postings, and other transactions conducted on the platform. We prioritize the security and privacy of our users' financial information, ensuring a safe and reliable payment experience.`,
           },
           {
-            item: `<strong class="font-Satoshi700 font-extrabold"> Customer Support</strong> Our dedicated customer support team is available to assist users with any inquiries, issues, or concerns they may have while using the MySpurr platform. We are committed to providing timely and effective support to ensure a positive user experience for all.`,
+            item: `<strong class="font-Satoshi700 font-extrabold"> Customer Support:</strong> Our dedicated customer support team is available to assist users with any inquiries, issues, or concerns they may have while using the MySpurr platform. We are committed to providing timely and effective support to ensure a positive user experience for all.`,
           },
         ],
       },
@@ -868,6 +868,80 @@ const data = [
       {
         text: `If you have any questions or concerns regarding the Applicable Laws/Jurisdiction section of our Terms and Conditions, please contact us at +234 8166813812. hello@myspurr.net
 `,
+      },
+    ],
+  },
+  {
+    heading: "Dispute Resolution",
+    memo: [
+      {
+        text: `At MySpurr, we strive to ensure a positive experience for all users. However, in the event of any disputes or disagreements that may arise, we have established the following procedures for resolution:`,
+      },
+      {
+        text: ``,
+        subtext: [
+          {
+            item: `<strong class="font-Satoshi700 font-extrabold">Negotiation and Informal Resolution: 
+</strong><br/>We encourage users to first attempt to resolve any disputes informally through direct communication with the other party involved. This approach often leads to quicker and more amicable resolutions. Users are encouraged to engage in open and respectful dialogue to address concerns and find mutually acceptable solutions.
+`,
+          },
+          {
+            item: `<strong class="font-Satoshi700 font-extrabold">Mediation: 
+</strong><br/> If a dispute cannot be resolved informally, MySpurr may offer mediation services to facilitate communication and negotiation between the parties involved. Mediation involves the assistance of a neutral third party who helps facilitate discussions and explore potential resolutions. While mediation is non-binding, it provides an opportunity for the parties to work towards a mutually agreeable outcome.`,
+          },
+
+          {
+            item: `<strong class="font-Satoshi700 font-extrabold">Arbitration</strong><br/> In cases where informal resolution and mediation are unsuccessful, MySpurr may require the parties to submit the dispute to binding arbitration. Arbitration is a formal process where an impartial arbitrator or panel of arbitrators hears the arguments and evidence presented by both sides and issues a final, binding decision. Arbitration proceedings are typically less formal and more efficient than traditional litigation, providing a cost-effective means of resolving disputes.`,
+          },
+
+          {
+            item: `<strong class="font-Satoshi700 font-extrabold">Litigation as a Last Resort:</strong><br/>  While we strive to resolve disputes through negotiation, mediation, and arbitration, in some cases, litigation may be necessary as a last resort. If litigation becomes necessary, disputes shall be resolved exclusively through the courts of [Jurisdiction], and users agree to submit to the personal jurisdiction of such courts for the purpose of litigating any claims or disputes.
+`,
+          },
+          {
+            item: `<strong class="font-Satoshi700 font-extrabold">Costs and Fees:</strong><br/> Each party shall bear its own costs and expenses, including attorneys' fees, incurred in connection with any dispute resolution proceedings, unless otherwise agreed upon in writing or as required by law.`,
+          },
+        ],
+      },
+      {
+        text: `By using the MySpurr platform, users agree to abide by these dispute resolution procedures and to engage in good faith efforts to resolve any disputes that may arise. We believe that open communication, cooperation, and mutual respect are essential in fostering positive relationships within our community.`,
+      },
+    ],
+  },
+  {
+    heading: "Miscellaneous",
+    memo: [
+      {
+        text: ``,
+        subtext: [
+          {
+            item: `<strong class="font-Satoshi700 font-extrabold">Governing Law: 
+</strong><br/> These Terms and Conditions, along with any disputes arising out of or relating to them, shall be governed by and construed in accordance with the laws of the Federal Capital Territory, Abuja, Nigeria, without regard to its conflict of law provisions. Any legal action or proceeding arising under these Terms and Conditions shall be brought exclusively in the federal or state courts located in Federal Capital Territory, Abuja, Nigeria, and the parties hereby consent to the personal jurisdiction and venue of such courts.
+`,
+          },
+          {
+            item: `<strong class="font-Satoshi700 font-extrabold">Assignment: 
+</strong><br/>  You may not assign, transfer, or sublicense any of your rights or obligations under these Terms and Conditions without the prior written consent of MySpurr. MySpurr may freely assign, transfer, or delegate any of its rights or obligations under these Terms and Conditions without notice and without your consent.`,
+          },
+
+          {
+            item: `<strong class="font-Satoshi700 font-extrabold">Severability</strong><br/>  If any provision of these Terms and Conditions is found to be unlawful, void, or for any reason unenforceable, then that provision shall be deemed severable from these Terms and Conditions and shall not affect the validity and enforceability of any remaining provisions.`,
+          },
+
+          {
+            item: `<strong class="font-Satoshi700 font-extrabold">Waiver</strong><br/>  The failure of MySpurr to enforce any provision of these Terms and Conditions shall not be deemed a waiver of such provision or of the right to enforce such provision. No waiver by MySpurr of any provision of these Terms and Conditions shall be effective unless it is in writing and signed by an authorized representative of MySpurr.
+`,
+          },
+          {
+            item: `<strong class="font-Satoshi700 font-extrabold">Entire Agreement: </strong><br/> These Terms and Conditions constitute the entire agreement between you and MySpurr regarding your use of the platform, superseding any prior agreements between you and MySpurr relating to such subject matter. `,
+          },
+          {
+            item: `<strong class="font-Satoshi700 font-extrabold">Modification: </strong><br/>  MySpurr reserves the right to modify or revise these Terms and Conditions at any time, and you agree to be bound by such modifications or revisions. Any changes will be effective immediately upon posting the revised Terms and Conditions on the MySpurr platform. It is your responsibility to review these Terms and Conditions periodically for updates or changes. `,
+          },
+          {
+            item: `<strong class="font-Satoshi700 font-extrabold">Contact Information:</strong><br/>  If you have any questions or concerns about these Terms and Conditions, please contact us at hello@myspurr.net `,
+          },
+        ],
       },
     ],
   },
