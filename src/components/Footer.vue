@@ -22,7 +22,7 @@ const getYear = new Date().getFullYear();
           <h3
             class="font-Satoshi500 text-[14.753px] leading-[22.2px] opacity-[0.6000000238418579]"
           >
-            support@myspurr.net
+            hello@myspurr.net
           </h3>
           <hr
             class="bg-[#80BAC0] h-[2px] lg:w-full w-[50%] justify-start !my-3 ml-0 mr-[50%] lg:mr-[65%]"
