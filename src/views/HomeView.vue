@@ -10,6 +10,8 @@ import SectionFour from "@/components/Home/SectionFour.vue";
 import SectionFive from "@/components/Home/SectionFive.vue";
 import SectionSix from "@/components/Home/SectionSix.vue";
 import SectionSeven from "@/components/Home/SectionSeven.vue";
+import WorkFlow from "@/components/Bander/WorkFlow.vue";
+
 const siteData = reactive({
   title: `MySpurr | Creative talent hiring`,
   description: ``,
@@ -40,7 +42,8 @@ useHead({
     <SectionFour />
     <SectionFive />
     <SectionSix />
-    <SectionSeven />
+    <!-- <SectionSeven /> -->
+    <WorkFlow class="container" />
     <Footer />
   </div>
 </template>

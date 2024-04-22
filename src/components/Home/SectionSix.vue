@@ -12,11 +12,15 @@
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowfullscreen
       ></iframe
-      ><button class="animate__bounceOut w-full" @click="changeScreen(0, 1)" v-if="steps[0]">
+      ><button
+        class="animate__bounceOut w-full"
+        @click="changeScreen(0, 1)"
+        v-if="steps[0]"
+      >
         <img
           loading="lazy"
           class="w-full lg:h-[600px] h-[28vh] rounded-[14px]"
-          src="@/assets/img/videoBg.webp"
+          src="@/assets/img/videoBg2.webp"
           alt=""
         />
       </button>
@@ -25,12 +29,12 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import 'animate.css'
+import { ref } from "vue";
+import "animate.css";
 
-const steps = ref([true, false])
+const steps = ref([true, false]);
 const changeScreen = (from, to, type = null) => {
-  steps.value[from] = false
-  steps.value[to] = true
-}
+  steps.value[from] = false;
+  steps.value[to] = true;
+};
 </script>
