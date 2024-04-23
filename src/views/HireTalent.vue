@@ -400,7 +400,7 @@ const Experience = [
           Creative Talents for Hire
         </h4>
         <p class="text-[#007582] text-[21.194px] font-Satoshi400 lg:leading-[39.552px]">
-          Find you desired talent & make your work done
+          Find your desired talent and execute your projects
         </p>
       </div>
       <GoPro />

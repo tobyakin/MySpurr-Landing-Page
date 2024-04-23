@@ -769,7 +769,7 @@ As your data controller, we are committed to maintaining the privacy and securit
 
     memo: [
       {
-        text: `Please also see our Terms of Use  <a href="/terms-and-conditions"
+        text: `Please also see our Terms of Use  <a class="underline" href="/terms-and-conditions"
       >(https://myspurr.net/terms-and-conditions)</a
     >
  which set out the terms, disclaimers, and limitations of liability governing your use of MySpurr.
