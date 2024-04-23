@@ -19,7 +19,9 @@ const data = [
       {
         subtext: [
           {
-            item: `Our Privacy Policy, which sets out the terms on which we process any personal data we collect from you, or that you provide to us. By using our Services, you consent to such processing and you warrant that all data provided by you is accurate.
+            item: `Our <a href="/privacy-policy"
+      >Privacy Policy</a
+    >, which sets out the terms on which we process any personal data we collect from you, or that you provide to us. By using our Services, you consent to such processing and you warrant that all data provided by you is accurate.
 `,
           },
         ],
@@ -114,7 +116,9 @@ const data = [
             item: `<strong class="font-Satoshi700 font-extrabold">Intellectual Property:  </strong> The MySpurr platform, including its design, graphics, logos, and trademarks, are owned or licensed by us and are protected by copyright, trademark, and other intellectual property laws. You may not use, copy, or distribute any content from MySpurr without our prior written consent. `,
           },
           {
-            item: `<strong class="font-Satoshi700 font-extrabold"> Privacy:  </strong> Your privacy is important to us. Please review our Privacy Policy to understand how we collect, use, and disclose your personal information when you use MySpurr. `,
+            item: `<strong class="font-Satoshi700 font-extrabold"> Privacy:  </strong> Your privacy is important to us. Please review our <a href="/privacy-policy"
+      >Privacy Policy</a
+    > to understand how we collect, use, and disclose your personal information when you use MySpurr. `,
           },
           {
             item: `<strong class="font-Satoshi700 font-extrabold">Termination:  </strong> We reserve the right to terminate or suspend your access to MySpurr at any time and for any reason, without prior notice. Upon termination, your right to use the platform will immediately cease. `,
@@ -519,7 +523,9 @@ const data = [
             item: `<strong class="font-Satoshi700 font-extrabold"> Intellectual Property:</strong><br/>All content and materials provided on the MySpurr platform, including job listings, profiles, and user-generated content, are protected by intellectual property rights. You agree not to reproduce, distribute, modify, or create derivative works based on such content without prior written consent from MySpurr or the respective rights holders.`,
           },
           {
-            item: `<strong class="font-Satoshi700 font-extrabold"> Privacy and Data Protection:</strong><br/> MySpurr values your privacy and is committed to protecting your personal information. By using the platform, you consent to the collection, use, and disclosure of your personal data as described in the MySpurr Privacy Policy. You also acknowledge that businesses and employers may have access to certain information provided in your profile and job applications.`,
+            item: `<strong class="font-Satoshi700 font-extrabold"> Privacy and Data Protection:</strong><br/> MySpurr values your privacy and is committed to protecting your personal information. By using the platform, you consent to the collection, use, and disclosure of your personal data as described in the MySpurr <a href="/privacy-policy"
+      >Privacy Policy</a
+    >. You also acknowledge that businesses and employers may have access to certain information provided in your profile and job applications.`,
           },
           {
             item: `<strong class="font-Satoshi700 font-extrabold"> Disclaimer of Warranties:
@@ -599,7 +605,9 @@ const data = [
           },
 
           {
-            item: `<strong class="font-Satoshi700 font-extrabold">Privacy and Data Protection:</strong><br/> MySpurr takes privacy and data protection seriously. Any personal information collected through job listings, including applicant information, will be handled in accordance with our Privacy Policy.
+            item: `<strong class="font-Satoshi700 font-extrabold">Privacy and Data Protection:</strong><br/> MySpurr takes privacy and data protection seriously. Any personal information collected through job listings, including applicant information, will be handled in accordance with our <a href="/privacy-policy"
+      >Privacy Policy</a
+    >.
 `,
           },
           {
@@ -778,7 +786,9 @@ const data = [
 </strong>`,
             memo: [
               {
-                item: `We retain user data for as long as necessary to fulfill the purposes outlined in this Privacy Policy unless a longer retention period is required or permitted by law.`,
+                item: `We retain user data for as long as necessary to fulfill the purposes outlined in this <a href="/privacy-policy"
+      >Privacy Policy</a
+    > unless a longer retention period is required or permitted by law.`,
               },
               {
                 item: `Users have the right to request the deletion of their personal information, subject to applicable legal requirements.
