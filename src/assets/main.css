@@ -40,13 +40,13 @@ h6 {
 
 @media (min-width: 992px) {
   .container {
-    width: 75%;
+    width: 83%;
   }
 }
 
 @media (min-width: 1200px) {
   .container {
-    width: 83%;
+    width: 93%;
   }
 }
 .auth_container {
