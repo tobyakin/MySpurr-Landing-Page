@@ -19,10 +19,12 @@
           </div>
           <div class="lg:text-left text-center">
             <p
-              class="text-[#000000] text-[20.839px] flex gap-[8px] items-center capitalize font-Satoshi500 leading-[19.739px]"
+              class="text-[#000000] text-[20.839px] flex lg:flex-row flex-col gap-[8px] lg:justify-start justify-center items-center capitalize font-Satoshi500 leading-[19.739px]"
             >
-              {{ props?.talent.first_name }}
-              {{ props?.talent.last_name }}
+              <span>
+                {{ props?.talent.first_name }}
+                {{ props?.talent.last_name }}
+              </span>
               <span
                 v-if="props?.talent?.experience_level"
                 class="bg-[#00474F] rounded-full py-[0.5px] capitalize text-[10.519px] text-[#E6F1F3] font-medium px-[19px]"
@@ -34,7 +36,9 @@
             >
               {{ props?.talent.skill_title }}
             </p>
-            <div class="flex items-center gap-2">
+            <div
+              class="flex lg:flex-row flex-col items-center lg:justify-start justify-center gap-2"
+            >
               <p class="lg:text-[19.319px] text-[14px] text-[#244034] font-Satoshi500">
                 ${{ props?.talent.rate }}/hr
               </p>
