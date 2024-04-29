@@ -22,7 +22,7 @@
       <div
         v-for="(item, index) in Job?.data"
         :key="item.id"
-        :class="item < index ? 'border-b-[0.83px] border-[#DBE8E5]' : ''"
+        :class="index == Job?.data.length - 1 ? '' : 'border-b-[0.83px] border-[#DBE8E5]'"
         class="text-[#030303] p-9 flex lg:flex-row flex-col items-center gap-4 justify-between"
       >
         <div class="flex lg:flex-row flex-col lg:w-[70%] gap-[2.25rem]">
@@ -53,14 +53,14 @@
           </div>
         </div>
         <div
-          class="flex lg:flex-row flex-col lg:w-[60%] text-center lg:text-left gap-4 lg:items-end lg:justify-end"
+          class="flex lg:flex-row flex-col lg:w-[60%] text-center lg:text-left gap-4 lg:items-end justify-center items-center lg:justify-end"
         >
           <div class="w-full">
             <p class="text-[#20202099] font-Satoshi400 text-[12.449px]">
               {{ item.state }} , {{ item.country }}
             </p>
             <p
-              class="text-[#000000] flex flex-wrap gap-2 items-center font-Satoshi500 text-[13.279px]"
+              class="text-[#000000] flex flex-wrap gap-2 items-center justify-center lg:justify-normal font-Satoshi500 text-[13.279px]"
             >
               <span v-for="i in item.skills" :key="i">{{ i.name }},</span>
             </p>
