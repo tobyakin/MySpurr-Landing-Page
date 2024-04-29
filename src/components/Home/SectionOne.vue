@@ -27,10 +27,12 @@
             Sign up for free
           </a>
           <a
+href="https://youtu.be/S3ySCHITHnc?si=s4Lm5pgEROZj5xKI"
+target"_blank"
             role="button"
             class="btn-light-border !rounded-full lg:!px-[10px] !px-0 justify-center lg:!text-base !text-[10px] flex lg:w-[40%] w-full font-Satoshi400"
           >
-            Watch demo
+            Watch video 
           </a>
         </div>
       </div>
