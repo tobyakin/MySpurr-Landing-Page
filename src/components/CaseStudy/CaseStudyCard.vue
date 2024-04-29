@@ -4,7 +4,7 @@
       <router-link
         :to="{
           name: 'single-portfolio',
-          params: { name: blog?.user?.first_name, id: blog.id },
+          params: { name: blog?.user?.first_name, id: blog.id, title: blog.title },
         }"
       >
         <img

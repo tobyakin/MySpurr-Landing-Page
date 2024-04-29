@@ -145,7 +145,7 @@
             >
               <img
                 loading="lazy"
-                @click="redirectToSinglePortFolio(img.id)"
+                @click="redirectToSinglePortFolio(img.id, img.title)"
                 role="button"
                 v-for="(img, index) in talents?.portfolio"
                 :key="img?.id"
@@ -308,10 +308,10 @@ const talentsStore = useTalentsStore();
 const { singleTalent } = storeToRefs(talentsStore);
 const route = useRoute();
 const router = useRouter();
-const redirectToSinglePortFolio = (id) => {
+const redirectToSinglePortFolio = (id, title) => {
   router.push({
     name: "single-portfolio",
-    params: { id: id },
+    params: { id: id, title: title },
   });
 };
 
