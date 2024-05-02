@@ -1,7 +1,7 @@
 <script setup>
 import Navbar from "@/components/Navbar/Navbar.vue";
 import Footer from "@/components/Footer.vue";
-import { defineAsyncComponent, onMounted, computed, reactive, ref, watch } from "vue";
+import { onMounted, computed, reactive, ref, watch } from "vue";
 import { useHead } from "@vueuse/head";
 import { storeToRefs } from "pinia";
 import GoPro from "@/components/Bander/GoPro.vue";
@@ -10,10 +10,10 @@ import JobCard from "@/components/Job/JobCard.vue";
 import Subscribe from "@/components/Bander/Subscribe.vue";
 import { useTalentsStore } from "@/stores/talents";
 import FormGroup from "@/components/Form/Input/FormGroup.vue";
-import FormSelectGroup from "@/components/Form/Input/SelectGroup.vue";
+// import FormSelectGroup from "@/components/Form/Input/SelectGroup.vue";
 import Label from "@/components/Form/Input/Label.vue";
-import PagePreLoader from "@/components/UI/Loader/PagePreLoader.vue";
-import { useQuery } from "vue-query";
+// import PagePreLoader from "@/components/UI/Loader/PagePreLoader.vue";
+// import { useQuery } from "vue-query";
 import Loader from "@/components/UI/Loader/Loader.vue";
 
 const talentsStore = useTalentsStore();
@@ -47,6 +47,7 @@ const filterOptions = reactive({
   qualification: "",
   candidateType: "",
 });
+let isLoading = ref(false);
 let rateMin = ref(null);
 let rateMax = ref(null);
 let range = ref([rateMin.value, rateMax.value]);
@@ -87,9 +88,7 @@ const paginatedTalent = computed(() => {
   const endIndex = startIndex + perPage;
   return talentData.value.slice(startIndex, endIndex);
 });
-const totalPages = computed(() =>
-  Math.ceil(talentData.value.length / pagination.value.per_page)
-);
+const totalPages = computed(() => Math.ceil(pagination.value.last_page));
 
 // Function to change the current page
 const setPage = (page) => {
@@ -111,8 +110,9 @@ const displayedPageNumbers = computed(() => {
 });
 
 // You can also watch the currentPage to react to page changes
-watch(currentPage, (newPage) => {
+watch(currentPage, async (newPage) => {
   console.log("Current Page:", newPage);
+  await talentsStore.allTalents(newPage);
 });
 const filteredJobs = computed(() => {
   let filtered = talent.value?.data; // Create a shallow copy of the jobs array
@@ -182,25 +182,30 @@ const resetFilters = () => {
   rateMax.value = "";
 };
 
-// onMounted(async () => {
-//   await talentsStore.allTalents();
-// });
-const getTalentsData = async () => {
-  let response = await talentsStore.allTalents();
-  return response;
-};
-const fetchData = async () => {
-  await Promise.all([getTalentsData()]);
-};
-fetchData();
-
-const { isLoading } = useQuery(["talents"], getTalentsData, {
-  retry: 10,
-  staleTime: 10000,
-  onSuccess: (data) => {
-    talent.value = data;
-  },
+onMounted(async () => {
+  try {
+    isLoading.value = true;
+    await talentsStore.allTalents(currentPage.value);
+    isLoading.value = false;
+  } catch (error) {
+    isLoading.value = false;
+    throw error;
+  } finally {
+    isLoading.value = false;
+  }
 });
+// const getTalentsData = async (page) => {
+//   let response = await talentsStore.allTalents(page);
+//   return response;
+// };
+
+// const { isLoading } = useQuery(["talents"], getTalentsData, {
+//   retry: 10,
+//   staleTime: 10000,
+//   onSuccess: (data) => {
+//     talent.value = data;
+//   },
+// });
 const CandidateType = ["Freelance", "Full-time", "Part-time", "Inernship", "Contract"];
 const qualification = ["Certificate", "Bachelors", "Masters ", "Doctorate "];
 const Experience = [
