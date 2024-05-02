@@ -7,9 +7,9 @@ export const useTalentsStore = defineStore('talents', () => {
   const singleTalent = ref({})
   const talentPortfolio = ref({})
 
-  const allTalents = async () => {
+  const allTalents = async (page) => {
     try {
-      talent.value = await getAllTalents()
+      talent.value = await getAllTalents(page)
       return talent.value
     } catch (error) {
       console.error(error)

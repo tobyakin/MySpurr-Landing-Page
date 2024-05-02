@@ -1,9 +1,9 @@
 import axios from '../axios'
 import { catchAxiosError, catchAxiosSuccess } from './Response'
 
-export const getAllTalents = async () => {
+export const getAllTalents = async (page) => {
   try {
-    let res = await axios.get(`talents`)
+    let res = await axios.get(`talents?page=${page}`)
     catchAxiosSuccess(res.data)
     return res.data;
   } catch (error) {
