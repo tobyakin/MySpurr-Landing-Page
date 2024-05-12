@@ -206,7 +206,7 @@ onMounted(async () => {
 //     talent.value = data;
 //   },
 // });
-const CandidateType = ["Freelance", "Full-time", "Part-time", "Inernship", "Contract"];
+const CandidateType = ["Freelance", "Full-time", "Part-time", "Internship", "Contract"];
 const qualification = ["Certificate", "Bachelors", "Masters ", "Doctorate "];
 const Experience = [
   { name: "Beginner ", year: "(1-2 yrs)" },
