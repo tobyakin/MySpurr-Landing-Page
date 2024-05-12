@@ -25,6 +25,6 @@ jobs:
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
         server: ftp.myspurr.net
-        username: ${{ secrets.ftp_username }}
-        password: ${{ secrets.ftp_password }}
+        username: ${{ secrets.ftp_landing_username }}
+        password: ${{ secrets.ftp_landing_password }}
 
