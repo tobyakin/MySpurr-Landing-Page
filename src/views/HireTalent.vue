@@ -415,7 +415,7 @@ const Experience = [
           <span class="text-[#000000] font-Satoshi500">{{
             filteredJobs?.length ? filteredJobs?.length : paginatedTalent?.length
           }}</span>
-          candidates found
+          candidates found from <span class="text-[#000000] font-Satoshi500">{{talent?.pagination?.total}}</span>
         </p>
       </div>
       <!-- <PagePreLoader /> -->
