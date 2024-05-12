@@ -20,7 +20,7 @@
       class="grid grid-rows-1 hide-scrollbar !my-8 border-[0.83px] rounded-[8.3px] border-[#DBE8E5]"
     >
       <div
-        v-for="(item, index) in Job?.data"
+        v-for="(item, index) in Job?.data?.slice(0,5)"
         :key="item.id"
         :class="index == Job?.data.length - 1 ? '' : 'border-b-[0.83px] border-[#DBE8E5]'"
         class="text-[#030303] p-9 flex lg:flex-row flex-col items-center gap-4 justify-between"

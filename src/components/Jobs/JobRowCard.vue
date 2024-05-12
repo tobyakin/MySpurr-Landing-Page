@@ -29,7 +29,7 @@ defineProps({
       class="absolute top-0 left-0 !text-red-600"
     />
 
-    <div class="flex lg:flex-row flex-col gap-3 w-full">
+    <div class="flex lg:flex-row flex-col lg:justify-normal justify-center lg:items-start items-center gap-3 w-full">
       <div
         class="w-[71.011px] h-[61.011px] bg-[#EAEAEA] rounded-full flex justify-center items-center object-contain"
       >
@@ -40,7 +40,7 @@ defineProps({
         />
       </div>
       <div class="w-full">
-        <div class="flex items-center gap-1">
+        <div class="flex lg:justify-start justify-center items-center gap-1">
           <p class="text-[13.021px] font-Satoshi500 flex text-[#2F929C]">
             {{ job?.company.business_name }}
           </p>
@@ -51,9 +51,9 @@ defineProps({
             </p>
           </div>
         </div>
-        <div class="flex flex-col lg:flex-row items-center justify-between w-full gap-3">
+        <div class="flex flex-col lg:flex-row items-center lg:justify-between justify-center w-full gap-3">
           <div
-            class="flex items-center w-full lg:w-auto lg:justify-normal justify-between gap-14"
+            class="flex items-center w-full lg:w-auto lg:justify-normal justify-center gap-2 lg:gap-14"
           >
             <p class="text-[13.021px] font-Satoshi500 text-[#000000]">
               {{ job?.job_title }}
@@ -80,7 +80,7 @@ defineProps({
                 {{ job?.salaray_type }}
               </p>
             </div>
-            <div class="flex gap-2 items-center">
+            <div class="flex lg:flex-row flex-col gap-2 items-center">
               <div
                 class="flex gap-1 text-[10px] lg:text-[14.334px] text-[#DA5252] items-center font-Satoshi500"
               >
@@ -101,7 +101,7 @@ defineProps({
             </div>
           </div>
           <div class="flex lg:flex-row flex-col gap-4 justify-between mt-2">
-            <div class="flex flex-wrap gap-3 items-center">
+            <div class="flex flex-wrap gap-3 lg:justify-normal justify-center items-center">
               <div
                 v-for="skill in job?.skills"
                 :key="skill"
