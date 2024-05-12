@@ -27,4 +27,5 @@ jobs:
         server: ftp.myspurr.net
         username: ${{ secrets.ftp_landing_username }}
         password: ${{ secrets.ftp_landing_password }}
+        local-dir: dist/
 
