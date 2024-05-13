@@ -75,7 +75,7 @@
         <div class="w-full">
           <h3
             v-html="portfolio?.title"
-            class="leading-[16.33px] text-[#000000] font-Satoshi700 mt-4 text-[32px]"
+            class="text-[#000000] font-Satoshi700 mt-4 text-[32px]"
           ></h3>
           <div
             v-html="portfolio?.description"
