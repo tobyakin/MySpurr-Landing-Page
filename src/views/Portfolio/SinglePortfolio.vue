@@ -14,6 +14,12 @@
           </p>
         </div>
         <div class="flex flex-row gap-2">
+          <p class="text-[#244034c5] text-[20.9px] font-Satoshi400">Date:</p>
+          <p class="text-[#244034] text-[20.9px] font-Satoshi500">
+            {{ portfolio.created_at }}
+          </p>
+        </div>
+        <div class="flex flex-row gap-2">
           <p class="text-[#244034c5] text-[20.9px] font-Satoshi400">Tags:</p>
           <div></div>
           <div class="flex flex-row gap-1">
@@ -69,7 +75,7 @@
         <div class="w-full">
           <h3
             v-html="portfolio?.title"
-            class="leading-[16.33px] text-[#000000] font-Satoshi700 mt-4 text-[32px]"
+            class="text-[#000000] font-Satoshi700 mt-4 text-[32px]"
           ></h3>
           <div
             v-html="portfolio?.description"
@@ -81,8 +87,7 @@
           loading="lazy"
           :src="portfolio?.featured_image"
           alt="cover image"
-          class="rounded-[13.076px] h-[560px] w-full object-contain mx-auto"
-        />
+class="rounded-[13.076px] lg:h-[560px] h-auto w-full object-contain mx-auto"        />
         <div class="flex flex-col gap-10">
           <img
             v-for="image in portfolio?.project_image"
@@ -90,8 +95,16 @@
             loading="lazy"
             :src="image.image"
             alt="cover image"
-            class="rounded-[13.076px] h-[560px] w-full object-contain mx-auto"
-          />
+class="rounded-[13.076px] lg:h-[560px] h-auto w-full object-contain mx-auto"          />
+        </div>
+        <div class="pl-[2.53rem] ">
+          <a
+              role="button"
+              target="_blank"
+              href=""
+              class="btn-brand font-Satoshi500"
+              >View Full Project
+            </a>
         </div>
         <!-- <div class="flex flex-row justify-center gap-5 items-center">
           <button class="relative">
