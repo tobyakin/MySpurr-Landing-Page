@@ -101,7 +101,7 @@ class="rounded-[13.076px] lg:h-[560px] h-auto w-full object-contain mx-auto"    
           <a
               role="button"
               target="_blank"
-              href=""
+              :href="portfolio.link"
               class="btn-brand font-Satoshi500"
               >View Full Project
             </a>
