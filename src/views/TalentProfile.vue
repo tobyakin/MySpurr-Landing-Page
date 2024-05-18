@@ -87,7 +87,7 @@
               </button>
               <button
                 @click="redirectToMessage"
-                class="btn-brand !bg-[#31795A] !border-none text-center flex items-start !py-2 !text-white"
+                class="btn-brand !bg-[#31795A] !border-none text-center flex items-start !py-2 !text-white btn-hover-2"
               >
                 <span style="display: grid; place-content: center" class="">Message</span>
               </button>
@@ -217,7 +217,7 @@
               <div class="">
                 <button
                   @click="printPage"
-                  class="btn-brand !border-none !w-full exclude-from-print !py-2 !text-[#FFFFFF] text-center !bg-[#31795A]"
+                  class="btn-brand !border-none !w-full exclude-from-print !py-2 !text-[#FFFFFF] text-center !bg-[#31795A] btn-hover-2"
                 >
                   <span class="!mb-2">Download CV</span>
                 </button>

@@ -121,7 +121,7 @@ defineProps({
               </div>
               <button
                 @click="redirectToJobDetails(job?.slug)"
-                class="font-Satoshi500 bg-[#43D0DF] uppercase text-[9.708px] p-3 px-12 text-[#000000] rounded-full"
+                class="font-Satoshi500 bg-[#43D0DF] uppercase text-[9.708px] p-3 px-12 text-white rounded-full btn-hover-1"
               >
                 <span>APPLY</span>
               </button>

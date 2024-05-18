@@ -28,7 +28,7 @@
             target="_blank"
             :href="dashboardUrl + 'signup'"
             role="button"
-            class="bg-brand p-3 mx-auto rounded-full px-10 text-white text-[16px] font-Satoshi400"
+            class="bg-brand p-3 mx-auto rounded-full px-10 text-white text-[16px] font-Satoshi400 btn-hover-1"
             >Sign up for free
           </a>
         </div>

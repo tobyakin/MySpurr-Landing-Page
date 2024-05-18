@@ -394,7 +394,7 @@ const Experience = [
         <div class="flex gap-12">
           <button
             @click="resetFilters"
-            class="bg-[#31795A] text-white lg:w-[40%] w-full text-center mx-auto p-4 py-4 justify-center rounded-full font-Satoshi500 text-[12.103px] items-center flex"
+            class="bg-[#31795A] text-white lg:w-[40%] w-full text-center mx-auto p-4 py-4 justify-center rounded-full font-Satoshi500 text-[12.103px] items-center flex btn-hover-2"
           >
             Reset Filter
           </button>

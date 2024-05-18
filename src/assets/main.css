@@ -18,6 +18,10 @@ h6 {
   @apply font-Satoshi400 !mb-0 ;
 }
 
+.transition {
+  transition: all 0.3s linear;
+}
+
 .container {
   max-width: 1150px;
   padding-right: 15px;
@@ -95,7 +99,15 @@ h6 {
 }
 
 .btn-brand {
-  @apply border-brand bg-brand text-black font-Satoshi500 border-2 px-10 py-3 rounded-full text-[16px];
+  @apply border-brand bg-brand text-white font-Satoshi500 border-2 px-10 py-3 rounded-full text-[16px] hover:bg-[#2F929C] hover:border-[#2F929C] transition
+}
+
+.btn-hover-1 {
+  @apply hover:!bg-[#2F929C] transition;
+}
+
+.btn-hover-2 {
+  @apply hover:!bg-[#007582] transition;
 }
 
 .btn-light-border {

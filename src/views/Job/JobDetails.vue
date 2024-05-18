@@ -131,7 +131,7 @@ onUnmounted(() => {
             </p>
             <button
               @click="redirectToJobDetails(JobDetails?.data?.id)"
-              class="bg-[#43D0DF] font-Satoshi500 text-[12.708px] p-3 px-12 text-[#000000] rounded-full"
+              class="bg-[#43D0DF] font-Satoshi500 text-[12.708px] p-3 px-12 text-white btn-hover-1 rounded-full"
             >
               Sign up to apply
             </button>
@@ -238,7 +238,7 @@ onUnmounted(() => {
           <div>
             <button
               @click="redirectToJobDetails(JobDetails?.data?.id)"
-              class="bg-[#43D0DF] font-Satoshi500 text-[12.708px] p-3 px-12 text-[#000000] rounded-full"
+              class="bg-[#43D0DF] font-Satoshi500 text-[12.708px] p-3 px-12 text-white btn-hover-1 rounded-full"
             >
               Sign up to apply
             </button>
