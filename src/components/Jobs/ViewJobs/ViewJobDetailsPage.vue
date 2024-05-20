@@ -77,7 +77,7 @@ onMounted(async () => {
           </p>
           <button
             @click="apply"
-            class="bg-[#43D0DF] font-Satoshi500 text-[9.708px] p-3 px-12 text-[#000000] rounded-full"
+            class="bg-[#43D0DF] font-Satoshi500 text-[9.708px] p-3 px-12 text-white rounded-full"
           >
             Apply
           </button>

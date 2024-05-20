@@ -18,6 +18,8 @@ module.exports = {
           text: '#333333',
           pink: '#DD4A6B'
         },
+        "hover-primary": '#2F929C',
+        "hover-secodary": '#007582',
         brand: '#43D0DF',
         dimBrand: '#00474F',
         secondary: {
