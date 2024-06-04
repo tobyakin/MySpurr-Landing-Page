@@ -206,7 +206,7 @@ onMounted(async () => {
 //     talent.value = data;
 //   },
 // });
-const CandidateType = ["Freelance", "Full-time", "Part-time", "Inernship", "Contract"];
+const CandidateType = ["Freelance", "Full-time", "Part-time", "Internship", "Contract"];
 const qualification = ["Certificate", "Bachelors", "Masters ", "Doctorate "];
 const Experience = [
   { name: "Beginner ", year: "(1-2 yrs)" },
@@ -415,7 +415,7 @@ const Experience = [
           <span class="text-[#000000] font-Satoshi500">{{
             filteredJobs?.length ? filteredJobs?.length : paginatedTalent?.length
           }}</span>
-          candidates found
+          candidates found from <span class="text-[#000000] font-Satoshi500">{{talent?.pagination?.total}}</span>
         </p>
       </div>
       <!-- <PagePreLoader /> -->

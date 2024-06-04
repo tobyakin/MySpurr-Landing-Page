@@ -1,8 +1,18 @@
 <script setup>
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
-
 import SearchBarIcon from "@/components/icons/searchBarIcon.vue";
+import { visitor } from "../../services/Visitor";
+
+
+onMounted(async () => {
+  try {
+    await visitor()
+  } catch (error) {
+    console.log(error)
+  }
+})
+
 const body = document.querySelector("body");
 body.classList.remove("overflow-hidden");
 const showMobile = ref(false);

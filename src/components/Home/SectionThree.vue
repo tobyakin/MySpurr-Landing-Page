@@ -63,12 +63,12 @@
           </svg>
           <div>
             <p class="font-Satoshi400 leading-[33px] text-black text-[22px]">
-              It’s take 2 minute to open an acocunt.
+              It’s take 2 minute to open an account.
             </p>
             <p
               class="font-Satoshi500 leading-[15px] mt-1 uppercase text-brand text-[12px]"
             >
-              Open Acount
+              Open Account
             </p>
           </div>
         </div>

@@ -61,7 +61,7 @@
           <div class="flex flex-col items-center lg:justify-normal justify-center gap-6">
             <div class="flex items-center gap-3">
               <a
-                v-if="talents?.linkedin"
+                v-if="talents?.email"
                 :href="`mailto:${talents?.email}`"
                 class="flex items-center mt-1"
                 target="_blank"
@@ -111,7 +111,7 @@
             <p class="text-[28px] text-[#000] font-Satoshi500 !mb-4 mt-6">Skills</p>
             <div class="flex gap-4 flex-wrap">
               <div
-                v-for="(item, index) in talents?.top_skills"
+                v-for="item in talents?.top_skills"
                 :key="item.name"
                 class="bg-[#EFF6F3] rounded-full p-5 py-3 text-[17px] text-center font-Satoshi400 text-[#276A4D]"
               >
@@ -147,7 +147,7 @@
                 loading="lazy"
                 @click="redirectToSinglePortFolio(img.id, img.title)"
                 role="button"
-                v-for="(img, index) in talents?.portfolio"
+                v-for="img in talents?.portfolio"
                 :key="img?.id"
                 :src="img?.featured_image"
                 class="h-[268px] flex flex-col object-cover items-center w-[277.61px] rounded-[7px] bg-[#EDF0B8]/[20%]"
