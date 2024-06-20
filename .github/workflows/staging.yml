@@ -19,12 +19,12 @@ jobs:
     - name: 🔨 Build Project
       run: |
         npm install
-        npm run build 2>/dev/null
+        npm run build:staging 2>/dev/null
     
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
         server: ftp.myspurr.net
-        username: ${{ secrets.staging_username }}
-        password: ${{ secrets.staging_password }}
+        username: ${{ secrets.ftp_landing_staging_username }}
+        password: ${{ secrets.ftp_landing_staging_password }}
         local-dir: dist/

@@ -360,7 +360,7 @@ watchEffect(() => {
           <div class="flex gap-12">
             <button
               @click="resetFilters"
-              class="bg-[#31795A] text-white lg:w-[40%] text-center mx-auto border-2 p-4 py-2 justify-center rounded-full font-Satoshi500 text-[10.672px] items-center flex btn-hover-2"
+              class=" bg-[#31795A] text-white lg:w-[40%] text-center mx-auto border-2 p-4 py-2 justify-center rounded-full font-Satoshi500 text-[10.672px] items-center flex btn-hover-2"
             >
               Reset
             </button>

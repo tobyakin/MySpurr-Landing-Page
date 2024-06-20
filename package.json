@@ -1,10 +1,12 @@
 {
-  "name": "myspurr-landingPage",
+  "name": "MySpurr Landing Page",
   "version": "0.0.0",
   "private": true,
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
+    "build:staging": "vite build --mode staging",
+    "build:production": "vite build --mode production",
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
     "format": "prettier --write src/"
