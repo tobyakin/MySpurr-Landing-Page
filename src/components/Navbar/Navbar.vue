@@ -29,7 +29,7 @@ const toogleMobileMenu = () => {
   }
 };
 
-const dashboardUrl = import.meta.env.VITE_DASHBOARD;
+const dashboardUrl = import.meta.env.VITE_DASHBOARD_HOST;
 const searchQuery = ref("");
 
 const redirectToJobPage = () => {
