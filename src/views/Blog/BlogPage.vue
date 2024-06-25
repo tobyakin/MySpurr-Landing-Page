@@ -6,98 +6,67 @@ import Footer from '@/components/Footer.vue'
 const FormGroup = defineAsyncComponent(() => import('@/components/Form/Input/FormGroup.vue'))
 import Arrow from '@/components/icons/paginationArrow.vue'
 import BlogCard from '@/components/Blog/BlogCard.vue'
-import useFaqStore from '@/stores/faq'
-import { ref, computed, onMounted } from 'vue'
+import { useBlogStore } from '../../stores/blog';
+import { ref, onMounted } from 'vue'
+import Loader from "@/components/UI/Loader/Loader.vue";
 // import { storeToRefs } from "pinia";
 import WorkFlow from '@/components/Bander/WorkFlow.vue'
 
 const tab = ref('ALL')
-const filteredTab = ref([])
+const allBlog = ref([])
+const filteredBlog = ref([])
+const currentPage = ref(1);
+const totalPages = ref(1);
+const perPage = ref(25); // Assuming 25 per page, change if different
+const displayedPageNumbers = ref([]);
+const categories = ref([]);
+const blog = useBlogStore()
+const loading = ref(false)
 
-const store = useFaqStore()
-// const { blog } = storeToRefs(store);
-
-// const pages = computed(() => {
-//   const divsor = Math.floor(blog.value.meta.current_page / 3);
-//   console.log(blog.value.meta.current_page % 3);
-//   const number = blog.value.meta.current_page % 3 ? divsor * 3 + 1 : (divsor - 1) * 3 + 1;
-//   let pages = [];
-//   for (let index = number; index < number + 3; index++) {
-//     pages.push(index);
-//   }
-//   return pages;
-// });
-
-// onMounted(async () => {
-//   await store.getBlog();
-// });
-onMounted(() => {
-  filterTab('ALL')
-})
-// const goToPage = (page) => {
-//   store.getBlog(page);
-// };
-
-// function goToNextPage(page) {
-//   store.getBlog(page);
-// }
-
-// function goToPrevPage(page) {
-//   store.getBlog(page);
-// }
-// Compute the list of page numbers to display
-const displayedPageNumbers = computed(() => {
-  const maxDisplayedPages = 5
-  const startPage = Math.max(currentPage.value - Math.floor(maxDisplayedPages / 2), 1)
-  const endPage = Math.min(startPage + maxDisplayedPages - 1, totalPages.value)
-  const pageNumbers = []
-
-  for (let i = startPage; i <= endPage; i++) {
-    pageNumbers.push(i)
-  }
-
-  return pageNumbers
-})
-
-const itemsPerPage = 6 // Number of items to display per page
-const currentPage = ref(1) // Calculate the total number of pages
-const totalPages = computed(() => Math.ceil(store.blogPost.length / itemsPerPage))
-
-// Function to navigate to a specific page
-// Compute the paginated data
-const paginatedData = computed(() => {
-  const start = (currentPage.value - 1) * itemsPerPage
-  const end = start + itemsPerPage
-  return store.blogPost.slice(start, end)
-})
-
-// Function to navigate to the previous page
-// function previousPage() {
-//   if (currentPage.value > 1) {
-//     currentPage.value--;
-//   }
-// }
-
-// // Function to navigate to the next page
-// function nextPage() {
-//   if (currentPage.value < totalPages.value) {
-//     currentPage.value++;
-//   }
-// }
 const filterTab = (category) => {
-  tab.value = category
-  if (category != 'ALL') {
-    filteredTab.value = paginatedData.value.filter((item) => item.blog_category == category)
-  } else {
-    filteredTab.value = paginatedData.value
+  tab.value = category;
+  fetchBlogs(1, category.toString());
+};
+
+const fetchBlogs = async (page = 1, category = 'ALL') => {
+  loading.value = true
+  const res = await blog.allBlogs(page, category);
+  allBlog.value = res.data;
+  filteredBlog.value = category === 'ALL' ? allBlog.value : allBlog.value.filter(blog => blog.category_id === category);
+  currentPage.value = res.pagination.current_page;
+  totalPages.value = res.pagination.last_page;
+  perPage.value = res.pagination.per_page;
+
+  displayedPageNumbers.value = Array.from(
+    { length: totalPages.value },
+    (_, i) => i + 1
+  );
+
+  loading.value = false
+};
+
+const fetchCategories = async () => {
+  const res = await blog.allCategory();
+  categories.value = res.data;
+};
+
+const goToPage = (page) => {
+  if (page >= 1 && page <= totalPages.value) {
+    fetchBlogs(page);
   }
-}
+};
+
+onMounted(() => {
+  fetchBlogs();
+  fetchCategories();
+});
+
 </script>
 
 <template>
   <div>
     <Navbar />
-    <div class="py-20 container">
+    <div class="pt-20 container ">
       <div class="flex items-center justify-between">
         <h4 class="text-[#007582] font-EBGaramond500 text-[62.883px] leading-[66.813px]">
           MySpurr Blog
@@ -118,10 +87,11 @@ const filterTab = (category) => {
         <br class="lg:block hidden" />
         get insight into Africa’s creative marketplace.
       </p>
-      <div>
+      <Loader v-if="loading" />
+      <div v-else>
         <div class="font-Satoshi400 !my-10 pb-10">
           <ul
-            class="hidden !my-24 md:flex text-sm justify-between font-semibold flex-wrap gap-y-[40px]"
+            class="hidden !my-16 md:flex text-sm justify-between font-semibold flex-wrap gap-y-[40px]"
           >
             <li>
               <a
@@ -133,106 +103,39 @@ const filterTab = (category) => {
                 All
               </a>
             </li>
-            <li>
+            <li v-for="category in categories" :key="category.id">
               <a
                 href="javascript:void(0)"
-                @click="filterTab('Creativity and Design')"
+                @click="filterTab(category.id)"
                 :class="{
-                  'border-b-[#007582] border-b-[2.224px]': tab == 'Creativity and Design'
+                  'border-b-[#007582] border-b-[2.224px]': tab === category.id
                 }"
                 class="px-0 py-2 hover:border-b-[#007582]"
               >
-                Creativity and Design
-              </a>
-            </li>
-            <li>
-              <a
-                href="javascript:void(0)"
-                @click="filterTab('Creative inspiration')"
-                :class="{
-                  'border-b-[#007582] border-b-[2.224px]': tab == 'Creative inspiration'
-                }"
-                class="px-0 py-2 hover:border-b-[#007582]"
-              >
-                Creative inspiration
-              </a>
-            </li>
-            <li>
-              <a
-                href="javascript:void(0)"
-                @click="filterTab('Case Studies')"
-                :class="{
-                  'border-b-[#007582] border-b-[2.224px]': tab == 'Case Studies'
-                }"
-                class="px-0 py-2 hover:border-b-[#007582]"
-              >
-                Case Studies
-              </a>
-            </li>
-            <li>
-              <a
-                href="javascript:void(0)"
-                @click="filterTab('Interviews and features')"
-                :class="{
-                  'border-b-[#007582] border-b-[2.224px]': tab == 'Interviews and features'
-                }"
-                class="px-0 py-2 hover:border-b-[#007582]"
-              >
-                Interviews and features
-              </a>
-            </li>
-            <li>
-              <a
-                href="javascript:void(0)"
-                @click="filterTab('Company news')"
-                :class="{
-                  'border-b-[#007582] border-b-[2.224px]': tab == 'Company news'
-                }"
-                class="px-0 py-2 hover:border-b-[#007582]"
-              >
-                Company news
-              </a>
-            </li>
-            <li>
-              <a
-                href="javascript:void(0)"
-                @click="filterTab('Industry News and Insights')"
-                :class="{
-                  'border-b-[#007582] border-b-[2.224px]': tab == 'Industry News and Insights'
-                }"
-                class="px-0 py-2 hover:border-b-[#007582]"
-              >
-                Industry News and Insights
+                {{ category.name }}
               </a>
             </li>
           </ul>
-          <!-- <div
-            v-if="store.blogPost.length && tab == 'ALL'"
-            class="md:grid md:grid-cols-3 gap-10 !my-10 min-h-screen flex-wrap"
-          >
-            <BlogCard
-              v-for="blog in store.blogPost"
-              :key="blog"
-              :image="blog.cover_image"
-              :heading="blog.title"
-              :text="blog.blog_description"
-              :date="blog.created_at"
-              :blog_category="blog.blog_category"
-              :blog="blog"
-            />
-          </div> -->
-          <div class="md:grid md:grid-cols-3 gap-10 !my-10 min-h-screen flex-wrap">
-            <BlogCard
-              v-for="blog in filteredTab"
-              :key="blog"
-              :image="blog.cover_image"
-              :heading="blog.title"
-              :text="blog.blog_description"
-              :date="blog.created_at"
-              :blog_category="blog.blog_category"
-              :blog="blog"
-            />
-          </div>
+
+          <template v-if="filteredBlog.length === 0">
+            <div class="text-center w-full">
+              <p>No data available</p>
+            </div>
+          </template>
+          <template v-else>
+            <div class="md:grid md:grid-cols-3 gap-10 !my-10 flex-wrap">
+              <BlogCard
+                v-for="blog in filteredBlog"
+                :key="blog"
+                :image="blog.featured_photo"
+                :heading="blog.title"
+                :text="blog.description"
+                :date="blog.created_at"
+                :blog_category="blog.category"
+                :blog="blog"
+              />
+            </div>
+          </template>
           <div class="mt-12 flex w-[60%] flex-row justify-center mx-auto">
             <button
               v-for="pageNumber in displayedPageNumbers"

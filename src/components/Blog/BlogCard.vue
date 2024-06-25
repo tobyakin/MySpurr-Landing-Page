@@ -1,20 +1,23 @@
 <template>
   <div class="w-full font-Satoshi400" :class="{ 'md:w-[45%]': two, 'md:w-[31%]': three }">
     <div class="">
-      <router-link :to="{ name: 'SingleBlog', params: { id: blog.slug } }">
-        <img loading="lazy" class="w-full h-auto max-h-[283.472px] rounded-lg" :src="image" />
+      <router-link :to="{ name: 'SingleBlog', params: { slug: blog.slug } }">
+        <img loading="lazy" class="w-full h-auto rounded-lg" :src="image" alt="" />
       </router-link>
       <div class="flex justify-between text-sm mt-6">
         <button
-          class="bg-[#D2F34C] text-[#244034] h-9 uppercase p-2 px-3 md:max-w-[200px] rounded-full lg:min-w-[150px]"
+          class="bg-[#D2F34C] text-[#244034] uppercase p-2 px-5 md:max-w-[200px] rounded-full lg:min-w-[150px] whitespace-nowrap"
         >
-          {{ props.blog_category }}
+          <span class="text-sm">
+            {{ props.blog_category }}
+          </span>
         </button>
-        <!-- <button class="border-none bg-white text-black h-9 p-2">
+        <!-- <button class="border-none bg-white text-black h-9 p-2 whitespace-nowrap">
           {{ dateFormat(props.date) }}
         </button> -->
       </div>
-      <router-link :to="{ name: 'SingleBlog', params: { id: blog.slug } }">
+
+      <router-link :to="{ name: 'SingleBlog', params: { slug: blog.slug } }">
         <h3
           class="font-bold font-Satoshi500 text-[26.457px] leading-[37.796px] text-[#007582] !my-4"
         >

@@ -1,48 +1,66 @@
 <script setup>
 import Navbar from '@/components/Navbar/Navbar.vue'
 import Footer from '@/components/Footer.vue'
-import { useRouter, useRoute } from 'vue-router'
+import { useRoute } from 'vue-router'
 // import { storeToRefs } from "pinia";
 // import dayjs from "dayjs";
 // import { useFaqStore } from "@/stores/faq";
 // import share from "share-url";
 import { onMounted, ref } from 'vue'
-const router = useRouter()
 const route = useRoute()
-import blogbg from '@/assets/img/blog.webp'
 import EyeIcon from '@/components/icons/eyeIcon.vue'
 import CommentIcon from '@/components/icons/commentIcon.vue'
 import ShareIcon from '@/components/icons/shareIcon.vue'
 import BlogCard from '@/components/Blog/BlogCard.vue'
+import { useBlogStore } from '../../stores/blog';
+import Loader from "@/components/UI/Loader/Loader.vue";
 
-// const store = useFaqStore();
-// const { singleBlog } = storeToRefs(store);
+
+const blog = useBlogStore()
+const singleBlog = ref({})
+const allBlog = ref([])
+const loading = ref(false)
+
+const fetchSingleBlog = async() => {
+  loading.value = true
+
+  const res = await blog.getSingleBlogSlug(route.params.slug);
+  singleBlog.value = res.data
+
+  loading.value = false
+}
+
+const fetchBlogs = async(page, category) => {
+  loading.value = true
+
+  const res = await blog.allBlogs(page, category);
+  allBlog.value = res.data;
+
+  loading.value = false
+}
 
 onMounted(async () => {
-  // await store.getSingleBlog(route.params.slug);
-  // store.getRelatedBlog(singleBlog.value.blog_category, singleBlog.value.id);
+  fetchSingleBlog()
+  fetchBlogs()
 })
-
-// var url = window.location.origin + route.fullPath;
 </script>
 
 <template>
   <div>
     <Navbar />
-    <div class="py-20 container">
-      <div class="font-Satoshi400 !my-16">
+    <Loader v-if="loading" />
+    <div class="py-20 container" v-else>
+      <div class="font-Satoshi400">
         <div class="">
-          <img loading="lazy" :src="blogbg" class="h-[630px]" alt="" />
-          <!-- <img loading="lazy"  
-            :src="singleBlog.cover_image"
-            class="h-auto cursor-pointer w-full object-cover rounded-xl"
+          <img loading="lazy"  
+            :src="singleBlog.featured_photo"
+            class="cursor-pointer w-full object-cover rounded-xl"
             alt=""
-          /> -->
+          />
         </div>
 
         <div class="text-[#007582] py-4 leading-[69.598px] text-[48.719px] font-Satoshi500">
-          Showcasing the works of emerging artists
-          <!-- {{ singleBlog.title }} -->
+          {{ singleBlog.title }}
         </div>
         <div
           class="border-y-[#254035AB] flex items-center justify-between gap-2 border-y-[0.793px] py-4 mt-12"
@@ -115,25 +133,25 @@ onMounted(async () => {
           </div>
         </div>
 
-        <!-- <div
-          v-html="singleBlog.body"
-          class="!my-4 leading-[32px] lg:px-[10rem] mt-4 container px-4 tracking-[-0.003rem] text-[20px]"
-        ></div> -->
+        <div
+          v-html="singleBlog.content"
+          class="!my-4 leading-[32px] mt-4 tracking-[-0.003rem] text-[20px]"
+        ></div>
       </div>
-      <div class="md:grid md:grid-cols-3 gap-10 !my-10 min-h-screen flex-wrap">
+      <div class="md:grid md:grid-cols-3 gap-10 !my-20 flex-wrap">
         <BlogCard
-          v-for="blog in filteredTab"
+          v-for="blog in allBlog"
           :key="blog"
-          :image="blog.cover_image"
+          :image="blog.featured_photo"
           :heading="blog.title"
-          :text="blog.blog_description"
+          :text="blog.description"
           :date="blog.created_at"
-          :blog_category="blog.blog_category"
+          :blog_category="blog.category"
           :blog="blog"
         />
       </div>
 
-      <div class="!my-40 py-10 border-t-[#EBEBEB] border-b-[#EBEBEB] border-t-[1px] border-b-[1px]">
+      <div class="py-10 border-t-[#EBEBEB] border-b-[#EBEBEB] border-t-[1px] border-b-[1px]">
         <div class="flex lg:flex-nowrap flex-wrap lg:gap-0 gap-10 items-center justify-between">
           <div class="w-full">
             <h2
