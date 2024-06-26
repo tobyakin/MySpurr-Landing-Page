@@ -1,6 +1,6 @@
 <template>
   <div
-    class="lg:!my-40 !my-10 py-10 border-t-[#EBEBEB] border-b-[#EBEBEB] border-t-[1px] border-b-[1px]"
+    class="!mt-10 py-10 border-t-[#EBEBEB] border-b-[#EBEBEB] border-t-[1px] border-b-[1px]"
   >
     <div class="flex lg:flex-nowrap flex-wrap lg:gap-0 gap-10 items-center justify-between">
       <div class="w-full">

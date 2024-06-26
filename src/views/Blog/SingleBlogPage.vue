@@ -1,53 +1,84 @@
 <script setup>
+import { computed, onMounted, ref, watch } from 'vue'
 import Navbar from '@/components/Navbar/Navbar.vue'
 import Footer from '@/components/Footer.vue'
-import { useRouter, useRoute } from 'vue-router'
+import { useRoute } from 'vue-router'
+import BlogCard from '@/components/Blog/BlogCard.vue'
+import { useBlogStore } from '../../stores/blog';
+import Loader from "@/components/UI/Loader/Loader.vue";
 // import { storeToRefs } from "pinia";
 // import dayjs from "dayjs";
 // import { useFaqStore } from "@/stores/faq";
 // import share from "share-url";
-import { onMounted, ref } from 'vue'
-const router = useRouter()
-const route = useRoute()
-import blogbg from '@/assets/img/blog.webp'
-import EyeIcon from '@/components/icons/eyeIcon.vue'
-import CommentIcon from '@/components/icons/commentIcon.vue'
-import ShareIcon from '@/components/icons/shareIcon.vue'
-import BlogCard from '@/components/Blog/BlogCard.vue'
+// import EyeIcon from '@/components/icons/eyeIcon.vue'
+// import CommentIcon from '@/components/icons/commentIcon.vue'
+// import ShareIcon from '@/components/icons/shareIcon.vue'
 
-// const store = useFaqStore();
-// const { singleBlog } = storeToRefs(store);
+const route = useRoute()
+const blog = useBlogStore()
+const singleBlog = ref({})
+const allBlog = ref([])
+const loading = ref(false)
+
+const fetchSingleBlog = async() => {
+  loading.value = true
+
+  const res = await blog.getSingleBlogSlug(route.params.slug);
+  singleBlog.value = res.data
+
+  loading.value = false
+}
+
+const fetchBlogs = async(page, category) => {
+  loading.value = true
+
+  const res = await blog.allBlogs(page, category);
+  allBlog.value = res.data;
+
+  loading.value = false
+}
+
+const filteredBlogs = computed(() => {
+  return allBlog.value.filter(blog => blog.id !== singleBlog.value.id);
+});
 
 onMounted(async () => {
-  // await store.getSingleBlog(route.params.slug);
-  // store.getRelatedBlog(singleBlog.value.blog_category, singleBlog.value.id);
+  fetchSingleBlog()
+  fetchBlogs()
 })
 
-// var url = window.location.origin + route.fullPath;
+watch(
+  () => route.params.slug,
+  async (newSlug, oldSlug) => {
+    if (newSlug !== oldSlug) {
+      await fetchSingleBlog()
+      await fetchBlogs()
+    }
+  }
+)
 </script>
 
 <template>
   <div>
     <Navbar />
-    <div class="py-20 container">
-      <div class="font-Satoshi400 !my-16">
+    <Loader v-if="loading" />
+    <div class="py-16 container" v-else>
+      <div class="font-Satoshi400">
         <div class="">
-          <img loading="lazy" :src="blogbg" class="h-[630px]" alt="" />
-          <!-- <img loading="lazy"  
-            :src="singleBlog.cover_image"
-            class="h-auto cursor-pointer w-full object-cover rounded-xl"
+          <img loading="lazy"  
+            :src="singleBlog.featured_photo"
+            class="cursor-pointer w-full object-cover rounded-xl h-[550px]"
             alt=""
-          /> -->
+          />
         </div>
 
-        <div class="text-[#007582] py-4 leading-[69.598px] text-[48.719px] font-Satoshi500">
-          Showcasing the works of emerging artists
-          <!-- {{ singleBlog.title }} -->
+        <div class="text-[#007582] py-8 text-[42px] font-bold">
+          {{ singleBlog.title }}
         </div>
         <div
-          class="border-y-[#254035AB] flex items-center justify-between gap-2 border-y-[0.793px] py-4 mt-12"
+          class="border-t-[#254035AB] flex items-center justify-between gap-2 border-t-[0.793px] mb-8"
         >
-          <div class="flex items-center gap-2">
+          <!-- <div class="flex items-center gap-2">
             <div class="flex items-center gap-2 text-[14.747px] font-Satoshi500">
               <EyeIcon /><span>0k</span>
             </div>
@@ -55,18 +86,18 @@ onMounted(async () => {
               <CommentIcon /><span>0</span>
             </div>
           </div>
-          <div><ShareIcon /></div>
+          <div><ShareIcon /></div> -->
         </div>
 
-        <div
-          class="flex flex-col md:flex-row lg:pl-[10rem] pr-10 container pl-4 md:justify-between"
+        <!-- <div
+          class="flex flex-col md:flex-row container md:justify-between"
         >
           <div class="!my-4 flex gap-4">
-            <!-- <div>Published: {{ dayjs(singleBlog.created_at).format("DD.MM.YY") }}</div>
-            <div>Last Updated: {{ dayjs(singleBlog.created_at).format("DD.MM.YY") }}</div> -->
+            <div>Published: {{ dayjs(singleBlog.created_at).format("DD.MM.YY") }}</div>
+            <div>Last Updated: {{ dayjs(singleBlog.created_at).format("DD.MM.YY") }}</div>
           </div>
           <div class="flex md:flex-col gap-4">
-            <!-- <div>
+            <div>
               <a
                 :href="
                   share.facebook({
@@ -82,9 +113,9 @@ onMounted(async () => {
               <a :href="share.pinterest(url)" target="_blank">
                 <img loading="lazy"   class="h-4 w-4" src="@/assets/img/pinterest.svg" alt="" />
               </a>
-            </div> -->
+            </div>
             <div>
-              <!-- <a
+              <a
                 :href="
                   share.linkedin({
                     url: url,
@@ -93,10 +124,10 @@ onMounted(async () => {
                 target="_blank"
               >
                 <img loading="lazy"   class="h-4 w-4" src="@/assets/img/linkedin.svg" alt="" />
-              </a> -->
+              </a>
             </div>
             <div>
-              <!-- <a
+              <a
                 :href="
                   share.twitter({
                     text: '',
@@ -110,30 +141,35 @@ onMounted(async () => {
                 target="_blank"
               >
                 <img loading="lazy"   class="h-4 w-4" src="@/assets/img/twitter.svg" alt="" />
-              </a> -->
+              </a>
             </div>
           </div>
-        </div>
+        </div> -->
 
-        <!-- <div
-          v-html="singleBlog.body"
-          class="!my-4 leading-[32px] lg:px-[10rem] mt-4 container px-4 tracking-[-0.003rem] text-[20px]"
-        ></div> -->
+        <div
+          v-html="singleBlog.content"
+          class="!my-4 leading-[32px] tracking-[-0.003rem] text-[20px]"
+        ></div>
       </div>
-      <div class="md:grid md:grid-cols-3 gap-10 !my-10 min-h-screen flex-wrap">
+
+      <div class="mt-20 mb-6">
+        <h3 class="text-2xl font-bold text-[#007582]">More from MySpurr</h3>
+      </div>
+
+      <div class="md:grid md:grid-cols-3 gap-10 flex-wrap">
         <BlogCard
-          v-for="blog in filteredTab"
+          v-for="blog in filteredBlogs"
           :key="blog"
-          :image="blog.cover_image"
+          :image="blog.featured_photo"
           :heading="blog.title"
-          :text="blog.blog_description"
+          :text="blog.description"
           :date="blog.created_at"
-          :blog_category="blog.blog_category"
+          :blog_category="blog.category"
           :blog="blog"
         />
       </div>
 
-      <div class="!my-40 py-10 border-t-[#EBEBEB] border-b-[#EBEBEB] border-t-[1px] border-b-[1px]">
+      <div class="py-10 border-t-[#EBEBEB] border-b-[#EBEBEB] border-t-[1px] border-b-[1px] mt-16">
         <div class="flex lg:flex-nowrap flex-wrap lg:gap-0 gap-10 items-center justify-between">
           <div class="w-full">
             <h2

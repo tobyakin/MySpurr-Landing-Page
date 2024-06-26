@@ -91,17 +91,23 @@ const router = createRouter({
     {
       path: '/blog',
       name: 'blog',
-      component: BlogView
+      component: BlogView,
+      meta: {
+        title: 'MySpurr | Learn'
+      }
+    },
+    {
+      path: '/:category/:slug',
+      name: 'SingleBlog',
+      component: SingleBlog,
+      meta: {
+        title: 'MySpurr | Learn'
+      }
     },
     {
       path: '/about-us',
       name: 'aboutUs',
       component: AboutView
-    },
-    {
-      path: '/view-blog/:id',
-      name: 'SingleBlog',
-      component: SingleBlog
     },
     {
       path: '/hire-talent',
