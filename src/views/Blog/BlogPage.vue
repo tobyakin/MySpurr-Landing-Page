@@ -71,7 +71,7 @@ onMounted(() => {
         <h4 class="text-[#007582] font-EBGaramond500 text-[62.883px] leading-[66.813px]">
           MySpurr Blog
         </h4>
-        <div class="relative w-1/4">
+        <div class="relative w-2/5">
           <SearchBarIcon class="absolute right-3 top-4" />
           <FormGroup
             labelClasses="font-Satoshi500 text-[15.606px]"

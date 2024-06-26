@@ -72,7 +72,7 @@ watch(
           />
         </div>
 
-        <div class="text-[#007582] py-8 text-[42px] font-medium">
+        <div class="text-[#007582] py-8 text-[42px] font-bold">
           {{ singleBlog.title }}
         </div>
         <div
@@ -169,7 +169,7 @@ watch(
         />
       </div>
 
-      <div class="py-10 border-t-[#EBEBEB] border-b-[#EBEBEB] border-t-[1px] border-b-[1px]">
+      <div class="py-10 border-t-[#EBEBEB] border-b-[#EBEBEB] border-t-[1px] border-b-[1px] mt-16">
         <div class="flex lg:flex-nowrap flex-wrap lg:gap-0 gap-10 items-center justify-between">
           <div class="w-full">
             <h2
