@@ -1,6 +1,4 @@
 <script setup>
-import { ref, reactive } from "vue";
-
 const getYear = new Date().getFullYear();
 </script>
 
