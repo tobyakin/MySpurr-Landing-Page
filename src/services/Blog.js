@@ -35,3 +35,14 @@ export const getAllCategory = async () => {
     }
 }
 
+export const getAllRecent = async () => {
+  try {
+    let res = await axios.get(`blog/recent`)
+    catchAxiosSuccess(res.data)
+    return res.data;
+  } catch (error) {
+    catchAxiosError(error)
+    throw error
+  }
+}
+
