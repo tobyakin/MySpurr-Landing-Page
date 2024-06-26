@@ -101,17 +101,6 @@ const redirectWithSearchQuery = () => {
               </li>
               <li>
                 <router-link
-                  to="/blog"
-                  :class="route.name === 'blog' ? 'text-[#2F929C] ' : ''"
-                  class="p-[10px] pr-0 flex justify-start rounded-[5px]"
-                >
-                  <span class="place-self-center text-[16px] leading-[21.6px]"
-                    >Learn
-                  </span>
-                </router-link>
-              </li>
-              <li>
-                <router-link
                   to="/courses"
                   :class="route.name === 'courses' ? 'text-[#2F929C] ' : ''"
                   class="p-[10px] pr-0 flex justify-start rounded-[5px]"
@@ -129,6 +118,17 @@ const redirectWithSearchQuery = () => {
                 >
                   <span class="place-self-center text-[16px] leading-[21.6px]"
                     >Hire Talent
+                  </span>
+                </router-link>
+              </li>
+              <li>
+                <router-link
+                  to="/blog"
+                  :class="route.name === 'blog' ? 'text-[#2F929C] ' : ''"
+                  class="p-[10px] pr-0 flex justify-start rounded-[5px]"
+                >
+                  <span class="place-self-center text-[16px] leading-[21.6px]"
+                    >Blog
                   </span>
                 </router-link>
               </li>
