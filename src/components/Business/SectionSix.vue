@@ -1,5 +1,5 @@
 <template>
-  <div class="container py-[60px] lg:py-40">
+  <div class="container pt-[40px] pb-[20px] lg:pt-40 lg:pb-20">
     <div class="w-full">
       <iframe
         v-if="steps[1]"

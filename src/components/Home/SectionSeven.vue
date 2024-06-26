@@ -1,67 +1,68 @@
 <template>
-  <div class="lg:py-20 py-[28px] container">
+  <Loader v-if="loading" />
+  <div class="lg:py-20 py-[28px] container" v-else>
     <div class="flex lg:flex-row flex-col justify-center items-center lg:justify-between">
       <h2
         class="text-dimBrand text-[43px] lg:text-[50px] text-center !font-semibold leading-[68.056px] lg:leading-[74px] font-EBGaramond500 !mb-4 lg:mb-8"
       >
-        MySpurr Guides
+        MySpurr Blog
       </h2>
       <div class="lg:flex hidden items-center">
-        <button class="text-[13.279px] font-Satoshi500 btn-brand">Explore More</button>
+        <router-link to="/blog">
+          <button class="text-[13.279px] font-Satoshi500 btn-brand">Explore More</button>
+        </router-link>
       </div>
     </div>
-    <div class="flex lg:flex-row flex-col gap-20 lg:gap-5 pt-[40px]">
-      <div v-for="item in Guides" :key="item" class="flex-col flex gap-2 lg:gap-4 h-auto">
-        <img loading="lazy" :src="item.image" alt="" />
-        <div class="flex flex-col gap-3 lg:gap-5">
-          <span
-            class="text-[#00000059] lg:block hidden font-Satoshi400 text-[16px] leading-[25px] ml-5 !my-[10px]"
+    <div class="md:grid md:grid-cols-3 gap-10 !my-10 flex-wrap">
+      <div v-for="item in recents" :key="item" class="">
+        <router-link :to="{ name: 'SingleBlog', params: { category:item.category_slug, slug: item.slug } }">
+          <img loading="lazy" class="w-full h-auto rounded-lg" :src="item.featured_photo" alt="" />
+        </router-link>
+        <div class="flex flex-col gap-3 lg:gap-5 mt-6 font-Satoshi400">
+          <button
+          class="bg-[#D2F34C] text-[#244034] uppercase p-2 px-5 md:max-w-[200px] rounded-full lg:min-w-[150px] whitespace-nowrap"
+        >
+          <span class="text-sm">
+            {{ item.category }}
+          </span>
+        </button>
+        <router-link :to="{ name: 'SingleBlog', params: { category:item.category_slug, slug: item.slug } }">
+          <h3
+            class="font-bold font-Satoshi500 text-[20px] leading-[35px] text-[#007582] !my-1"
           >
-            {{ item.skills }}</span
-          >
-          <p
-            class="text-[#000000] overflow-hidden text-[20px] font-Satoshi500 leading-[30px]"
-          >
-            {{ item.heading }}
-          </p>
-          <p class="text-[#0000004D] text-[16px] font-Satoshi500 flex items-center gap-2">
-            By <span class="text-[#000000]">{{ item.name }}</span>
-          </p>
+            {{ item.title }}
+          </h3>
+        </router-link>
         </div>
       </div>
     </div>
     <div class="flex !my-[40px] justify-center items-center">
-      <button class="text-[13.279px] font-Satoshi500 btn-brand">Explore More</button>
+      <router-link to="/blog">
+        <button class="text-[13.279px] font-Satoshi500 btn-brand">Explore More</button>
+      </router-link>
     </div>
-
-    <WorkFlow />
   </div>
 </template>
 <script setup>
-import ImageOne from "@/assets/img/unsplash.webp";
-import ImageTwo from "@/assets/img/woman.webp";
-import ImageThree from "@/assets/img/man_working_office_holding_money.webp";
-import WorkFlow from "@/components/Bander/WorkFlow.vue";
+import { useBlogStore } from "../../stores/blog";
+import { onMounted, ref } from "vue";
+import Loader from "@/components/UI/Loader/Loader.vue";
 
-const Guides = [
-  {
-    image: ImageOne,
-    skills: "Developer, Code",
-    heading: ` Unlocking Creative Excellence: A Guide to Talent Sourcing in the Creative Industry
-`,
-    name: "Rashed Kabir",
-  },
-  {
-    image: ImageTwo,
-    skills: "Design, Art",
-    heading: ` Crafting Compelling Portfolios: Strategies for Effective Creative Showcase`,
-    name: "Julie Margot",
-  },
-  {
-    image: ImageThree,
-    skills: "Solution, Work",
-    heading: `Revolutionizing Recruitment: The MySpurr Approach to Creative Hiring`,
-    name: "Jubayer Al Hasan",
-  },
-];
+
+const blog = useBlogStore()
+const recents = ref([])
+const loading = ref(false)
+
+const fetchRecent = async () => {
+  loading.value = true
+
+  const res = await blog.allRecent();
+  recents.value = res.data;
+
+  loading.value = false
+};
+
+onMounted(() => {
+  fetchRecent();
+});
 </script>
