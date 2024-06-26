@@ -93,7 +93,7 @@ const router = createRouter({
       name: 'blog',
       component: BlogView,
       meta: {
-        title: 'MySpurr | Learn'
+        title: 'MySpurr | Blog'
       }
     },
     {
@@ -101,7 +101,7 @@ const router = createRouter({
       name: 'SingleBlog',
       component: SingleBlog,
       meta: {
-        title: 'MySpurr | Learn'
+        title: 'MySpurr | Blog'
       }
     },
     {

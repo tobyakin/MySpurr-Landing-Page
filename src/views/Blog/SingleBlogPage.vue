@@ -1,11 +1,12 @@
 <script setup>
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, onMounted, reactive, ref, watch } from 'vue'
 import Navbar from '@/components/Navbar/Navbar.vue'
 import Footer from '@/components/Footer.vue'
 import { useRoute } from 'vue-router'
 import BlogCard from '@/components/Blog/BlogCard.vue'
 import { useBlogStore } from '../../stores/blog';
 import Loader from "@/components/UI/Loader/Loader.vue";
+import { useHead } from '@vueuse/head'
 // import { storeToRefs } from "pinia";
 // import dayjs from "dayjs";
 // import { useFaqStore } from "@/stores/faq";
@@ -13,6 +14,26 @@ import Loader from "@/components/UI/Loader/Loader.vue";
 // import EyeIcon from '@/components/icons/eyeIcon.vue'
 // import CommentIcon from '@/components/icons/commentIcon.vue'
 // import ShareIcon from '@/components/icons/shareIcon.vue'
+
+const siteData = reactive({
+  title: `MySpurr | Blog`,
+  description: ``,
+});
+
+useHead({
+  // Can be static or computed
+  title: computed(() => siteData.title),
+  meta: [
+    {
+      name: `description`,
+      content: computed(() => siteData.description),
+    },
+    {
+      property: "keywords",
+      content: "",
+    },
+  ],
+});
 
 const route = useRoute()
 const blog = useBlogStore()
