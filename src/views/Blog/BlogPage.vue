@@ -1,5 +1,5 @@
 <script setup>
-import { defineAsyncComponent } from 'vue'
+import { computed, defineAsyncComponent, reactive } from 'vue'
 import SearchBarIcon from '@/components/icons/searchBarIcon.vue'
 import Navbar from '@/components/Navbar/Navbar.vue'
 import Footer from '@/components/Footer.vue'
@@ -11,6 +11,7 @@ import { ref, onMounted } from 'vue'
 import Loader from "@/components/UI/Loader/Loader.vue";
 // import { storeToRefs } from "pinia";
 import WorkFlow from '@/components/Bander/WorkFlow.vue'
+import { useHead } from '@vueuse/head';
 
 const tab = ref('ALL')
 const allBlog = ref([])
@@ -22,6 +23,26 @@ const displayedPageNumbers = ref([]);
 const categories = ref([]);
 const blog = useBlogStore()
 const loading = ref(false)
+
+const siteData = reactive({
+  title: `MySpurr | Blog`,
+  description: ``,
+});
+
+useHead({
+  // Can be static or computed
+  title: computed(() => siteData.title),
+  meta: [
+    {
+      name: `description`,
+      content: computed(() => siteData.description),
+    },
+    {
+      property: "keywords",
+      content: "",
+    },
+  ],
+});
 
 const filterTab = (category) => {
   tab.value = category;
