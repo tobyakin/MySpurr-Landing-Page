@@ -1,7 +1,7 @@
 <template>
   <div class="w-full font-Satoshi400" :class="{ 'md:w-[45%]': two, 'md:w-[31%]': three }">
     <div class="">
-      <router-link :to="{ name: 'SingleBlog', params: { slug: blog.slug } }">
+      <router-link :to="{ name: 'SingleBlog', params: { category:blog.category_slug, slug: blog.slug } }">
         <img loading="lazy" class="w-full h-auto rounded-lg" :src="image" alt="" />
       </router-link>
       <div class="flex justify-between text-sm mt-6">
@@ -17,9 +17,9 @@
         </button> -->
       </div>
 
-      <router-link :to="{ name: 'SingleBlog', params: { slug: blog.slug } }">
+      <router-link :to="{ name: 'SingleBlog', params: { category:blog.category_slug, slug: blog.slug } }">
         <h3
-          class="font-bold font-Satoshi500 text-[26.457px] leading-[37.796px] text-[#007582] !my-4"
+          class="font-medium font-Satoshi500 text-[25px] leading-[35px] text-[#007582] !my-4"
         >
           {{ props.heading }}
         </h3>

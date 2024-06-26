@@ -97,7 +97,7 @@ const router = createRouter({
       }
     },
     {
-      path: '/view-blog/:slug',
+      path: '/:category/:slug',
       name: 'SingleBlog',
       component: SingleBlog,
       meta: {

@@ -1,21 +1,20 @@
 <script setup>
+import { computed, onMounted, ref, watch } from 'vue'
 import Navbar from '@/components/Navbar/Navbar.vue'
 import Footer from '@/components/Footer.vue'
 import { useRoute } from 'vue-router'
+import BlogCard from '@/components/Blog/BlogCard.vue'
+import { useBlogStore } from '../../stores/blog';
+import Loader from "@/components/UI/Loader/Loader.vue";
 // import { storeToRefs } from "pinia";
 // import dayjs from "dayjs";
 // import { useFaqStore } from "@/stores/faq";
 // import share from "share-url";
-import { onMounted, ref } from 'vue'
+// import EyeIcon from '@/components/icons/eyeIcon.vue'
+// import CommentIcon from '@/components/icons/commentIcon.vue'
+// import ShareIcon from '@/components/icons/shareIcon.vue'
+
 const route = useRoute()
-import EyeIcon from '@/components/icons/eyeIcon.vue'
-import CommentIcon from '@/components/icons/commentIcon.vue'
-import ShareIcon from '@/components/icons/shareIcon.vue'
-import BlogCard from '@/components/Blog/BlogCard.vue'
-import { useBlogStore } from '../../stores/blog';
-import Loader from "@/components/UI/Loader/Loader.vue";
-
-
 const blog = useBlogStore()
 const singleBlog = ref({})
 const allBlog = ref([])
@@ -39,33 +38,47 @@ const fetchBlogs = async(page, category) => {
   loading.value = false
 }
 
+const filteredBlogs = computed(() => {
+  return allBlog.value.filter(blog => blog.id !== singleBlog.value.id);
+});
+
 onMounted(async () => {
   fetchSingleBlog()
   fetchBlogs()
 })
+
+watch(
+  () => route.params.slug,
+  async (newSlug, oldSlug) => {
+    if (newSlug !== oldSlug) {
+      await fetchSingleBlog()
+      await fetchBlogs()
+    }
+  }
+)
 </script>
 
 <template>
   <div>
     <Navbar />
     <Loader v-if="loading" />
-    <div class="py-20 container" v-else>
+    <div class="py-16 container" v-else>
       <div class="font-Satoshi400">
         <div class="">
           <img loading="lazy"  
             :src="singleBlog.featured_photo"
-            class="cursor-pointer w-full object-cover rounded-xl"
+            class="cursor-pointer w-full object-cover rounded-xl h-[550px]"
             alt=""
           />
         </div>
 
-        <div class="text-[#007582] py-4 leading-[69.598px] text-[48.719px] font-Satoshi500">
+        <div class="text-[#007582] py-8 text-[42px] font-medium">
           {{ singleBlog.title }}
         </div>
         <div
-          class="border-y-[#254035AB] flex items-center justify-between gap-2 border-y-[0.793px] py-4 mt-12"
+          class="border-t-[#254035AB] flex items-center justify-between gap-2 border-t-[0.793px] mb-8"
         >
-          <div class="flex items-center gap-2">
+          <!-- <div class="flex items-center gap-2">
             <div class="flex items-center gap-2 text-[14.747px] font-Satoshi500">
               <EyeIcon /><span>0k</span>
             </div>
@@ -73,18 +86,18 @@ onMounted(async () => {
               <CommentIcon /><span>0</span>
             </div>
           </div>
-          <div><ShareIcon /></div>
+          <div><ShareIcon /></div> -->
         </div>
 
-        <div
-          class="flex flex-col md:flex-row lg:pl-[10rem] pr-10 container pl-4 md:justify-between"
+        <!-- <div
+          class="flex flex-col md:flex-row container md:justify-between"
         >
           <div class="!my-4 flex gap-4">
-            <!-- <div>Published: {{ dayjs(singleBlog.created_at).format("DD.MM.YY") }}</div>
-            <div>Last Updated: {{ dayjs(singleBlog.created_at).format("DD.MM.YY") }}</div> -->
+            <div>Published: {{ dayjs(singleBlog.created_at).format("DD.MM.YY") }}</div>
+            <div>Last Updated: {{ dayjs(singleBlog.created_at).format("DD.MM.YY") }}</div>
           </div>
           <div class="flex md:flex-col gap-4">
-            <!-- <div>
+            <div>
               <a
                 :href="
                   share.facebook({
@@ -100,9 +113,9 @@ onMounted(async () => {
               <a :href="share.pinterest(url)" target="_blank">
                 <img loading="lazy"   class="h-4 w-4" src="@/assets/img/pinterest.svg" alt="" />
               </a>
-            </div> -->
+            </div>
             <div>
-              <!-- <a
+              <a
                 :href="
                   share.linkedin({
                     url: url,
@@ -111,10 +124,10 @@ onMounted(async () => {
                 target="_blank"
               >
                 <img loading="lazy"   class="h-4 w-4" src="@/assets/img/linkedin.svg" alt="" />
-              </a> -->
+              </a>
             </div>
             <div>
-              <!-- <a
+              <a
                 :href="
                   share.twitter({
                     text: '',
@@ -128,19 +141,24 @@ onMounted(async () => {
                 target="_blank"
               >
                 <img loading="lazy"   class="h-4 w-4" src="@/assets/img/twitter.svg" alt="" />
-              </a> -->
+              </a>
             </div>
           </div>
-        </div>
+        </div> -->
 
         <div
           v-html="singleBlog.content"
-          class="!my-4 leading-[32px] mt-4 tracking-[-0.003rem] text-[20px]"
+          class="!my-4 leading-[32px] tracking-[-0.003rem] text-[20px]"
         ></div>
       </div>
-      <div class="md:grid md:grid-cols-3 gap-10 !my-20 flex-wrap">
+
+      <div class="mt-20 mb-6">
+        <h3 class="text-2xl font-bold text-[#007582]">More from MySpurr</h3>
+      </div>
+
+      <div class="md:grid md:grid-cols-3 gap-10 flex-wrap">
         <BlogCard
-          v-for="blog in allBlog"
+          v-for="blog in filteredBlogs"
           :key="blog"
           :image="blog.featured_photo"
           :heading="blog.title"
