@@ -12,14 +12,12 @@
             {{ props.blog_category }}
           </span>
         </button>
-        <!-- <button class="border-none bg-white text-black h-9 p-2 whitespace-nowrap">
-          {{ dateFormat(props.date) }}
-        </button> -->
+
       </div>
 
       <router-link :to="{ name: 'SingleBlog', params: { category:blog.category_slug, slug: blog.slug } }">
         <h3
-          class="font-bold font-Satoshi500 text-[20px] leading-[35px] text-[#007582] !my-4"
+          class="font-extralight font-Satoshi500 text-[20px] leading-[25px] text-[#007582] !my-4"
         >
           {{ props.heading }}
         </h3>

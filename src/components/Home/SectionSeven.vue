@@ -20,7 +20,7 @@
         </router-link>
         <div class="flex flex-col gap-3 lg:gap-5 mt-6 font-Satoshi400">
           <button
-          class="bg-[#D2F34C] text-[#244034] uppercase p-2 px-5 md:max-w-[200px] rounded-full lg:min-w-[150px] whitespace-nowrap"
+          class="bg-[#D2F34C] text-[#244034] uppercase w-[200px] p-2 px-5 md:max-w-[200px] rounded-full lg:min-w-[150px] whitespace-nowrap"
         >
           <span class="text-sm">
             {{ item.category }}
@@ -28,7 +28,7 @@
         </button>
         <router-link :to="{ name: 'SingleBlog', params: { category:item.category_slug, slug: item.slug } }">
           <h3
-            class="font-bold font-Satoshi500 text-[20px] leading-[35px] text-[#007582] !my-1"
+            class="font-extralight font-Satoshi500 text-[20px] leading-[25px] text-[#007582] !my-1"
           >
             {{ item.title }}
           </h3>
