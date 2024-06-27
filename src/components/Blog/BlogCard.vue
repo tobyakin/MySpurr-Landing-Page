@@ -1,6 +1,6 @@
 <template>
   <div class="w-full font-Satoshi400" :class="{ 'md:w-[45%]': two, 'md:w-[31%]': three }">
-    <div class="">
+    <div class="mb-10 lg:mb-10 md:mb-10">
       <router-link :to="{ name: 'SingleBlog', params: { category:blog.category_slug, slug: blog.slug } }">
         <img loading="lazy" class="w-full h-auto rounded-lg" :src="image" alt="" />
       </router-link>
@@ -17,7 +17,7 @@
 
       <router-link :to="{ name: 'SingleBlog', params: { category:blog.category_slug, slug: blog.slug } }">
         <h3
-          class="font-extralight font-Satoshi500 text-[20px] leading-[25px] text-[#007582] !my-4"
+          class="font-extralight font-Satoshi500 text-[20px] md:text-[20px] lg:text-[20px] leading-[25px] text-[#007582] !my-4"
         >
           {{ props.heading }}
         </h3>

@@ -255,7 +255,7 @@ const redirectWithSearchQuery = () => {
                 <router-link
                   to="/blog"
                   :class="route.name === 'blog' ? 'text-[#2F929C] ' : ''"
-                  class="p-[10px] pr-0 flex justify-start rounded-[5px]"
+                  class="pt-[10px] pr-0 flex justify-start rounded-[5px]"
                 >
                   <span class="place-self-center text-[16px] leading-[21.6px]"
                     >Blog
