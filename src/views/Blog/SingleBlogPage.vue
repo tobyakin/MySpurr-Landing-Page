@@ -88,12 +88,12 @@ watch(
         <div class="">
           <img loading="lazy"  
             :src="singleBlog.featured_photo"
-            class="cursor-pointer w-full object-cover rounded-xl h-[550px]"
+            class="cursor-pointer w-full object-cover rounded-xl h-auto lg:h-[550px] md:h-[550px]"
             alt=""
           />
         </div>
 
-        <div class="text-[#007582] py-8 text-[42px] font-bold">
+        <div class="text-[#007582] py-8 text-[24px] lg:text-[42px] md:text-[42px] font-bold">
           {{ singleBlog.title }}
         </div>
         <div
@@ -169,7 +169,7 @@ watch(
 
         <div
           v-html="singleBlog.content"
-          class="!my-4 leading-[32px] tracking-[-0.003rem] text-[20px]"
+          class="!my-4 leading-[32px] tracking-[-0.003rem] text-[18px] lg:text-[20px] md:text-[20px]"
         ></div>
       </div>
 
