@@ -23,6 +23,7 @@
     "pinia": "^2.1.4",
     "share-url": "^1.2.0",
     "vue": "^3.3.4",
+    "vue-property-decorator": "^9.1.2",
     "vue-query": "^1.26.0",
     "vue-router": "^4.2.4",
     "vue-slider-component": "^3.2.24",
