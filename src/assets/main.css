@@ -300,3 +300,15 @@ ol {
   border-radius: 5px; /* Add rounded corners */
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Add a box shadow */
 }
+
+@media (max-width: 1450px){
+  html {
+      font-size: 13px !important;
+  }
+}
+
+@media (max-width: 1024px){
+  html {
+    font-size: 16px !important;
+  }
+} 
