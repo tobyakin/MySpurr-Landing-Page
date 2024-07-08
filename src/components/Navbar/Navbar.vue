@@ -52,10 +52,10 @@ const redirectWithSearchQuery = () => {
 </script>
 <template>
   <div class="sticky top-0 z-30 bg-[#ffffff] exclude-from-print">
-    <div class="!max-w-[93%] container mx-auto">
+    <div class="!max-w-[93%] nav_container container mx-auto">
       <header class="py-[18px]">
         <div
-          class="lg:px-[15px] mx-auto flex items-center justify-between font-Satoshi700"
+          class="navLink_body lg:px-[15px] mx-auto flex items-center justify-between font-Satoshi700"
         >
           <div class="flex items-center justify-between space-x-4 lg:space-x-6">
             <router-link to="/">
@@ -286,3 +286,16 @@ const redirectWithSearchQuery = () => {
     </div>
   </div>
 </template>
+
+<style scoped>
+  @media only screen and (min-width: 1024px) and (max-width: 1030px) {
+    .nav_container {
+      min-width: 90% !important;
+    }
+
+    .navLink_body {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+  }
+</style>
