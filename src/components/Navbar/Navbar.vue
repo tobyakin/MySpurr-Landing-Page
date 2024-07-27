@@ -273,6 +273,17 @@ const redirectWithSearchQuery = () => {
                   </span>
                 </router-link>
               </li>
+              <li>
+                <router-link
+                  to="/events"
+                  :class="route.name === 'events' ? 'text-[#2F929C] ' : ''"
+                  class="pt-[10px] pr-0 flex justify-start rounded-[5px]"
+                >
+                  <span class="place-self-center text-[16px] leading-[21.6px]"
+                    >Event
+                  </span>
+                </router-link>
+              </li>
             </ul>
             <div class="flex flex-col mt-12 items-center gap-4">
               <a
