@@ -590,7 +590,7 @@ const handleViewMore = () => {
                         </div>
                         <div class="flex flex-col items-center">
                             <div class="w-[100px] mb-6">
-                                <img src="../../assets/image/Logo-img.png" alt="" />
+                                <img src="../../assets/Logo.png" alt="" />
                             </div>
                             <div class="w-[85%] msgMob:w-full mb-[0.5rem]">
                                 <h3 class="text-[#011B1F] font-Satoshi400 text-[1rem] leading-4 msgMob:text-[0.8rem]">
