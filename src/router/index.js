@@ -115,7 +115,7 @@ const router = createRouter({
       }
     },
     {
-      path: '/events/:id',
+      path: '/events/:slug',
       name: 'event-detail',
       component: EventDetailPage,
       meta: {

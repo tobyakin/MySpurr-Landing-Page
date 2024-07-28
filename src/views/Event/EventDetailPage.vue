@@ -2,7 +2,7 @@
 import Navbar from '@/components/Navbar/Navbar.vue'
 import Footer from '@/components/Footer.vue'
 import { ref } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useRouter } from 'vue-router'
 import calendarIcon from '@/components/icons/eventCalendarIcon.vue'
 import locationIcon from '@/components/icons/eventLocationIcon.vue'
 import timerIcon from '@/components/icons/eventTimerIcon.vue'

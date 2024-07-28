@@ -38,7 +38,7 @@
                                     <span class="text-[0.592rem] leading-[0.911rem] text-[#000] font-SegeoUI capitalize">{{ event.event_time }}</span>
                                 </div>
                             </div>
-                            <router-link :to="{name: 'event-detail', params: {id: 1}}">
+                            <router-link :to="{name: 'event-detail', params: {slug: 1}}">
 
                                 <div class="event_btn">
                                     <div class="w-[100%] flex items-center justify-between px-4 py-[0.7rem] bg-[#43D0DF] rounded-[0.46rem] btn-hover-1 cursor-pointer">
