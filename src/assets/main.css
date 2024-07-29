@@ -1,5 +1,5 @@
 @import '/public/fonts/css/satoshi.css';
-@import '/public/fonts/css/EBGaramond.css';
+/* @import '/public/fonts/css/EBGaramond.css'; */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
