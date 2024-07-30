@@ -304,7 +304,7 @@ const handleViewMore = () => {
                                     <p class="text-sm font-normal">{{ singleEvent.speaker_title }}</p>
                                     <div class="mt-3 cursor-pointer">
                                         <a :href="singleEvent.linkedln" target="_blank" class="mt-[0.2rem]">
-                                            <img src="@/assets/img/Linkedin.png" alt="">
+                                            <img src="@/assets/img/LinkedIn.png" alt="">
                                         </a>
                                     </div>
                                 </div>
