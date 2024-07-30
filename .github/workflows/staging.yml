@@ -18,10 +18,8 @@ jobs:
       
     - name: 🔨 Build Project
       run: |
-        rm -rf node_modules
-        rm -rf dist
         npm install
-        npm run build:staging 2>/dev/null
+        npm run build:staging --verbose
     
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
