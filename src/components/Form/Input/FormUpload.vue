@@ -28,10 +28,8 @@
 </template>
 
 <script setup>
-import { defineAsyncComponent } from "vue";
-
-const Input = defineAsyncComponent(() => import("./Input.vue"));
-const Label = defineAsyncComponent(() => import("./Label.vue"));
+import Input from "./Input.vue";
+import Label from "./Label.vue";
 
 const emit = defineEmits(["update:modelValue"]);
 
@@ -42,7 +40,7 @@ defineProps({
   name: String,
   labelClasses: String, // Optional
   inputClasses: String, // Optional
-  modelValue: String | Number,
+  modelValue: [String, Number],
 });
 
 const passInputValue = (value) => {
