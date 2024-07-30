@@ -464,7 +464,7 @@ const handleViewMore = () => {
                 <div class="text-center">
                     <h3 class="font-Satoshi700 text-[#000] leading-5">Related Events</h3>
                 </div>
-                <div class="eventAds-container grid grid-cols-3 gap-6 my-10">
+                <div class="eventAds-container grid grid-cols-customGrid gap-6 my-10">
                     <article v-for="event in relatedEvents" :key="event.id"
                         class="eventAds">
                         <div class="rounded-t-[1rem]">
