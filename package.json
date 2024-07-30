@@ -23,7 +23,7 @@
     "pinia": "^2.1.4",
     "rimraf": "^4.3.1",
     "share-url": "^1.2.0",
-    "vue": "^3.4.34",
+    "vue": "^3.3.4",
     "vue-class-component": "^8.0.0-rc.1",
     "vue-facing-decorator": "^3.0.3",
     "vue-query": "^1.26.0",
