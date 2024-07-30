@@ -132,6 +132,17 @@ const redirectWithSearchQuery = () => {
                   </span>
                 </router-link>
               </li>
+              <li>
+                <router-link
+                  to="/events"
+                  :class="route.name === 'events' ? 'text-[#2F929C] ' : ''"
+                  class="p-[10px] pr-0 flex justify-start rounded-[5px]"
+                >
+                  <span class="place-self-center text-[16px] leading-[21.6px]"
+                    >Events
+                  </span>
+                </router-link>
+              </li>
             </ul>
           </div>
           <div class="hidden lg:flex items-center gap-4">
@@ -262,6 +273,17 @@ const redirectWithSearchQuery = () => {
                   </span>
                 </router-link>
               </li>
+              <li>
+                <router-link
+                  to="/events"
+                  :class="route.name === 'events' ? 'text-[#2F929C] ' : ''"
+                  class="pt-[10px] pr-0 flex justify-start rounded-[5px]"
+                >
+                  <span class="place-self-center text-[16px] leading-[21.6px]"
+                    >Events
+                  </span>
+                </router-link>
+              </li>
             </ul>
             <div class="flex flex-col mt-12 items-center gap-4">
               <a
@@ -288,9 +310,9 @@ const redirectWithSearchQuery = () => {
 </template>
 
 <style scoped>
-  @media only screen and (min-width: 1024px) and (max-width: 1030px) {
+  @media only screen and (min-width: 1024px) and (max-width: 1280px) {
     .nav_container {
-      min-width: 90% !important;
+      min-width: 95% !important;
     }
 
     .navLink_body {

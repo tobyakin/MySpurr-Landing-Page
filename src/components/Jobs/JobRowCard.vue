@@ -1,8 +1,6 @@
 <script setup>
 import CalenderIcon from "@/components/icons/outlineCalenderIcon.vue";
 import LocationIcon from "@/components/icons/joblocationIcon.vue";
-import TimerIcon from "@/components/icons/timerIcon.vue";
-import CircleBookMarkIcon from "@/components/icons/circleBookMarkIcon.vue";
 import SearchIcon from "@/components/icons/circleSearchIcon.vue";
 import MatchIcon from "@/components/icons/matchIcon.vue";
 import VerifyIcon from "@/components/icons/verifyIcon.vue";

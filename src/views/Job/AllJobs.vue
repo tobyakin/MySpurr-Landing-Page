@@ -3,7 +3,6 @@ import { ref, computed, onMounted, reactive, watch, watchEffect } from "vue";
 import { storeToRefs } from "pinia";
 // import VueSlider from "vue-slider-component";
 import "vue-slider-component/theme/antd.css";
-import SelectGroup from "@/components/Form/Input/SelectGroup.vue";
 import Navbar from "@/components/Navbar/Navbar.vue";
 import Footer from "@/components/Footer.vue";
 // import { useStore } from "@/stores/user";
@@ -15,7 +14,6 @@ import Label from "@/components/Form/Input/Label.vue";
 import WorkFlow from "@/components/Bander/WorkFlow.vue";
 import { useRouter } from "vue-router";
 import Loader from "@/components/UI/Loader/Loader.vue";
-import { useQuery } from "vue-query";
 const loading = ref(false);
 
 const jobsStore = useJobsStore();
@@ -71,13 +69,6 @@ const CandidateType = [
   "Contract ",
 ];
 
-// Create a computed property to paginate the talent data
-const paginatedTalent = computed(() => {
-  const perPage = 2;
-  const startIndex = (currentPage.value - 1) * perPage;
-  const endIndex = startIndex + perPage;
-  return Job.value?.data.slice(startIndex, endIndex);
-});
 const totalPages = computed(() => Math.ceil(Job.value?.length / 2));
 
 // Function to change the current page

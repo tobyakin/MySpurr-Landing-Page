@@ -31,14 +31,13 @@
 </template>
 
 <script setup>
-import { defineAsyncComponent } from "vue";
-const Label = defineAsyncComponent(() => import("./Label.vue"));
-const Input = defineAsyncComponent(() => import("./Input.vue"));
+import Label from "./Label.vue";
+import Input from "./Input.vue";
 
 // import greenInputTick from "@/components/icons/greenInputTick.vue";
 import errorInputIcon from "@/components/icons/inputErrorIcon.vue";
 defineProps({
-  modelValue: String | Number,
+  modelValue: [String, Number],
   type: String,
   placeholder: String,
   error: Boolean,

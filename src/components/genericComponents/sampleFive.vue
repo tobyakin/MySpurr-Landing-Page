@@ -41,7 +41,6 @@ const props = defineProps({
   items: Array,
 });
 
-console.log(props.sectionInfo);
 </script>
 
 <style scoped></style>
