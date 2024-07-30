@@ -35,9 +35,10 @@
   </div>
 </template>
 <script setup>
-import { defineAsyncComponent, reactive, watch, computed, ref } from 'vue'
+import { reactive, watch, computed, ref } from 'vue'
 import { subscribe } from '@/services/Subscribe'
 import Loader from '@/components/UI/Loader.vue'
+import FormGroup from '@/components/Form/Input/Input.vue'
 
 let email = ref('')
 let loading = ref(false)
@@ -106,5 +107,5 @@ const onFinish = async () => {
     loading.value = false
   }
 }
-const FormGroup = defineAsyncComponent(() => import('@/components/Form/Input/Input.vue'))
+
 </script>

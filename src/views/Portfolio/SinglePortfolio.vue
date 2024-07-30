@@ -294,26 +294,23 @@ class="rounded-[13.076px] lg:h-[560px] h-auto w-full object-contain mx-auto"    
 </template>
 
 <script setup>
-import { ref, onMounted, computed, watchEffect, onUnmounted, reactive } from "vue";
-import { useRouter, useRoute } from "vue-router";
+import { ref, onMounted, computed, watchEffect, onUnmounted } from "vue";
+import { useRoute } from "vue-router";
 import WorkFlow from "@/components/Bander/WorkFlow.vue";
 import Navbar from "@/components/Navbar/Navbar.vue";
 import Footer from "@/components/Footer.vue";
 import CaseStudyCard from "@/components/CaseStudy/CaseStudyCard.vue";
-import SampleThree from "@/assets/img/sampleThree.webp";
 import { storeToRefs } from "pinia";
 import { useTalentsStore } from "@/stores/talents";
 const talentsStore = useTalentsStore();
 const { talentPortfolio } = storeToRefs(talentsStore);
 const route = useRoute();
-const router = useRouter();
-import { useQuery } from "vue-query";
 import { usePorfolioStore } from "@/stores/portfolios";
 const PorfolioStore = usePorfolioStore();
 const { talentPortfolios } = storeToRefs(PorfolioStore);
 import { useSkillsStore } from "@/stores/skills";
 const skillsStore = useSkillsStore();
-const { skills, jobTitle } = storeToRefs(skillsStore);
+const { skills } = storeToRefs(skillsStore);
 import Loader from "@/components/UI/Loader/Loader.vue";
 const loading = ref(false);
 
