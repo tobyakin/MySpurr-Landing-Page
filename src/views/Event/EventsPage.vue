@@ -64,12 +64,11 @@ onUnmounted(() => {
             <Navbar />
         </div>
 
-        <Loader v-if="loading" />
-        <main v-else>
-            <header class="mb-[9.75rem] tab:mb-[5rem]">
+        <main>
+            <header class="mb-[2rem] tab:mb-[5rem] md:h-[500px]">
                 <div class="w-full relative" :style="{ height: bgHeight}">
-                    <img src="@/assets/img/EventBg.png" alt="Background Image" class="w-full h-full object-cover">
-                    <div class="absolute top-[50%] translate-y-[-50%] left-[18.69rem] w-[41.2%] tab:w-[60%] tab:left-[4rem] tab2:w-[80%] mob:w-[90%] tab2:left-[1rem]">
+                    <img src="@/assets/img/EventBg.png" alt="Background Image" class="w-full md:h-[500px] object-cover">
+                    <div class="absolute top-[35%] translate-y-[-50%] left-[18.69rem] w-[41.2%] tab:w-[60%] tab:left-[4rem] tab2:w-[80%] mob:w-[90%] tab2:left-[1rem]">
                         <h1 class="text-[#fff] font-EBGaramond500 text-[4rem] leading-[4.47rem] !mb-4 tab2:text-[3rem] tab2:leading-[2.47rem] mob:text-[2rem] mob:leading-[2rem]">Enjoy exclusive access to industry experts</h1>
                         <h3 class="text-[#fff] font-Satoshi400 text-[1.375rem] leading-[2.06rem] w-[75%] tab:w-full tab2:text-[1rem] tab2:leading-[1.5rem]">Discover new trends, learn cutting-edge techniques, and connect with a vibrant community of creative professionals.</h3>
                     </div>
@@ -77,8 +76,16 @@ onUnmounted(() => {
             </header>
             <body class="w-[70%] mx-auto tab:w-[80%] tab2:w-[90%]">
                 <div class="">
-                    <h3 class="text-[#011B1F] font-EBGaramond500 text-[5.6225rem] leading-[6.15788rem] text-center !mb-[6.25rem] tab:text-[3rem] tab:leading-[4rem] tab:!mb-[5rem] mob:text-[2rem] mob:leading-[2.5rem]">Explore MySpurr events and  ignite your creative potential</h3>
-                    <div class="grid grid-cols-4 gap-3 mob:grid-cols-1">
+                    <h3 class="text-[#011B1F] font-EBGaramond500 text-[50px] leading-[4.15788rem] text-center !mb-[6.25rem] tab:text-[3rem] tab:leading-[4rem] tab:!mb-[5rem] mob:text-[2rem] mob:leading-[2.5rem]">Explore MySpurr events and  ignite <br>your creative potential</h3>
+
+                    <Loader v-if="loading" />
+
+                    <div v-if="events && events.length === 0">
+                        <div class="flex justify-center items-center">
+                            <p class="pt-3">No data available.</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-4 gap-5 mob:grid-cols-1" v-else>
                         <article v-for="event in events" :key="event.id" class="flex flex-col h-full">
                             <div class="rounded-t-[1.13825rem]">
                                 <img :src="event.featured_graphics" alt="" class="w-full object-cover rounded-t-[1rem]">

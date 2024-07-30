@@ -355,7 +355,7 @@ const handleViewMore = () => {
                                             >
                                         </div>
                                         <div class="inputField w-full">
-                                            <input type="text" placeholder="Cretive Profession" v-model="states.profession" class="rounded-[1.0625rem] border-2 border-[#fff] px-[1.13rem] py-[0.9rem] text-[#fff] font-Satoshi500 leading-[0.887rem] text-[1rem] w-full bg-inherit"
+                                            <input type="text" placeholder="Creative Profession" v-model="states.profession" class="rounded-[1.0625rem] border-2 border-[#fff] px-[1.13rem] py-[0.9rem] text-[#fff] font-Satoshi500 leading-[0.887rem] text-[1rem] w-full bg-inherit"
                                             >
                                         </div>
                                         <div class="inputField w-full">
@@ -464,43 +464,45 @@ const handleViewMore = () => {
                 <div class="text-center">
                     <h3 class="font-Satoshi700 text-[#000] leading-5">Related Events</h3>
                 </div>
-                <div class="eventAds-container grid grid-cols-customGrid gap-6 my-10">
-                    <article v-for="event in relatedEvents" :key="event.id"
-                        class="eventAds">
-                        <div class="rounded-t-[1rem]">
-                            <img :src="event.featured_graphics" alt="" class="w-full h-full object-fit rounded-t-[1rem]" />
-                        </div>
-                        <div class="px-[0.7rem] py-[0.5rem] bg-[#ECFAFC] rounded-b-[1rem]">
-                            <h1 class="text-[#000] text-[0.8rem] font-Satoshi700 leading-[1rem] mb-4">
-                                {{ event.title }}
-                            </h1>
-                            <div class="event_details flex flex-col gap-[0.29rem] my-[0.5rem]">
-                                <div class="flex items-center gap-[0.63rem]">
-                                    <locationIcon />
-                                    <p>{{ event.address }}</p>
+                <div class="my-10">
+                    <div class="flex gap-3 flex-col md:flex-row">
+                        <div class="mb-4" v-for="event in relatedEvents" :key="event.id">
+                            <div class="w-full md:w-[320px]">
+                                <div class="rounded-t-[1rem] h-[200px]">
+                                    <img :src="event.featured_graphics" alt=""
+                                    class="w-full h-full object-cover rounded-t-[1rem]" />
                                 </div>
-                                <div class="flex items-center gap-[0.63rem]">
-                                    <calendarIcon />
-                                    <p>{{ event.event_date }}</p>
-                                </div>
-                                <div class="flex items-center gap-[0.63rem]">
-                                    <timerIcon />
-                                    <p>{{ event.event_time }}</p>
-                                </div>
-                            </div>
-                            <div class="event_btn">
-                                <router-link :to="{ name: 'event-detail', params: { slug: event.slug } }"
-                                        class="event_btn">
+                                <div class="px-[0.7rem] py-[0.5rem] bg-[#ECFAFC] rounded-b-[1rem]">
+                                    <h1 class="text-[#000] text-[0.8rem] font-Satoshi700 leading-[1rem] mb-4">
+                                    {{ event.title }}
+                                    </h1>
+                                    <div class="event_details flex flex-col gap-[0.29rem] my-[0.5rem]">
+                                    <div class="flex items-center gap-[0.63rem]">
+                                        <locationIcon />
+                                        <p>{{ event.address }}</p>
+                                    </div>
+                                    <div class="flex items-center gap-[0.63rem]">
+                                        <calendarIcon />
+                                        <p>{{ event.event_date }}</p>
+                                    </div>
+                                    <div class="flex items-center gap-[0.63rem]">
+                                        <timerIcon />
+                                        <p>{{ event.event_time }}</p>
+                                    </div>
+                                    </div>
+                                    <router-link :to="{ name: 'event-detail', params: { slug: event.slug } }"
+                                    class="event_btn">
                                     <div class="w-[100%] flex items-center justify-between px-4 py-[0.7rem] bg-[#43D0DF] rounded-[0.46rem] btn-hover-1 my-3">
                                         <h3 class="reg font-Satoshi700 text-[#000] text-[0.865rem] leading-4 eventBreak1:text-[0.7rem]">
                                         Register
                                         </h3>
                                         <rightArrowM class="reg" />
                                     </div>
-                                </router-link>
+                                    </router-link>
+                                </div>
                             </div>
                         </div>
-                    </article>
+                    </div>
                 </div>
                 <div class="grid place-items-center !my-[5.78rem]">
                     <button
