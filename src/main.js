@@ -5,6 +5,7 @@ import { createPinia } from 'pinia'
 import 'animate.css'
 import Toast, { POSITION } from 'vue-toastification'
 import 'vue-toastification/dist/index.css'
+import { createHead } from '@vueuse/head'
 //import Vue3Autocounter from 'vue3-autocounter'
 import { VueQueryPlugin } from 'vue-query'
 import Antd from 'ant-design-vue'
@@ -23,5 +24,5 @@ app.use(VueQueryPlugin)
 app.use(createPinia())
 app.use(Antd)
 app.use(router)
-//app.use(createHead())
+app.use(createHead())
 app.mount('#app')
