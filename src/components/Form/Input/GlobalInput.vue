@@ -21,7 +21,7 @@
 // import greenInputTick from "@/components/icons/greenInputTick.vue";
 // import errorInputIcon from "@/components/icons/errorInputIcon.vue";
 defineProps({
-  modelValue: String | Number,
+  modelValue: [String, Number],
   type: String,
   placeholder: String,
   error: Boolean,

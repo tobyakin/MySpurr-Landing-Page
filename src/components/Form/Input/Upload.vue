@@ -27,10 +27,10 @@
 
 <script setup>
 import CloudUploadIcon from '@/components/icons/cloudUploadIcon.vue'
-import { ref, defineProps, defineEmits } from 'vue';
+import { ref, onMounted } from 'vue';
 
-const { imageUrls } = defineProps(['imageUrls']);
-const emits = defineEmits(['file-uploaded']); // Define the custom event
+//const { imageUrls } = defineProps(['imageUrls']);
+//const emits = defineEmits(['file-uploaded']); // Define the custom event
 
 const handleFiles = (event) => {
   const files = event.target.files;
@@ -41,16 +41,17 @@ const handleFiles = (event) => {
     previewFile(file);
     uploadFile(file);
   });
+}
 
 const imageUrls = ref([]);
 
-const handleFiles = (event) => {
-  const files = event.target.files;
-  Array.from(files).forEach((file) => {
-    previewFile(file);
-    uploadFile(file);
-  });
-};
+// const handleFiles = (event) => {
+//   const files = event.target.files;
+//   Array.from(files).forEach((file) => {
+//     previewFile(file);
+//     uploadFile(file);
+//   });
+// };
 
 const previewFile = (file) => {
   const reader = new FileReader();
@@ -68,11 +69,12 @@ const uploadFile = (file) => {
 
 onMounted(() => {
   // Access the file input element and trigger the file selection dialog
-  const fileInput = $refs.fileInput;
+  const fileInput = ref.fileInput;
   fileInput.addEventListener("click", () => {
     fileInput.value = null; // Reset the input to allow selecting the same file
   });
 });
+
 </script>
 
 <style scoped>
