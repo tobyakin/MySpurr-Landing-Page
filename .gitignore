@@ -13,9 +13,9 @@ node_modules
 dist-ssr
 coverage
 *.local
-.env
-.env.staging
-.env.production
+# .env
+# .env.staging
+# .env.production
 /cypress/videos/
 /cypress/screenshots/
 
