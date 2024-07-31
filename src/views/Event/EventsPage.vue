@@ -8,6 +8,8 @@ import locationIcon from "@/components/icons/eventLocationIcon.vue"
 import timerIcon from "@/components/icons/eventTimerIcon.vue"
 import { useEventStore } from '../../stores/event';
 import Loader from "@/components/UI/Loader/Loader.vue";
+import mainbg from "@/assets/img/EventBg.png";
+const image = mainbg;
 
 const navBar = ref(null)
 const navHeight = ref()
@@ -18,6 +20,8 @@ const getNavHeight = () => {
     return navHeight.value
   }
 };
+
+
 
 const bgHeight = computed(() => {
   return `calc(100vh - ${navHeight.value}px)`;
@@ -65,12 +69,13 @@ onUnmounted(() => {
         </div>
 
         <main>
-            <header class="mb-[2rem] tab:mb-[5rem] h-0 md:h-[500px]">
-                <div class="w-full relative" :style="{ height: bgHeight}">
-                    <img src="@/assets/img/EventBg.png" alt="Background Image" class="w-full md:h-[500px] object-cover">
-                    <div class="absolute top-[18%] md:top-[35%] translate-y-[-50%] left-[18.69rem] w-[41.2%] tab:w-[60%] tab:left-[4rem] tab2:w-[80%] mob:w-[90%] tab2:left-[1rem]">
-                        <h1 class="text-[#fff] font-EBGaramond500 text-[4rem] leading-[4.47rem] !mb-4 tab2:text-[3rem] tab2:leading-[2.47rem] mob:text-[2rem] mob:leading-[2rem]">Enjoy exclusive access to industry experts</h1>
-                        <h3 class="text-[#fff] font-Satoshi400 text-[1.375rem] leading-[2.06rem] w-[75%] tab:w-full tab2:text-[1rem] tab2:leading-[1.5rem]">Discover new trends, learn cutting-edge techniques, and connect with a vibrant community of creative professionals.</h3>
+            <header class="mb-[2rem] tab:mb-[5rem]">
+                <div class="min-h-[630px] flex items-center background py-20" :style="{  backgroundImage: `url(${image})`}">
+                    <div class="container">
+                        <div class="lg:py-12 py-4">
+                            <h1 class="md:text-[79.379px] text-[40px] font-normal !mb-6 text-white md:leading-[85.441px] leading-[45px] font-EBGaramond500">Enjoy exclusive access to  <br class="md:block hidden" /> industry experts</h1>
+                            <p class="text-[22px] text-white font-Satoshi400 !my-8 md:!my-6">Discover new trends, learn cutting-edge techniques, and  <br class="md:block hidden" /> connect with a vibrant community of creative professionals.</p>
+                        </div>
                     </div>
                 </div>
             </header>
@@ -138,5 +143,16 @@ onUnmounted(() => {
 </template>
 
 <style scoped>
+    .background {
+    background-size: cover;
+    background-blend-mode: overlay;
+    background: linear-gradient(
+        from 270deg at 50% 50%,
+        rgba(15, 14, 14, 0.28) 184.15632963180542deg,
+        rgba(13, 11, 11, 0.33) 270.5531358718872deg,
+        rgba(18, 16, 16, 0.32) 353.79907608032227deg
+        ),
+        lightgray 50%;
+    }
 
 </style>
