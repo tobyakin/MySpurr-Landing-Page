@@ -465,14 +465,14 @@ const handleViewMore = () => {
                     <h3 class="font-Satoshi700 text-[#000] leading-5">Related Events</h3>
                 </div>
                 <div class="my-10">
-                    <div class="flex gap-3 flex-col md:flex-row">
+                    <div class="grid grid-cols-customGrid gap-3 msgMob:grid-cols-1">
                         <div class="mb-4" v-for="event in relatedEvents" :key="event.id">
-                            <div class="w-full md:w-[320px]">
-                                <div class="rounded-t-[1rem] h-[200px]">
+                            <div class="flex flex-col h-full">
+                                <div class="w-full object-contain h-full rounded-t-[1rem]">
                                     <img :src="event.featured_graphics" alt=""
                                     class="w-full h-full object-cover rounded-t-[1rem]" />
                                 </div>
-                                <div class="px-[0.7rem] py-[0.5rem] bg-[#ECFAFC] rounded-b-[1rem]">
+                                <div class="flex-grow px-[1.24rem] pb-[2rem] pt-4 bg-[#ECFAFC] rounded-b-[1.32038rem] flex flex-col justify-between">
                                     <h1 class="text-[#000] text-[0.8rem] font-Satoshi700 leading-[1rem] mb-4">
                                     {{ event.title }}
                                     </h1>
