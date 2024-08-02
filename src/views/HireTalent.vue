@@ -434,13 +434,16 @@ const Experience = [
 
       <div class="mt-12 flex w-[60%] flex-row justify-center mx-auto">
         <button
+          @click="setPage(currentPage - 1)"
+          class="border-[#007582] border-l-2 border-r-2 border-y-2 p-4 py-2 rounded-l-[6.032px] font-Satoshi500 text-[22.621px] items-center flex"
+        >
+          <Arrow class="rotate-[180deg]"/>
+        </button>
+        <button
           v-for="pageNumber in displayedPageNumbers"
           :key="pageNumber"
           :class="[
-            'border-[#007582] p-4 py-2 font-Satoshi500 text-[22.621px] items-center flex',
-            pageNumber === 1
-              ? 'border-t-2 border-b-2 border-l-2 rounded-l-[6.032px]'
-              : 'border-y-2 border-r-2',
+            'border-[#007582] p-4 py-2 font-Satoshi500 text-[22.621px] items-center flex border-y-2 border-r-2',
             pageNumber === currentPage ? 'bg-[#007582] text-white' : '',
           ]"
           @click="setPage(pageNumber)"
@@ -448,7 +451,7 @@ const Experience = [
           {{ pageNumber }}
         </button>
         <button
-          @click="setPage(currentPage + 5)"
+          @click="setPage(currentPage + 1)"
           class="border-[#007582] border-r-2 border-y-2 p-4 py-2 rounded-r-[6.032px] font-Satoshi500 text-[22.621px] items-center flex"
         >
           <Arrow />

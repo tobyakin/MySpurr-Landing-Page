@@ -3,6 +3,8 @@ import HomeView from '../views/HomeView.vue'
 import BusinessView from '../views/Business/index.vue'
 import LearnView from '../views/LearnView.vue'
 import HireTalent from '@/views/HireTalent.vue'
+import EventsPage from '@/views/Event/EventsPage.vue'
+import EventDetailPage from '@/views/Event/EventDetailPage.vue'
 import TalentProfile from '@/views/TalentProfile.vue'
 import BlogView from '@/views/Blog/BlogPage.vue'
 import SingleBlog from '@/views/Blog/SingleBlogPage.vue'
@@ -102,6 +104,22 @@ const router = createRouter({
       component: SingleBlog,
       meta: {
         title: 'MySpurr | Blog'
+      }
+    },
+    {
+      path: '/events',
+      name: 'events',
+      component: EventsPage,
+      meta: {
+        title: 'MySpurr | Events'
+      }
+    },
+    {
+      path: '/events/:slug',
+      name: 'event-detail',
+      component: EventDetailPage,
+      meta: {
+        title: 'MySpurr | Events'
       }
     },
     {

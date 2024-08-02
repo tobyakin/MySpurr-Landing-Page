@@ -1,17 +1,12 @@
 <script setup>
 import { useHead } from "@vueuse/head";
-import { defineAsyncComponent } from "vue";
 import SearchBarIcon from "@/components/icons/searchBarIcon.vue";
 import Navbar from "@/components/Navbar/Navbar.vue";
 import Footer from "@/components/Footer.vue";
-const FormGroup = defineAsyncComponent(() =>
-  import("@/components/Form/Input/FormGroup.vue")
-);
 import CaseStudyCard from "@/components/CaseStudy/CaseStudyCard.vue";
 import useFaqStore from "@/stores/faq";
-import { ref, computed, reactive, onMounted } from "vue";
+import { ref, computed, reactive } from "vue";
 import { storeToRefs } from "pinia";
-import SampleThree from "@/assets/img/sampleThree.webp";
 import WorkFlow from "@/components/Bander/WorkFlow.vue";
 import Arrow from "@/components/icons/paginationArrow.vue";
 import { usePorfolioStore } from "@/stores/portfolios";
@@ -19,36 +14,9 @@ const PorfolioStore = usePorfolioStore();
 const { talentPortfolios } = storeToRefs(PorfolioStore);
 import { useQuery } from "vue-query";
 import Loader from "@/components/UI/Loader/Loader.vue";
-const loading = ref(false);
 
 const tab = ref("ALL");
 const filteredTab = ref([]);
-const blogPost = [
-  {
-    slug: 1,
-    cover_image: SampleThree,
-    title: "How to Build a Successful Career in the Creative Industry",
-    blog_category: "career development",
-    blog_description: "trdfgfg",
-    created_at: "16 Jul 2018",
-  },
-  {
-    slug: 2,
-    cover_image: SampleThree,
-    title: "How to Build a Successful Career in the Creative Industry",
-    blog_category: "Company news",
-    blog_description: "trdfgfg",
-    created_at: "16 Jul 2018",
-  },
-  {
-    slug: 3,
-    cover_image: SampleThree,
-    title: "How to Build a Successful Career in the Creative Industry",
-    blog_category: "Creativity and Design",
-    blog_description: "trdfgfg",
-    created_at: "16 Jul 2018",
-  },
-];
 const store = useFaqStore();
 // const { blog } = storeToRefs(store);
 // const pages = computed(() => {
@@ -78,13 +46,6 @@ const store = useFaqStore();
 //   store.getBlog(page);
 // }
 
-const filterTab = (category) => {
-  tab.value = category;
-  filteredTab.value = [];
-  if (category != "ALL") {
-    filteredTab.value = store.blogPost.filter((item) => item.blog_category == category);
-  }
-};
 const siteData = reactive({
   title: `MySpurr | Case Study `,
   description: ``,

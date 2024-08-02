@@ -14,10 +14,8 @@
 </template>
 
 <script setup>
-import { defineAsyncComponent } from "vue";
-
-const Select = defineAsyncComponent(() => import("./Select.vue"));
-const Label = defineAsyncComponent(() => import("./Label.vue"));
+import Select from "./Select.vue";
+import Label from "./Label.vue";
 
 const emit = defineEmits(["update:modelValue"]);
 
@@ -28,7 +26,7 @@ defineProps({
   name: String,
   labelClasses: String, // Optional
   inputClasses: String, // Optional
-  modelValue: String | Number,
+  modelValue: [String, Number],
   items: Array,
 });
 

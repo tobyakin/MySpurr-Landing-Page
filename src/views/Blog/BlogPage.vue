@@ -1,9 +1,9 @@
 <script setup>
-import { computed, defineAsyncComponent, reactive } from 'vue'
+import { computed, reactive } from 'vue'
 import SearchBarIcon from '@/components/icons/searchBarIcon.vue'
 import Navbar from '@/components/Navbar/Navbar.vue'
 import Footer from '@/components/Footer.vue'
-const FormGroup = defineAsyncComponent(() => import('@/components/Form/Input/FormGroup.vue'))
+import FormGroup from '@/components/Form/Input/FormGroup.vue'
 import Arrow from '@/components/icons/paginationArrow.vue'
 import BlogCard from '@/components/Blog/BlogCard.vue'
 import { useBlogStore } from '../../stores/blog';

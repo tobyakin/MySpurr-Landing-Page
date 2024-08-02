@@ -10,7 +10,8 @@ module.exports = {
         Satoshi900: ['Satoshi-Black'],
 
         EBGaramond600: ['EBGaramond-Medium'],
-        EBGaramond500: ['EBGaramond-Regular']
+        EBGaramond500: ['EBGaramond-Regular'],
+        'SegeoUI': ['Segoe UI', 'Tahoma']
       },
       colors: {
         primary: {
@@ -40,7 +41,26 @@ module.exports = {
           transform: 'rotate(-45deg)',
           marginRight: '0.25rem'
         }
-      }
+      },
+      backgroundImage: {
+        'headerBG': "url('@/assets/img/EventBg.png')"
+      },
+      gridTemplateColumns: {
+        'customGrid': 'repeat(auto-fit, minmax(200px, 1fr))',
+        'customGrid2': 'repeat(auto-fit, minmax(250px, 1fr))',
+        'customGrid3': 'repeat(auto-fit, minmax(150px, 1fr))',
+      },
+      screens: {
+        'tab': {'max': '1024px'},
+        'tab2': {'max': '900px'},
+        'msgBreak': {'max': '1134px'},
+        'msgTab': {'max': '800px'},
+        'msgTab2': {'min': '800px'},
+        'msgMob': {'max': '576px'},
+        'mob': {'max': '576px'},
+        'eventBreak': {'max': '1024px'},
+        'eventBreak1': {'max': '1250px'},
+      },
     }
   },
   plugins: []
