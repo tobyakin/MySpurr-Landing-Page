@@ -6,6 +6,7 @@ import HireTalent from '@/views/HireTalent.vue'
 import EventsPage from '@/views/Event/EventsPage.vue'
 import EventDetailPage from '@/views/Event/EventDetailPage.vue'
 import TalentProfile from '@/views/TalentProfile.vue'
+import BusinessProfile from '@/views/BusinessProfile.vue'
 import BlogView from '@/views/Blog/BlogPage.vue'
 import SingleBlog from '@/views/Blog/SingleBlogPage.vue'
 import ContactUs from '@/views/ContactUs.vue'
@@ -156,6 +157,11 @@ const router = createRouter({
       path: '/talent/:name/:id',
       name: 'talent-profile',
       component: TalentProfile
+    },
+    {
+      path: '/business/:name/:id',
+      name: 'business-profile',
+      component: BusinessProfile
     },
     {
       path: '/goPro',
