@@ -1,16 +1,13 @@
 <script setup>
 import { onMounted, ref, onUnmounted } from "vue";
 import { useRoute } from "vue-router";
-// import { useStore } from "@/stores/user";
 import { storeToRefs } from "pinia";
 import SearchIcon from "@/components/icons/circleSearchIcon.vue";
 import Navbar from "@/components/Navbar/Navbar.vue";
 import Footer from "@/components/Footer.vue";
 import WorkFlow from "@/components/Bander/WorkFlow.vue";
 import Loader from "@/components/UI/Loader/Loader.vue";
-import { useRouter } from "vue-router";
 import VerifyIcon from "@/components/icons/verifyIcon.vue";
-// let store = useStore();
 import { useJobsStore } from "@/stores/jobs";
 import { useNumberFomateStore } from "@/stores/numberFomate";
 import { useClipboard } from "@vueuse/core";
@@ -41,19 +38,10 @@ const store = useNumberFomateStore();
 const jobsStore = useJobsStore();
 const { JobDetails } = storeToRefs(jobsStore);
 const route = useRoute();
-// const router = useRouter();
 
-const emit = defineEmits(["apply"]);
-const apply = () => {
-  emit("apply");
-};
-// onMounted(async () => {
-//   await jobsStore.handleGetJobDetailsBySlug(route.params.slug);
-// });
-const router = useRouter();
-const url = import.meta.env.VITE_LANDING_PAGE;
-const redirectToJobDetails = (slug) => {
-  window.open(url + `/view/job/` + `${slug}`, "_blank");
+const url = import.meta.env.VITE_DASHBOARD_HOST;
+const redirectToJobDetails = () => {
+  window.open(url + `signup`, "_blank");
 };
 
 defineProps({ singleJob: Object });
@@ -128,7 +116,7 @@ onUnmounted(() => {
               {{ JobDetails?.data?.job_title }}
             </p>
             <button
-              @click="redirectToJobDetails(JobDetails?.data?.id)"
+              @click="redirectToJobDetails()"
               class="bg-[#43D0DF] font-Satoshi500 text-[12.708px] p-3 px-12 text-white btn-hover-1 rounded-full"
             >
               Sign up to apply
@@ -235,7 +223,7 @@ onUnmounted(() => {
           </div>
           <div>
             <button
-              @click="redirectToJobDetails(JobDetails?.data?.id)"
+              @click="redirectToJobDetails()"
               class="bg-[#43D0DF] font-Satoshi500 text-[12.708px] p-3 px-12 text-white btn-hover-1 rounded-full"
             >
               Sign up to apply
