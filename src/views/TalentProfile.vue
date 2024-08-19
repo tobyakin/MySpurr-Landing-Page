@@ -1,22 +1,142 @@
+<script setup>
+import {
+  ref,
+  onMounted,
+  computed,
+  reactive,
+  onUnmounted,
+  defineAsyncComponent,
+} from "vue";
+import { useHead } from "@vueuse/head";
+import { storeToRefs } from "pinia";
+import JobAvater from "@/components/Avater/JobAvater.vue";
+import Navbar from "@/components/Navbar/Navbar.vue";
+import Footer from "@/components/Footer.vue";
+import SearchIconVeritical from "@/components/icons/searchIconVeritical.vue";
+import LinkdeinIcon from "@/components/icons/linkdeinIcon.vue";
+import InstagramIcon from "@/components/icons/instagramIcon.vue";
+import BeIcon from "@/components/icons/beIcon.vue";
+import TwitterIcon from "@/components/icons/twitterIcon.vue";
+import mailoutline from "@/components/icons/mailoutline.vue";
+import WorkExperience from "@/components/genericComponents/WorkExperience.vue";
+import EducationDetails from "@/components/genericComponents/EducationDetails.vue";
+import RateStar from "@/components/icons/rateStar.vue";
+import CertificateBadge from "@/components/icons/certificateBadge.vue";
+import CalenderWithPen from "@/components/icons/calenderWithPen.vue";
+import { useRouter, useRoute } from "vue-router";
+import { useTalentsStore } from "@/stores/talents";
+import { useClipboard } from "@vueuse/core";
+import { useToast } from "vue-toastification";
+import html2pdf from "html2pdf.js";
+
+
+
+const Maps = defineAsyncComponent(() => import("@/components/Map/Map.vue"));
+import Loader from "@/components/UI/Loader/Loader.vue";
+const toast = useToast();
+const loading = ref(false);
+const url = import.meta.env.VITE_DASHBOARD;
+const redirectToMessage = () => {
+  window.open(url + `messages`, "_blank");
+};
+
+
+const talentsStore = useTalentsStore();
+const { singleTalent } = storeToRefs(talentsStore);
+const route = useRoute();
+const router = useRouter();
+const redirectToSinglePortFolio = (id, title) => {
+  router.push({
+    name: "single-portfolio",
+    params: { id: id, title: title },
+  });
+};
+
+const talents = computed(() => singleTalent.value?.data || []);
+
+onMounted(async () => {
+  loading.value = true;
+  try {
+    await talentsStore.getSingleTalent(route.params.id);
+    loading.value = false;
+  } catch (error) {
+    loading.value = false;
+  }
+});
+onUnmounted(() => {
+  singleTalent.value = null;
+});
+let source = window.location.href;
+const { copy, copied, isSupported } = useClipboard({ source });
+const copyUrl = () => {
+  if (isSupported) {
+    if (copied) {
+      console.log(source);
+      copy(source);
+      toast.success("Link Copied", {
+        timeout: 4000,
+      });
+    }
+  } else {
+    toast.error("Your browser does not support Clipboard API", {
+      timeout: 4000,
+    });
+  }
+};
+
+const siteData = reactive({
+  title: `MySpurr |  ${singleTalent.value?.data?.first_name || ""}`,
+  description: ``,
+});
+
+useHead({
+  title: siteData.title,
+  meta: [
+    {
+      name: `description`,
+      content: computed(() => siteData.description),
+    },
+    {
+      property: "keywords",
+      content: "Courses, learn",
+    },
+  ],
+});
+const getTalentsProfileData = async () => {
+  let response = await talentsStore.getSingleTalent(route.params.id);
+  return response;
+};
+const fetchData = async () => {
+  await Promise.all([getTalentsProfileData()]);
+};
+fetchData();
+
+const downloadCV = () => {
+
+  const element = document.getElementById("element-to-convert");
+
+  const opt = {
+    margin: 1,
+    filename: (talents.value?.first_name || "CV") + ".pdf",
+    image: { type: "jpeg", quality: 0.98 },
+    enableLinks: true,
+    html2canvas: { scale: 3, useCORS: true },
+    jsPDF: { unit: "in", format: "a3", orientation: "portrait" },
+    putOnlyUsedFonts: true,
+  };
+
+  html2pdf()
+    .from(element)
+    .set(opt)
+    .save()
+    .then(() => {
+    });
+};
+</script>
+
 <template>
   <div>
     <Navbar />
-    <!-- <Vue3Html2pdf
-      v-if="!loading"
-      :show-layout="false"
-      :float-layout="false"
-      :enable-download="true"
-      :preview-modal="true"
-      :paginate-elements-by-height="1920"
-      filename="hee hee"
-      :pdf-quality="2"
-      :manual-pagination="true"
-      pdf-format="a2"
-      pdf-orientation="portrait"
-      pdf-content-width="100%"
-      ref="html2Pdf"
-    > -->
-    <!-- <template v-slot:pdf-content> -->
     <Loader v-if="loading" />
     <div v-else class="py-20 container">
       <div id="element-to-convert" class="w-full">
@@ -26,11 +146,13 @@
           <div
             class="flex lg:flex-row flex-col items-center lg:justify-normal justify-center gap-6"
           >
-            <JobAvater
-              :imageUrl="talents?.image"
-              inputClasses="!h-[89.536px] !w-[89.536px]"
-              class=""
-            />
+            <div>
+              <JobAvater
+                :imageUrl="talents?.image"
+                inputClasses="!h-[89.536px] !w-[89.536px]"
+                class=""
+              />
+            </div>
             <div class="lg:text-left text-center">
               <p
                 class="text-[#000000] text-[17.518px] capitalize font-Satoshi500 leading-[31.739px]"
@@ -58,6 +180,7 @@
               </div>
             </div>
           </div>
+
           <div class="flex flex-col items-center lg:justify-normal justify-center gap-6">
             <div class="flex items-center gap-3">
               <a
@@ -81,7 +204,7 @@
                 <TwitterIcon />
               </a>
             </div>
-            <div class="flex items-center gap-5">
+            <div class="flex items-center gap-5" id="element-to-hide" data-html2canvas-ignore="true">
               <button @click="copyUrl()">
                 <SearchIconVeritical />
               </button>
@@ -94,6 +217,7 @@
             </div>
           </div>
         </div>
+
         <div class="flex flex-col lg:flex-row mt-10 w-full">
           <div class="lg:w-[70%] p-4">
             <p class="text-[28px] text-[#000] font-Satoshi500">Overview</p>
@@ -101,12 +225,6 @@
               <p>
                 {{ talents?.overview }}
               </p>
-              <!-- <p class="mt-4"></p> -->
-              <!-- .slice(0, 10) -->
-              <!--               
- -->
-              <!--               {{ talents?.top_skills.length - 10 }}+
- -->
             </div>
             <p class="text-[28px] text-[#000] font-Satoshi500 !mb-4 mt-6">Skills</p>
             <div class="flex gap-4 flex-wrap">
@@ -123,12 +241,14 @@
             </div>
             <p class="text-[28px] text-[#000] font-Satoshi500 !mb-12 mt-8">Education</p>
             <EducationDetails :items="talents?.education" />
-            <!-- <SampleFive :items="items" /> -->
+
+            <!-- <div class="html2pdf__page-break"/> -->
 
             <p class="text-[28px] text-[#000] font-Satoshi500 !mb-12 mt-8">
               Work Experience
             </p>
             <WorkExperience :items="talents?.employment" />
+
             <p class="text-[28px] text-[#000] font-Satoshi500 !mb-12 mt-8">Portfolio</p>
             <div
               v-if="talents?.portfolio?.length === 0"
@@ -146,7 +266,6 @@
               <img
                 loading="lazy"
                 @click="redirectToSinglePortFolio(img.id, img.title)"
-                role="button"
                 v-for="img in talents?.portfolio"
                 :key="img?.id"
                 :src="img?.featured_image"
@@ -157,7 +276,7 @@
             <p class="text-[28px] text-[#000] hidden font-Satoshi500 !mb-12 mt-8">
               Reviews
             </p>
-            <div class="flex flex-col gap-4 hidden">
+            <div class="flex-col gap-4 hidden">
               <div
                 v-for="i in 3"
                 :key="i"
@@ -214,10 +333,10 @@
                   </div>
                 </div>
               </div>
-              <div class="">
+              <div class="" id="element-to-hide" data-html2canvas-ignore="true">
                 <button
-                  @click="printPage"
-                  class="btn-brand !border-none !w-full exclude-from-print !py-2 !text-[#FFFFFF] text-center !bg-[#31795A] btn-hover-2"
+                  @click="downloadCV"
+                  class="btn-brand !border-none !w-full !py-2 !text-[#FFFFFF] text-center !bg-[#31795A] btn-hover-2"
                 >
                   <span class="!mb-2">Download CV</span>
                 </button>
@@ -225,183 +344,21 @@
             </div>
             <p class="text-[20px] text-[#000] font-Satoshi500 mt-16">Location</p>
             <div class="flex flex-col gap-12 mt-4 rounded-[15px]">
-              <!-- <img loading="lazy" src="@/assets/img/Map.webp" alt="" /> -->
-              <Map :lat="talents?.latitude" :lng="talents?.longitude" />
+              <Maps :lat="talents?.latitude" :lng="talents?.longitude" />
             </div>
           </div>
         </div>
       </div>
     </div>
-    <!-- </template>
-    </Vue3Html2pdf> -->
     <Footer />
   </div>
 </template>
-
-<script setup>
-import {
-  ref,
-  onMounted,
-  computed,
-  reactive,
-  onUnmounted,
-  defineAsyncComponent,
-} from "vue";
-import { useHead } from "@vueuse/head";
-import { storeToRefs } from "pinia";
-import JobAvater from "@/components/Avater/JobAvater.vue";
-import Navbar from "@/components/Navbar/Navbar.vue";
-import Footer from "@/components/Footer.vue";
-import SearchIconVeritical from "@/components/icons/searchIconVeritical.vue";
-import LinkdeinIcon from "@/components/icons/linkdeinIcon.vue";
-import InstagramIcon from "@/components/icons/instagramIcon.vue";
-import BeIcon from "@/components/icons/beIcon.vue";
-import TwitterIcon from "@/components/icons/twitterIcon.vue";
-import mailIcon from "@/components/icons/mailIcon.vue";
-import mailoutline from "@/components/icons/mailoutline.vue";
-// import SampleFive from "@/components/genericComponents/sampleFive.vue";
-import WorkExperience from "@/components/genericComponents/WorkExperience.vue";
-import EducationDetails from "@/components/genericComponents/EducationDetails.vue";
-// import SampleOne from "@/assets/img/sampleOne.webp";
-// import SampleTwo from "@/assets/img/sampleTwo.webp";
-// import SampleThree from "@/assets/img/sampleThree.webp";
-// import SampleFour from "@/assets/img/sampleFour.webp";
-import RateStar from "@/components/icons/rateStar.vue";
-import CertificateBadge from "@/components/icons/certificateBadge.vue";
-import CalenderWithPen from "@/components/icons/calenderWithPen.vue";
-import { useRouter, useRoute } from "vue-router";
-import { useTalentsStore } from "@/stores/talents";
-// import Vue3Html2pdf from "vue3-html2pdf";
-// import html2pdf from "html2pdf.js";
-import { useClipboard } from "@vueuse/core";
-import { useToast } from "vue-toastification";
-const Map = defineAsyncComponent(() => import("@/components/Map/Map.vue"));
-// import { useQuery } from "vue-query";
-import Loader from "@/components/UI/Loader/Loader.vue";
-const toast = useToast();
-const loading = ref(false);
-// const html2Pdf = ref(null);
-
-// const generateReport = () => {
-//   html2Pdf.value.generatePdf();
-// };
-const url = import.meta.env.VITE_DASHBOARD;
-const redirectToMessage = () => {
-  window.open(url + `messages`, "_blank");
-};
-
-const printPage = () => {
-  window.print();
-};
-// Function to generate Tailwind CSS styles for printing
-
-// const exportToPDF = () => {
-//   html2pdf(document.getElementById("element-to-convert"), {
-//     margin: 1,
-//     filename: `${talents?.value.first_name}-talent-cv`,
-//     image: { type: "jpeg", quality: 0.98 },
-//     html2canvas: { scale: 2, logging: true, useCORS: true },
-//     jsPDF: { unit: "in", format: "a3", orientation: "portrait" },
-//   });
-// };
-const talentsStore = useTalentsStore();
-const { singleTalent } = storeToRefs(talentsStore);
-const route = useRoute();
-const router = useRouter();
-const redirectToSinglePortFolio = (id, title) => {
-  router.push({
-    name: "single-portfolio",
-    params: { id: id, title: title },
-  });
-};
-
-const talents = computed(() => singleTalent.value?.data || []);
-
-onMounted(async () => {
-  loading.value = true;
-  try {
-    await talentsStore.getSingleTalent(route.params.id);
-    loading.value = false;
-  } catch (error) {
-    console.error;
-    loading.value = false;
-  }
-});
-onUnmounted(() => {
-  singleTalent.value = null;
-});
-let source = window.location.href;
-const { copy, copied, isSupported } = useClipboard({ source });
-const copyUrl = () => {
-  if (isSupported) {
-    if (copied) {
-      console.log(source);
-      copy(source);
-      toast.success("Link Copied", {
-        timeout: 4000,
-      });
-    }
-  } else {
-    toast.error("Your browser does not support Clipboard API", {
-      timeout: 4000,
-    });
-  }
-};
-
-const siteData = reactive({
-  title: `MySpurr |  ${singleTalent.value?.data?.first_name || ""}`,
-  description: ``,
-});
-
-useHead({
-  title: siteData.title,
-  meta: [
-    {
-      name: `description`,
-      content: computed(() => siteData.description),
-    },
-    {
-      property: "keywords",
-      content: "Courses, learn",
-    },
-  ],
-});
-const getTalentsProfileData = async () => {
-  let response = await talentsStore.getSingleTalent(route.params.id);
-  return response;
-};
-const fetchData = async () => {
-  await Promise.all([getTalentsProfileData()]);
-};
-fetchData();
-
-// const { isLoading } = useQuery(["talentsProfile"], getTalentsProfileData, {
-//   retry: 10,
-//   staleTime: 10000,
-//   // onSettled: () => {
-//   //   loading.value = false; // Set loading to false after query is settled
-//   // },
-//   // onError: () => {
-//   //   loading.value = false; // Set loading to false on error
-//   // },
-//   onSuccess: (data) => {
-//     singleTalent.value = data;
-//   },
-// });
-</script>
 
 <style>
 /* Hide the excluded section when printing */
 @media print {
   .exclude-from-print {
     display: none;
-  }
-
-  /* Set default print settings */
-  @page {
-    size: A3 !important; /* Paper size */
-    layout: portrait !important; /* Orientation */
-    margin: 0.5cm; /* Minimum margins */
   }
 }
 </style>
