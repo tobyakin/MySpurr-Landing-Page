@@ -2,7 +2,6 @@
 import { onMounted, ref, onUnmounted } from "vue";
 import { useRoute } from "vue-router";
 // import { useStore } from "@/stores/user";
-import CircleBookMarkIcon from "@/components/icons/circleBookMarkIcon.vue";
 import { storeToRefs } from "pinia";
 import SearchIcon from "@/components/icons/circleSearchIcon.vue";
 import Navbar from "@/components/Navbar/Navbar.vue";
@@ -10,8 +9,6 @@ import Footer from "@/components/Footer.vue";
 import WorkFlow from "@/components/Bander/WorkFlow.vue";
 import Loader from "@/components/UI/Loader/Loader.vue";
 import { useRouter } from "vue-router";
-
-// import CircleTick from "@/components/icons/circleTick.vue";
 import VerifyIcon from "@/components/icons/verifyIcon.vue";
 // let store = useStore();
 import { useJobsStore } from "@/stores/jobs";
@@ -54,9 +51,9 @@ const apply = () => {
 //   await jobsStore.handleGetJobDetailsBySlug(route.params.slug);
 // });
 const router = useRouter();
-const url = import.meta.env.VITE_DASHBOARD;
+const url = import.meta.env.VITE_LANDING_PAGE;
 const redirectToJobDetails = (slug) => {
-  window.open(url + `view/job/` + `${slug}`, "_blank");
+  window.open(url + `/view/job/` + `${slug}`, "_blank");
 };
 
 defineProps({ singleJob: Object });
