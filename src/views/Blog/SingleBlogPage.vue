@@ -60,7 +60,7 @@ const fetchBlogs = async(page, category) => {
 }
 
 const filteredBlogs = computed(() => {
-  return allBlog.value.filter(blog => blog.id !== singleBlog.value.id);
+  return allBlog.value.filter(blog => blog.id !== singleBlog.value.id).splice(0, 6);
 });
 
 onMounted(async () => {
@@ -84,7 +84,7 @@ watch(
     <Navbar />
     <Loader v-if="loading" />
     <div class="py-16 container" v-else>
-      <div class="font-Satoshi400 px-5 lg:px-0 lg:px-0">
+      <div class="font-Satoshi400 px-5 lg:px-0">
         <div class="">
           <img loading="lazy"  
             :src="singleBlog.featured_photo"
