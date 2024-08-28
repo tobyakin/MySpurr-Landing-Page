@@ -11,9 +11,20 @@ let store = useJobsStore();
 
 const router = useRouter();
 
-const redirectToJobDetails = (slug) => {
-  router.push({ name: "job-details", params: { slug } });
+const slugify = (text) => {
+  return text
+    .toLowerCase()
+    .replace(/\s+/g, '-')
+    .replace(/[^\w-]+/g, '')
+    .replace(/--+/g, '-')
+    .trim();
 };
+
+const redirectToJobDetails = (business_name, slug) => {
+  const businessNameSlug = slugify(business_name);
+  router.push({ name: "job-details", params: { business_name: businessNameSlug, slug } });
+};
+
 defineProps({
   job: Object,
 });
@@ -118,7 +129,7 @@ defineProps({
                 </button>
               </div>
               <button
-                @click="redirectToJobDetails(job?.slug)"
+                @click="redirectToJobDetails(job?.company?.business_name, job?.slug)"
                 class="font-Satoshi500 bg-[#43D0DF] text-[9.708px] p-3 px-12 text-white rounded-full btn-hover-1"
               >
                 <span>Apply</span>
