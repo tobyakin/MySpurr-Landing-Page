@@ -72,7 +72,7 @@
             <button class="rounded-full border-[#97A6A8] border-[0.496px] p-2">
               <ShareIcon /></button
             ><button
-              @click="redirectToJobDetails(item?.slug)"
+              @click="redirectToJobDetails(item?.company?.business_name, item?.slug)"
               class="btn-brand !text-[9.959px] !py-2 !px-6"
             >
               Apply
@@ -100,8 +100,7 @@
 </template>
 <script setup>
 import { ref, onMounted } from "vue";
-import { useRoute, useRouter } from "vue-router";
-import BookMarkIcon from "@/components/icons/bookMarkIcon.vue";
+import { useRouter } from "vue-router";
 import ShareIcon from "@/components/icons/shareOutline.vue";
 const router = useRouter();
 import { storeToRefs } from "pinia";
@@ -113,8 +112,18 @@ const { Job } = storeToRefs(jobsStore);
 const loading = ref(false);
 const dashboardUrl = import.meta.env.VITE_DASHBOARD;
 
-const redirectToJobDetails = (slug) => {
-  router.push({ name: "job-details", params: { slug } });
+const slugify = (text) => {
+  return text
+    .toLowerCase()
+    .replace(/\s+/g, '-')
+    .replace(/[^\w-]+/g, '')
+    .replace(/--+/g, '-')
+    .trim();
+};
+
+const redirectToJobDetails = (business_name, slug) => {
+  const businessNameSlug = slugify(business_name);
+  router.push({ name: "job-details", params: { business_name: businessNameSlug, slug } });
 };
 
 const redirectToJobPage = () => {
