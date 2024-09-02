@@ -450,9 +450,7 @@ const selectCandidateType = (item) => {
           <div class="!mb-10">
             <p class="text-[#00000066] font-Satoshi400 text-[1.49rem]">
               All
-              <span class="text-[#000000] font-Satoshi500">{{
-                filteredJobs?.length ? filteredJobs?.length : paginatedTalent?.length
-              }}</span>
+              <span class="text-[#000000] font-Satoshi500">{{talent?.pagination?.total}}</span>
               candidates found
             </p>
           </div>
@@ -468,7 +466,7 @@ const selectCandidateType = (item) => {
           <div v-else class="mt-14 flex flex-col gap-8">
             <JobCard class="w-full" v-for="item in filteredJobs" :key="item" :talent="item" />
           </div>
-          <Loader v-if="isLoading" />
+          <Loader v-if="isLoading" class="!flex !items-start !justify-center"/>
     
           <div class="mt-12 flex w-[60%] flex-row justify-center mx-auto">
             <button
