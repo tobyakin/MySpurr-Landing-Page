@@ -1,0 +1,60 @@
+<template>
+  <div
+    class="min-h-[630px] flex items-center background py-20"
+    :style="{ backgroundImage: `url(${image})` }"
+  >
+    <div class="flex container gap-8 py-8 lg:flex-row flex-col-reverse justify-center">
+      <div class="lg:py-12 py-4 border border-[red]">
+        <h1
+          class="text-[4rem] font-normal !mb-6 text-white leading-[4.3125rem] font-EBGaramond500 text-center"
+        >
+        Find, hire and work with <span class="text-[#63D8E4]">African Talents</span> in Brand Marketing, Design and Technology
+        </h1>
+        <p class="text-[1.25rem] text-[#ffffffbf] font-Satoshi400 !my-8 md:!my-6 text-center">
+          Our clients are startups, SMEs, and large corporations seeking diverse, skilled talent from emerging markets.
+        </p>
+        <div class="flex gap-[26px] border border-white">
+          <FormGroup
+            
+            labelClasses="font-Satoshi500 text-[15.606px]"
+            label=" Name or Keyword"
+            name="Name"
+            placeholder="Name or keyword"
+            type="text"
+            inputClasses="w-full mt-2 font-light font-Satoshi400 !p-2 border-[#EDEDED] border-[0.509px] opacity-[0.8029] rounded-[6.828px] text-[12.68px]"
+          ></FormGroup>
+          
+        </div>
+      </div>
+      <!-- <div class="flex justify-center items-center gap-4">
+        <p class="font-Satoshi700 text-[20px] text-white">How to use MySpurr</p>
+        <button
+          class="bg-[#EDF0B8] rounded-full p-4 h-[76.477px] w-[76.477px] items-center justify-center flex"
+        >
+          <PlayButton />
+        </button>
+      </div> -->
+    </div>
+  </div>
+</template>
+<script setup>
+import mainbg from "@/assets/img/talent-bg.png";
+import FormGroup from "@/components/Form/Input/FormGroup.vue";
+// import PlayButton from "@/components/icons/playButton.vue";
+const image = mainbg;
+const dashboardUrl = import.meta.env.VITE_DASHBOARD;
+</script>
+
+<style scoped>
+.background {
+  background-size: cover;
+  background-blend-mode: overlay;
+  background: linear-gradient(
+      from 270deg at 50% 50%,
+      rgba(15, 14, 14, 0.28) 184.15632963180542deg,
+      rgba(13, 11, 11, 0.33) 270.5531358718872deg,
+      rgba(18, 16, 16, 0.32) 353.79907608032227deg
+    ),
+    lightgray 50%;
+}
+</style>
