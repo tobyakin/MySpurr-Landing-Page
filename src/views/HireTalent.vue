@@ -116,7 +116,6 @@ const displayedPageNumbers = computed(() => {
 
 // You can also watch the currentPage to react to page changes
 watch(currentPage, async (newPage) => {
-  console.log("Current Page:", newPage);
   await talentsStore.allTalents(newPage);
 });
 const filteredJobs = computed(() => {
