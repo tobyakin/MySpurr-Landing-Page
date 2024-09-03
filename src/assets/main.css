@@ -392,6 +392,10 @@ ol {
   @apply eventBreak:text-[0.7rem] eventBreak:px-4 eventBreak:py-[0.7rem] eventBreak:rounded-[0.7rem]
 }
 
+.search_field input::placeholder, .select_field select option {
+  @apply !text-[#000000] text-[1rem] font-Satoshi500 eventBreak:!text-[0.75rem] leading-[1.75rem]
+}
+
 
 
 
@@ -408,8 +412,4 @@ ol {
   }
 }
 
-@media (max-width: 1024px){
-  html {
-    font-size: 16px !important;
-  }
-} 
+

@@ -15,6 +15,7 @@ import Label from "@/components/Form/Input/Label.vue";
 // import PagePreLoader from "@/components/UI/Loader/PagePreLoader.vue";
 // import { useQuery } from "vue-query";
 import Loader from "@/components/UI/Loader/Loader.vue";
+import { useRoute } from "vue-router";
 
 const talentsStore = useTalentsStore();
 const { talent } = storeToRefs(talentsStore);
@@ -22,6 +23,10 @@ const siteData = reactive({
   title: `MySpurr | Hire talent`,
   description: ``,
 });
+const category = ref('')
+const location = ref('')
+const keyword = ref('')
+const route = useRoute()
 
 useHead({
   // Can be static or computed
@@ -182,7 +187,24 @@ const resetFilters = () => {
   rateMax.value = "";
 };
 
+const querySearch = ()=>{
+  if(category.value !== "Job Categories"){
+    filterOptions.candidateType = category.value || "";
+  }
+  if(location.value !== undefined && location.value.length > 0){
+     filterOptions.location = location.value || "";
+  }
+  if(keyword.value !== undefined && keyword.value.length > 0){
+    filterOptions.name = keyword.value || "";
+  }
+   
+}
+
 onMounted(async () => {
+  category.value = route.query.category
+  location.value = route.query.location
+  keyword.value = route.query.keyword
+  querySearch()
   try {
     isLoading.value = true;
     await talentsStore.allTalents(currentPage.value);

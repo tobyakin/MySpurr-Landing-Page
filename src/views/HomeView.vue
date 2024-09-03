@@ -3,12 +3,12 @@ import { computed, reactive } from "vue";
 import { useHead } from "@vueuse/head";
 import Navbar from "@/components/Navbar/Navbar.vue";
 import Footer from "@/components/Footer.vue";
-import SectionOne from "@/components/Home/SectionOne.vue";
-import SectionTwo from "@/components/Home/SectionTwo.vue";
-import SectionThree from "@/components/Home/SectionThree.vue";
+import SectionOne from "@/components/Talent/SectionOne.vue";
+import SectionTwo from "@/components/Talent/SectionTwo.vue";
+import SectionThree from "@/components/Talent/SectionThree.vue";
 import SectionFour from "@/components/Home/SectionFour.vue";
-import SectionFive from "@/components/Home/SectionFive.vue";
-import SectionSix from "@/components/Home/SectionSix.vue";
+import SectionFive from "@/components/Talent/SectionFive.vue";
+import SectionSix from "@/components/Talent/SectionSix.vue";
 import SectionSeven from "@/components/Home/SectionSeven.vue";
 import WorkFlow from "@/components/Bander/WorkFlow.vue";
 
