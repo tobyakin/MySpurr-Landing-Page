@@ -161,11 +161,36 @@
             <Loader v-if="loadMyjobs"/>
             <div class="w-full p-[1.57rem] eventBreak:p-0 flex flex-col gap-[2.31rem]" v-else>
               <JobRowCard
-            class="min-w-[95%] lg:min-w-[45%]"
-            v-for="item in businessOpenJobs?.data"
-            :key="item"
-            :job="item"
-          />
+                class="min-w-[95%] lg:min-w-[45%]"
+                v-for="item in paginatedJobs"
+                :key="item"
+                :job="item"
+              />
+              <div class="mt-12 flex w-[60%] flex-row justify-center mx-auto">
+                <button
+                  @click="setPage(currentPage - 1)"
+                  class="border-[#007582] border-l-2 border-r-2 border-y-2 p-4 py-2 rounded-l-[6.032px] font-Satoshi500 text-[22.621px] items-center flex"
+                >
+                  <Arrow class="rotate-[180deg]"/>
+                </button>
+                <button
+                  v-for="pageNumber in displayedPageNumbers"
+                  :key="pageNumber"
+                  :class="[
+                    'border-[#007582] p-4 py-2 font-Satoshi500 text-[22.621px] items-center flex border-y-2 border-r-2',
+                    pageNumber === currentPage ? 'bg-[#007582] text-white' : '',
+                  ]"
+                  @click="setPage(pageNumber)"
+                >
+                  {{ pageNumber }}
+                </button>
+                <button
+                  @click="setPage(currentPage + 1)"
+                  class="border-[#007582] border-r-2 border-y-2 p-4 py-2 rounded-r-[6.032px] font-Satoshi500 text-[22.621px] items-center flex"
+                >
+                  <Arrow />
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -184,6 +209,7 @@ import {
   reactive,
   onUnmounted,
   defineAsyncComponent,
+  watch,
 } from "vue";
 import { useHead } from "@vueuse/head";
 import { storeToRefs } from "pinia";
@@ -196,20 +222,15 @@ import LinkdeinIcon from "@/components/icons/linkdeinIcon.vue";
 import InstagramIcon from "@/components/icons/instagramIcon.vue";
 import BeIcon from "@/components/icons/beIcon.vue";
 import TwitterIcon from "@/components/icons/twitterIcon.vue";
-import mailIcon from "@/components/icons/mailIcon.vue";
-import mailoutline from "@/components/icons/mailoutline.vue";
-import CalenderWithPen from "@/components/icons/calenderWithPen.vue";
+import Arrow from "@/components/icons/paginationArrow.vue";
 import { useRouter, useRoute } from "vue-router";
 import { useClipboard } from "@vueuse/core";
 import { useToast } from "vue-toastification";
 const Maps = defineAsyncComponent(() => import("@/components/Map/Map.vue"));
 import Loader from "@/components/UI/Loader/Loader.vue";
-import { useJobsStore } from "@/stores/jobs";
 import { useBusinessStore } from "@/stores/business";
 
-const jobsStore = useJobsStore();
 const businessStore = useBusinessStore();
-const { MyJob } = storeToRefs(jobsStore);
 const { singleBusiness, businessOpenJobs } = storeToRefs(businessStore);
 
 const business = computed(()=> singleBusiness.value?.data || []);
@@ -217,6 +238,8 @@ const size = computed(()=> {
   return singleBusiness.value?.data?.size.length > 0 ? singleBusiness.value?.data?.size : '-';
 })
 
+const route = useRoute();
+const router = useRouter();
 const toast = useToast();
 const loading = ref(false);
 let loadMyjobs = ref(false);
@@ -225,11 +248,50 @@ const redirectToMessage = () => {
   window.open(url + `messages`, "_blank");
 };
 
+// Pagination Function
+
+const currentPage = ref(1);
+
+const jobsData = computed(() => businessOpenJobs.value?.data || []);
+
+const pagination = computed(() => businessOpenJobs.value?.pagination || {});
+
+const paginatedJobs = computed(() => {
+  const perPage = pagination.value.per_page;
+  const startIndex = (currentPage.value - 1) * perPage;
+  const endIndex = startIndex + perPage;
+  return jobsData.value.slice(startIndex, endIndex);
+});
+
+const totalPages = computed(() => Math.ceil(pagination.value.last_page));
+
+const setPage = (page) => {
+  if (page >= 1 && page <= (pagination.value.last_page || 1)) {
+    currentPage.value = page;
+  }
+};
+
+const displayedPageNumbers = computed(() => {
+  const maxDisplayedPages = 5;
+  const startPage = Math.max(currentPage.value - Math.floor(maxDisplayedPages / 2), 1);
+  const endPage = Math.min(startPage + maxDisplayedPages - 1, totalPages.value);
+  const pageNumbers = [];
+
+  for (let i = startPage; i <= endPage; i++) {
+    pageNumbers.push(i);
+  }
+
+  return pageNumbers;
+});
+
+watch(currentPage, async (newPage) => {
+  console.log("Current Page:", newPage);
+  await talentsStore.allTalents(newPage);
+});
+
 const printPage = () => {
   window.print();
 };
-const route = useRoute();
-const router = useRouter();
 
 let source = window.location.href;
 const { copy, copied, isSupported } = useClipboard({ source });
@@ -237,7 +299,6 @@ const { copy, copied, isSupported } = useClipboard({ source });
 const copyUrl = () => {
   if (isSupported) {
     if (copied) {
-      console.log(source);
       copy(source);
       toast.success("Link Copied", {
         timeout: 4000,
@@ -251,11 +312,9 @@ const copyUrl = () => {
 };
 
 const getOpenJobs = async ()=>{
-  console.log(business.value?.id)
   try {
     await businessStore.handleBusinessOpenJobs(singleBusiness.value?.data.id)
     loadMyjobs.value = false;
-    console.log(businessOpenJobs.value)
   } catch (error) {
     console.log(error)
     loadMyjobs.value = false;
@@ -267,7 +326,6 @@ onMounted(async () => {
   try {
     await businessStore.handleSingleBusiness(route.params.id);
     getOpenJobs()
-    // console.log(singleBusiness.value)
     loading.value = false;
   } catch (error) {
     console.log(error)
