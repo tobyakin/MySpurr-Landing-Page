@@ -69,26 +69,6 @@ const CandidateType = [
   "Contract ",
 ];
 
-const totalPages = computed(() => Math.ceil(Job.value?.length / 2));
-
-// Function to change the current page
-const setPage = (page) => {
-  if (page >= 1 && page <= (2 || 1)) {
-    currentPage.value = page;
-  }
-};
-const displayedPageNumbers = computed(() => {
-  const maxDisplayedPages = 4;
-  const startPage = Math.max(currentPage.value - Math.floor(maxDisplayedPages / 2), 1);
-  const endPage = Math.min(startPage + maxDisplayedPages - 1, totalPages.value);
-  const pageNumbers = [];
-
-  for (let i = startPage; i <= endPage; i++) {
-    pageNumbers.push(i);
-  }
-
-  return pageNumbers;
-});
 const filteredJobs = computed(() => {
   let filtered = Job.value?.data; // Create a shallow copy of the jobs array
 
@@ -154,6 +134,39 @@ const resetFilters = () => {
   rateMin.value = "";
   rateMax.value = "";
 };
+
+// const totalPages = computed(() => Math.ceil(Job.value?.length / 2));
+const totalPages = computed(() => Math.ceil(filteredJobs.value?.length / 25));
+
+// Function to change the current page
+const setPage = (page) => {
+  if (page >= 1 && page <= ( totalPages.value || 1)) {
+    currentPage.value = page;
+  }
+};
+const displayedPageNumbers = computed(() => {
+  const maxDisplayedPages = 5;
+  const startPage = Math.max(currentPage.value - Math.floor(maxDisplayedPages / 2), 1);
+  const endPage = Math.min(startPage + maxDisplayedPages - 1, totalPages.value);
+  const pageNumbers = [];
+
+  for (let i = startPage; i <= endPage; i++) {
+    pageNumbers.push(i);
+  }
+
+  return pageNumbers;
+});
+
+function getFilteredJobs(){
+  return filteredJobs.value
+}
+
+const paginatedJobs = computed(() => {
+  const perPage = 25;
+  const startIndex = (currentPage.value - 1) * perPage;
+  const endIndex = startIndex + perPage;
+  return filteredJobs.value?.slice(startIndex, endIndex);
+});
 // You can also watch the currentPage to react to page changes
 watch(currentPage, (newPage) => {
   console.log("Current Page:", newPage);
@@ -162,6 +175,7 @@ onMounted(async () => {
   loading.value = true;
   try {
     await jobsStore.allJobs();
+    getFilteredJobs()
     loading.value = false;
   } catch (error) {
     console.error(error);
@@ -368,35 +382,37 @@ watchEffect(() => {
         <div v-if="!loading" class="mt-14 flex flex-col gap-8">
           <JobRowCard
             class="min-w-[95%] lg:min-w-[45%]"
-            v-for="item in filteredJobs"
+            v-for="item in paginatedJobs"
             :key="item"
             :job="item"
           />
         </div>
         <Loader v-if="loading" />
-
         <div class="mt-12 flex w-[60%] flex-row justify-center mx-auto">
-          <button
-            v-for="pageNumber in displayedPageNumbers"
-            :key="pageNumber"
-            :class="[
-              'border-[#007582] p-4 py-2 font-Satoshi500 text-[22.621px] items-center flex',
-              pageNumber === 1
-                ? 'border-t-2 border-b-2 border-l-2 rounded-l-[6.032px]'
-                : 'border-y-2 border-r-2',
-              pageNumber === currentPage ? 'bg-[#007582] text-white' : '',
-            ]"
-            @click="setPage(pageNumber)"
-          >
-            {{ pageNumber }}
-          </button>
-          <button
-            @click="setPage(currentPage + 5)"
-            class="border-[#007582] border-r-2 border-y-2 p-4 py-2 rounded-r-[6.032px] font-Satoshi500 text-[22.621px] items-center flex"
-          >
-            <Arrow />
-          </button>
-        </div>
+        <button
+          @click="setPage(currentPage - 1)"
+          class="border-[#007582] border-l-2 border-r-2 border-y-2 p-4 py-2 rounded-l-[6.032px] font-Satoshi500 text-[22.621px] items-center flex"
+        >
+          <Arrow class="rotate-[180deg]"/>
+        </button>
+        <button
+          v-for="pageNumber in displayedPageNumbers"
+          :key="pageNumber"
+          :class="[
+            'border-[#007582] p-4 py-2 font-Satoshi500 text-[22.621px] items-center flex border-y-2 border-r-2',
+            pageNumber === currentPage ? 'bg-[#007582] text-white' : '',
+          ]"
+          @click="setPage(pageNumber)"
+        >
+          {{ pageNumber }}
+        </button>
+        <button
+          @click="setPage(currentPage + 1)"
+          class="border-[#007582] border-r-2 border-y-2 p-4 py-2 rounded-r-[6.032px] font-Satoshi500 text-[22.621px] items-center flex"
+        >
+          <Arrow />
+        </button>
+      </div>
       </div>
       <WorkFlow />
     </div>
