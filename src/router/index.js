@@ -82,7 +82,14 @@ const router = createRouter({
         title: 'MySpurr | Privacy Policy'
       }
     },
-
+    {
+      path: '/:category/:slug',
+      name: 'SingleBlog',
+      component: SingleBlog,
+      meta: {
+        title: 'MySpurr | Blog'
+      }
+    },
     {
       path: '/:business_name/:slug',
       name: 'job-details',
@@ -95,14 +102,6 @@ const router = createRouter({
       path: '/blog',
       name: 'blog',
       component: BlogView,
-      meta: {
-        title: 'MySpurr | Blog'
-      }
-    },
-    {
-      path: '/:category/:slug',
-      name: 'SingleBlog',
-      component: SingleBlog,
       meta: {
         title: 'MySpurr | Blog'
       }
@@ -161,7 +160,10 @@ const router = createRouter({
     {
       path: '/business/:name/:id',
       name: 'business-profile',
-      component: BusinessProfile
+      component: BusinessProfile,
+      meta: {
+        title: 'MySpurr | Business'
+      }
     },
     {
       path: '/goPro',
