@@ -101,16 +101,16 @@ onBeforeUnmount(() => {
     {
       id: 1,
       header: 'Highly recommended',
-      body: `“MySpurr connected us with top-tier African talent, transforming our creative projects. The streamlined hiring process and personalized support made it seamless”`,
+      body: `“This is absolutely unique and clean design that I'm looking for. Also, the code quality is great!”`,
       author: 'Zubayer Al Hasan',
       location: 'Dhaka'
     },
     {
       id: 2,
       header: 'Nice work.',
-      body: `“The quality of talent we found through MySpurr has been outstanding. Their platform made it easy to find, hire, and collaborate with skilled professionals”`,
-      author: 'Rashed ka.',
-      location: 'Alaska'
+      body: `“MySpurr connected us with top-tier African talent, transforming our creative projects. The streamlined hiring process and personalized support made it seamless”`,
+      author: 'Abubarkar Sani',
+      location: 'Abuja'
     },
     {
       id: 3,

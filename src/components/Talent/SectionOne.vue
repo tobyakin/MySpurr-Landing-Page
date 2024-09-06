@@ -37,25 +37,37 @@
               </div>
             </div>
             <div class="slash mx-[2rem] w-[0.0625rem] !h-full bg-[#E1E1E1] min-h-[3.9rem]"></div>
-            <FormGroup
-            v-model="location"
-              labelClasses="font-Satoshi400 text-[#9098AD] !text-[0.87rem] leading-[1.75rem] !mb-2 eventBreak:!text-[0.7rem] mob:text-[0.22475rem]"
-              label="Location"
-              name="Name"
-              placeholder="Abuja. Nigeria"
-              type="text"
-              inputClasses="w-full !outline-none !px-0 !text-[#000000] font-Satoshi500 text-[1rem] leading-[1.75rem] !border-none bg-none eventBreak:!text-[0.75rem]"
-            ></FormGroup>
+            <div class="flex flex-col w-full text-left">
+              <Label class="font-Satoshi400 text-[#9098AD] !text-[0.87rem] eventBreak:!text-[0.7rem] leading-[1.75rem] !mb-2 eventBreak:!mb-0 mob:text-[0.22475rem]">Location</Label>
+              <div
+                class="w-full mt-0 font-light font-Satoshi400 bg-white !p-0 opacity-[0.8029] rounded-[6.828px] text-[12.68px] !border-none mob:!py-[0.75rem]"
+              >
+                <select
+                  v-model="location"
+                  placeholder="Location"
+                  :bordered="false"
+                  :show-arrow="false"
+                  class="w-full !outline-none !px-0 cursor-pointer text-[#000000] font-Satoshi500 text-[1rem] leading-[1.75rem] eventBreak:!text-[0.75rem]"
+                  show-search
+                 
+                >
+                  <option disabled value="Abuja. Nigeria">Abuja. Nigeria</option>
+                  <option v-for="state in states?.data" :key="state.id" :value="state.name">
+                    {{ state.name }}
+                  </option>
+                </select>
+              </div>
+            </div>
             <div class="slash mx-[2rem] w-[0.0625rem] h-full bg-[#E1E1E1] eventBreak:!hidden"></div>
             <FormGroup
             v-model="keyword"
             class="eventBreak:!hidden"
-              labelClasses="font-Satoshi400 text-[#9098AD] !text-[0.87rem] leading-[1.75rem] !mb-2 eventBreak:!text-[0.7rem]"
+              labelClasses="font-Satoshi400 text-[#9098AD] !text-[0.87rem] eventBreak:!text-[0.7rem] leading-[1.75rem] !mb-2 eventBreak:!mb-0 mob:text-[0.22475rem]"
               label="Keyword or Title"
               name="Name"
               placeholder="Design, Branding"
               type="text"
-              inputClasses="w-full !outline-none !px-0 text-[#000000] font-Satoshi500 text-[1rem] leading-[1.75rem] mob2:!border-none border bg-none eventBreak:!text-[0.75rem] mob:!px-[0.5rem] msgMob:hidden"
+              inputClasses="w-full !outline-none !px-0 cursor-pointer text-[#000000] font-Satoshi500 text-[1rem] mob2:!border-none border leading-[1.75rem] eventBreak:!text-[0.75rem]"
             ></FormGroup>
           </div>
           <button
@@ -82,15 +94,17 @@
 <script setup>
 import mainbg from "@/assets/img/talent-bg.png";
 import FormGroup from "@/components/Form/Input/FormGroup.vue";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
+import { useSkillsStore } from "@/stores/skills";
+import { storeToRefs } from "pinia";
 // import PlayButton from "@/components/icons/playButton.vue";
 const image = mainbg;
 const dashboardUrl = import.meta.env.VITE_DASHBOARD;
 const CandidateType = ["Freelance", "Full-time", "Part-time", "Internship", "Contract"];
 const router = useRouter()
 const category = ref('Job Categories')
-const location = ref('')
+const location = ref('Abuja. Nigeria')
 const keyword = ref('')
 
 const handleSearch = () => {
@@ -104,7 +118,13 @@ const handleSearch = () => {
   });
 };
 
+const skillsStore = useSkillsStore();
+const { states } = storeToRefs(skillsStore);
 
+onMounted(async()=>{
+  let payload = "NG"
+  await skillsStore.handleGetStates(payload);
+})
 </script>
 
 <style scoped>

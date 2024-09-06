@@ -190,7 +190,7 @@ const querySearch = ()=>{
   if(category.value !== "Job Categories"){
     filterOptions.candidateType = category.value || "";
   }
-  if(location.value !== undefined && location.value.length > 0){
+  if(location.value !== "Abuja. Nigeria"){
      filterOptions.location = location.value || "";
   }
   if(keyword.value !== undefined && keyword.value.length > 0){
