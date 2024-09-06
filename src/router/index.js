@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import BusinessView from '../views/Business/index.vue'
+import TalentView from '../views/Talent/index.vue'
 import LearnView from '../views/LearnView.vue'
 import HireTalent from '@/views/HireTalent.vue'
 import EventsPage from '@/views/Event/EventsPage.vue'
@@ -48,6 +49,14 @@ const router = createRouter({
       component: BusinessView,
       meta: {
         title: 'MySpurr | Business'
+      }
+    },
+    {
+      path: '/talent',
+      name: 'talent',
+      component: TalentView,
+      meta: {
+        title: 'MySpurr | Talent'
       }
     },
     {
