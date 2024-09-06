@@ -53,7 +53,7 @@ import { onMounted, onBeforeUnmount, ref } from 'vue';
 import starsIcon from '../icons/starsIcon.vue';
 const slider = ref(null);
 let scrollAnimationFrame = null; 
-let scrollAmount = 2; 
+let scrollAmount = 1; 
 let isPaused = false; 
 const buffer = 2;
 

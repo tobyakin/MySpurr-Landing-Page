@@ -75,7 +75,7 @@
               </article>
             </div>
             <router-link to="/talent">
-              <button class=" !mt-6 w-[40%] tab:w-fit text-white bg-[#00474F] rounded-[1.875rem] px-[2.39rem] py-[1rem] text-[1rem] font-Satoshi500 btn-hover-2">Find Opportunities</button>
+              <button class=" !mt-6 w-auto tab:w-fit text-white bg-[#00474F] rounded-[1.875rem] px-[2.39rem] py-[1rem] text-[1rem] font-Satoshi500 btn-hover-2">Find Opportunities</button>
             </router-link>
           </div>
           <div class="lg:w-1/2 h-[100%]">
