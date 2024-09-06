@@ -110,6 +110,7 @@ const handleSearch = () => {
 <style scoped>
 .background {
   background-size: cover;
+  background-position: center +20%;
   background-blend-mode: overlay;
   background: linear-gradient(
       from 270deg at 50% 50%,

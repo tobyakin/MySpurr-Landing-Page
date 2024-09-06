@@ -1,8 +1,8 @@
 <template>
-  <div class="py-20 container !px-0">
-    <div class="mob3:!w-[90%] mob3:mx-auto">
-      <h3 class="text-[#00474F] font-EBGaramond500 text-[3.704rem] leading-[3.42rem] mob:text-[3rem] mob:leading-[3.4rem] font-[600]">Transforming how talent are <br class="mob3:hidden"> sourced from emerging markets</h3>
-      <div class="mt-[4.37rem] grid grid-cols-customGrid2 gap-[3.32rem]">
+  <div class="py-[10rem] tab:py-20 container !px-0">
+    <div class="mob3:!w-[90%] mob3:mx-auto pb-[10rem]">
+      <h3 class="text-[#00474F] font-EBGaramond500 text-[3.704rem] leading-[3.42rem] mob:text-[3rem] mob:leading-[3.4rem] font-[500]">Transforming how talent are <br class="mob3:hidden"> sourced from emerging markets</h3>
+      <div class="mt-[4.37rem] grid grid-cols-customGrid3 gap-[3.32rem]">
         <article 
         class="flex flex-col gap-[0.81rem]"
         v-for="item in perks"
@@ -12,21 +12,21 @@
           >
             <component :is="item.component" />
           </div>
-          <h4 class="text-[#00474F] text-[1.3rem]  font-Satoshi500 font-[500]">{{ item.title }}</h4>
-          <p class="font-Satoshi400 text-[1.25rem] leading-[1.88rem]">
+          <h4 class="text-[#00474F] text-[1.1rem]  font-Satoshi500 font-[500]">{{ item.title }}</h4>
+          <p class="font-Satoshi400 text-[1rem] leading-[1.88rem]">
             {{ item.body }}
           </p>
         </article>
       </div>
     </div>
     <div>
-      <div class="mt-[12rem] flex flex-col gap-[12rem]">
+      <div class="flex flex-col gap-[10rem]">
         <article
-          class="grid grid-cols-2 tab:flex lg:gap-24 gap-8 items-center justify-center flex-wrap lg:flex-nowrap lg:flex-row flex-col-reverse rounded-[1.25238rem] overflow-hidden bg-[#00474F] tab:rounded-none"
+          class="grid grid-cols-2 tab:flex lg:gap-24 gap-8 items-center justify-center flex-wrap lg:flex-nowrap lg:flex-row flex-col-reverse rounded-[1.25238rem] bg-[#00474F] overflow-hidden tab:rounded-none !p-0"
         >
           <div class="w-full flex flex-col lg:gap-8 gap-8 px-[5rem] py-[5rem] tab:!w-[85%] tab:mx-auto tab:px-0">
             <p class="text-[#D3DA51] font-Satoshi500 text-[1.378rem] leading-[2.4rem]">Business Solution</p>
-            <h3 class="text-[#E6F1F3] text-[4rem] leading-[4.4rem] font-EBGaramond600 md:text-[40px] heading lg:leading-[52.263px] text-3xl font-[600]">Get <span class="text-[#63D8E4]">skilled professionals</span> tailored to your needs
+            <h3 class="text-[#E6F1F3] text-[4.125rem] leading-[4.4rem] font-EBGaramond500 md:text-[40px] heading lg:leading-[42px] text-3xl font-[500]">Get <span class="text-[#63D8E4]">skilled professionals</span> tailored to your needs
             </h3>
             <p class="text-[#FFF] font-Satoshi400 text-[1.24rem] leading-[2.31rem]">Unlock a full suite of hiring management tool, as well as access to Africa’s top talents</p>
             <div class="mb-4">
@@ -45,19 +45,19 @@
 
             <router-link to="/business">
               <button 
-              class="w-[50%] text-white bg-[#43D0DF] rounded-[1.875rem] px-[2.39rem] py-[0.63rem] text-[1rem] font-Satoshi500 btn-hover-1"
+              class="w-[40%] text-white bg-[#43D0DF] rounded-[1.875rem] py-[1rem] text-[1rem] font-Satoshi500 btn-hover-1"
               >Learn More</button>
             </router-link>
           </div>
-          <div class="w-full h-[100%]">
-            <img loading="lazy" class="w-full h-full object-cover" src="../../assets/img/lp-1.png" />
+          <div class="w-full h-full !p-0">
+            <img loading="lazy" class="w-full !h-full object-cover block" src="../../assets/img/lp-1.png" />
           </div>
         </article>
         <article
           class="flex grid-cols-2 lg:gap-24 gap-4 items-center justify-center flex-wrap lg:flex-nowrap lg:flex-row flex-col-reverse rounded-[1.25238rem] overflow-hidden tab:!w-[85%] tab:mx-auto"
         >
           <div class="lg:w-1/2 w-full flex flex-col lg:gap-8 py-[5rem] gap-8">
-            <h3 class="text-[#254035] text-[4rem] leading-[4.4rem] font-EBGaramond600 mob3:text-[2.5rem] mob3:leading-[3rem] md:text-[40px] heading lg:leading-[52.263px] text-3xl font-[600]">
+            <h3 class="text-[#254035] text-[4.125rem] leading-[4.4rem] font-EBGaramond500 mob3:text-[2.5rem] mob3:leading-[3rem] md:text-[40px] heading lg:leading-[42px] text-3xl font-[500]">
               Elevate Your Career with MySpurr – <span class="text-[#993939]">where talent meets opportunity.</span>
             </h3>
             <p class="text-[#000000b3] font-Satoshi400 text-[1.26rem] leading-[2.53rem]">We streamline your job search, offering tailored opportunities <br> that match your expertise. </p>
@@ -75,7 +75,7 @@
               </article>
             </div>
             <router-link to="/talent">
-              <button class=" !mt-6 w-[50%] tab:w-fit text-white bg-[#00474F] rounded-[1.875rem] px-[2.39rem] py-[0.63rem] text-[1rem] font-Satoshi500 btn-hover-2">Find Oppurtunities</button>
+              <button class=" !mt-6 w-[40%] tab:w-fit text-white bg-[#00474F] rounded-[1.875rem] px-[2.39rem] py-[1rem] text-[1rem] font-Satoshi500 btn-hover-2">Find Opportunities</button>
             </router-link>
           </div>
           <div class="lg:w-1/2 h-[100%]">
@@ -87,11 +87,13 @@
         >
           <div class="lg:w-1/2 w-full flex flex-col lg:gap-4 gap-8 tab:mt-[3.75rem] tab:!w-[85%] tab:mx-auto">
             <p class="text-[#FBFBEE] font-Satoshi500 text-[1.378rem] leading-[2.4rem]">MySpurr Internships</p>
-            <h3 class="text-[#fff] text-[4rem] leading-[4.4rem] font-EBGaramond600 md:text-[40px] heading lg:leading-[52.263px] text-3xl">
+            <h3 class="text-[#fff] text-[4.125rem] leading-[4.4rem] font-EBGaramond600 md:text-[40px] heading lg:leading-[42px] text-3xl">
               Secure opportunities that match your career goals.
             </h3>
             <p class="text-[#fff] font-Satoshi400 text-[1.26rem] leading-[2.53rem]">Designed to connect you with leading businesses across Africa, providing you with hands-on experience, mentorship, and the opportunity to grow your skills in real-world settings. </p>
-            <button class="mt-6 tab:w-fit w-[50%] text-white bg-[#43D0DF] rounded-[1.875rem] px-[2.39rem] py-[0.63rem] text-[1rem] font-Satoshi500 btn-hover-1">Apply</button>
+            <a href="https://www.myspurr.net/internship">
+              <button class="mt-6 tab:w-fit w-[40%] text-white bg-[#43D0DF] rounded-[1.875rem] px-[2.39rem] py-[1rem] text-[1rem] font-Satoshi500 btn-hover-1">Apply</button>
+            </a>
           </div>
           <div class="lg:w-1/2 h-[100%] max-w-[43.3468rem] tab:!w-[85%] tab:mx-auto">
             <img loading="lazy" class="w-full h-full" src="../../assets/img/lp-3.png" />
