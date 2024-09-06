@@ -1,5 +1,5 @@
 <template>
-  <div class="py-20 container">
+  <div class="tab:py-20 py-[10rem] container">
     <div class="flex justify-between">
       <h2
         class="text-dimBrand text-[43px] lg:text-[50px] !font-semibold leading-[68.056px] lg:leading-[74px] font-EBGaramond500 !mb-8"

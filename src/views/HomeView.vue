@@ -7,8 +7,6 @@ import SectionOne from "@/components/Talent/SectionOne.vue";
 import SectionTwo from "@/components/Talent/SectionTwo.vue";
 import SectionThree from "@/components/Talent/SectionThree.vue";
 import SectionFour from "@/components/Home/SectionFour.vue";
-import SectionFive from "@/components/Talent/SectionFive.vue";
-import SectionSix from "@/components/Talent/SectionSix.vue";
 import SectionSeven from "@/components/Home/SectionSeven.vue";
 import WorkFlow from "@/components/Bander/WorkFlow.vue";
 
@@ -40,8 +38,6 @@ useHead({
     <SectionTwo />
     <SectionThree />
     <SectionFour />
-    <SectionFive />
-    <SectionSix />
     <SectionSeven />
     <WorkFlow class="container" />
     <Footer />

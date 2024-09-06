@@ -64,6 +64,7 @@ module.exports = {
         'eventBreak1': {'max': '1250px'},
         'break1': {'max': '1170px'},
         'desktop': {'min': '1450px'},
+        'desktopMini': {'max': '1268px'}
       },
       boxShadow: {
         'customShadow': '0px 25px 40px 0px rgba(19, 35, 56, 0.06)',
