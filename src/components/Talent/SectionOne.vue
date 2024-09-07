@@ -51,7 +51,7 @@
                   show-search
                  
                 >
-                  <option disabled value="Abuja. Nigeria">Abuja. Nigeria</option>
+                  <option disabled value="Select Location">Select Location</option>
                   <option v-for="state in states?.data" :key="state.id" :value="state.name">
                     {{ state.name }}
                   </option>
@@ -104,7 +104,7 @@ const dashboardUrl = import.meta.env.VITE_DASHBOARD;
 const CandidateType = ["Freelance", "Full-time", "Part-time", "Internship", "Contract"];
 const router = useRouter()
 const category = ref('Job Categories')
-const location = ref('Abuja. Nigeria')
+const location = ref('Select Location')
 const keyword = ref('')
 
 const handleSearch = () => {
