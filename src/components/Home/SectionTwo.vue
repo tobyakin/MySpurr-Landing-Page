@@ -39,11 +39,16 @@
 
 <script setup>
 import { ref } from "vue";
-import Build from "@/assets/img/build.webp";
-import Connect from "@/assets/img/connect.webp";
-import Discover from "@/assets/img/discover.webp";
-import Grow from "@/assets/img/grow.webp";
+import { images } from "../../imgAsset";
+// import Build from "@/assets/img/build.webp";
+// import Connect from "@/assets/img/connect.webp";
+// import Discover from "@/assets/img/discover.webp";
+// import Grow from "@/assets/img/grow.webp";
 import SampleOne from "@/components/genericComponents/sampleOne.vue";
+const Build = images.build
+const Connect = images.connect
+const Discover = images.discover
+const Grow = images.grow
 const BuildHeading = ` <span class="font-Satoshi700">Build</span> your creative <br class="md:block hidden" /> career`;
 const DiscoverHeading = ` <span class="font-Satoshi700">Discover </span> <br class="md:block hidden" /> job opportunities`;
 const ConnectHeading = ` <span class="font-Satoshi700">Connect</span>  with top  <br class="md:block hidden" /> businesses`;

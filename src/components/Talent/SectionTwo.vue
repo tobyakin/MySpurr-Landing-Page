@@ -50,7 +50,7 @@
             </router-link>
           </div>
           <div class="w-full h-full !p-0">
-            <img loading="lazy" class="w-full !h-full object-cover block" src="../../assets/img/lp-1.png" />
+            <img class="w-full !h-full object-cover block" :src="images.lp1" />
           </div>
         </article>
         <article
@@ -79,7 +79,7 @@
             </router-link>
           </div>
           <div class="lg:w-1/2 h-[100%]">
-            <img loading="lazy" class="w-full" src="../../assets/img/lp-2.png" />
+            <img class="w-full" :src="images.lp2" />
           </div>
         </article>
         <article
@@ -96,7 +96,7 @@
             </a>
           </div>
           <div class="lg:w-1/2 h-[100%] max-w-[43.3468rem] tab:!w-[85%] tab:mx-auto">
-            <img loading="lazy" class="w-full h-full" src="../../assets/img/lp-3.png" />
+            <img loading="lazy" class="w-full h-full" :src="images.lp3" />
           </div>
         </article>
       </div>
@@ -111,6 +111,7 @@ import personSearch from "@/components/icons/personSearch.vue"
 import sort from "@/components/icons/sort.vue"
 import libraryBooks from "@/components/icons/libraryBooks.vue"
 import supportAgent from "@/components/icons/supportAgent.vue"
+import { images } from "../../imgAsset";
 
 
 

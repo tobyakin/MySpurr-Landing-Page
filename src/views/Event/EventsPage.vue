@@ -8,8 +8,8 @@ import locationIcon from "@/components/icons/eventLocationIcon.vue"
 import timerIcon from "@/components/icons/eventTimerIcon.vue"
 import { useEventStore } from '../../stores/event';
 import Loader from "@/components/UI/Loader/Loader.vue";
-import mainbg from "@/assets/img/EventBg.png";
-const image = mainbg;
+
+const image = 'https://ik.imagekit.io/ldtt3hq8g2/Landing%20Page/EventBg.png?updatedAt=1725975295297';
 
 const navBar = ref(null)
 const navHeight = ref()
