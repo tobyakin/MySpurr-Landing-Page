@@ -92,14 +92,13 @@
   </div>
 </template>
 <script setup>
-import mainbg from "@/assets/img/talent-bg.png";
 import FormGroup from "@/components/Form/Input/FormGroup.vue";
 import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 import { useSkillsStore } from "@/stores/skills";
 import { storeToRefs } from "pinia";
 // import PlayButton from "@/components/icons/playButton.vue";
-const image = mainbg;
+const image = 'https://ik.imagekit.io/ldtt3hq8g2/Landing%20Page/talent-bg.png?updatedAt=1725963397227';
 const dashboardUrl = import.meta.env.VITE_DASHBOARD;
 const CandidateType = ["Freelance", "Full-time", "Part-time", "Internship", "Contract"];
 const router = useRouter()
