@@ -123,31 +123,31 @@ const filteredJobs = computed(() => {
 
   // Filtering based on the search criteria
   if (filterOptions.name) {
-    filtered = filtered.filter((item) =>
+    filtered = filtered?.filter((item) =>
       item.first_name.toLowerCase().includes(filterOptions.name.toLowerCase())
     );
   }
   if (filterOptions.skills) {
-    filtered = filtered.filter((item) =>
+    filtered = filtered?.filter((item) =>
       item.skill_title.toLowerCase().includes(filterOptions.skills.toLowerCase())
     );
   }
 
   if (filterOptions.location) {
-    filtered = filtered.filter((item) =>
+    filtered = filtered?.filter((item) =>
       item.location.toLowerCase().includes(filterOptions.location.toLowerCase())
     );
   }
 
   if (filterOptions.candidateType) {
-    filtered = filtered.filter((item) =>
+    filtered = filtered?.filter((item) =>
       item.employment_type
         .toLowerCase()
         .includes(filterOptions.candidateType.toLowerCase())
     );
   }
   if (filterOptions.expertLevel) {
-    filtered = filtered.filter((item) =>
+    filtered = filtered?.filter((item) =>
       item.experience_level
         .toLowerCase()
         .includes(filterOptions.expertLevel.toLowerCase())
@@ -155,7 +155,7 @@ const filteredJobs = computed(() => {
   }
 
   if (filterOptions.qualification) {
-    filtered = filtered.filter((item) =>
+    filtered = filtered?.filter((item) =>
       item.highest_education
         .toLowerCase()
         .includes(filterOptions.qualification.toLowerCase())
@@ -164,7 +164,7 @@ const filteredJobs = computed(() => {
 
   // Filtering by Rate within the specified range
   if (rateMin.value || rateMax.value) {
-    filtered = filtered.filter((item) => {
+    filtered = filtered?.filter((item) => {
       const rate = parseFloat(item.rate);
       const min = rateMin.value ? parseFloat(rateMin.value) : Number.MIN_SAFE_INTEGER;
       const max = rateMax.value ? parseFloat(rateMax.value) : Number.MAX_SAFE_INTEGER;
@@ -175,6 +175,7 @@ const filteredJobs = computed(() => {
 
   return filtered;
 });
+console.log(filteredJobs.value)
 const resetFilters = () => {
   filterOptions.name = "";
   filterOptions.skills = "";
@@ -184,6 +185,9 @@ const resetFilters = () => {
   filterOptions.candidateType = "";
   rateMin.value = "";
   rateMax.value = "";
+  category.value = "";
+  location.value = "";
+  keyword.value = "";
 };
 
 const querySearch = ()=>{
@@ -318,7 +322,6 @@ const Experience = [
               </a-select>
             </div>
           </div>
-
           <!-- <FormSelectGroup
             v-model="filterOptions.expertLevel"
             labelClasses="font-Satoshi500 text-[15.606px]"
@@ -433,14 +436,16 @@ const Experience = [
       <div class="!my-10">
         <p class="text-[#00000066] font-Satoshi400 text-[23.998px]">
           All
-          <span class="text-[#000000] font-Satoshi500">{{
-            filteredJobs?.length ? filteredJobs?.length : paginatedTalent?.length
-          }}</span>
+          <span v-if="filteredJobs?.length > 0">
+            {{filteredJobs?.length}}
+          </span>
+          <span v-else class="text-[#000000] 
+          font-Satoshi500">0</span>
           candidates found from <span class="text-[#000000] font-Satoshi500">{{talent?.pagination?.total}}</span>
         </p>
       </div>
       <!-- <PagePreLoader /> -->
-      <div v-if="!filteredJobs && isLoading" class="mt-14 flex flex-col gap-8">
+      <div v-if="!filteredJobs || isLoading" class="mt-14 flex flex-col gap-8">
         <JobCard
           class="w-full"
           v-for="item in paginatedTalent"
