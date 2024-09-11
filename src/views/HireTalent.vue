@@ -10,10 +10,7 @@ import JobCard from "@/components/Job/JobCard.vue";
 import Subscribe from "@/components/Bander/Subscribe.vue";
 import { useTalentsStore } from "@/stores/talents";
 import FormGroup from "@/components/Form/Input/FormGroup.vue";
-// import FormSelectGroup from "@/components/Form/Input/SelectGroup.vue";
 import Label from "@/components/Form/Input/Label.vue";
-// import PagePreLoader from "@/components/UI/Loader/PagePreLoader.vue";
-// import { useQuery } from "vue-query";
 import Loader from "@/components/UI/Loader/Loader.vue";
 import { useRoute } from "vue-router";
 
@@ -123,31 +120,31 @@ const filteredJobs = computed(() => {
 
   // Filtering based on the search criteria
   if (filterOptions.name) {
-    filtered = filtered.filter((item) =>
+    filtered = filtered?.filter((item) =>
       item.first_name.toLowerCase().includes(filterOptions.name.toLowerCase())
     );
   }
   if (filterOptions.skills) {
-    filtered = filtered.filter((item) =>
+    filtered = filtered?.filter((item) =>
       item.skill_title.toLowerCase().includes(filterOptions.skills.toLowerCase())
     );
   }
 
   if (filterOptions.location) {
-    filtered = filtered.filter((item) =>
+    filtered = filtered?.filter((item) =>
       item.location.toLowerCase().includes(filterOptions.location.toLowerCase())
     );
   }
 
   if (filterOptions.candidateType) {
-    filtered = filtered.filter((item) =>
+    filtered = filtered?.filter((item) =>
       item.employment_type
         .toLowerCase()
         .includes(filterOptions.candidateType.toLowerCase())
     );
   }
   if (filterOptions.expertLevel) {
-    filtered = filtered.filter((item) =>
+    filtered = filtered?.filter((item) =>
       item.experience_level
         .toLowerCase()
         .includes(filterOptions.expertLevel.toLowerCase())
@@ -155,7 +152,7 @@ const filteredJobs = computed(() => {
   }
 
   if (filterOptions.qualification) {
-    filtered = filtered.filter((item) =>
+    filtered = filtered?.filter((item) =>
       item.highest_education
         .toLowerCase()
         .includes(filterOptions.qualification.toLowerCase())
@@ -164,7 +161,7 @@ const filteredJobs = computed(() => {
 
   // Filtering by Rate within the specified range
   if (rateMin.value || rateMax.value) {
-    filtered = filtered.filter((item) => {
+    filtered = filtered?.filter((item) => {
       const rate = parseFloat(item.rate);
       const min = rateMin.value ? parseFloat(rateMin.value) : Number.MIN_SAFE_INTEGER;
       const max = rateMax.value ? parseFloat(rateMax.value) : Number.MAX_SAFE_INTEGER;
