@@ -10,10 +10,7 @@ import JobCard from "@/components/Job/JobCard.vue";
 import Subscribe from "@/components/Bander/Subscribe.vue";
 import { useTalentsStore } from "@/stores/talents";
 import FormGroup from "@/components/Form/Input/FormGroup.vue";
-// import FormSelectGroup from "@/components/Form/Input/SelectGroup.vue";
 import Label from "@/components/Form/Input/Label.vue";
-// import PagePreLoader from "@/components/UI/Loader/PagePreLoader.vue";
-// import { useQuery } from "vue-query";
 import Loader from "@/components/UI/Loader/Loader.vue";
 import { useRoute } from "vue-router";
 
