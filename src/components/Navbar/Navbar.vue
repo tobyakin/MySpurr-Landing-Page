@@ -90,11 +90,22 @@ const redirectWithSearchQuery = () => {
             <ul class="flex flex-row font-Satoshi500 items-center gap-5">
               <li>
                 <router-link
+                  to="/talent"
+                  :class="route.name === 'talent' ? 'text-[#2F929C] ' : ''"
+                  class="p-[10px] pr-0 flex justify-start rounded-[5px]"
+                >
+                  <span class="place-self-center text-[1rem] leading-[21.6px]"
+                    >For Talents
+                  </span>
+                </router-link>
+              </li>
+              <li>
+                <router-link
                   to="/business"
                   :class="route.name === 'business' ? 'text-[#2F929C] ' : ''"
                   class="p-[10px] pr-0 flex justify-start rounded-[5px]"
                 >
-                  <span class="place-self-center text-[16px] leading-[21.6px]"
+                  <span class="place-self-center text-[1rem] leading-[21.6px]"
                     >For Business
                   </span>
                 </router-link>
@@ -105,7 +116,7 @@ const redirectWithSearchQuery = () => {
                   :class="route.name === 'courses' ? 'text-[#2F929C] ' : ''"
                   class="p-[10px] pr-0 flex justify-start rounded-[5px]"
                 >
-                  <span class="place-self-center text-[16px] leading-[21.6px]"
+                  <span class="place-self-center text-[1rem] leading-[21.6px]"
                     >Courses
                   </span>
                 </router-link>
@@ -116,7 +127,7 @@ const redirectWithSearchQuery = () => {
                   :class="route.name === 'hire-talent' ? 'text-[#2F929C] ' : ''"
                   class="p-[10px] pr-0 flex justify-start rounded-[5px]"
                 >
-                  <span class="place-self-center text-[16px] leading-[21.6px]"
+                  <span class="place-self-center text-[1rem] leading-[21.6px]"
                     >Hire Talent
                   </span>
                 </router-link>
@@ -127,7 +138,7 @@ const redirectWithSearchQuery = () => {
                   :class="route.name === 'blog' ? 'text-[#2F929C] ' : ''"
                   class="p-[10px] pr-0 flex justify-start rounded-[5px]"
                 >
-                  <span class="place-self-center text-[16px] leading-[21.6px]"
+                  <span class="place-self-center text-[1rem] leading-[21.6px]"
                     >Blog
                   </span>
                 </router-link>
@@ -138,7 +149,7 @@ const redirectWithSearchQuery = () => {
                   :class="route.name === 'events' ? 'text-[#2F929C] ' : ''"
                   class="p-[10px] pr-0 flex justify-start rounded-[5px]"
                 >
-                  <span class="place-self-center text-[16px] leading-[21.6px]"
+                  <span class="place-self-center text-[1rem] leading-[21.6px]"
                     >Events
                   </span>
                 </router-link>
@@ -150,7 +161,7 @@ const redirectWithSearchQuery = () => {
               role="button"
               target="_blank"
               :href="dashboardUrl + 'login'"
-              class="btn-light font-Satoshi500 !text-[16px]"
+              class="btn-light font-Satoshi500 !text-[1rem]"
             >
               Sign in
             </a>

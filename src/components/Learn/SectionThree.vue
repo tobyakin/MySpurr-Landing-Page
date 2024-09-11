@@ -158,8 +158,8 @@
 </template>
 
 <script setup>
-import mainbg from "@/assets/img/background.webp";
-const image = mainbg;
+import { images } from "../../imgAsset";
+const image = images.background;
 </script>
 
 <style scoped>

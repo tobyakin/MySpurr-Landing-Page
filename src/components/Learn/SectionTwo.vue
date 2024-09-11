@@ -32,10 +32,12 @@
 
 <script setup>
 import { ref } from "vue";
-import ImageOne from "@/assets/img/skill.webp";
-import ImageTwo from "@/assets/img/career.webp";
-import ImageThree from "@/assets/img/expert.webp";
 import SampleOne from "@/components/genericComponents/sampleOne.vue";
+import { images } from "../../imgAsset";
+
+const ImageOne = images.skill
+const ImageTwo = images.career
+const ImageThree = images.expert
 const HeadingOne = ` Tailored  <span class="font-Satoshi700">skill</span>    <br class="md:block hidden" /> enhancement`;
 const HeadingTwo = ` <span class="font-Satoshi700">Expert-led  </span>  <br class="md:block hidden" /> guidance`;
 const HeadingThree = ` <span class="font-Satoshi700">Career </span>   <br class="md:block hidden" /> empowerment`;

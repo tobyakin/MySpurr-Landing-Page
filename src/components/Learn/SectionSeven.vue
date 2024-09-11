@@ -35,9 +35,11 @@
   </div>
 </template>
 <script setup>
-import ImageOne from "@/assets/img/resource.webp";
-import ImageTwo from "@/assets/img/courses.webp";
 import WorkFlow from "@/components/Bander/WorkFlow.vue";
+import { images } from "../../imgAsset";
+
+const ImageOne = images.resources
+const ImageTwo = images.courses
 
 const Guides = [
   {

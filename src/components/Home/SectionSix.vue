@@ -20,7 +20,7 @@
         <img
           loading="lazy"
           class="w-full lg:h-[600px] h-[28vh] rounded-[14px]"
-          src="@/assets/img/videoBg2.webp"
+          src="https://ik.imagekit.io/ldtt3hq8g2/Landing%20Page/videoBg2.webp?updatedAt=1725965489554"
           alt=""
         />
       </button>

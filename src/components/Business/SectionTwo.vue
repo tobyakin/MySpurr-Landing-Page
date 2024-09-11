@@ -39,11 +39,13 @@
 
 <script setup>
 import { ref } from "vue";
-import ImageOne from "@/assets/img/access.webp";
-import ImageTwo from "@/assets/img/manage.webp";
-import ImageThree from "@/assets/img/find.webp";
-import ImageFour from "@/assets/img/collaborate.webp";
+import { images } from "../../imgAsset";
 import SampleOne from "@/components/genericComponents/sampleOne.vue";
+
+const ImageOne = images.access
+const ImageTwo = images.manage
+const ImageThree = images.find
+const ImageFour = images.collaborate
 const HeadingOne = ` <span class="font-Satoshi700">Access</span>  creative  <br class="md:block hidden" /> talents`;
 const HeadingTwo = ` <span class="font-Satoshi700">Find </span> talents <br class="md:block hidden" /> for your projects`;
 const HeadingThree = ` <span class="font-Satoshi700">Manage</span>   your  <br class="md:block hidden" /> hiring process`;

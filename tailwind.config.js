@@ -58,9 +58,18 @@ module.exports = {
         'msgTab2': {'min': '800px'},
         'msgMob': {'max': '576px'},
         'mob': {'max': '576px'},
+        'mob2': {'min': '576px'},
+        'mob3': {'max': '600px'},
         'eventBreak': {'max': '1024px'},
         'eventBreak1': {'max': '1250px'},
+        'break1': {'max': '1170px'},
+        'desktop': {'min': '1450px'},
+        'desktopMini': {'max': '1268px'}
       },
+      boxShadow: {
+        'customShadow': '0px 25px 40px 0px rgba(19, 35, 56, 0.06)',
+        'customShadow1': '0px -25px 40px 0px rgba(0, 0, 0, 0.2)',
+      }
     }
   },
   plugins: []

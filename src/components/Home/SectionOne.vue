@@ -49,8 +49,9 @@
 </template>
 <script setup>
 import mainbg from "@/assets/img/sectionOnebg.webp";
+import { images } from "../../imgAsset";
 // import PlayButton from "@/components/icons/playButton.vue";
-const image = mainbg;
+const image = images.talentBg;
 const dashboardUrl = import.meta.env.VITE_DASHBOARD;
 </script>
 
