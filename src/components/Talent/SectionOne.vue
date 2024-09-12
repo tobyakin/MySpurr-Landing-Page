@@ -97,7 +97,6 @@ import { useRouter } from "vue-router";
 import { useSkillsStore } from "@/stores/skills";
 import { storeToRefs } from "pinia";
 import FormGroup from "@/components/Form/Input/FormGroup.vue";
-// import PlayButton from "@/components/icons/playButton.vue";
 const image = 'https://ik.imagekit.io/ldtt3hq8g2/Landing%20Page/talent-bg.png?updatedAt=1725963397227';
 const CandidateType = ["Freelance", "Full-time", "Part-time", "Internship", "Contract"];
 const router = useRouter()

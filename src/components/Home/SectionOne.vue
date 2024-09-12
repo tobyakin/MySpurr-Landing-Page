@@ -48,7 +48,6 @@
   </div>
 </template>
 <script setup>
-// import PlayButton from "@/components/icons/playButton.vue";
 const image = 'https://ik.imagekit.io/ldtt3hq8g2/Landing%20Page/sectionOnebg.webp?updatedAt=1725964636585';
 const dashboardUrl = import.meta.env.VITE_DASHBOARD;
 </script>

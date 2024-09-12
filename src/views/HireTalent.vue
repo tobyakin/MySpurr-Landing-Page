@@ -172,7 +172,7 @@ const filteredJobs = computed(() => {
 
   return filtered;
 });
-console.log(filteredJobs.value)
+
 const resetFilters = () => {
   filterOptions.name = "";
   filterOptions.skills = "";
