@@ -172,6 +172,7 @@ const filteredJobs = computed(() => {
 
   return filtered;
 });
+
 const resetFilters = () => {
   filterOptions.name = "";
   filterOptions.skills = "";
@@ -181,6 +182,9 @@ const resetFilters = () => {
   filterOptions.candidateType = "";
   rateMin.value = "";
   rateMax.value = "";
+  category.value = "";
+  location.value = "";
+  keyword.value = "";
 };
 
 const querySearch = ()=>{
@@ -315,7 +319,6 @@ const Experience = [
               </a-select>
             </div>
           </div>
-
           <!-- <FormSelectGroup
             v-model="filterOptions.expertLevel"
             labelClasses="font-Satoshi500 text-[15.606px]"
@@ -430,14 +433,16 @@ const Experience = [
       <div class="!my-10">
         <p class="text-[#00000066] font-Satoshi400 text-[23.998px]">
           All
-          <span class="text-[#000000] font-Satoshi500">{{
-            filteredJobs?.length ? filteredJobs?.length : paginatedTalent?.length
-          }}</span>
+          <span v-if="filteredJobs?.length > 0">
+            {{filteredJobs?.length}}
+          </span>
+          <span v-else class="text-[#000000] 
+          font-Satoshi500">0</span>
           candidates found from <span class="text-[#000000] font-Satoshi500">{{talent?.pagination?.total}}</span>
         </p>
       </div>
       <!-- <PagePreLoader /> -->
-      <div v-if="!filteredJobs && isLoading" class="mt-14 flex flex-col gap-8">
+      <div v-if="!filteredJobs || isLoading" class="mt-14 flex flex-col gap-8">
         <JobCard
           class="w-full"
           v-for="item in paginatedTalent"
