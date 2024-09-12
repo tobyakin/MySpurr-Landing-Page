@@ -37,14 +37,13 @@ defineProps({
       v-if="job.is_highlighted === '1'"
       class="absolute top-0 left-0 !text-red-600"
     />
-  <!-- {{ job }} -->
     <div class="flex lg:flex-row flex-col lg:justify-normal justify-center lg:items-start items-center gap-3 w-full">
       <div
         class="w-[71.011px] h-[61.011px] bg-[#EAEAEA] rounded-full flex justify-center items-center object-contain"
       >
         <img
           class="h-[61.011px] w-[61.011px] object-cover rounded-full"
-          :src="job?.company?.company_logo"
+          :src="job?.company?.logo"
           :alt="job?.company.business_name"
         />
       </div>
