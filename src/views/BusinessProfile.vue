@@ -313,7 +313,7 @@ const copyUrl = () => {
 
 const getOpenJobs = async ()=>{
   try {
-    await businessStore.handleBusinessOpenJobs(singleBusiness.value?.data.id)
+    await businessStore.handleBusinessOpenJobs(singleBusiness.value?.data?.id)
     loadMyjobs.value = false;
   } catch (error) {
     console.log(error)
@@ -324,7 +324,9 @@ const getOpenJobs = async ()=>{
 onMounted(async () => {
   loading.value = true;
   try {
-    await businessStore.handleSingleBusiness(route.params.id);
+    console.log(route.params?.id)
+    await businessStore.handleSingleBusiness(route.params?.id);
+    console.log(singleBusiness)
     getOpenJobs()
     loading.value = false;
   } catch (error) {
