@@ -396,6 +396,18 @@ ol {
   @apply !text-[#000000] text-[1rem] font-Satoshi500 eventBreak:!text-[0.75rem] leading-[1.75rem]
 }
 
+.range-slider {
+  @apply appearance-none w-full h-2 bg-[#FFFFFF] rounded-lg outline-none;
+}
+
+.range-slider::-webkit-slider-thumb {
+  @apply appearance-none w-4 h-4 bg-brand rounded-full cursor-pointer;
+}
+
+.range-slider::-moz-range-thumb {
+  @apply w-4 h-4 bg-brand rounded-full cursor-pointer;
+}
+
 
 
 

@@ -16,6 +16,7 @@ import "vue-slider-component/theme/antd.css";
 import Label from "@/components/Form/Input/Label.vue";
 import Loader from "@/components/UI/Loader/Loader.vue";
 import { useRoute } from "vue-router";
+import { filterOption } from "ant-design-vue/es/vc-mentions/src/util";
 
 const talentsStore = useTalentsStore();
 const { talent } = storeToRefs(talentsStore);
@@ -88,16 +89,17 @@ const pagination = computed(() => talent.value?.pagination || {});
 
 // Create a computed property to paginate the talent data
 const paginatedTalent = computed(() => {
-  const perPage = pagination.value.per_page;
+  const perPage = pagination.value?.per_page;
   const startIndex = (currentPage.value - 1) * perPage;
   const endIndex = startIndex + perPage;
-  return talentData.value.slice(startIndex, endIndex);
+  return talentData.value?.slice(startIndex, endIndex);
 });
 const totalPages = computed(() => Math.ceil(pagination.value.last_page));
 
 // Function to change the current page
 const setPage = (page) => {
   if (page >= 1 && page <= (pagination.value.last_page || 1)) {
+    console.log(page, paginatedTalent.value)
     currentPage.value = page;
   }
 };
@@ -123,11 +125,9 @@ const rates = computed(()=>{
   return talent.value?.data?.filter(talent => talent.rate !== "").map(talent => parseFloat(talent.rate)) || [];
 })
 
-console.log(rates.value)
-console.log(talentData.value)
-
 const highestRate = computed(() => Math.max(...(rates.value.length ? rates.value : [0])));
 const lowestRate = computed(() => Math.min(...(rates.value.length ? rates.value : [0])));
+ 
 
 // const highestRate = computed(()=> Math.max(...rates.value))
 // const lowestRate = computed(()=> Math.min(...rates.value))
@@ -206,6 +206,10 @@ const resetFilters = () => {
   location.value = "";
   keyword.value = "";
 };
+
+const isFilter = computed(()=>{
+  return filterOptions.name.length > 0 || filterOptions.skills.length > 0 || filterOptions.location.length > 0 || filterOptions.expertLevel.length > 0 || filterOptions.qualification.length > 0 || filterOptions.candidateType?.length > 0 || rateMin.value?.length > 0 || rateMax.value?.length > 0 || category.value?.length > 0 || location.value?.length > 0 || keyword.value?.length > 0
+})
 
 const querySearch = ()=>{
   if(category.value !== "Job Categories"){
@@ -400,8 +404,20 @@ const selectCandidateType = (item) => {
                     </div> -->
                   </div>
                 </div>
-                <div class="flex">
-                    <input 
+                <div class="flex mt-[0.97rem]">
+                  <input 
+                  type="range" 
+                  v-model="rateMin" 
+                  :max="highestRate" 
+                  :min="lowestRate" 
+                  class="w-full range-slider cursor-pointer" @input="handleMinPrice" />
+                  <input 
+                  type="range" 
+                  v-model="rateMax" 
+                  :max="highestRate" 
+                  :min="lowestRate" 
+                  class="w-full range-slider cursor-pointer" @input="handleMaxPrice" />
+                    <!-- <input 
                       type="range" 
                       v-model="rateMin" 
                       :min="lowestRate"
@@ -416,7 +432,7 @@ const selectCandidateType = (item) => {
                       :min="lowestRate" 
                       step="1"
                       class="mt-[0.97rem] w-full cursor-pointer"
-                    />
+                    /> -->
                     <!-- <vue-slider
                   v-model="range"
                   :tooltip="'none'"
@@ -471,13 +487,34 @@ const selectCandidateType = (item) => {
         <div class="!w-full">
           <GoPro />
           <div class="!mb-10">
-            <p class="text-[#00000066] font-Satoshi400 text-[1.49rem]">
+            <p class="text-[#00000066] font-Satoshi400 text-[1.49rem]" v-if="!isFilter">
               All
               <span class="text-[#000000] font-Satoshi500">{{talent?.pagination?.total}}</span>
               candidates found
             </p>
+            <p v-else class="text-[#00000066] font-Satoshi400 text-[23.998px]">
+              All
+              <span v-if="filteredJobs?.length > 0">
+                {{filteredJobs?.length}}
+              </span>
+              <span v-else class="text-[#000000] 
+              font-Satoshi500">0</span>
+              candidates found
+            </p>
           </div>
+          <!-- <div class="!my-10">
+            <p class="text-[#00000066] font-Satoshi400 text-[23.998px]">
+              All
+              <span v-if="filteredJobs?.length > 0">
+                {{filteredJobs?.length}}
+              </span>
+              <span v-else class="text-[#000000] 
+              font-Satoshi500">0</span>
+              candidates found from <span class="text-[#000000] font-Satoshi500">{{talent?.pagination?.total}}</span>
+            </p>
+          </div> -->
           <!-- <PagePreLoader /> -->
+           {{ isFilter }}
           <div v-if="!filteredJobs && isLoading" class="mt-14 flex flex-col gap-8">
             <JobCard
               class="w-full"
@@ -520,7 +557,6 @@ const selectCandidateType = (item) => {
       </div>
       <Subscribe class="mt-[18.83rem] !mb-14" />
     </div>
-
     <Footer />
   </div>
 </template>
