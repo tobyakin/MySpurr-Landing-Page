@@ -324,9 +324,7 @@ const getOpenJobs = async ()=>{
 onMounted(async () => {
   loading.value = true;
   try {
-    console.log(route.params?.id)
     await businessStore.handleSingleBusiness(route.params?.id);
-    console.log(singleBusiness)
     getOpenJobs()
     loading.value = false;
   } catch (error) {
