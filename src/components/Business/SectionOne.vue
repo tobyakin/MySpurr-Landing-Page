@@ -45,9 +45,9 @@
   </div>
 </template>
 <script setup>
-import mainbg from "@/assets/img/business.webp";
+import { images } from "../../imgAsset";
 // import PlayButton from "@/components/icons/playButton.vue";
-const image = mainbg;
+const image = images.business;
 const dashboardUrl = import.meta.env.VITE_DASHBOARD;
 </script>
 

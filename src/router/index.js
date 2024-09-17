@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import BusinessView from '../views/Business/index.vue'
+import TalentView from '../views/Talent/index.vue'
 import LearnView from '../views/LearnView.vue'
 import HireTalent from '@/views/HireTalent.vue'
 import EventsPage from '@/views/Event/EventsPage.vue'
@@ -51,6 +52,14 @@ const router = createRouter({
       }
     },
     {
+      path: '/talent',
+      name: 'talent',
+      component: TalentView,
+      meta: {
+        title: 'MySpurr | Talent'
+      }
+    },
+    {
       path: '/courses',
       name: 'courses',
       component: LearnView,
@@ -82,7 +91,14 @@ const router = createRouter({
         title: 'MySpurr | Privacy Policy'
       }
     },
-
+    {
+      path: '/blog/:category/:slug',
+      name: 'SingleBlog',
+      component: SingleBlog,
+      meta: {
+        title: 'MySpurr | Blog'
+      }
+    },
     {
       path: '/:business_name/:slug',
       name: 'job-details',
@@ -95,14 +111,6 @@ const router = createRouter({
       path: '/blog',
       name: 'blog',
       component: BlogView,
-      meta: {
-        title: 'MySpurr | Blog'
-      }
-    },
-    {
-      path: '/:category/:slug',
-      name: 'SingleBlog',
-      component: SingleBlog,
       meta: {
         title: 'MySpurr | Blog'
       }
@@ -161,7 +169,10 @@ const router = createRouter({
     {
       path: '/business/:name/:id',
       name: 'business-profile',
-      component: BusinessProfile
+      component: BusinessProfile,
+      meta: {
+        title: 'MySpurr | Business'
+      }
     },
     {
       path: '/goPro',

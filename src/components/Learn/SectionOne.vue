@@ -45,9 +45,7 @@
   </div>
 </template>
 <script setup>
-import mainbg from "@/assets/img/learn.webp";
-// import PlayButton from "@/components/icons/playButton.vue";
-const image = mainbg;
+const image = 'https://ik.imagekit.io/ldtt3hq8g2/Landing%20Page/learn.webp?updatedAt=1725971048415';
 const dashboardUrl = import.meta.env.VITE_DASHBOARD;
 </script>
 
