@@ -3,7 +3,7 @@ import { catchAxiosError, catchAxiosSuccess } from './Response'
 
 export const getSingleBusiness = async (uuid)=>{
     try {
-        let res = await axios.get(`v1/business/${uuid}`)
+        let res = await axios.get(`business/${uuid}`)
         catchAxiosSuccess(res.data)
         return res.data;
     } catch (error) {
@@ -14,7 +14,7 @@ export const getSingleBusiness = async (uuid)=>{
 
 export const getBusinessOpenJobs = async (id)=>{
     try {
-        let res = await axios.get(`v1/business/${id}/open-jobs`)
+        let res = await axios.get(`business/${id}/open-jobs`)
         catchAxiosSuccess(res.data)
         return res.data;
     } catch (error) {

@@ -242,6 +242,17 @@ const redirectWithSearchQuery = () => {
 
               <li>
                 <router-link
+                  to="/talent"
+                  :class="route.name === 'talent' ? 'text-[#2F929C] ' : ''"
+                  class="p-[10px] px-0 flex justify-start rounded-[5px]"
+                >
+                  <span class="place-self-center text-[16px] leading-[21.6px]"
+                    >For Talent
+                  </span>
+                </router-link>
+              </li>
+              <li>
+                <router-link
                   to="/business"
                   :class="route.name === 'business' ? 'text-[#2F929C] ' : ''"
                   class="p-[10px] px-0 flex justify-start rounded-[5px]"
