@@ -494,7 +494,8 @@ const selectCandidateType = (item) => {
             </p>
             <p v-else class="text-[#00000066] font-Satoshi400 text-[23.998px]">
               All
-              <span v-if="filteredJobs?.length > 0">
+              <span v-if="filteredJobs?.length > 0" class="text-[#000000] 
+              font-Satoshi500">
                 {{filteredJobs?.length}}
               </span>
               <span v-else class="text-[#000000] 
