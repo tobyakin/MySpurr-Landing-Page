@@ -515,7 +515,6 @@ const selectCandidateType = (item) => {
             </p>
           </div> -->
           <!-- <PagePreLoader /> -->
-           {{ isFilter }}
           <div v-if="!filteredJobs && isLoading" class="mt-14 flex flex-col gap-8">
             <JobCard
               class="w-full"
