@@ -232,7 +232,9 @@ const redirectWithSearchQuery = () => {
                     class="w-full font-light font-Satoshi400 text-[14px] p-3 pl-9 pr-24 border-[#F0F0F0] border-[1px] opacity-[0.8029] rounded-[7px] text-sm"
                     placeholder=" Search here.."
                     type="text"
+                    v-model="searchQuery"
                   /><button
+                  @click="redirectWithSearchQuery"
                     class="absolute right-0 top-3 font-Satoshi400 text-[16px] px-[21px] border-l-[#F0F0F0] border-l-[1px]"
                   >
                     Find job
