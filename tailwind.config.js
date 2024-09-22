@@ -54,6 +54,7 @@ module.exports = {
         'tab': {'max': '1024px'},
         'tab2': {'max': '900px'},
         'msgBreak': {'max': '1134px'},
+        'searchBreak': {'max': '1160px'},
         'msgTab': {'max': '800px'},
         'msgTab2': {'min': '800px'},
         'msgMob': {'max': '576px'},
