@@ -18,7 +18,7 @@
       > -->
       <!-- <template v-slot:pdf-content> -->
       <Loader v-if="loading" />
-      <div v-else class="py-20 mx-auto w-[80%] msgBreak:w-[90%] msgTab:container">
+      <div v-else class="py-20 container">
         <div id="element-to-convert" class="w-full">
           <div
             class="bg-[#E9FAFB] border-[#F6F6F6] flex flex-col lg:items-start gap-5 justify-between items-center border-[1px] rounded-[15px] p-6 px-14"
