@@ -99,7 +99,6 @@ const totalPages = computed(() => Math.ceil(pagination.value.last_page));
 // Function to change the current page
 const setPage = (page) => {
   if (page >= 1 && page <= (pagination.value.last_page || 1)) {
-    console.log(page, paginatedTalent.value)
     currentPage.value = page;
   }
 };
@@ -141,7 +140,7 @@ const filteredJobs = computed(() => {
   // Filtering based on the search criteria
   if (filterOptions.name) {
     filtered = filtered?.filter((item) =>
-      item.first_name.toLowerCase().includes(filterOptions.name.toLowerCase())
+      item?.first_name?.toLowerCase().includes(filterOptions?.name?.toLowerCase())
     );
   }
   if (filterOptions.skills) {
@@ -152,26 +151,27 @@ const filteredJobs = computed(() => {
 
   if (filterOptions.location) {
     filtered = filtered?.filter((item) =>
-      item.location.toLowerCase().includes(filterOptions.location.toLowerCase())
+      item?.location?.toLowerCase().includes(filterOptions?.location?.toLowerCase())
     );
   }
 
-  if (filterOptions.candidateType) {
+  if (filterOptions.candidateType && typeof filterOptions.candidateType === 'string') {
     filtered = filtered?.filter((item) =>
       item.employment_type
         .toLowerCase()
         .includes(filterOptions.candidateType.toLowerCase())
     );
   }
-  if (filterOptions.expertLevel) {
+
+  if (filterOptions.expertLevel && typeof filterOptions.expertLevel === 'string') {
     filtered = filtered?.filter((item) =>
       item.experience_level
         .toLowerCase()
-        .includes(filterOptions.expertLevel.toLowerCase())
+        == filterOptions.expertLevel.toLowerCase()
     );
   }
 
-  if (filterOptions.qualification) {
+  if (filterOptions.qualification && typeof filterOptions.qualification === 'string') {
     filtered = filtered?.filter((item) =>
       item.highest_education
         .toLowerCase()
@@ -189,9 +189,9 @@ const filteredJobs = computed(() => {
       return rate >= min && rate <= max;
     });
   }
-
   return filtered;
 });
+
 
 const resetFilters = () => {
   filterOptions.name = "";
@@ -255,16 +255,15 @@ onMounted(async () => {
 const CandidateType = ["Freelance", "Full-time", "Part-time", "Internship", "Contract"];
 const qualification = ["Certificate", "Bachelors", "Masters ", "Doctorate "];
 const Experience = [
-  { name: "Beginner ", year: "(1-2 yrs)" },
-  { name: "Intermediate ", year: "(3-5 yrs)" },
-  { name: "Expert ", year: "(6-10 yrs)" },
+  { name: "Beginner", year: "(1-2 yrs)" },
+  { name: "Intermediate", year: "(3-5 yrs)" },
+  { name: "Expert", year: "(6-10 yrs)" },
   { name: "More than", year: " 10yrs" },
 ];
 const selectExperienceLevel = (level) => {
   if (filterOptions.expertLevel === level) {
     filterOptions.expertLevel = '';
   } else {
-    // Otherwise, set the selected level to the clicked checkbox
     filterOptions.expertLevel = level;
   }
 };
@@ -272,7 +271,6 @@ const selectQualification = (item) => {
   if (filterOptions.qualification === item) {
     filterOptions.qualification = '';
   } else {
-    // Otherwise, set the selected level to the clicked checkbox
     filterOptions.qualification = item;
   }
 };
@@ -280,7 +278,6 @@ const selectCandidateType = (item) => {
   if (filterOptions.candidateType === item) {
     filterOptions.candidateType = '';
   } else {
-    // Otherwise, set the selected level to the clicked checkbox
     filterOptions.candidateType = item;
   }
 };
@@ -337,8 +334,8 @@ const selectCandidateType = (item) => {
                     <label class="flex items-center space-x-2">
                       <input
                         type="checkbox"
-                        :value="item.name"
-                        :checked="filterOptions.expertLevel === item.name"
+                        :value="item?.name"
+                        :checked="filterOptions.expertLevel === item?.name"
                         v-model="filterOptions.expertLevel"
                         class="w-[1.55156rem] h-[1.55156rem] rounded-[0.2865rem] border-[1.528px] border-[#0000001a] bg-[#fff] cursor-pointer"
                         @change="selectExperienceLevel(item.name)"
