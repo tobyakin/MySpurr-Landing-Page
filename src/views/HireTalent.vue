@@ -164,11 +164,11 @@ const filteredJobs = computed(() => {
   }
 
   if (filterOptions.expertLevel && typeof filterOptions.expertLevel === 'string') {
-    filtered = filtered?.filter((item) =>
-      item.experience_level
-        .toLowerCase()
-        .includes(filterOptions.expertLevel.toLowerCase())
-    );
+    filtered = filtered?.filter((item) => {
+        if(item.experience_level.toLowerCase() === filterOptions.expertLevel.toLowerCase()){
+        return item
+      }
+    })
   }
 
   if (filterOptions.qualification && typeof filterOptions.qualification === 'string') {
