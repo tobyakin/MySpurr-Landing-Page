@@ -167,7 +167,7 @@ const filteredJobs = computed(() => {
     filtered = filtered?.filter((item) =>
       item.experience_level
         .toLowerCase()
-        == filterOptions.expertLevel.toLowerCase()
+        .includes(filterOptions.expertLevel.toLowerCase())
     );
   }
 
