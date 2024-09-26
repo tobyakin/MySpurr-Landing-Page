@@ -25,6 +25,11 @@ const redirectToJobDetails = (business_name, slug) => {
   router.push({ name: "job-details", params: { business_name: businessNameSlug, slug } });
 };
 
+// const redirectToProfile = (business_name, slug) => {
+//   const businessNameSlug = slugify(business_name);
+//   router.push({ name:'business-profile', params: { name: businessNameSlug, id: slug} })
+// }
+
 defineProps({
   job: Object,
 });
@@ -48,7 +53,7 @@ defineProps({
         />
       </div>
       <div class="w-full">
-        <div class="flex lg:justify-start justify-center items-center gap-1">
+        <div class="flex lg:justify-start justify-center items-center gap-1 cursor-pointer" @click="redirectToProfile(job?.company?.business_name, job?.id)">
           <p class="text-[13.021px] font-Satoshi500 flex text-[#2F929C]">
             {{ job?.company.business_name }}
           </p>

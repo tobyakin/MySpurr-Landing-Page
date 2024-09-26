@@ -8,6 +8,7 @@ import {
   defineAsyncComponent,
 } from "vue";
 import { useHead } from "@vueuse/head";
+import SiginPrompt from "@/components/UI/SiginPrompt.vue";
 import { storeToRefs } from "pinia";
 import JobAvater from "@/components/Avater/JobAvater.vue";
 import Navbar from "@/components/Navbar/Navbar.vue";
@@ -36,9 +37,15 @@ import Loader from "@/components/UI/Loader/Loader.vue";
 const toast = useToast();
 const loading = ref(false);
 const url = import.meta.env.VITE_DASHBOARD;
+const showPopup = ref(false)
 const redirectToMessage = () => {
-  window.open(url + `messages`, "_blank");
+  // window.open(url + `messages`, "_blank");
+  showPopup.value = true
 };
+
+const handleClose = ()=>{
+  showPopup.value = false
+}
 
 
 const talentsStore = useTalentsStore();
@@ -351,6 +358,10 @@ const downloadCV = () => {
       </div>
     </div>
     <Footer />
+    <SiginPrompt 
+    v-if="showPopup" 
+    @close="handleClose"
+    />
   </div>
 </template>
 
