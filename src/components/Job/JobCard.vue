@@ -62,17 +62,16 @@
       </div>
     </div>
     <div
-      class="flex flex-row gap-6 w-full overflow-hidden mt-6 hide-scrollbar overflow-x-auto"
+      class="flex overflow-x-auto gap-6 w-full mt-6 hide-scrollbar"
     >
       <img
-        @click="redirectToPortfolio(props?.talent.first_name, item.id)"
-        role="button"
-        loading="lazy"
         v-for="(item, index) in props?.talent?.portfolio"
-        :key="item"
+        :key="item.id"
         :src="item?.featured_image"
-        class="h-[140.078px] flex flex-col w-[285.44px] bg-[#EFF6F3] object-cover rounded-lg"
-        :alt="`portfolio` + `` + index + 1"
+        :alt="`Portfolio ` + (index + 1)"
+        loading="lazy"
+        class="h-[140px] basis-[18%] flex-shrink-0 bg-[#EFF6F3] object-cover rounded-lg"
+        @click="redirectToPortfolio(props?.talent.first_name, item.id)"
       />
     </div>
     <router-link
