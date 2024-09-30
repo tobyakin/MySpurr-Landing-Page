@@ -13,10 +13,11 @@ import FormGroup from "@/components/Form/Input/FormGroup.vue";
 // import VueSlider from "vue-slider-component";
 import "vue-slider-component/theme/antd.css";
 // import FormSelectGroup from "@/components/Form/Input/SelectGroup.vue";
-import Label from "@/components/Form/Input/Label.vue";
+// import Label from "@/components/Form/Input/Label.vue";
 import Loader from "@/components/UI/Loader/Loader.vue";
 import { useRoute } from "vue-router";
-import { filterOption } from "ant-design-vue/es/vc-mentions/src/util";
+import filterBtnIcon from "@/components/icons/filterBtnIcon.vue";
+
 
 const talentsStore = useTalentsStore();
 const { talent } = storeToRefs(talentsStore);
@@ -28,6 +29,7 @@ const category = ref('')
 const location = ref('')
 const keyword = ref('')
 const route = useRoute()
+const showMobFilter = ref(false)
 
 useHead({
   // Can be static or computed
@@ -51,8 +53,9 @@ const filterOptions = reactive({
   location: "",
   expertLevel: "",
   qualification: "",
-  candidateType: "",
+  candidateType: ""
 });
+
 let isLoading = ref(false);
 let rateMin = ref(null);
 let rateMax = ref(null);
@@ -62,6 +65,24 @@ const updateRange = (value) => {
   rateMin.value = value[0];
   rateMax.value = value[1];
 };
+
+const showFilter = ()=>{
+  showMobFilter.value = !showMobFilter.value
+
+  if (showMobFilter.value) {
+    filterOptions.expertLevel = "Experience";
+    filterOptions.qualification = "Qualification";
+    filterOptions.candidateType = "Candidate Type";
+  } else {
+    filterOptions.expertLevel = "";
+    filterOptions.qualification = "";
+    filterOptions.candidateType = "";
+  }
+}
+
+const toggleFilter = ()=>{
+  showMobFilter.value = false
+}
 
 // Create a computed property to synchronize the range with rateMin and rateMax
 const computedRange = computed(() => {
@@ -131,11 +152,10 @@ const lowestRate = computed(() => Math.min(...(rates.value.length ? rates.value 
 // const highestRate = computed(()=> Math.max(...rates.value))
 // const lowestRate = computed(()=> Math.min(...rates.value))
 
-
-
-
 const filteredJobs = computed(() => {
   let filtered = talent.value?.data; // Create a shallow copy of the jobs array
+
+  // let filterOptions = filterOptions
 
   // Filtering based on the search criteria
   if (filterOptions.name) {
@@ -155,7 +175,7 @@ const filteredJobs = computed(() => {
     );
   }
 
-  if (filterOptions.candidateType && typeof filterOptions.candidateType === 'string') {
+  if (filterOptions.candidateType && typeof filterOptions.candidateType === 'string' && filterOptions.candidateType !== "Candidate Type") {
     filtered = filtered?.filter((item) =>
       item.employment_type
         .toLowerCase()
@@ -163,7 +183,7 @@ const filteredJobs = computed(() => {
     );
   }
 
-  if (filterOptions.expertLevel && typeof filterOptions.expertLevel === 'string') {
+  if (filterOptions.expertLevel && typeof filterOptions.expertLevel === 'string' && filterOptions.expertLevel !== "Experience") {
     filtered = filtered?.filter((item) => {
         if(item.experience_level.toLowerCase() === filterOptions.expertLevel.toLowerCase()){
         return item
@@ -171,7 +191,7 @@ const filteredJobs = computed(() => {
     })
   }
 
-  if (filterOptions.qualification && typeof filterOptions.qualification === 'string') {
+  if (filterOptions.qualification && typeof filterOptions.qualification === 'string' && filterOptions.qualification !== "Qualification") {
     filtered = filtered?.filter((item) =>
       item.highest_education
         .toLowerCase()
@@ -208,7 +228,11 @@ const resetFilters = () => {
 };
 
 const isFilter = computed(()=>{
-  return filterOptions.name.length > 0 || filterOptions.skills.length > 0 || filterOptions.location.length > 0 || filterOptions.expertLevel.length > 0 || filterOptions.qualification.length > 0 || filterOptions.candidateType?.length > 0 || rateMin.value?.length > 0 || rateMax.value?.length > 0 || category.value?.length > 0 || location.value?.length > 0 || keyword.value?.length > 0
+  if(showMobFilter.value){
+    return filterOptions.name.length > 0 || filterOptions.skills.length > 0 || filterOptions.location.length > 0 || filterOptions.expertLevel !== "Experience" || filterOptions.qualification !== "Qualification" || filterOptions.candidateType !== "Candidate Type"
+  } else {
+    return filterOptions.name.length > 0 || filterOptions.skills.length > 0 || filterOptions.location.length > 0 || filterOptions.expertLevel.length > 0 || filterOptions.qualification.length > 0 || filterOptions.candidateType?.length > 0 || rateMin.value?.length > 0 || rateMax.value?.length > 0 || category.value?.length > 0 || location.value?.length > 0 || keyword.value?.length > 0
+  }
 })
 
 const querySearch = ()=>{
@@ -284,16 +308,16 @@ const selectCandidateType = (item) => {
 </script>
 
 <template>
-  <div>
+  <div class="relative">
     <Navbar />
-    <div class="py-20 w-[90%] mx-auto">
+    <div class="py-20 mob:pt-8 w-[90%] mx-auto">
       <div class="flex gap-[3.69rem] searchBreak:flex-col">
-        <div>
-          <h1 class="font-Satoshi500 text-[#000000] text-[2.29rem] leading-[3.44rem]">Filter By</h1>
+        <div class="searchBreak:hidden">
+          <h1 class="font-Satoshi500 text-[#000000] text-[2rem] leading-[3.44rem]">Filter By</h1>
           <div
             class="bg-[#E9FAFB] rounded-[14.957px] flex flex-col gap-3 lg:gap-5 p-8 lg:px-10 px-8 md:px-10 border-[0.491px] border-[#97A6A8] h-fit w-[23rem] searchBreak:w-full mt-[1.75rem]"
           >
-            <div class="flex flex-col gap-8">
+            <div class="flex flex-col gap-4">
               <FormGroup
                 v-model="filterOptions.name"
                 labelClasses="font-Satoshi500 text-[1.52rem]"
@@ -301,33 +325,33 @@ const selectCandidateType = (item) => {
                 name="Name"
                 placeholder="Search by keywords"
                 type="text"
-                inputClasses="w-full mt-2 font-light font-Satoshi400 !p-4 border-[#EDEDED] border-[0.509px] opacity-[0.8029] rounded-[6.828px] text-[12.68px]"
+                inputClasses="w-full mt-2 font-light font-Satoshi400 !p-4 border-[#EDEDED] border-[0.509px] opacity-[0.8029] rounded-[6.828px] text-[0.88rem]"
               ></FormGroup>
               <FormGroup
                 v-model="filterOptions.skills"
-                labelClasses="font-Satoshi500 !text-[1.52rem]"
+                labelClasses="font-Satoshi500 !text-[1rem]"
                 label=" Skills"
                 name="Name"
                 placeholder="Graphics Design"
                 type="text"
-                inputClasses="w-full mt-[0.5rem] font-light font-Satoshi400 !p-4 border-[#EDEDED] border-[0.509px] opacity-[0.8029] rounded-[6.828px] text-[12.68px]"
+                inputClasses="w-full mt-[0.5rem] font-light font-Satoshi400 !p-4 border-[#EDEDED] border-[0.509px] opacity-[0.8029] rounded-[6.828px] text-[0.88rem]"
               ></FormGroup>
               <FormGroup
                 v-model="filterOptions.location"
-                labelClasses="font-Satoshi500 !text-[1.52rem]"
+                labelClasses="font-Satoshi500 !text-[1rem]"
                 label=" Location"
                 name="Name"
                 placeholder="Abuja. Nigeria"
                 type="text"
-                inputClasses="w-full mt-[0.5rem] font-light font-Satoshi500 !p-4 border-[#EDEDED] border-[0.509px] opacity-[0.8029] rounded-[6.828px] text-[12.68px]"
+                inputClasses="w-full mt-[0.5rem] font-light font-Satoshi500 !p-4 border-[#EDEDED] border-[0.509px] opacity-[0.8029] rounded-[6.828px] text-[0.88rem]"
               ></FormGroup>
               <div class="flex flex-col gap-[0.5rem] w-full text-left">
-                <Label class="font-Satoshi500 !text-[1.52rem]">Experience</Label>
+                <Label class="font-Satoshi500 !text-[1rem]">Experience</Label>
                 <div
-                  class="w-full flex flex-col searchBreak:flex-row searchBreak:flex-wrap gap-[0.5rem]"
+                  class="w-full flex flex-col searchBreak:flex-row searchBreak:flex-wrap gap-[0rem] searchBreak:gap-[0.5rem]"
                 >
                   <div 
-                    class="font-light font-Satoshi400 opacity-[0.8029] text-[1.033rem] flex items-center gap-[1.5rem] leading-[2.387rem] text-[#000000]"
+                    class="font-light font-Satoshi400 opacity-[0.8029] text-[0.88rem] flex items-center gap-[1.5rem] leading-[2.387rem] text-[#000000]"
                     v-for="item in Experience"
                     :key="item.name"
                   >
@@ -346,12 +370,12 @@ const selectCandidateType = (item) => {
                 </div>
               </div>
               <div class="flex flex-col gap-[0.5rem] w-full text-left">
-                <Label class="font-Satoshi500 !text-[1.52rem]">Qualification</Label>
+                <Label class="font-Satoshi500 !text-[1rem]">Qualification</Label>
                 <div
-                  class="w-full flex flex-col searchBreak:flex-row searchBreak:flex-wrap gap-[0.5rem]"
+                  class="w-full flex flex-col searchBreak:flex-row searchBreak:flex-wrap gap-[0rem] mob:gap-[0.5rem]"
                 >
                   <div 
-                    class="font-light font-Satoshi400 opacity-[0.8029] text-[1.033rem] flex items-center gap-[1.05rem] leading-[2.387rem] text-[#000000]"
+                    class="font-light font-Satoshi400 opacity-[0.8029] text-[0.88rem] flex items-center gap-[1.05rem] leading-[2.387rem] text-[#000000]"
                     v-for="item in qualification"
                     :key="item"
                   >
@@ -371,24 +395,24 @@ const selectCandidateType = (item) => {
               </div>
               <div class="w-full">
                 <div class="flex flex-col justify-center">
-                  <Label class="font-Satoshi500 !text-[1.52rem]">Salary Range</Label>
+                  <Label class="font-Satoshi500 !text-[1rem]">Hourly fees (Min-Max)</Label>
                   <div class="flex items-center gap-1 mt-2">
                     <div class="flex w-[70%] gap-[0.48rem] items-center">
                       <input
-                        class="font-light font-Satoshi400 !p-2 border-[#0000001a] border-[1.528px] opacity-[0.8029] rounded-[6.828px] text-[12.68px] min-w-[2.961rem] flex-1"
+                        class="font-light font-Satoshi400 !p-2 border-[#0000001a] border-[1.528px] opacity-[0.8029] rounded-[6.828px] text-[0.88rem] min-w-[2.961rem] flex-1"
                         type="number"
                         v-model="rateMin"
                         id="start"
                       />
                       <div class="h-[2px] w-4 bg-black"></div>
                       <input
-                        class="font-light font-Satoshi400 !p-2 border-[#0000001a] border-[1.528px] opacity-[0.8029] rounded-[6.828px] text-[12.68px] min-w-[2.961rem] flex-1"
+                        class="font-light font-Satoshi400 !p-2 border-[#0000001a] border-[1.528px] opacity-[0.8029] rounded-[6.828px] text-[0.88rem] min-w-[2.961rem] flex-1"
                         type="number"
                         v-model="rateMax"
                         id="end"
                       />
                     </div>
-                    <span class="text-[#000] font-Satoshi400 text-[1.051rem] leading-[1.91rem]">USD</span>
+                    <span class="text-[#000] font-Satoshi400 text-[1rem] leading-[1.91rem]">USD</span>
                     <!-- <div class="w-full">
                       <SelectGroup
                         labelClasses="font-Satoshi500 hidden text-[15.606px]"
@@ -396,7 +420,7 @@ const selectCandidateType = (item) => {
                         placeholder="currency"
                         type="text"
                         :items="['USD', 'NGN']"
-                        inputClasses="w-full mt-0 font-light font-Satoshi400 bg-white !p-2 border-[#EDEDED] border-[0.509px] opacity-[0.8029] rounded-[6.828px] text-[12.68px]"
+                        inputClasses="w-full mt-0 font-light font-Satoshi400 bg-white !p-2 border-[#EDEDED] border-[0.509px] opacity-[0.8029] rounded-[6.828px] text-[0.88rem]"
                       />
                     </div> -->
                   </div>
@@ -405,13 +429,13 @@ const selectCandidateType = (item) => {
                   <input 
                   type="range" 
                   v-model="rateMin" 
-                  :max="highestRate" 
+                  max="250" 
                   :min="lowestRate" 
                   class="w-full range-slider cursor-pointer" @input="handleMinPrice" />
                   <input 
                   type="range" 
                   v-model="rateMax" 
-                  :max="highestRate" 
+                  max="250" 
                   :min="lowestRate" 
                   class="w-full range-slider cursor-pointer" @input="handleMaxPrice" />
                     <!-- <input 
@@ -439,12 +463,12 @@ const selectCandidateType = (item) => {
                 </div>
               </div>
               <div class="flex flex-col gap-[0.5rem] w-full text-left">
-                <Label class="font-Satoshi500 !text-[1.52rem]">Employment Type</Label>
+                <Label class="font-Satoshi500 !text-[1rem]">Employment Type</Label>
                 <div
-                  class="w-full flex flex-col searchBreak:flex-row searchBreak:flex-wrap gap-[0.5rem]"
+                  class="w-full flex flex-col searchBreak:flex-row searchBreak:flex-wrap gap-[0rem] mob:gap-[0.5rem]"
                 >
                   <div 
-                    class="font-light font-Satoshi400 opacity-[0.8029] text-[1.033rem] flex items-center gap-[1.05rem] leading-[2.387rem] text-[#000000]"
+                    class="font-light font-Satoshi400 opacity-[0.8029] text-[0.88rem] flex items-center gap-[1.05rem] leading-[2.387rem] text-[#000000]"
                     v-for="item in CandidateType"
                     :key="item"
                   >
@@ -473,32 +497,32 @@ const selectCandidateType = (item) => {
             </div>
           </div>
         </div>
-        <!-- <div class="text-center lg:!my-10 !my-5 py-20 pb-10">
-          <h4 class="text-[50.549px] text-[#000000] font-Satoshi500 leading-[47.52px]">
-            Creative Talents for Hire
-          </h4>
-          <p class="text-[#007582] text-[21.194px] font-Satoshi400 lg:leading-[39.552px]">
-            Find your desired talent and execute your projects
-          </p>
-        </div> -->
         <div class="!w-full">
           <GoPro />
-          <div class="!mb-10">
-            <p class="text-[#00000066] font-Satoshi400 text-[1.49rem]" v-if="!isFilter">
-              All
-              <span class="text-[#000000] font-Satoshi500">{{talent?.pagination?.total}}</span>
-              candidates found
-            </p>
-            <p v-else class="text-[#00000066] font-Satoshi400 text-[23.998px]">
-              All
-              <span v-if="filteredJobs?.length > 0" class="text-[#000000] 
-              font-Satoshi500">
-                {{filteredJobs?.length}}
-              </span>
-              <span v-else class="text-[#000000] 
-              font-Satoshi500">0</span>
-              candidates found
-            </p>
+          <div class="!mb-10 flex items-center justify-between">
+            <button 
+            @click="showFilter"
+            class="items-center gap-[0.71rem] bg-[#31795A] text-[#fff] px-8 py-6 rounded-[2.4375rem] w-[9rem] btn-hover-2 hidden searchBreak:flex mob:py-4">
+              <filterBtnIcon />
+              <span class="text-[1.13638rem] mob:text-[1rem] font-Satoshi500 leading-[ 2.55681rem]">Filter</span>
+            </button>
+            <div>
+              <p class="text-[#00000066] font-Satoshi400 text-[1.49rem] mob:text-[1.2rem]" v-if="!isFilter">
+                All
+                <span class="text-[#000000] font-Satoshi500">{{talent?.pagination?.total}}</span>
+                candidates found
+              </p>
+              <p v-else class="text-[#00000066] font-Satoshi400 text-[1.49rem] mob:text-[1.2rem]">
+                All
+                <span v-if="filteredJobs?.length > 0" class="text-[#000000] 
+                font-Satoshi500">
+                  {{filteredJobs?.length}}
+                </span>
+                <span v-else class="text-[#000000] 
+                font-Satoshi500">0</span>
+                candidates found
+              </p>
+            </div>
           </div>
           <!-- <div class="!my-10">
             <p class="text-[#00000066] font-Satoshi400 text-[23.998px]">
@@ -512,17 +536,22 @@ const selectCandidateType = (item) => {
             </p>
           </div> -->
           <!-- <PagePreLoader /> -->
-          <div v-if="!filteredJobs && isLoading" class="mt-14 flex flex-col gap-8">
-            <JobCard
-              class="w-full"
-              v-for="item in paginatedTalent"
-              :key="item"
-              :talent="item"
-            />
-          </div>
-          <div v-else class="mt-14 flex flex-col gap-8">
-            <JobCard class="w-full" v-for="item in filteredJobs" :key="item" :talent="item" />
-          </div>
+           <!-- <div v-if="isFilterApplied" class="mt-14 flex flex-col gap-8">
+            <JobCard class="w-full" v-for="item in mobFilteredJobs" :key="item" :talent="item" />
+           </div> -->
+           
+             <div v-if="!filteredJobs && isLoading" class="mt-14 flex flex-col gap-8">
+               <JobCard
+                 class="w-full"
+                 v-for="item in paginatedTalent"
+                 :key="item"
+                 :talent="item"
+               />
+             </div>
+             <div v-else class="mt-14 flex flex-col gap-8">
+               <JobCard class="w-full" v-for="item in filteredJobs" :key="item" :talent="item" />
+             </div>
+           
           <Loader v-if="isLoading" class="!flex !items-start !justify-center"/>
     
           <div class="mt-12 flex w-[60%] flex-row justify-center mx-auto">
@@ -553,6 +582,148 @@ const selectCandidateType = (item) => {
         </div>
       </div>
       <Subscribe class="mt-[18.83rem] !mb-14" />
+      <div class="mobile_filter fixed bottom-0 left-0 w-full overflow-y-auto hidden searchBreak:block transitionItem"
+      :class="showMobFilter? 'h-[70vh]': 'h-0'"
+      >
+        <section class="py-[5.83rem] px-[1.94rem] bg-[#E9FAFB] rounded-t-[1.42044rem]">
+          <div class="w-[80%] mob:w-[90%] mx-auto flex flex-col gap-[2.1rem]">
+              <FormGroup
+                  v-model="filterOptions.name"
+                  labelClasses="font-Satoshi500 text-[1.52rem]"
+                  label=""
+                  name="Name"
+                  placeholder="Search by keywords"
+                  type="text"
+                  inputClasses="w-full mt-2 font-light font-Satoshi400 !p-4 border-[#EDEDED] border-[0.509px] opacity-[0.8029] rounded-t-[6.828px] text-[0.88rem]"
+                  >
+              </FormGroup>
+              <FormGroup
+                  v-model="filterOptions.skills"
+                  labelClasses="font-Satoshi500 !text-[1rem]"
+                  label=" Skills"
+                  name="Skills"
+                  placeholder="Graphics Design"
+                  type="text"
+                  inputClasses="w-full mt-[0.5rem] font-light font-Satoshi400 !p-4 border-[#EDEDED] border-[0.509px] opacity-[0.8029] rounded-t-[6.828px] text-[0.88rem]"
+                  >
+              </FormGroup>
+      
+              <FormGroup
+                  v-model="filterOptions.location"
+                  labelClasses="font-Satoshi500 !text-[1rem]"
+                  label=" Location"
+                  name="Location"
+                  placeholder="Abuja. Nigeria"
+                  type="text"
+                  inputClasses="w-full mt-[0.5rem] font-light font-Satoshi500 !p-4 border-[#EDEDED] border-[0.509px] opacity-[0.8029] rounded-t-[6.828px] text-[0.88rem]"
+                  >
+              </FormGroup>
+      
+              <div
+              class="w-full font-Satoshi500 !p-0 !text-[1.13638rem] leading-[2.55681rem] text-[#000] !bg-transparent !pb-6 !border-b-2 border-[#666666]"
+              >
+                  <select
+                      v-model="filterOptions.expertLevel"
+                      placeholder="Experience"
+                      :bordered="false"
+                      :show-arrow="false"
+                      class="w-full !outline-none !px-0 cursor-pointer !text-[#000000] font-Satoshi500 text-[1rem] leading-[1.75rem] !bg-transparent"
+                      show-search
+                      
+                  >
+                      <option disabled value="Experience">Experience</option>
+                      <option v-for="item in Experience" :key="item.name" :value="item.name">
+                      {{ item.name }} ({{ item.year }})
+                      </option>
+                  </select>
+              </div>
+              <div
+              class="w-full font-Satoshi500 !p-0 !text-[1.13638rem] leading-[2.55681rem] text-[#000] !bg-transparent !pb-6 !border-b-2 border-[#666666]"
+              >
+                  <select
+                      v-model="filterOptions.qualification"
+                      placeholder="Qualification"
+                      :bordered="false"
+                      :show-arrow="false"
+                      class="w-full !outline-none !px-0 cursor-pointer !text-[#000000] font-Satoshi500 text-[1rem] leading-[1.75rem] !bg-transparent"
+                      show-search
+                      
+                  >
+                      <option disabled value="Qualification">Qualification</option>
+                      <option v-for="item in qualification" :key="item" :value="item">
+                      {{ item }}
+                      </option>
+                  </select>
+              </div>
+              <div
+              class="w-full font-Satoshi500 !p-0 !text-[1.13638rem] leading-[2.55681rem] text-[#000] !bg-transparent !pb-6 !border-b-2 border-[#666666]"
+              >
+                  <select
+                      v-model="filterOptions.candidateType"
+                      placeholder="Employment Type"
+                      :bordered="false"
+                      :show-arrow="false"
+                      class="w-full !outline-none !px-0 cursor-pointer !text-[#000000] font-Satoshi500 text-[1rem] leading-[1.75rem] !bg-transparent"
+                      show-search
+                      
+                  >
+                      <option disabled value="Candidate Type">Candidate Type</option>
+                      <option v-for="item in CandidateType" :key="item" :value="item">
+                      {{ item }}
+                      </option>
+                  </select>
+              </div>
+              <div class="w-full">
+                  <div class="flex flex-col justify-center">
+                      <Label class="font-Satoshi500 !text-[1rem]leading-[2.55681rem] pt-[0.5rem]">Hourly fees (Min-Max)</Label>
+                      <div class="flex items-center gap-1 mt-2">
+                          <div class="flex w-[70%] gap-[0.48rem] items-center">
+                              <input
+                              class="font-light font-Satoshi400 !p-2 border-[#0000001a] border-[1.528px] opacity-[0.8029] rounded-[6.828px] text-[0.88rem] min-w-[2.961rem] flex-1"
+                              type="number"
+                              v-model="rateMin"
+                              id="start"
+                              />
+                              <div class="h-[2px] w-4 bg-black"></div>
+                              <input
+                              class="font-light font-Satoshi400 !p-2 border-[#0000001a] border-[1.528px] opacity-[0.8029] rounded-[6.828px] text-[0.88rem] min-w-[2.961rem] flex-1"
+                              type="number"
+                              v-model="rateMax"
+                              id="end"
+                              />
+                          </div>
+                          <span class="text-[#000] font-Satoshi400 text-[1rem] leading-[1.91rem]">USD</span>
+                      </div>
+                  </div>
+                  <div class="flex mt-[0.97rem]">
+                      <input 
+                      type="range" 
+                      v-model="rateMin" 
+                      max="250" 
+                      :min="lowestRate" 
+                      class="w-full range-slider cursor-pointer" @input="handleMinPrice" />
+                      <input 
+                      type="range" 
+                      v-model="rateMax" 
+                      max="250" 
+                      :min="lowestRate" 
+                      class="w-full range-slider cursor-pointer" @input="handleMaxPrice" />
+                  </div>
+              </div>
+              <button
+                @click="toggleFilter"
+                  class="bg-[#31795A] text-white w-full text-center mx-auto p-4 py-4 justify-center rounded-full font-Satoshi500 text-[12.103px] items-center flex mt-[0.5rem]"
+                  :class="
+                    !isFilter
+                      ? 'bg-gray-300 cursor-not-allowed'
+                      : 'bg-[#31795A] btn-hover-2'
+                  "
+                >
+                  Apply Filter
+                </button>
+            </div>
+        </section>
+      </div>
     </div>
     <Footer />
   </div>
