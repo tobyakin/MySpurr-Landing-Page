@@ -20,8 +20,8 @@ defineProps({
     <div class="flex gap-3 mb-5">
       <img src="@/assets/image/jobIcon.svg" alt="" />
       <div>
-        <p class="text-[13.021px] font-Satoshi500 text-[#2F929C]">MySpurr</p>
-        <p class="text-[13.021px] font-Satoshi500 text-[#000000]">
+        <p class="text-[0.814rem] font-Satoshi500 text-[#2F929C]">MySpurr</p>
+        <p class="text-[0.814rem] font-Satoshi500 text-[#000000]">
           Developer in java c++
         </p>
         <div class="flex flex-wrap items-center mt-2 gap-2">
