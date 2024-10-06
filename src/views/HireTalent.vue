@@ -9,6 +9,7 @@ import Arrow from "@/components/icons/paginationArrow.vue";
 import JobCard from "@/components/Job/JobCard.vue";
 import Subscribe from "@/components/Bander/Subscribe.vue";
 import { useTalentsStore } from "@/stores/talents";
+import { useSkillsStore } from "@/stores/skills";
 import FormGroup from "@/components/Form/Input/FormGroup.vue";
 // import VueSlider from "vue-slider-component";
 import "vue-slider-component/theme/antd.css";
@@ -19,8 +20,11 @@ import { useRoute } from "vue-router";
 import filterBtnIcon from "@/components/icons/filterBtnIcon.vue";
 
 
+
 const talentsStore = useTalentsStore();
 const { talent } = storeToRefs(talentsStore);
+const skillsStore = useSkillsStore();
+const { states, countries } = storeToRefs(skillsStore);
 const siteData = reactive({
   title: `MySpurr | Hire talent`,
   description: ``,
@@ -30,6 +34,7 @@ const location = ref('')
 const keyword = ref('')
 const route = useRoute()
 const showMobFilter = ref(false)
+const country = ref('Nigeria')
 
 useHead({
   // Can be static or computed
@@ -169,7 +174,7 @@ const filteredJobs = computed(() => {
     );
   }
 
-  if (filterOptions.location) {
+  if (filterOptions.location && filterOptions.location !== "Select State" ) {
     filtered = filtered?.filter((item) =>
       item?.location?.toLowerCase().includes(filterOptions?.location?.toLowerCase())
     );
@@ -216,7 +221,7 @@ const filteredJobs = computed(() => {
 const resetFilters = () => {
   filterOptions.name = "";
   filterOptions.skills = "";
-  filterOptions.location = "";
+  filterOptions.location = "Select State";
   filterOptions.expertLevel = "";
   filterOptions.qualification = "";
   filterOptions.candidateType = "";
@@ -229,9 +234,9 @@ const resetFilters = () => {
 
 const isFilter = computed(()=>{
   if(showMobFilter.value){
-    return filterOptions.name.length > 0 || filterOptions.skills.length > 0 || filterOptions.location.length > 0 || filterOptions.expertLevel !== "Experience" || filterOptions.qualification !== "Qualification" || filterOptions.candidateType !== "Candidate Type"
+    return filterOptions.name.length > 0 || filterOptions.skills.length > 0 || filterOptions.location !== "Select State" || filterOptions.expertLevel !== "Experience" || filterOptions.qualification !== "Qualification" || filterOptions.candidateType !== "Candidate Type"
   } else {
-    return filterOptions.name.length > 0 || filterOptions.skills.length > 0 || filterOptions.location.length > 0 || filterOptions.expertLevel.length > 0 || filterOptions.qualification.length > 0 || filterOptions.candidateType?.length > 0 || rateMin.value?.length > 0 || rateMax.value?.length > 0 || category.value?.length > 0 || location.value?.length > 0 || keyword.value?.length > 0
+    return filterOptions.name.length > 0 || filterOptions.skills.length > 0 || filterOptions.location !== "Select State" || filterOptions.expertLevel.length > 0 || filterOptions.qualification.length > 0 || filterOptions.candidateType?.length > 0 || rateMin.value?.length > 0 || rateMax.value?.length > 0 || category.value?.length > 0 || location.value?.length > 0 || keyword.value?.length > 0
   }
 })
 
@@ -305,6 +310,18 @@ const selectCandidateType = (item) => {
     filterOptions.candidateType = item;
   }
 };
+
+const getCountryCode = async ()=>{
+  let payload = country.value
+  await skillsStore.handleGetStates(payload)
+}
+
+onMounted(async()=>{
+  filterOptions.location = "Select State"
+  let payload = "NG"
+  await skillsStore.handleGetStates(payload);
+  await skillsStore.getCountriesCode()
+})
 </script>
 
 <template>
@@ -336,7 +353,47 @@ const selectCandidateType = (item) => {
                 type="text"
                 inputClasses="w-full mt-[0.5rem] font-light font-Satoshi400 !p-4 border-[#EDEDED] border-[0.509px] opacity-[0.8029] rounded-[6.828px] text-[0.88rem]"
               ></FormGroup>
-              <FormGroup
+              <div>
+                <label for="location" class="font-Satoshi500 !text-[1rem]">Location</label>
+                <div
+                  class="bg-[#fff] w-full mt-[0.5rem] font-light font-Satoshi400 !p-4 border-gray-300 border-[0.509px] opacity-[0.8029] rounded-[6.828px] text-[0.88rem]"
+                >
+                  <select
+                    v-model="country"
+                    :bordered="false"
+                    :show-arrow="false"
+                    class="w-full !outline-none !px-0 cursor-pointer text-[#000000] font-Satoshi500 leading-[1.75rem]"
+                    show-search
+                    @change="getCountryCode"
+                  >
+  
+                    <option disabled value="Nigeria" class="text-[1rem] font-Satoshi500">Nigeria</option>
+                    <option v-for="country in countries?.data" :key="country.id" :value="country.iso2" 
+                    class="text-[0.88rem]"
+                    >
+                      {{ country.name }}
+                    </option>
+                  </select>
+                </div>
+                <div
+                  class="bg-[#fff] w-full mt-[0.5rem] font-light font-Satoshi400 !p-4 border-gray-300 border-[0.509px] opacity-[0.8029] rounded-[6.828px] text-[0.88rem]"
+                >
+                  <select
+                    v-model="filterOptions.location"
+                    :bordered="false"
+                    :show-arrow="false"
+                    class="w-full !outline-none !px-0 cursor-pointer text-[#000000] font-Satoshi500 leading-[1.75rem]"
+                    show-search
+                  >
+  
+                    <option disabled value="Select State" class="text-[1rem] font-Satoshi500">Select State</option>
+                    <option v-for="state in states?.data" :key="state.id" :value="state.name" class="text-[0.88rem]">
+                      {{ state.name }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <!-- <FormGroup
                 v-model="filterOptions.location"
                 labelClasses="font-Satoshi500 !text-[1rem]"
                 label=" Location"
@@ -344,7 +401,7 @@ const selectCandidateType = (item) => {
                 placeholder="Abuja. Nigeria"
                 type="text"
                 inputClasses="w-full mt-[0.5rem] font-light font-Satoshi500 !p-4 border-[#EDEDED] border-[0.509px] opacity-[0.8029] rounded-[6.828px] text-[0.88rem]"
-              ></FormGroup>
+              ></FormGroup> -->
               <div class="flex flex-col gap-[0.5rem] w-full text-left">
                 <Label class="font-Satoshi500 !text-[1rem]">Experience</Label>
                 <div
@@ -519,8 +576,7 @@ const selectCandidateType = (item) => {
                   {{filteredJobs?.length}}
                 </span>
                 <span v-else class="text-[#000000] 
-                font-Satoshi500">0</span>
-                candidates found
+                font-Satoshi500">0</span> candidates found
               </p>
             </div>
           </div>
@@ -585,7 +641,10 @@ const selectCandidateType = (item) => {
       <div class="mobile_filter fixed bottom-0 left-0 w-full overflow-y-auto hidden searchBreak:block transitionItem"
       :class="showMobFilter? 'h-[70vh]': 'h-0'"
       >
-        <section class="py-[5.83rem] px-[1.94rem] bg-[#E9FAFB] rounded-t-[1.42044rem]">
+        <section class="pb-[5.83rem] pt-[2rem] px-[1.94rem] bg-[#E9FAFB] rounded-t-[1.42044rem]">
+          <div class="mb-[3rem] flex justify-end">
+            <button class="border-gray-300 border p-[0.5rem] font-Satoshi700 cursor-pointer bg-[#fff] hover:scale-105 transitionItem" @click="toggleFilter">X</button>
+          </div>
           <div class="w-[80%] mob:w-[90%] mx-auto flex flex-col gap-[2.1rem]">
               <FormGroup
                   v-model="filterOptions.name"
@@ -607,8 +666,49 @@ const selectCandidateType = (item) => {
                   inputClasses="w-full mt-[0.5rem] font-light font-Satoshi400 !p-4 border-[#EDEDED] border-[0.509px] opacity-[0.8029] rounded-t-[6.828px] text-[0.88rem]"
                   >
               </FormGroup>
+
+              <div>
+                <label for="location" class="font-Satoshi500 !text-[1rem]">Location</label>
+                <div
+                  class="bg-[#fff] w-full mt-[0.5rem] font-light font-Satoshi400 !p-4 border-gray-300 border-[0.509px] opacity-[0.8029] rounded-[6.828px] text-[0.88rem]"
+                >
+                  <select
+                    v-model="country"
+                    :bordered="false"
+                    :show-arrow="false"
+                    class="w-full !outline-none !px-0 cursor-pointer text-[#000000] font-Satoshi500 leading-[1.75rem]"
+                    show-search
+                    @change="getCountryCode"
+                  >
+  
+                    <option disabled value="Nigeria" class="text-[1rem] font-Satoshi500">Nigeria</option>
+                    <option v-for="country in countries?.data" :key="country.id" :value="country.iso2" 
+                    class="text-[0.88rem]"
+                    >
+                      {{ country.name }}
+                    </option>
+                  </select>
+                </div>
+                <div
+                  class="bg-[#fff] w-full mt-[0.5rem] font-light font-Satoshi400 !p-4 border-gray-300 border-[0.509px] opacity-[0.8029] rounded-[6.828px] text-[0.88rem]"
+                >
+                  <select
+                    v-model="filterOptions.location"
+                    :bordered="false"
+                    :show-arrow="false"
+                    class="w-full !outline-none !px-0 cursor-pointer text-[#000000] font-Satoshi500 leading-[1.75rem]"
+                    show-search
+                  >
+  
+                    <option disabled value="Select State" class="text-[1rem] font-Satoshi500">Select State</option>
+                    <option v-for="state in states?.data" :key="state.id" :value="state.name" class="text-[0.88rem]">
+                      {{ state.name }}
+                    </option>
+                  </select>
+                </div>
+              </div>
       
-              <FormGroup
+              <!-- <FormGroup
                   v-model="filterOptions.location"
                   labelClasses="font-Satoshi500 !text-[1rem]"
                   label=" Location"
@@ -617,7 +717,7 @@ const selectCandidateType = (item) => {
                   type="text"
                   inputClasses="w-full mt-[0.5rem] font-light font-Satoshi500 !p-4 border-[#EDEDED] border-[0.509px] opacity-[0.8029] rounded-t-[6.828px] text-[0.88rem]"
                   >
-              </FormGroup>
+              </FormGroup> -->
       
               <div
               class="w-full font-Satoshi500 !p-0 !text-[1.13638rem] leading-[2.55681rem] text-[#000] !bg-transparent !pb-6 !border-b-2 border-[#666666]"
