@@ -541,61 +541,52 @@ onMounted(async()=>{
               </p>
             </div>
           </div>
-          <!-- <div class="!my-10">
-            <p class="text-[#00000066] font-Satoshi400 text-[23.998px]">
-              All
-              <span v-if="filteredJobs?.length > 0">
-                {{filteredJobs?.length}}
-              </span>
-              <span v-else class="text-[#000000] 
-              font-Satoshi500">0</span>
-              candidates found from <span class="text-[#000000] font-Satoshi500">{{talent?.pagination?.total}}</span>
-            </p>
-          </div> -->
-          <!-- <PagePreLoader /> -->
-           <!-- <div v-if="isFilterApplied" class="mt-14 flex flex-col gap-8">
-            <JobCard class="w-full" v-for="item in mobFilteredJobs" :key="item" :talent="item" />
-           </div> -->
-           
-             <div v-if="!filteredJobs && isLoading" class="mt-14 flex flex-col gap-8">
-               <JobCard
-                 class="w-full"
-                 v-for="item in paginatedTalent"
-                 :key="item"
-                 :talent="item"
-               />
+          <div v-if="filteredJobs?.length < 1" class="w-full h-[20rem] grid place-items-center">
+            <h3>Sorry!! There are no jobs matching your search parameters at this moment</h3>
+          </div>
+           <div v-else>
+            <div v-if="!isLoading">
+              <div v-if="!filteredJobs" class="mt-14 flex flex-col gap-8">
+                <JobCard
+                  class="w-full"
+                  v-for="item in paginatedTalent"
+                  :key="item"
+                  :talent="item"
+                />
+              </div>
+              <div v-else class="mt-14 flex flex-col gap-8">
+                <JobCard class="w-full" v-for="item in filteredJobs" :key="item" :talent="item" />
+              </div>
+ 
+              <div class="mt-12 flex w-[60%] flex-row justify-center mx-auto">
+               <button
+                 @click="setPage(currentPage - 1)"
+                 class="border-[#007582] border-l-2 border-r-2 border-y-2 p-4 py-2 rounded-l-[6.032px] font-Satoshi500 text-[22.621px] items-center flex"
+               >
+                 <Arrow class="rotate-[180deg]"/>
+               </button>
+               <button
+                 v-for="pageNumber in displayedPageNumbers"
+                 :key="pageNumber"
+                 :class="[
+                   'border-[#007582] p-4 py-2 font-Satoshi500 text-[22.621px] items-center flex border-y-2 border-r-2',
+                   pageNumber === currentPage ? 'bg-[#007582] text-white' : '',
+                 ]"
+                 @click="setPage(pageNumber)"
+               >
+                 {{ pageNumber }}
+               </button>
+               <button
+                 @click="setPage(currentPage + 1)"
+                 class="border-[#007582] border-r-2 border-y-2 p-4 py-2 rounded-r-[6.032px] font-Satoshi500 text-[22.621px] items-center flex"
+               >
+                 <Arrow />
+               </button>
              </div>
-             <div v-else class="mt-14 flex flex-col gap-8">
-               <JobCard class="w-full" v-for="item in filteredJobs" :key="item" :talent="item" />
-             </div>
+            </div>
+           </div>
            
           <Loader v-if="isLoading" class="!flex !items-start !justify-center"/>
-    
-          <div class="mt-12 flex w-[60%] flex-row justify-center mx-auto">
-            <button
-              @click="setPage(currentPage - 1)"
-              class="border-[#007582] border-l-2 border-r-2 border-y-2 p-4 py-2 rounded-l-[6.032px] font-Satoshi500 text-[22.621px] items-center flex"
-            >
-              <Arrow class="rotate-[180deg]"/>
-            </button>
-            <button
-              v-for="pageNumber in displayedPageNumbers"
-              :key="pageNumber"
-              :class="[
-                'border-[#007582] p-4 py-2 font-Satoshi500 text-[22.621px] items-center flex border-y-2 border-r-2',
-                pageNumber === currentPage ? 'bg-[#007582] text-white' : '',
-              ]"
-              @click="setPage(pageNumber)"
-            >
-              {{ pageNumber }}
-            </button>
-            <button
-              @click="setPage(currentPage + 1)"
-              class="border-[#007582] border-r-2 border-y-2 p-4 py-2 rounded-r-[6.032px] font-Satoshi500 text-[22.621px] items-center flex"
-            >
-              <Arrow />
-            </button>
-          </div>
         </div>
       </div>
       <Subscribe class="mt-[18.83rem] !mb-14" />

@@ -140,11 +140,8 @@ const filteredJobs = computed(() => {
 
   if (sortInput.experienceLevel && typeof sortInput.experienceLevel === 'string' && sortInput.experienceLevel !== "Experience") {
     filtered = filtered?.filter((item) => {
-      console.log(item)
       const itemExperience = item.experience.toLowerCase().trim();
       const inputExperience = sortInput.experienceLevel.toLowerCase().trim();
-
-      console.log(itemExperience, inputExperience)
       
       if(itemExperience.includes(inputExperience)) {
         return item;
@@ -260,7 +257,6 @@ const getCountryCode = async ()=>{
 }
 
 onMounted(async()=>{
-  console.log('yessss')
   sortInput.Location = "Select State"
   let payload = "NG"
   await skillsStore.handleGetStates(payload);
