@@ -120,6 +120,7 @@ const paginatedTalent = computed(() => {
   const endIndex = startIndex + perPage;
   return talentData.value?.slice(startIndex, endIndex);
 });
+
 const totalPages = computed(() => Math.ceil(pagination.value.last_page));
 
 // Function to change the current page
@@ -393,15 +394,7 @@ onMounted(async()=>{
                   </select>
                 </div>
               </div>
-              <!-- <FormGroup
-                v-model="filterOptions.location"
-                labelClasses="font-Satoshi500 !text-[1rem]"
-                label=" Location"
-                name="Name"
-                placeholder="Abuja. Nigeria"
-                type="text"
-                inputClasses="w-full mt-[0.5rem] font-light font-Satoshi500 !p-4 border-[#EDEDED] border-[0.509px] opacity-[0.8029] rounded-[6.828px] text-[0.88rem]"
-              ></FormGroup> -->
+        
               <div class="flex flex-col gap-[0.5rem] w-full text-left">
                 <Label class="font-Satoshi500 !text-[1rem]">Experience</Label>
                 <div
@@ -470,16 +463,6 @@ onMounted(async()=>{
                       />
                     </div>
                     <span class="text-[#000] font-Satoshi400 text-[1rem] leading-[1.91rem]">USD</span>
-                    <!-- <div class="w-full">
-                      <SelectGroup
-                        labelClasses="font-Satoshi500 hidden text-[15.606px]"
-                        name="Name"
-                        placeholder="currency"
-                        type="text"
-                        :items="['USD', 'NGN']"
-                        inputClasses="w-full mt-0 font-light font-Satoshi400 bg-white !p-2 border-[#EDEDED] border-[0.509px] opacity-[0.8029] rounded-[6.828px] text-[0.88rem]"
-                      />
-                    </div> -->
                   </div>
                 </div>
                 <div class="flex mt-[0.97rem]">
@@ -495,28 +478,6 @@ onMounted(async()=>{
                   max="250" 
                   :min="lowestRate" 
                   class="w-full range-slider cursor-pointer" @input="handleMaxPrice" />
-                    <!-- <input 
-                      type="range" 
-                      v-model="rateMin" 
-                      :min="lowestRate"
-                      :max="highestRate" 
-                      step="1"
-                      class="mt-[0.97rem] w-full cursor-pointer rotate-[180deg]"
-                    />
-                    <input 
-                      type="range" 
-                      v-model="rateMax" 
-                      :max="highestRate"
-                      :min="lowestRate" 
-                      step="1"
-                      class="mt-[0.97rem] w-full cursor-pointer"
-                    /> -->
-                    <!-- <vue-slider
-                  v-model="range"
-                  :tooltip="'none'"
-                  :enable-cross="false"
-                ></vue-slider> -->
-
                 </div>
               </div>
               <div class="flex flex-col gap-[0.5rem] w-full text-left">

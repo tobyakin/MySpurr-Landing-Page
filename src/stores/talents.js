@@ -15,6 +15,7 @@ export const useTalentsStore = defineStore('talents', () => {
       console.error(error)
     }
   }
+
   const getSingleTalent = async (uuid) => {
     try {
       singleTalent.value = await getOneTalents(uuid)
@@ -38,6 +39,6 @@ export const useTalentsStore = defineStore('talents', () => {
     singleTalent,
     getSingleTalent,
     SingleTalentPortfolio,
-    talentPortfolio
+    talentPortfolio,
   }
 })
