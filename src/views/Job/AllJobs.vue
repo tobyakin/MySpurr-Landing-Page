@@ -22,7 +22,7 @@ const jobsStore = useJobsStore();
 const { Job } = storeToRefs(jobsStore);
 const router = useRouter();
 const skillsStore = useSkillsStore();
-const { states, countries } = storeToRefs(skillsStore);
+const { states, countries, skills } = storeToRefs(skillsStore);
 const country = ref('Nigeria')
 const showMobFilter = ref(false)
 
@@ -149,7 +149,7 @@ const filteredJobs = computed(() => {
     });
   }
 
-  if (sortInput.Category) {
+  if (sortInput.Category && sortInput.Category !== "Search Skills") {
     filtered = filtered.filter((item) =>
       item.skills.some((skill) =>
         skill.name.toLowerCase().includes(sortInput.Category.toLowerCase())
@@ -182,7 +182,7 @@ const resetFilters = () => {
   sortInput.jobType = "";
   sortInput.Location = "Select State";
   sortInput.experienceLevel = "";
-  sortInput.Category = "";
+  sortInput.Category = "Search Skills";
   sortInput.currency = "";
   rateMin.value = "";
   rateMax.value = "";
@@ -190,9 +190,9 @@ const resetFilters = () => {
 
 const isFilter = computed(()=>{
   if(showMobFilter.value){
-    return sortInput.name.length > 0 || sortInput.Location !== "Select State" || sortInput.experienceLevel !== "Experience" || sortInput.jobType !== "Candidate Type" || sortInput.Category.length > 0
+    return sortInput.name.length > 0 || sortInput.Location !== "Select State" || sortInput.experienceLevel !== "Experience" || sortInput.jobType !== "Candidate Type" || sortInput.Category !== "Search Skills"
   } else {
-    return sortInput.name.length > 0 || sortInput.Location !== "Select State" || sortInput.experienceLevel.length > 0 || sortInput.jobType?.length > 0 || rateMin.value?.length > 0 || rateMax.value?.length > 0 || sortInput.Category.length > 0
+    return sortInput.name.length > 0 || sortInput.Location !== "Select State" || sortInput.experienceLevel.length > 0 || sortInput.jobType?.length > 0 || rateMin.value?.length > 0 || rateMax.value?.length > 0 || sortInput.Category !== "Search Skills"
   }
 })
 
@@ -246,7 +246,6 @@ onMounted(async () => {
 watchEffect(() => {
   const searchQuery = router.currentRoute.value.query.search;
   if (searchQuery) {
-    // Set the search query in your component's data
     sortInput.name = searchQuery;
   }
 });
@@ -258,9 +257,11 @@ const getCountryCode = async ()=>{
 
 onMounted(async()=>{
   sortInput.Location = "Select State"
+  sortInput.Category = "Search Skills"
   let payload = "NG"
   await skillsStore.handleGetStates(payload);
   await skillsStore.getCountriesCode()
+  await skillsStore.getSkills();
 })
 
 
@@ -286,15 +287,27 @@ onMounted(async()=>{
                 type="text"
                 inputClasses="w-full mt-[0.5rem] font-light font-Satoshi400 !p-4 border-[#EDEDED] border-[0.509px] opacity-[0.8029] rounded-[6.828px] text-[0.88rem]"
               ></FormGroup>
-              <FormGroup
-                v-model="sortInput.Category"
-                labelClasses="font-Satoshi500 !text-[1rem]"
-                label=" Skill"
-                name="Name"
-                placeholder="Name or keyword"
-                type="text"
-                inputClasses="w-full mt-[0.5rem] font-light font-Satoshi400 !p-4 border-[#EDEDED] border-[0.509px] opacity-[0.8029] rounded-[6.828px] text-[0.88rem]"
-              ></FormGroup>
+             
+              <div>
+                <label for="location" class="font-Satoshi500 !text-[1rem]">Skills</label>
+                <div
+                  class="bg-[#fff] w-full mt-[0.5rem] font-light font-Satoshi400 !p-4 border-gray-300 border-[0.509px] opacity-[0.8029] rounded-[6.828px] text-[0.88rem]"
+                >
+                  <select
+                    v-model="sortInput.Category"
+                    :bordered="false"
+                    :show-arrow="false"
+                    class="w-full !outline-none !px-0 cursor-pointer text-[#000000] font-Satoshi500 leading-[1.75rem]"
+                    show-search
+                  >
+  
+                    <option disabled value="Search Skills" class="text-[1rem] font-Satoshi500">Search Skills</option>
+                    <option v-for="skill in skills?.data" :key="skill.id" :value="skill.name" class="text-[0.88rem]">
+                      {{ skill.name }}
+                    </option>
+                  </select>
+                </div>
+              </div>
 
               <div>
                 <label for="location" class="font-Satoshi500 !text-[1rem]">Location</label>
@@ -513,17 +526,26 @@ onMounted(async()=>{
                   inputClasses="w-full mt-2 font-light font-Satoshi400 !p-4 border-[#EDEDED] border-[0.509px] opacity-[0.8029] rounded-t-[6.828px] text-[0.88rem]"
                   >
               </FormGroup>
-              <FormGroup
-                  v-model="sortInput.Category"
-                  labelClasses="font-Satoshi500 !text-[1rem]"
-                  label=" Skills"
-                  name="Skills"
-                  placeholder="Graphics Design"
-                  type="text"
-                  inputClasses="w-full mt-[0.5rem] font-light font-Satoshi400 !p-4 border-[#EDEDED] border-[0.509px] opacity-[0.8029] rounded-t-[6.828px] text-[0.88rem]"
+              <div>
+                <label for="location" class="font-Satoshi500 !text-[1rem]">Skills</label>
+                <div
+                  class="bg-[#fff] w-full mt-[0.5rem] font-light font-Satoshi400 !p-4 border-gray-300 border-[0.509px] opacity-[0.8029] rounded-[6.828px] text-[0.88rem]"
+                >
+                  <select
+                    v-model="sortInput.Category"
+                    :bordered="false"
+                    :show-arrow="false"
+                    class="w-full !outline-none !px-0 cursor-pointer text-[#000000] font-Satoshi500 leading-[1.75rem]"
+                    show-search
                   >
-              </FormGroup>
-
+  
+                    <option disabled value="Search Skills" class="text-[1rem] font-Satoshi500">Search Skills</option>
+                    <option v-for="skill in skills?.data" :key="skill.id" :value="skill.name" class="text-[0.88rem]">
+                      {{ skill.name }}
+                    </option>
+                  </select>
+                </div>
+              </div>
               <div>
                 <label for="location" class="font-Satoshi500 !text-[1rem]">Location</label>
                 <div

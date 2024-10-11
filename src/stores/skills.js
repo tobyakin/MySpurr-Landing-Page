@@ -8,7 +8,7 @@ export const useSkillsStore = defineStore('skills', () => {
   const jobTitle = ref({})
   const countries = ref({})
   const states = ref({})
-  const getskills = async () => {
+  const getSkills = async () => {
     try {
       skills.value = await getAllSkills()
       return skills.value
@@ -114,7 +114,7 @@ const getCountriesCode = async () => {
   }
   return {
     skills,
-    getskills,
+    getSkills,
     getJobTitles,
     jobTitle,
     countries,

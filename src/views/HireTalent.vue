@@ -19,12 +19,10 @@ import Loader from "@/components/UI/Loader/Loader.vue";
 import { useRoute } from "vue-router";
 import filterBtnIcon from "@/components/icons/filterBtnIcon.vue";
 
-
-
 const talentsStore = useTalentsStore();
 const { talent } = storeToRefs(talentsStore);
 const skillsStore = useSkillsStore();
-const { states, countries } = storeToRefs(skillsStore);
+const { states, countries, skills } = storeToRefs(skillsStore);
 const siteData = reactive({
   title: `MySpurr | Hire talent`,
   description: ``,
@@ -51,16 +49,6 @@ useHead({
   ],
 });
 
-// Define variables and functions for search and filtering
-const filterOptions = reactive({
-  name: "",
-  skills: "",
-  location: "",
-  expertLevel: "",
-  qualification: "",
-  candidateType: ""
-});
-
 let isLoading = ref(false);
 let rateMin = ref(null);
 let rateMax = ref(null);
@@ -70,6 +58,50 @@ const updateRange = (value) => {
   rateMin.value = value[0];
   rateMax.value = value[1];
 };
+
+// Define variables and functions for search and filtering
+
+const filterOptions = reactive({
+  name: "",
+  skills: "",
+  location: "",
+  expertLevel: "",
+  qualification: "",
+  candidateType: ""
+});
+
+const filters = computed(() => ({
+  search: filterOptions.name,
+  skill: filterOptions.skills !== "Search Skills" ? filterOptions.skills : "",
+  location: filterOptions.location !== "Select State"  ? filterOptions.location : "",
+  experience: filterOptions.expertLevel !== "Experience" && typeof filterOptions.expertLevel === "string" ? filterOptions.expertLevel : "",
+  qualification: filterOptions.qualification !== "Qualification" && typeof filterOptions.qualification === "string" ? filterOptions.qualification : "",
+  employment_type: typeof filterOptions.candidateType === 'string' && filterOptions.candidateType !== "Candidate Type"? filterOptions.candidateType : "",
+  salary_min: rateMin.value || "",
+  salary_max: rateMax.value || ""
+}));
+
+const handleFilter = async () => {
+  isLoading.value = true;
+  try {
+    await talentsStore.allTalents(1, filters.value);
+    isLoading.value = false;
+  } catch (error) {
+    console.error(error);
+    isLoading.value = false;
+  } finally {
+    isLoading.value = false;
+  }
+};
+
+watch([() => filterOptions.name, 
+        () => filterOptions.skills, 
+        () => filterOptions.location, 
+        () => filterOptions.expertLevel, 
+        () => filterOptions.qualification, 
+        () => filterOptions.candidateType, 
+        () => rateMin.value, 
+        () => rateMax.value], handleFilter);
 
 const showFilter = ()=>{
   showMobFilter.value = !showMobFilter.value
@@ -144,7 +176,8 @@ const displayedPageNumbers = computed(() => {
 
 // You can also watch the currentPage to react to page changes
 watch(currentPage, async (newPage) => {
-  await talentsStore.allTalents(newPage);
+  await talentsStore.allTalents(newPage, filters.value);
+  console.log(filters.value)
 });
 
 const rates = computed(()=>{
@@ -158,70 +191,10 @@ const lowestRate = computed(() => Math.min(...(rates.value.length ? rates.value 
 // const highestRate = computed(()=> Math.max(...rates.value))
 // const lowestRate = computed(()=> Math.min(...rates.value))
 
-const filteredJobs = computed(() => {
-  let filtered = talent.value?.data; // Create a shallow copy of the jobs array
-
-  // let filterOptions = filterOptions
-
-  // Filtering based on the search criteria
-  if (filterOptions.name) {
-    filtered = filtered?.filter((item) =>
-      item?.first_name?.toLowerCase().includes(filterOptions?.name?.toLowerCase())
-    );
-  }
-  if (filterOptions.skills) {
-    filtered = filtered?.filter((item) =>
-      item.skill_title.toLowerCase().includes(filterOptions.skills.toLowerCase())
-    );
-  }
-
-  if (filterOptions.location && filterOptions.location !== "Select State" ) {
-    filtered = filtered?.filter((item) =>
-      item?.location?.toLowerCase().includes(filterOptions?.location?.toLowerCase())
-    );
-  }
-
-  if (filterOptions.candidateType && typeof filterOptions.candidateType === 'string' && filterOptions.candidateType !== "Candidate Type") {
-    filtered = filtered?.filter((item) =>
-      item.employment_type
-        .toLowerCase()
-        .includes(filterOptions.candidateType.toLowerCase())
-    );
-  }
-
-  if (filterOptions.expertLevel && typeof filterOptions.expertLevel === 'string' && filterOptions.expertLevel !== "Experience") {
-    filtered = filtered?.filter((item) => {
-        if(item.experience_level.toLowerCase() === filterOptions.expertLevel.toLowerCase()){
-        return item
-      }
-    })
-  }
-
-  if (filterOptions.qualification && typeof filterOptions.qualification === 'string' && filterOptions.qualification !== "Qualification") {
-    filtered = filtered?.filter((item) =>
-      item.highest_education
-        .toLowerCase()
-        .includes(filterOptions.qualification.toLowerCase())
-    );
-  }
-
-  // Filtering by Rate within the specified range
-  if (rateMin.value || rateMax.value) {
-    filtered = filtered?.filter((item) => {
-      const rate = parseFloat(item.rate);
-      const min = rateMin.value ? parseFloat(rateMin.value) : Number.MIN_SAFE_INTEGER;
-      const max = rateMax.value ? parseFloat(rateMax.value) : Number.MAX_SAFE_INTEGER;
-
-      return rate >= min && rate <= max;
-    });
-  }
-  return filtered;
-});
-
 
 const resetFilters = () => {
   filterOptions.name = "";
-  filterOptions.skills = "";
+  filterOptions.skills = "Search Skills";
   filterOptions.location = "Select State";
   filterOptions.expertLevel = "";
   filterOptions.qualification = "";
@@ -235,9 +208,9 @@ const resetFilters = () => {
 
 const isFilter = computed(()=>{
   if(showMobFilter.value){
-    return filterOptions.name.length > 0 || filterOptions.skills.length > 0 || filterOptions.location !== "Select State" || filterOptions.expertLevel !== "Experience" || filterOptions.qualification !== "Qualification" || filterOptions.candidateType !== "Candidate Type"
+    return filterOptions.name.length > 0 || filterOptions.skills !== "Search Skills" || filterOptions.location !== "Select State" || filterOptions.expertLevel !== "Experience" || filterOptions.qualification !== "Qualification" || filterOptions.candidateType !== "Candidate Type" || rateMax.value || rateMin.value
   } else {
-    return filterOptions.name.length > 0 || filterOptions.skills.length > 0 || filterOptions.location !== "Select State" || filterOptions.expertLevel.length > 0 || filterOptions.qualification.length > 0 || filterOptions.candidateType?.length > 0 || rateMin.value?.length > 0 || rateMax.value?.length > 0 || category.value?.length > 0 || location.value?.length > 0 || keyword.value?.length > 0
+    return filterOptions.name.length > 0 || filterOptions.skills !== "Search Skills" || filterOptions.location !== "Select State" || filterOptions.expertLevel.length > 0 || filterOptions.qualification.length > 0 || filterOptions.candidateType?.length > 0 || rateMin.value?.length > 0 || rateMax.value?.length > 0 || category.value?.length > 0 || location.value?.length > 0 || keyword.value?.length > 0 || rateMax.value || rateMin.value
   }
 })
 
@@ -261,7 +234,8 @@ onMounted(async () => {
   querySearch()
   try {
     isLoading.value = true;
-    await talentsStore.allTalents(currentPage.value);
+    await talentsStore.allTalents(1);
+    console.log(talent.value.data)
     isLoading.value = false;
   } catch (error) {
     isLoading.value = false;
@@ -270,18 +244,7 @@ onMounted(async () => {
     isLoading.value = false;
   }
 });
-// const getTalentsData = async (page) => {
-//   let response = await talentsStore.allTalents(page);
-//   return response;
-// };
 
-// const { isLoading } = useQuery(["talents"], getTalentsData, {
-//   retry: 10,
-//   staleTime: 10000,
-//   onSuccess: (data) => {
-//     talent.value = data;
-//   },
-// });
 const CandidateType = ["Freelance", "Full-time", "Part-time", "Internship", "Contract"];
 const qualification = ["Certificate", "Bachelors", "Masters ", "Doctorate "];
 const Experience = [
@@ -319,9 +282,11 @@ const getCountryCode = async ()=>{
 
 onMounted(async()=>{
   filterOptions.location = "Select State"
+  filterOptions.skills = "Search Skills"
   let payload = "NG"
   await skillsStore.handleGetStates(payload);
-  await skillsStore.getCountriesCode()
+  await skillsStore.getCountriesCode();
+  await skillsStore.getSkills();
 })
 </script>
 
@@ -345,15 +310,28 @@ onMounted(async()=>{
                 type="text"
                 inputClasses="w-full mt-2 font-light font-Satoshi400 !p-4 border-[#EDEDED] border-[0.509px] opacity-[0.8029] rounded-[6.828px] text-[0.88rem]"
               ></FormGroup>
-              <FormGroup
-                v-model="filterOptions.skills"
-                labelClasses="font-Satoshi500 !text-[1rem]"
-                label=" Skills"
-                name="Name"
-                placeholder="Graphics Design"
-                type="text"
-                inputClasses="w-full mt-[0.5rem] font-light font-Satoshi400 !p-4 border-[#EDEDED] border-[0.509px] opacity-[0.8029] rounded-[6.828px] text-[0.88rem]"
-              ></FormGroup>
+              <div>
+                <label for="location" class="font-Satoshi500 !text-[1rem]">Skills</label>
+                <div
+                  class="bg-[#fff] w-full mt-[0.5rem] font-light font-Satoshi400 !p-4 border-gray-300 border-[0.509px] opacity-[0.8029] rounded-[6.828px] text-[0.88rem]"
+                >
+                  <select
+                    v-model="filterOptions.skills"
+                    :bordered="false"
+                    :show-arrow="false"
+                    class="w-full !outline-none !px-0 cursor-pointer text-[#000000] font-Satoshi500 leading-[1.75rem]"
+                    show-search
+                  >
+                    <option disabled value="Search Skills" class="text-[1rem] font-Satoshi500">Search Skills</option>
+                    <option v-for="skill in skills?.data" :key="skill.id" :value="skill.name" 
+                    class="text-[0.88rem]"
+                    >
+                      {{ skill.name }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+
               <div>
                 <label for="location" class="font-Satoshi500 !text-[1rem]">Location</label>
                 <div
@@ -532,21 +510,21 @@ onMounted(async()=>{
               </p>
               <p v-else class="text-[#00000066] font-Satoshi400 text-[1.49rem] mob:text-[1.2rem]">
                 All
-                <span v-if="filteredJobs?.length > 0" class="text-[#000000] 
+                <span v-if="talent?.data?.length > 0" class="text-[#000000] 
                 font-Satoshi500">
-                  {{filteredJobs?.length}}
+                  {{talent?.data?.length}}
                 </span>
                 <span v-else class="text-[#000000] 
                 font-Satoshi500">0</span> candidates found
               </p>
             </div>
           </div>
-          <div v-if="filteredJobs?.length < 1" class="w-full h-[20rem] grid place-items-center">
+          <div v-if="talent?.data?.length < 1" class="w-full h-[20rem] grid place-items-center">
             <h3>Sorry!! There are no jobs matching your search parameters at this moment</h3>
           </div>
-           <div v-else>
+           <div>
             <div v-if="!isLoading">
-              <div v-if="!filteredJobs" class="mt-14 flex flex-col gap-8">
+              <div v-if="!talent?.data" class="mt-14 flex flex-col gap-8">
                 <JobCard
                   class="w-full"
                   v-for="item in paginatedTalent"
@@ -555,7 +533,7 @@ onMounted(async()=>{
                 />
               </div>
               <div v-else class="mt-14 flex flex-col gap-8">
-                <JobCard class="w-full" v-for="item in filteredJobs" :key="item" :talent="item" />
+                <JobCard class="w-full" v-for="item in talent?.data" :key="item" :talent="item" />
               </div>
  
               <div class="mt-12 flex w-[60%] flex-row justify-center mx-auto">
@@ -619,6 +597,26 @@ onMounted(async()=>{
                   >
               </FormGroup>
 
+              <div>
+                <label for="location" class="font-Satoshi500 !text-[1rem]">Skills</label>
+                <div
+                  class="bg-[#fff] w-full mt-[0.5rem] font-light font-Satoshi400 !p-4 border-gray-300 border-[0.509px] opacity-[0.8029] rounded-[6.828px] text-[0.88rem]"
+                >
+                  <select
+                    v-model="filterOptions.skills"
+                    :bordered="false"
+                    :show-arrow="false"
+                    class="w-full !outline-none !px-0 cursor-pointer text-[#000000] font-Satoshi500 leading-[1.75rem]"
+                    show-search
+                  >
+  
+                    <option disabled value="Search Skills" class="text-[1rem] font-Satoshi500">Search Skills</option>
+                    <option v-for="skill in skills?.data" :key="skill.id" :value="skill.name" class="text-[0.88rem]">
+                      {{ skill.name }}
+                    </option>
+                  </select>
+                </div>
+              </div>
               <div>
                 <label for="location" class="font-Satoshi500 !text-[1rem]">Location</label>
                 <div

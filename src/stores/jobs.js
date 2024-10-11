@@ -14,6 +14,7 @@ export const useJobsStore = defineStore('jobs', () => {
       console.error(error)
     }
   }
+  
   const handleGetJobDetailsBySlug = async (slug) => {
     try {
       JobDetails.value = await viewJobsDetailsBySlug(slug)

@@ -1,16 +1,23 @@
 import axios from '../axios'
 import { catchAxiosError, catchAxiosSuccess } from './Response'
 
-export const getAllTalents = async (page) => {
+export const getAllTalents = async (page, filters) => {
   try {
-    let res = await axios.get(`talents?page=${page}`)
-    catchAxiosSuccess(res.data)
+    const params = new URLSearchParams({
+      page,
+      ...filters
+    }).toString();
+
+    let res = await axios.get(`talents?${params}`);
+    catchAxiosSuccess(res.data);
     return res.data;
   } catch (error) {
-    catchAxiosError(error)
-    throw error
+    catchAxiosError(error);
+    throw error;
   }
-}
+};
+
+
 export const getOneTalents = async (uuid) => {
   try {
     let res = await axios.get(`talent/${uuid}`)
@@ -24,7 +31,6 @@ export const getOneTalents = async (uuid) => {
 export const getSingleTalentPortfolio = async (id) => {
   try {
     let res = await axios.get(`talent/portfolio/single/${id}`)
-    // catchAxiosSuccess(res)
     return res.data
   } catch (error) {
     catchAxiosError(error)
