@@ -392,7 +392,7 @@ onMounted(async()=>{
                         class="w-[1.55156rem] h-[1.55156rem] rounded-[0.2865rem] border-[1.528px] border-[#0000001a] bg-[#fff] cursor-pointer"
                         @change="selectExperienceLevel(item.name)"
                       />
-                      <span>{{ item.name }} ({{ item.year }} years)</span>
+                      <span>{{ item.name }} {{ item.year }} years</span>
                     </label>
                   </div>
                 </div>
@@ -586,16 +586,6 @@ onMounted(async()=>{
                   inputClasses="w-full mt-2 font-light font-Satoshi400 !p-4 border-[#EDEDED] border-[0.509px] opacity-[0.8029] rounded-t-[6.828px] text-[0.88rem]"
                   >
               </FormGroup>
-              <FormGroup
-                  v-model="filterOptions.skills"
-                  labelClasses="font-Satoshi500 !text-[1rem]"
-                  label=" Skills"
-                  name="Skills"
-                  placeholder="Graphics Design"
-                  type="text"
-                  inputClasses="w-full mt-[0.5rem] font-light font-Satoshi400 !p-4 border-[#EDEDED] border-[0.509px] opacity-[0.8029] rounded-t-[6.828px] text-[0.88rem]"
-                  >
-              </FormGroup>
 
               <div>
                 <label for="location" class="font-Satoshi500 !text-[1rem]">Skills</label>
@@ -657,18 +647,6 @@ onMounted(async()=>{
                   </select>
                 </div>
               </div>
-      
-              <!-- <FormGroup
-                  v-model="filterOptions.location"
-                  labelClasses="font-Satoshi500 !text-[1rem]"
-                  label=" Location"
-                  name="Location"
-                  placeholder="Abuja. Nigeria"
-                  type="text"
-                  inputClasses="w-full mt-[0.5rem] font-light font-Satoshi500 !p-4 border-[#EDEDED] border-[0.509px] opacity-[0.8029] rounded-t-[6.828px] text-[0.88rem]"
-                  >
-              </FormGroup> -->
-      
               <div
               class="w-full font-Satoshi500 !p-0 !text-[1.13638rem] leading-[2.55681rem] text-[#000] !bg-transparent !pb-6 !border-b-2 border-[#666666]"
               >
@@ -683,7 +661,7 @@ onMounted(async()=>{
                   >
                       <option disabled value="Experience">Experience</option>
                       <option v-for="item in Experience" :key="item.name" :value="item.name">
-                      {{ item.name }} ({{ item.year }})
+                      {{ item.name }} {{ item.year }}
                       </option>
                   </select>
               </div>
