@@ -364,7 +364,6 @@ onMounted(async()=>{
                         type="checkbox"
                         :value="item"
                         :checked="sortInput.jobType === item"
-                        v-model="sortInput.jobType"
                         class="w-[1.55156rem] h-[1.55156rem] rounded-[0.2865rem] border-[1.528px] border-[#0000001a] bg-[#fff] cursor-pointer"
                         @change="selectCandidateType(item)"
                       />
@@ -389,7 +388,6 @@ onMounted(async()=>{
                         type="checkbox"
                         :value="item?.name"
                         :checked="sortInput.experienceLevel === item?.name"
-                        v-model="sortInput.experienceLevel"
                         class="w-[1.55156rem] h-[1.55156rem] rounded-[0.2865rem] border-[1.528px] border-[#0000001a] bg-[#fff] cursor-pointer"
                         @change="selectExperienceLevel(item.name)"
                       />

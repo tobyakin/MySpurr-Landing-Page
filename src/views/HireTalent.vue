@@ -277,9 +277,9 @@ const Experience = [
 
 const selectExperienceLevel = (level) => { 
   if (filterOptions.expertLevel === level) {
-    filterOptions.expertLevel = ''; // Uncheck if the same item is clicked again
+    filterOptions.expertLevel = '';
   } else {
-    filterOptions.expertLevel = level; // Set the new selected item
+    filterOptions.expertLevel = level;
   }
 };
 
