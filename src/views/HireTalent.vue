@@ -1,7 +1,7 @@
 <script setup>
 import Navbar from "@/components/Navbar/Navbar.vue";
 import Footer from "@/components/Footer.vue";
-import { onMounted, computed, reactive, ref, watch } from "vue";
+import { onMounted, computed, reactive, ref, watch, onUnmounted } from "vue";
 import { useHead } from "@vueuse/head";
 import { storeToRefs } from "pinia";
 import GoPro from "@/components/Bander/GoPro.vue";
@@ -94,19 +94,36 @@ const handleFilter = async () => {
   }
 };
 
-watch([() => filterOptions.name, 
-        () => filterOptions.skills, 
-        () => filterOptions.location, 
-        () => filterOptions.expertLevel, 
-        () => filterOptions.qualification, 
-        () => filterOptions.candidateType, 
-        () => rateMin.value, 
-        () => rateMax.value], handleFilter);
+watch([
+  () => filterOptions.name, 
+  () => filterOptions.skills, 
+  () => filterOptions.location, 
+  () => filterOptions.expertLevel, 
+  () => filterOptions.qualification, 
+  () => filterOptions.candidateType, 
+  () => rateMin.value, 
+  () => rateMax.value
+], async () => {
+  await handleFilter();
+});
 
 const showFilter = ()=>{
   showMobFilter.value = !showMobFilter.value
+  const screenWidth = window.innerWidth
 
-  if (showMobFilter.value) {
+  // if (screenWidth <= 1160) {
+  //   filterOptions.expertLevel = "Experience";
+  //   filterOptions.qualification = "Qualification";
+  //   filterOptions.candidateType = "Candidate Type";
+  // } else {
+  //   filterOptions.expertLevel = "";
+  //   filterOptions.qualification = "";
+  //   filterOptions.candidateType = "";
+  // }
+}
+
+const handleScreenResize = (event) => {
+  if (event.matches) {
     filterOptions.expertLevel = "Experience";
     filterOptions.qualification = "Qualification";
     filterOptions.candidateType = "Candidate Type";
@@ -115,7 +132,7 @@ const showFilter = ()=>{
     filterOptions.qualification = "";
     filterOptions.candidateType = "";
   }
-}
+};
 
 const toggleFilter = ()=>{
   showMobFilter.value = false
@@ -177,7 +194,6 @@ const displayedPageNumbers = computed(() => {
 // You can also watch the currentPage to react to page changes
 watch(currentPage, async (newPage) => {
   await talentsStore.allTalents(newPage, filters.value);
-  console.log(filters.value)
 });
 
 const rates = computed(()=>{
@@ -204,10 +220,16 @@ const resetFilters = () => {
   category.value = "";
   location.value = "";
   keyword.value = "";
+
+  if(showMobFilter.value){
+    showMobFilter.value = false
+  }
 };
 
+
 const isFilter = computed(()=>{
-  if(showMobFilter.value){
+  const screenWidth = window.innerWidth
+  if(screenWidth <= 1160){
     return filterOptions.name.length > 0 || filterOptions.skills !== "Search Skills" || filterOptions.location !== "Select State" || filterOptions.expertLevel !== "Experience" || filterOptions.qualification !== "Qualification" || filterOptions.candidateType !== "Candidate Type" || rateMax.value || rateMin.value
   } else {
     return filterOptions.name.length > 0 || filterOptions.skills !== "Search Skills" || filterOptions.location !== "Select State" || filterOptions.expertLevel.length > 0 || filterOptions.qualification.length > 0 || filterOptions.candidateType?.length > 0 || rateMin.value?.length > 0 || rateMax.value?.length > 0 || category.value?.length > 0 || location.value?.length > 0 || keyword.value?.length > 0 || rateMax.value || rateMin.value
@@ -235,7 +257,6 @@ onMounted(async () => {
   try {
     isLoading.value = true;
     await talentsStore.allTalents(1);
-    console.log(talent.value.data)
     isLoading.value = false;
   } catch (error) {
     isLoading.value = false;
@@ -253,13 +274,15 @@ const Experience = [
   { name: "Expert", year: "(6-10 yrs)" },
   { name: "More than", year: " 10yrs" },
 ];
-const selectExperienceLevel = (level) => {
+
+const selectExperienceLevel = (level) => { 
   if (filterOptions.expertLevel === level) {
-    filterOptions.expertLevel = '';
+    filterOptions.expertLevel = ''; // Uncheck if the same item is clicked again
   } else {
-    filterOptions.expertLevel = level;
+    filterOptions.expertLevel = level; // Set the new selected item
   }
 };
+
 const selectQualification = (item) => {
   if (filterOptions.qualification === item) {
     filterOptions.qualification = '';
@@ -267,6 +290,7 @@ const selectQualification = (item) => {
     filterOptions.qualification = item;
   }
 };
+
 const selectCandidateType = (item) => {
   if (filterOptions.candidateType === item) {
     filterOptions.candidateType = '';
@@ -281,6 +305,15 @@ const getCountryCode = async ()=>{
 }
 
 onMounted(async()=>{
+  const mediaQuery = window.matchMedia('(max-width: 1160px)');
+  mediaQuery.addEventListener('change', handleScreenResize);
+
+  handleScreenResize(mediaQuery);
+
+  onUnmounted(() => {
+    mediaQuery.removeEventListener('change', handleScreenResize);
+  });
+
   filterOptions.location = "Select State"
   filterOptions.skills = "Search Skills"
   let payload = "NG"
@@ -388,7 +421,7 @@ onMounted(async()=>{
                         type="checkbox"
                         :value="item?.name"
                         :checked="filterOptions.expertLevel === item?.name"
-                        v-model="filterOptions.expertLevel"
+                       
                         class="w-[1.55156rem] h-[1.55156rem] rounded-[0.2865rem] border-[1.528px] border-[#0000001a] bg-[#fff] cursor-pointer"
                         @change="selectExperienceLevel(item.name)"
                       />
@@ -412,7 +445,7 @@ onMounted(async()=>{
                         type="checkbox"
                         :value="item"
                         :checked="filterOptions.qualification === item"
-                        v-model="filterOptions.qualification"
+                       
                         class="w-[1.55156rem] h-[1.55156rem] rounded-[0.2865rem] border-[1.528px] border-[#0000001a] bg-[#fff] cursor-pointer"
                         @change="selectQualification(item)"
                       />
@@ -473,7 +506,7 @@ onMounted(async()=>{
                         type="checkbox"
                         :value="item"
                         :checked="filterOptions.candidateType === item"
-                        v-model="filterOptions.candidateType"
+                       
                         class="w-[1.55156rem] h-[1.55156rem] rounded-[0.2865rem] border-[1.528px] border-[#0000001a] bg-[#fff] cursor-pointer"
                         @change="selectCandidateType(item)"
                       />
@@ -738,17 +771,26 @@ onMounted(async()=>{
                       class="w-full range-slider cursor-pointer" @input="handleMaxPrice" />
                   </div>
               </div>
-              <button
-                @click="toggleFilter"
-                  class="bg-[#31795A] text-white w-full text-center mx-auto p-4 py-4 justify-center rounded-full font-Satoshi500 text-[12.103px] items-center flex mt-[0.5rem]"
-                  :class="
-                    !isFilter
-                      ? 'bg-gray-300 cursor-not-allowed'
-                      : 'bg-[#31795A] btn-hover-2'
-                  "
-                >
-                  Apply Filter
-                </button>
+              <div class="flex items-center" :class="isFilter? 'gap-4': 'gap-0'">
+                <button
+                  @click="toggleFilter"
+                    class="bg-[#31795A] text-white w-full text-center mx-auto p-4 py-4 justify-center rounded-full font-Satoshi500 text-[12.103px] items-center flex mt-[0.5rem]"
+                    :class="
+                      !isFilter
+                        ? 'bg-gray-300 cursor-not-allowed'
+                        : 'bg-[#31795A] btn-hover-2'
+                    "
+                  >
+                    Apply Filter
+                  </button>
+                <button
+                  @click="resetFilters"
+                    class="bg-[#31795A] text-white w-full text-center mx-auto p-4 py-4 justify-center rounded-full font-Satoshi500 text-[12.103px] items-center flex mt-[0.5rem] btn-hover-2"
+                    v-if="isFilter"
+                  >
+                    Reset Filter
+                  </button>
+              </div>
             </div>
         </section>
       </div>

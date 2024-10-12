@@ -17,7 +17,6 @@ export const getAllTalents = async (page, filters) => {
   }
 };
 
-
 export const getOneTalents = async (uuid) => {
   try {
     let res = await axios.get(`talent/${uuid}`)
