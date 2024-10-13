@@ -6,15 +6,16 @@ export const useTalentsStore = defineStore('talents', () => {
   const talent = ref({})
   const singleTalent = ref({})
   const talentPortfolio = ref({})
-
-  const allTalents = async (page) => {
+  
+  const allTalents = async (page, filters) => {
     try {
-      talent.value = await getAllTalents(page)
-      return talent.value
+      talent.value = await getAllTalents(page, filters);
+      return talent.value;
     } catch (error) {
-      console.error(error)
+      console.error("Error fetching talents:", error);
     }
-  }
+  };
+  
   const getSingleTalent = async (uuid) => {
     try {
       singleTalent.value = await getOneTalents(uuid)
@@ -23,6 +24,7 @@ export const useTalentsStore = defineStore('talents', () => {
       console.error(error)
     }
   }
+  
   const SingleTalentPortfolio = async (id) => {
     try {
       talentPortfolio.value = await getSingleTalentPortfolio(id)
