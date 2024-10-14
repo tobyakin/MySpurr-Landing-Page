@@ -70,6 +70,18 @@ const filterOptions = reactive({
   candidateType: ""
 });
 
+const querySearch = ()=>{
+  if(category.value !== "Job Categories"){
+    filterOptions.candidateType = category.value;
+  }
+  if(location.value !== "Select Location"){
+     filterOptions.location = location.value;
+  }
+  if(keyword.value !== undefined && keyword.value.length > 0){
+    filterOptions.name = keyword.value;
+  }  
+}
+
 const filters = computed(() => ({
   search: filterOptions.name,
   skill: filterOptions.skills !== "Search Skills" ? filterOptions.skills : "",
@@ -236,27 +248,16 @@ const isFilter = computed(()=>{
   }
 })
 
-const querySearch = ()=>{
-  if(category.value !== "Job Categories"){
-    filterOptions.candidateType = category.value || "";
-  }
-  if(location.value !== "Select Location"){
-     filterOptions.location = location.value || "";
-  }
-  if(keyword.value !== undefined && keyword.value.length > 0){
-    filterOptions.name = keyword.value || "";
-  }
-   
-}
-
 onMounted(async () => {
   category.value = route.query.category
   location.value = route.query.location
   keyword.value = route.query.keyword
   querySearch()
+ 
   try {
     isLoading.value = true;
-    await talentsStore.allTalents(1);
+      await talentsStore.allTalents(1, filters.value);
+      
     isLoading.value = false;
   } catch (error) {
     isLoading.value = false;
@@ -537,11 +538,13 @@ onMounted(async()=>{
             </button>
             <div>
               <p class="text-[#00000066] font-Satoshi400 text-[1.49rem] mob:text-[1.2rem]" v-if="!isFilter">
+                <span>paginated {{ isFilter }}</span>
                 All
                 <span class="text-[#000000] font-Satoshi500">{{talent?.pagination?.total}}</span>
                 candidates found
               </p>
               <p v-else class="text-[#00000066] font-Satoshi400 text-[1.49rem] mob:text-[1.2rem]">
+                <span>filtered {{ isFilter }}</span>
                 All
                 <span v-if="talent?.data?.length > 0" class="text-[#000000] 
                 font-Satoshi500">
