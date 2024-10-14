@@ -204,7 +204,8 @@ const setPage = (page) => {
   if (page >= 1 && page <= ( totalPages.value || 1)) {
     currentPage.value = page;
   }
-};
+}
+
 const displayedPageNumbers = computed(() => {
   const maxDisplayedPages = 5;
   const startPage = Math.max(currentPage.value - Math.floor(maxDisplayedPages / 2), 1);
@@ -214,7 +215,6 @@ const displayedPageNumbers = computed(() => {
   for (let i = startPage; i <= endPage; i++) {
     pageNumbers.push(i);
   }
-
   return pageNumbers;
 });
 
@@ -229,20 +229,11 @@ const paginatedJobs = computed(() => {
   return filteredJobs.value?.slice(startIndex, endIndex);
 });
 // You can also watch the currentPage to react to page changes
-watch(currentPage, (newPage) => {
+watch(currentPage, async (newPage) => {
   console.log("Current Page:", newPage);
+  await jobsStore.allJobs(newPage);
 });
-onMounted(async () => {
-  loading.value = true;
-  try {
-    await jobsStore.allJobs();
-    getFilteredJobs()
-    loading.value = false;
-  } catch (error) {
-    console.error(error);
-    loading.value = false;
-  }
-});
+
 watchEffect(() => {
   const searchQuery = router.currentRoute.value.query.search;
   if (searchQuery) {
@@ -263,6 +254,18 @@ onMounted(async()=>{
   await skillsStore.getCountriesCode()
   await skillsStore.getSkills();
 })
+
+onMounted(async () => {
+  loading.value = true;
+  try {
+    await jobsStore.allJobs();
+    getFilteredJobs()
+    loading.value = false;
+  } catch (error) {
+    console.error(error);
+    loading.value = false;
+  }
+});
 
 
 </script>

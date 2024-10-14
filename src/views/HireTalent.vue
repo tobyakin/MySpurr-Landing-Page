@@ -16,7 +16,7 @@ import "vue-slider-component/theme/antd.css";
 // import FormSelectGroup from "@/components/Form/Input/SelectGroup.vue";
 // import Label from "@/components/Form/Input/Label.vue";
 import Loader from "@/components/UI/Loader/Loader.vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import filterBtnIcon from "@/components/icons/filterBtnIcon.vue";
 
 const talentsStore = useTalentsStore();
@@ -33,6 +33,7 @@ const keyword = ref('')
 const route = useRoute()
 const showMobFilter = ref(false)
 const country = ref('Nigeria')
+const router = useRouter()
 
 useHead({
   // Can be static or computed
@@ -71,13 +72,13 @@ const filterOptions = reactive({
 });
 
 const querySearch = ()=>{
-  if(category.value !== "Job Categories"){
+  if(route.query.category && category.value !== "Job Categories"){
     filterOptions.candidateType = category.value;
   }
-  if(location.value !== "Select Location"){
+  if(route.query.location && location.value !== "Select Location"){
      filterOptions.location = location.value;
   }
-  if(keyword.value !== undefined && keyword.value.length > 0){
+  if(route.querykeyword && keyword.value !== undefined && keyword.value.length > 0){
     filterOptions.name = keyword.value;
   }  
 }
@@ -214,11 +215,6 @@ const rates = computed(()=>{
 
 const highestRate = computed(() => Math.max(...(rates.value.length ? rates.value : [0])));
 const lowestRate = computed(() => Math.min(...(rates.value.length ? rates.value : [0])));
- 
-
-// const highestRate = computed(()=> Math.max(...rates.value))
-// const lowestRate = computed(()=> Math.min(...rates.value))
-
 
 const resetFilters = () => {
   filterOptions.name = "";
@@ -233,39 +229,24 @@ const resetFilters = () => {
   location.value = "";
   keyword.value = "";
 
+  router.push({
+    name: 'hire-talent',
+    query: {}
+  });
+
   if(showMobFilter.value){
     showMobFilter.value = false
   }
 };
-
 
 const isFilter = computed(()=>{
   const screenWidth = window.innerWidth
   if(screenWidth <= 1160){
     return filterOptions.name.length > 0 || filterOptions.skills !== "Search Skills" || filterOptions.location !== "Select State" || filterOptions.expertLevel !== "Experience" || filterOptions.qualification !== "Qualification" || filterOptions.candidateType !== "Candidate Type" || rateMax.value || rateMin.value
   } else {
-    return filterOptions.name.length > 0 || filterOptions.skills !== "Search Skills" || filterOptions.location !== "Select State" || filterOptions.expertLevel.length > 0 || filterOptions.qualification.length > 0 || filterOptions.candidateType?.length > 0 || rateMin.value?.length > 0 || rateMax.value?.length > 0 || category.value?.length > 0 || location.value?.length > 0 || keyword.value?.length > 0 || rateMax.value || rateMin.value
+    return filterOptions.name.length > 0 || filterOptions.skills !== "Search Skills" || filterOptions.location !== "Select State" || filterOptions.expertLevel.length > 0 || filterOptions.qualification.length > 0 || filterOptions.candidateType?.length > 0 || rateMin.value?.length > 0 || rateMax.value?.length > 0 || keyword.value?.length > 0 || rateMax.value || rateMin.value || location.value?.length > 0 && location.value !== "Select Location" || category.value?.length > 0 && category.value !== "Job Categories"
   }
 })
-
-onMounted(async () => {
-  category.value = route.query.category
-  location.value = route.query.location
-  keyword.value = route.query.keyword
-  querySearch()
- 
-  try {
-    isLoading.value = true;
-      await talentsStore.allTalents(1, filters.value);
-      
-    isLoading.value = false;
-  } catch (error) {
-    isLoading.value = false;
-    throw error;
-  } finally {
-    isLoading.value = false;
-  }
-});
 
 const CandidateType = ["Freelance", "Full-time", "Part-time", "Internship", "Contract"];
 const qualification = ["Certificate", "Bachelors", "Masters ", "Doctorate "];
@@ -322,6 +303,23 @@ onMounted(async()=>{
   await skillsStore.getCountriesCode();
   await skillsStore.getSkills();
 })
+
+onMounted(async () => {
+  category.value = route.query.category
+  location.value = route.query.location
+  keyword.value = route.query.keyword
+  try {
+    isLoading.value = true;
+    querySearch();
+      await talentsStore.allTalents(1, filters.value);
+    isLoading.value = false;
+  } catch (error) {
+    isLoading.value = false;
+    throw error;
+  } finally {
+    isLoading.value = false;
+  }
+});
 </script>
 
 <template>
@@ -538,13 +536,11 @@ onMounted(async()=>{
             </button>
             <div>
               <p class="text-[#00000066] font-Satoshi400 text-[1.49rem] mob:text-[1.2rem]" v-if="!isFilter">
-                <span>paginated {{ isFilter }}</span>
                 All
                 <span class="text-[#000000] font-Satoshi500">{{talent?.pagination?.total}}</span>
                 candidates found
               </p>
               <p v-else class="text-[#00000066] font-Satoshi400 text-[1.49rem] mob:text-[1.2rem]">
-                <span>filtered {{ isFilter }}</span>
                 All
                 <span v-if="talent?.data?.length > 0" class="text-[#000000] 
                 font-Satoshi500">
