@@ -85,7 +85,7 @@ const querySearch = ()=>{
 
 const filters = computed(() => ({
   search: filterOptions.name,
-  skill: filterOptions.skills !== "Search Skills" ? filterOptions.skills : "",
+  skill: filterOptions.skills !== "Search Skill Categories" ? filterOptions.skills : "",
   location: filterOptions.location !== "Select State"  ? filterOptions.location : "",
   experience: filterOptions.expertLevel !== "Experience" && typeof filterOptions.expertLevel === "string" ? filterOptions.expertLevel : "",
   qualification: filterOptions.qualification !== "Qualification" && typeof filterOptions.qualification === "string" ? filterOptions.qualification : "",
@@ -218,7 +218,7 @@ const lowestRate = computed(() => Math.min(...(rates.value.length ? rates.value 
 
 const resetFilters = () => {
   filterOptions.name = "";
-  filterOptions.skills = "Search Skills";
+  filterOptions.skills = "Search Skill Categories";
   filterOptions.location = "Select State";
   filterOptions.expertLevel = "";
   filterOptions.qualification = "";
@@ -242,9 +242,9 @@ const resetFilters = () => {
 const isFilter = computed(()=>{
   const screenWidth = window.innerWidth
   if(screenWidth <= 1160){
-    return filterOptions.name.length > 0 || filterOptions.skills !== "Search Skills" || filterOptions.location !== "Select State" || filterOptions.expertLevel !== "Experience" || filterOptions.qualification !== "Qualification" || filterOptions.candidateType !== "Candidate Type" || rateMax.value || rateMin.value
+    return filterOptions.name.length > 0 || filterOptions.skills !== "Search Skill Categories" || filterOptions.location !== "Select State" || filterOptions.expertLevel !== "Experience" || filterOptions.qualification !== "Qualification" || filterOptions.candidateType !== "Candidate Type" || rateMax.value || rateMin.value
   } else {
-    return filterOptions.name.length > 0 || filterOptions.skills !== "Search Skills" || filterOptions.location !== "Select State" || filterOptions.expertLevel.length > 0 || filterOptions.qualification.length > 0 || filterOptions.candidateType?.length > 0 || rateMin.value?.length > 0 || rateMax.value?.length > 0 || keyword.value?.length > 0 || rateMax.value || rateMin.value || location.value?.length > 0 && location.value !== "Select Location" || category.value?.length > 0 && category.value !== "Job Categories"
+    return filterOptions.name.length > 0 || filterOptions.skills !== "Search Skill Categories" || filterOptions.location !== "Select State" || filterOptions.expertLevel.length > 0 || filterOptions.qualification.length > 0 || filterOptions.candidateType?.length > 0 || rateMin.value?.length > 0 || rateMax.value?.length > 0 || keyword.value?.length > 0 || rateMax.value || rateMin.value || location.value?.length > 0 && location.value !== "Select Location" || category.value?.length > 0 && category.value !== "Job Categories"
   }
 })
 
@@ -297,7 +297,7 @@ onMounted(async()=>{
   });
 
   filterOptions.location = "Select State"
-  filterOptions.skills = "Search Skills"
+  filterOptions.skills = "Search Skill Categories"
   let payload = "NG"
   await skillsStore.handleGetStates(payload);
   await skillsStore.getCountriesCode();
@@ -343,7 +343,7 @@ onMounted(async () => {
                 inputClasses="w-full mt-2 font-light font-Satoshi400 !p-4 border-[#EDEDED] border-[0.509px] opacity-[0.8029] rounded-[6.828px] text-[0.88rem]"
               ></FormGroup>
               <div>
-                <label for="location" class="font-Satoshi500 !text-[1rem]">Skills</label>
+                <label for="location" class="font-Satoshi500 !text-[1rem]">Skills Categories</label>
                 <div
                   class="bg-[#fff] w-full mt-[0.5rem] font-light font-Satoshi400 !p-4 border-gray-300 border-[0.509px] opacity-[0.8029] rounded-[6.828px] text-[0.88rem]"
                 >
@@ -354,7 +354,7 @@ onMounted(async () => {
                     class="w-full !outline-none !px-0 cursor-pointer text-[#000000] font-Satoshi500 leading-[1.75rem]"
                     show-search
                   >
-                    <option disabled value="Search Skills" class="text-[1rem] font-Satoshi500">Search Skills</option>
+                    <option disabled value="Search Skill Categories" class="text-[1rem] font-Satoshi500">Search Skill Categories</option>
                     <option v-for="skill in skills?.data" :key="skill.id" :value="skill.name" 
                     class="text-[0.88rem]"
                     >
@@ -620,7 +620,7 @@ onMounted(async () => {
               </FormGroup>
 
               <div>
-                <label for="location" class="font-Satoshi500 !text-[1rem]">Skills</label>
+                <label for="location" class="font-Satoshi500 !text-[1rem]">Skills Categories</label>
                 <div
                   class="bg-[#fff] w-full mt-[0.5rem] font-light font-Satoshi400 !p-4 border-gray-300 border-[0.509px] opacity-[0.8029] rounded-[6.828px] text-[0.88rem]"
                 >
@@ -632,7 +632,7 @@ onMounted(async () => {
                     show-search
                   >
   
-                    <option disabled value="Search Skills" class="text-[1rem] font-Satoshi500">Search Skills</option>
+                    <option disabled value="Search Skill Categories" class="text-[1rem] font-Satoshi500">Search Skill Categories</option>
                     <option v-for="skill in skills?.data" :key="skill.id" :value="skill.name" class="text-[0.88rem]">
                       {{ skill.name }}
                     </option>
