@@ -3,7 +3,7 @@ import { catchAxiosError } from './Response'
 
 export const getAllSkills = async () => {
   try {
-    let res = await axios.get(`skills`)
+    let res = await axios.get(`job-title`)
     return res.data
   } catch (error) {
     catchAxiosError(error)
