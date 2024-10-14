@@ -19,7 +19,7 @@
           </div>
           <div class="lg:text-left text-center">
             <p
-              class="text-[#000000] text-[20.839px] flex lg:flex-row flex-col gap-[8px] lg:justify-start justify-center items-center capitalize font-Satoshi500 leading-[19.739px]"
+              class="text-[#000000] text-[1.302rem] flex lg:flex-row flex-col gap-[8px] lg:justify-start justify-center items-center capitalize font-Satoshi500 leading-[19.739px]"
             >
               <span>
                 {{ props?.talent.first_name }}
@@ -27,23 +27,23 @@
               </span>
               <span
                 v-if="props?.talent?.experience_level"
-                class="bg-[#00474F] rounded-full py-[0.5px] capitalize text-[10.519px] text-[#E6F1F3] font-medium px-[19px]"
+                class="bg-[#00474F] rounded-full py-[0.5px] capitalize text-[0.657rem] text-[#E6F1F3] font-medium px-[19px]"
                 >{{ props?.talent?.experience_level }}</span
               >
             </p>
             <p
-              class="text-[#00000066] text-[16.699px] leading-[20.739px] font-Satoshi400"
+              class="text-[#00000066] text-[1.044rem] leading-[20.739px] font-Satoshi400"
             >
               {{ props?.talent.skill_title }}
             </p>
             <div
               class="flex lg:flex-row flex-col items-center lg:justify-start justify-center gap-2"
             >
-              <p class="lg:text-[19.319px] text-[14px] text-[#244034] font-Satoshi500">
+              <p class="lg:text-[1.207rem] text-[0.875rem] text-[#244034] font-Satoshi500">
                 ${{ props?.talent.rate }}/hr
               </p>
               <div class="h-[6px] bg-[#010101e2] w-[6px] rounded-full"></div>
-              <p class="text-[#244034] lg:text-[19.319px] text-[14px] font-Satoshi500">
+              <p class="text-[#244034] lg:text-[1.207rem] text-[0.875rem] font-Satoshi500">
                 {{ props?.talent.location }}
               </p>
             </div>
@@ -84,7 +84,7 @@
       }"
       class="flex items-center gap-4 mt-6"
     >
-      <p class="lg:text-[20.699px] text-[14px] font-Satoshi500 text-[#244034]">
+      <p class="lg:text-[1.294rem] text-[0.875reem] font-Satoshi500 text-[#244034]">
         View Profile
       </p>
       <ArrowRight />

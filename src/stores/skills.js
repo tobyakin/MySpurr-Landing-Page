@@ -6,9 +6,9 @@ import { getCountries, getStates } from '@/services/Countries'
 export const useSkillsStore = defineStore('skills', () => {
   const skills = ref({})
   const jobTitle = ref({})
-  const contriesCode = ref({})
+  const countries = ref({})
   const states = ref({})
-  const getskills = async () => {
+  const getSkills = async () => {
     try {
       skills.value = await getAllSkills()
       return skills.value
@@ -98,8 +98,8 @@ const industries = ref([
 ])
 const getCountriesCode = async () => {
     try {
-      contriesCode.value = await getCountries()
-      return contriesCode.value
+      countries.value = await getCountries()
+      return countries.value
     } catch (error) {
       console.error('Error fetching contries Code :', error)
     }
@@ -114,10 +114,11 @@ const getCountriesCode = async () => {
   }
   return {
     skills,
-    getskills,
+    getSkills,
     getJobTitles,
     jobTitle,
-    contriesCode,
+    countries,
+    getCountriesCode,
     handleGetStates,
     states,
     industries
