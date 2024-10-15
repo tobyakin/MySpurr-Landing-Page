@@ -40,7 +40,7 @@
 <script setup>
 import mainbg from "@/assets/img/internbander.webp";
 const image = mainbg;
-const dashboardUrl = import.meta.env.VITE_DASHBOARD;
+const dashboardUrl = import.meta.env.VITE_DASHBOARD_HOST;
 import { useRouter } from "vue-router";
 const router = useRouter();
 
