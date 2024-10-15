@@ -149,7 +149,7 @@ const filteredJobs = computed(() => {
     });
   }
 
-  if (sortInput.Category && sortInput.Category !== "Search Skills") {
+  if (sortInput.Category && sortInput.Category !== "Search Skill Categories") {
     filtered = filtered.filter((item) =>
       item.skills.some((skill) =>
         skill.name.toLowerCase().includes(sortInput.Category.toLowerCase())
@@ -182,7 +182,7 @@ const resetFilters = () => {
   sortInput.jobType = "";
   sortInput.Location = "Select State";
   sortInput.experienceLevel = "";
-  sortInput.Category = "Search Skills";
+  sortInput.Category = "Search Skill Categories";
   sortInput.currency = "";
   rateMin.value = "";
   rateMax.value = "";
@@ -190,9 +190,9 @@ const resetFilters = () => {
 
 const isFilter = computed(()=>{
   if(showMobFilter.value){
-    return sortInput.name.length > 0 || sortInput.Location !== "Select State" || sortInput.experienceLevel !== "Experience" || sortInput.jobType !== "Candidate Type" || sortInput.Category !== "Search Skills"
+    return sortInput.name.length > 0 || sortInput.Location !== "Select State" || sortInput.experienceLevel !== "Experience" || sortInput.jobType !== "Candidate Type" || sortInput.Category !== "Search Skill Categories"
   } else {
-    return sortInput.name.length > 0 || sortInput.Location !== "Select State" || sortInput.experienceLevel.length > 0 || sortInput.jobType?.length > 0 || rateMin.value?.length > 0 || rateMax.value?.length > 0 || sortInput.Category !== "Search Skills"
+    return sortInput.name.length > 0 || sortInput.Location !== "Select State" || sortInput.experienceLevel.length > 0 || sortInput.jobType?.length > 0 || rateMin.value?.length > 0 || rateMax.value?.length > 0 || sortInput.Category !== "Search Skill Categories"
   }
 })
 
@@ -204,7 +204,8 @@ const setPage = (page) => {
   if (page >= 1 && page <= ( totalPages.value || 1)) {
     currentPage.value = page;
   }
-};
+}
+
 const displayedPageNumbers = computed(() => {
   const maxDisplayedPages = 5;
   const startPage = Math.max(currentPage.value - Math.floor(maxDisplayedPages / 2), 1);
@@ -214,7 +215,6 @@ const displayedPageNumbers = computed(() => {
   for (let i = startPage; i <= endPage; i++) {
     pageNumbers.push(i);
   }
-
   return pageNumbers;
 });
 
@@ -229,20 +229,11 @@ const paginatedJobs = computed(() => {
   return filteredJobs.value?.slice(startIndex, endIndex);
 });
 // You can also watch the currentPage to react to page changes
-watch(currentPage, (newPage) => {
+watch(currentPage, async (newPage) => {
   console.log("Current Page:", newPage);
+  await jobsStore.allJobs(newPage);
 });
-onMounted(async () => {
-  loading.value = true;
-  try {
-    await jobsStore.allJobs();
-    getFilteredJobs()
-    loading.value = false;
-  } catch (error) {
-    console.error(error);
-    loading.value = false;
-  }
-});
+
 watchEffect(() => {
   const searchQuery = router.currentRoute.value.query.search;
   if (searchQuery) {
@@ -257,12 +248,24 @@ const getCountryCode = async ()=>{
 
 onMounted(async()=>{
   sortInput.Location = "Select State"
-  sortInput.Category = "Search Skills"
+  sortInput.Category = "Search Skill Categories"
   let payload = "NG"
   await skillsStore.handleGetStates(payload);
   await skillsStore.getCountriesCode()
   await skillsStore.getSkills();
 })
+
+onMounted(async () => {
+  loading.value = true;
+  try {
+    await jobsStore.allJobs();
+    getFilteredJobs()
+    loading.value = false;
+  } catch (error) {
+    console.error(error);
+    loading.value = false;
+  }
+});
 
 
 </script>
@@ -289,7 +292,7 @@ onMounted(async()=>{
               ></FormGroup>
              
               <div>
-                <label for="location" class="font-Satoshi500 !text-[1rem]">Skills</label>
+                <label for="location" class="font-Satoshi500 !text-[1rem]">Skills Categories</label>
                 <div
                   class="bg-[#fff] w-full mt-[0.5rem] font-light font-Satoshi400 !p-4 border-gray-300 border-[0.509px] opacity-[0.8029] rounded-[6.828px] text-[0.88rem]"
                 >
@@ -301,7 +304,7 @@ onMounted(async()=>{
                     show-search
                   >
   
-                    <option disabled value="Search Skills" class="text-[1rem] font-Satoshi500">Search Skills</option>
+                    <option disabled value="Search Skill Categories" class="text-[1rem] font-Satoshi500">Search Skill Categories</option>
                     <option v-for="skill in skills?.data" :key="skill.id" :value="skill.name" class="text-[0.88rem]">
                       {{ skill.name }}
                     </option>
@@ -525,7 +528,7 @@ onMounted(async()=>{
                   >
               </FormGroup>
               <div>
-                <label for="location" class="font-Satoshi500 !text-[1rem]">Skills</label>
+                <label for="location" class="font-Satoshi500 !text-[1rem]">Skills Categories</label>
                 <div
                   class="bg-[#fff] w-full mt-[0.5rem] font-light font-Satoshi400 !p-4 border-gray-300 border-[0.509px] opacity-[0.8029] rounded-[6.828px] text-[0.88rem]"
                 >
@@ -537,7 +540,7 @@ onMounted(async()=>{
                     show-search
                   >
   
-                    <option disabled value="Search Skills" class="text-[1rem] font-Satoshi500">Search Skills</option>
+                    <option disabled value="Search Skill Categories" class="text-[1rem] font-Satoshi500">Search Skill Categories</option>
                     <option v-for="skill in skills?.data" :key="skill.id" :value="skill.name" class="text-[0.88rem]">
                       {{ skill.name }}
                     </option>

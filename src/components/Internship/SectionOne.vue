@@ -42,7 +42,7 @@
 import mainbg from "@/assets/img/internBg.webp";
 import PlayButton from "@/components/icons/playButton.vue";
 const image = mainbg;
-const dashboardUrl = import.meta.env.VITE_DASHBOARD;
+const dashboardUrl = import.meta.env.VITE_DASHBOARD_HOST;
 </script>
 
 <style scoped>
