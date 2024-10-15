@@ -6,9 +6,9 @@ export const useJobsStore = defineStore('jobs', () => {
   const Job = ref([])
   const JobDetails = ref({})
 
-  const allJobs = async () => {
+  const allJobs = async (page) => {
     try {
-      Job.value = await getAllJobs()
+      Job.value = await getAllJobs(page)
       return Job.value
     } catch (error) {
       console.error(error)
