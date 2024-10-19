@@ -140,11 +140,12 @@
                 <div
                     class=" items-center justify-between gap-[96px]"
                   >
-                    <p class="text-[1.75rem] text-[#000] font-Satoshi500 leading-[3rem] !my-[3.88rem]">Intro</p>
+                    <p class="text-[1.75rem] text-[#000] font-Satoshi500 leading-[3rem] !mt-[3.88rem]">Introductory Video</p>
                     <div
-                    class="text-[#000000BF] bg-[#E1E1E1] h-[27.625rem] rounded-[9.56px] border-[0.96px] border-[#E1E1E1] font-Satoshi400 text-justify text-[16px] leading-[35px]"
-                  >
-                  </div> 
+                      class="text-[#000000BF] mt-4"
+                    >
+                      <h3>*No introductory video yet</h3>
+                    </div>
                 </div>
               </div>
             

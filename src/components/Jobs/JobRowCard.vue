@@ -44,11 +44,11 @@ defineProps({
     />
     <div class="flex lg:flex-row flex-col lg:justify-normal justify-center lg:items-start items-center gap-3 w-full">
       <div
-        class="w-[71.011px] h-[61.011px] bg-[#EAEAEA] rounded-full flex justify-center items-center object-contain"
+        class="w-[3.8rem] h-[3.8rem] bg-[#EAEAEA] rounded-[50%] flex justify-center items-center object-contain"
       >
         <img
-          class="h-[61.011px] w-[61.011px] object-cover rounded-full"
-          :src="job?.company?.logo"
+          class="h-full w-full object-cover rounded-full"
+          :src="job?.company?.company_logo"
           :alt="job?.company.business_name"
         />
       </div>
@@ -87,7 +87,7 @@ defineProps({
         <div class="flex flex-col justify-between mt-5">
           <div class="flex lg:flex-row flex-col gap-4 items-center">
             <div>
-              <p class="text-[17.633px] font-Satoshi500 text-[#244034B2]">
+              <p class="text-[1.1rem] font-Satoshi500 text-[#244034B2]">
                 {{ job?.currency }} {{ store.abbr(job?.salary_min) }}-
                 {{ store.abbr(job?.salary_max) }}/
                 {{ job?.salaray_type }}
@@ -95,12 +95,12 @@ defineProps({
             </div>
             <div class="flex lg:flex-row flex-col gap-2 items-center">
               <div
-                class="flex gap-1 text-[10px] lg:text-[14.334px] text-[#DA5252] items-center font-Satoshi500"
+                class="flex gap-1 text-[10px] lg:text-[0.83rem] text-[#DA5252] items-center font-Satoshi500"
               >
                 <CalenderIcon /><span class="py-[0.25px]">{{ job?.date_created }}</span>
               </div>
               <div
-                class="flex gap-1 text-[10px] lg:text-[14.334px] text-[#DA5252] items-center font-Satoshi500"
+                class="flex gap-1 text-[10px] lg:text-[0.83rem] text-[#DA5252] items-center font-Satoshi500"
               >
                 <LocationIcon /><span class="py-[0.25px]"
                   >{{ job?.state }}, {{ job?.country }}</span
@@ -118,7 +118,7 @@ defineProps({
               <div
                 v-for="skill in job?.skills"
                 :key="skill"
-                class="bg-[#F2F3EF] font-Satoshi500 text-[10px] lg:text-[12.135px] uppercase p-[4px] lg:px-6 px-4 text-[#64665D] rounded-full"
+                class="bg-[#F2F3EF] font-Satoshi500 text-[10px] lg:text-[0.76rem] uppercase p-[4px] lg:px-6 px-4 text-[#64665D] rounded-full"
               >
                 {{ skill.name }}
               </div>
