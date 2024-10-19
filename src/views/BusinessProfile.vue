@@ -44,7 +44,7 @@
                   {{business?.location}}
                   </p>
                   <a
-                  :href="business?.website"
+                  :href="formattedWebsite"
                   target="_blank"
                   class="underline text-[13.63px] cursor-pointer font-Satoshi500 text-[#244034]"
                   >
@@ -118,7 +118,7 @@
                     <SearchIconVeritical />
                   </button>
                   <button
-                    class="btn-brand !bg-[#31795A] !border-none text-center flex items-start !py-2 !text-white"
+                    class="btn-brand !bg-[#31795A] !border-none text-center flex items-start !py-2 !text-white btn-hover-2"
                     @click="redirectToMessage"
                   >
                     <span style="display: grid; place-content: center" class="">Message</span>
@@ -199,6 +199,10 @@
       <!-- </template>
       </Vue3Html2pdf> -->
       <Footer />
+      <SiginPrompt 
+      v-if="showPopup" 
+      @close="handleClose"
+      />
     </div>
   </template>
 
@@ -230,6 +234,7 @@ import { useToast } from "vue-toastification";
 const Maps = defineAsyncComponent(() => import("@/components/Map/Map.vue"));
 import Loader from "@/components/UI/Loader/Loader.vue";
 import { useBusinessStore } from "@/stores/business";
+import SiginPrompt from "@/components/UI/SiginPrompt.vue";
 
 const businessStore = useBusinessStore();
 const { singleBusiness, businessOpenJobs } = storeToRefs(businessStore);
@@ -245,9 +250,26 @@ const toast = useToast();
 const loading = ref(false);
 let loadMyjobs = ref(false);
 const url = import.meta.env.VITE_DASHBOARD;
+const showPopup = ref(false)
+
+const formattedWebsite = computed(() => {
+  const website = singleBusiness.value?.data?.website || '';
+  if (website && !website.startsWith('http://') && !website.startsWith('https://')) {
+    return `http://${website}`;  // You can default to http, or change to https
+  }
+  return website;
+});
+
+
+
 const redirectToMessage = () => {
-  window.open(url + `messages`, "_blank");
+  // window.open(url + `messages`, "_blank");
+  showPopup.value = true
 };
+
+const handleClose = ()=>{
+  showPopup.value = false
+}
 
 // Pagination Function
 
