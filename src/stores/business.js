@@ -9,9 +9,9 @@ export const useBusinessStore = defineStore('business', ()=>{
     const singleBusiness = ref([])
     const businessOpenJobs = ref([])
 
-    const handleSingleBusiness = async (uuid) => {
+    const handleSingleBusiness = async (uuid, page) => {
         try {
-            singleBusiness.value = await getSingleBusiness(uuid)
+            singleBusiness.value = await getSingleBusiness(uuid, page)
             return singleBusiness.value
         } catch (error) {
             console.log(error)
