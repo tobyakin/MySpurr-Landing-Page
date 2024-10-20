@@ -12,9 +12,9 @@ export const getSingleBusiness = async (uuid, page)=>{
     }
 }
 
-export const getBusinessOpenJobs = async (id)=>{
+export const getBusinessOpenJobs = async (id, page)=>{
     try {
-        let res = await axios.get(`business/${id}/open-jobs`)
+        let res = await axios.get(`business/${id}/open-jobs?page=${page}`)
         catchAxiosSuccess(res.data)
         return res.data;
     } catch (error) {

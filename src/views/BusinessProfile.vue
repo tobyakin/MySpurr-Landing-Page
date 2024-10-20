@@ -309,7 +309,7 @@ const displayedPageNumbers = computed(() => {
 
 watch(currentPage, async (newPage) => {
   console.log("Current Page:", newPage);
-  await talentsStore.allTalents(newPage);
+  await businessStore.handleSingleBusiness(route.params?.id, newPage)
 });
 
 const printPage = () => {
