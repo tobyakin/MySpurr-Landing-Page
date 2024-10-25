@@ -71,15 +71,15 @@ const props = defineProps({
     />
     <div class="flex lg:flex-row flex-col lg:justify-normal justify-center lg:items-start items-center gap-3 w-full">
       <div
-        class="w-[3.8rem] h-[3.8rem] bg-[#EAEAEA] rounded-[50%] flex justify-center items-center object-contain"
+        class="!w-[4rem] h-[4rem] bg-[#EAEAEA] !rounded-[50%] overflow-hidden flex-shrink-0"
       >
         <img
-          class="h-full w-full object-cover rounded-full"
+          class="w-full h-full object-cover"
           :src="props?.job?.company?.company_logo"
           :alt="props?.job?.company.business_name"
         />
       </div>
-      <div class="w-full">
+      <div class="flex-1">
         <div class="flex lg:justify-start justify-center items-center gap-1 cursor-pointer" @click="redirectToProfile(props?.job?.company?.business_name, props?.job?.id)">
           <p class="text-[13.021px] font-Satoshi500 flex text-[#2F929C]">
             {{ props?.job?.company.business_name }}
@@ -160,7 +160,7 @@ const props = defineProps({
                 </button>
               </div>
               <button
-                @click="redirectToprops?.jobDetails(props?.job?.company?.business_name, props?.job?.slug)"
+                @click="redirectToJobDetails(props?.job?.company?.business_name, props?.job?.slug)"
                 class="font-Satoshi500 bg-[#43D0DF] text-[9.708px] p-3 px-12 text-white rounded-full btn-hover-1"
               >
                 <span>Apply</span>
