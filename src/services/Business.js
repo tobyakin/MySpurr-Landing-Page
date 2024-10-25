@@ -1,9 +1,9 @@
 import axios from '../axios'
 import { catchAxiosError, catchAxiosSuccess } from './Response'
 
-export const getSingleBusiness = async (uuid)=>{
+export const getSingleBusiness = async (uuid, page)=>{
     try {
-        let res = await axios.get(`business/${uuid}`)
+        let res = await axios.get(`business/${uuid}?page=${page}`)
         catchAxiosSuccess(res.data)
         return res.data;
     } catch (error) {
@@ -12,9 +12,9 @@ export const getSingleBusiness = async (uuid)=>{
     }
 }
 
-export const getBusinessOpenJobs = async (id)=>{
+export const getBusinessOpenJobs = async (id, page)=>{
     try {
-        let res = await axios.get(`business/${id}/open-jobs`)
+        let res = await axios.get(`business/${id}/open-jobs?page=${page}`)
         catchAxiosSuccess(res.data)
         return res.data;
     } catch (error) {
