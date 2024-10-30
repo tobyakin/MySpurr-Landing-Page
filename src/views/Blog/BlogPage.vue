@@ -1,28 +1,26 @@
 <script setup>
-import { computed, reactive } from 'vue'
-import SearchBarIcon from '@/components/icons/searchBarIcon.vue'
-import Navbar from '@/components/Navbar/Navbar.vue'
-import Footer from '@/components/Footer.vue'
-import FormGroup from '@/components/Form/Input/FormGroup.vue'
-import Arrow from '@/components/icons/paginationArrow.vue'
-import BlogCard from '@/components/Blog/BlogCard.vue'
+import { computed, reactive, ref, onMounted } from 'vue';
+import SearchBarIcon from '@/components/icons/searchBarIcon.vue';
+import Navbar from '@/components/Navbar/Navbar.vue';
+import Footer from '@/components/Footer.vue';
+import FormGroup from '@/components/Form/Input/FormGroup.vue';
+import Arrow from '@/components/icons/paginationArrow.vue';
+import BlogCard from '@/components/Blog/BlogCard.vue';
 import { useBlogStore } from '../../stores/blog';
-import { ref, onMounted } from 'vue'
 import Loader from "@/components/UI/Loader/Loader.vue";
-// import { storeToRefs } from "pinia";
-import WorkFlow from '@/components/Bander/WorkFlow.vue'
+import WorkFlow from '@/components/Bander/WorkFlow.vue';
 import { useHead } from '@vueuse/head';
 
-const tab = ref('ALL')
-const allBlog = ref([])
-const filteredBlog = ref([])
+const tab = ref('ALL');
+const allBlog = ref([]);
+const filteredBlog = ref([]);
 const currentPage = ref(1);
 const totalPages = ref(1);
-const perPage = ref(25); // Assuming 25 per page, change if different
+const perPage = ref(9); // Set items per page to 9
 const displayedPageNumbers = ref([]);
 const categories = ref([]);
-const blog = useBlogStore()
-const loading = ref(false)
+const blog = useBlogStore();
+const loading = ref(false);
 
 const siteData = reactive({
   title: `MySpurr | Blog`,
@@ -30,7 +28,6 @@ const siteData = reactive({
 });
 
 useHead({
-  // Can be static or computed
   title: computed(() => siteData.title),
   meta: [
     {
@@ -50,20 +47,22 @@ const filterTab = (category) => {
 };
 
 const fetchBlogs = async (page = 1, category = 'ALL') => {
-  loading.value = true
+  loading.value = true;
   const res = await blog.allBlogs(page, category);
   allBlog.value = res.data;
-  filteredBlog.value = category === 'ALL' ? allBlog.value : allBlog.value.filter(blog => blog.category_id === category);
+  
+  // Filter blogs based on the selected category and slice to show only 9 items per page
+  filteredBlog.value = category === 'ALL'
+    ? allBlog.value.slice((page - 1) * perPage.value, page * perPage.value)
+    : allBlog.value.filter(blog => blog.category_id === category)
+        .slice((page - 1) * perPage.value, page * perPage.value);
+
   currentPage.value = res.pagination.current_page;
-  totalPages.value = res.pagination.last_page;
-  perPage.value = res.pagination.per_page;
+  totalPages.value = Math.ceil((category === 'ALL' ? allBlog.value.length : filteredBlog.value.length) / perPage.value);
 
-  displayedPageNumbers.value = Array.from(
-    { length: totalPages.value },
-    (_, i) => i + 1
-  );
+  updateDisplayedPageNumbers();
 
-  loading.value = false
+  loading.value = false;
 };
 
 const fetchCategories = async () => {
@@ -71,17 +70,40 @@ const fetchCategories = async () => {
   categories.value = res.data;
 };
 
+// Function to display five page numbers at a time based on the current page
+const updateDisplayedPageNumbers = () => {
+  const startPage = Math.max(1, currentPage.value - 2);
+  const endPage = Math.min(totalPages.value, startPage + 4);
+  
+  displayedPageNumbers.value = Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
+};
+
 const goToPage = (page) => {
   if (page >= 1 && page <= totalPages.value) {
-    fetchBlogs(page);
+    currentPage.value = page;
+
+    // Set items per page
+    const itemsPerPage = 9;
+    const start = (currentPage.value - 1) * itemsPerPage;
+    const end = currentPage.value * itemsPerPage;
+
+    // Filter and slice based on selected category and page number
+    filteredBlog.value = tab.value === 'ALL'
+      ? allBlog.value.slice(start, end)
+      : allBlog.value
+          .filter(blog => blog.category_id === tab.value)
+          .slice(start, end);
+
+    // Update displayed page numbers if needed
+    updateDisplayedPageNumbers();
   }
 };
+
 
 onMounted(() => {
   fetchBlogs();
   fetchCategories();
 });
-
 </script>
 
 <template>
@@ -99,7 +121,7 @@ onMounted(() => {
             name="Name"
             placeholder="Search.."
             type="text"
-            inputClasses="w-full mt-2 font-light font-Satoshi400  bg-[#F4F4F4] !p-2 border-[#EDEDED] border-[0.509px] opacity-[0.8029] rounded-[6.828px] text-[12.68px]"
+            inputClasses="w-full mt-2 font-light font-Satoshi400 bg-[#F4F4F4] !p-2 border-[#EDEDED] border-[0.509px] opacity-[0.8029] rounded-[6.828px] text-[12.68px]"
           ></FormGroup>
         </div>
       </div>
@@ -111,9 +133,7 @@ onMounted(() => {
       <Loader v-if="loading" />
       <div v-else>
         <div class="font-Satoshi400 !my-10 pb-10">
-          <ul
-            class="hidden !my-16 md:flex text-sm justify-between font-semibold flex-wrap gap-y-[40px]"
-          >
+          <ul class="hidden !my-16 md:flex text-sm justify-between font-semibold flex-wrap gap-y-[40px]">
             <li>
               <a
                 href="javascript:void(0)"
@@ -128,9 +148,7 @@ onMounted(() => {
               <a
                 href="javascript:void(0)"
                 @click="filterTab(category.id)"
-                :class="{
-                  'border-b-[#007582] border-b-[2.224px]': tab === category.id
-                }"
+                :class="{ 'border-b-[#007582] border-b-[2.224px]': tab === category.id }"
                 class="px-0 py-2 hover:border-b-[#007582]"
               >
                 {{ category.name }}
@@ -157,65 +175,41 @@ onMounted(() => {
               />
             </div>
           </template>
+          
           <div class="mt-12 flex w-[60%] flex-row justify-center mx-auto">
+            <button
+              @click="goToPage(currentPage - 1)"
+              :disabled="currentPage === 1"
+              :class="{ 'opacity-50 !border-r-0 cursor-no': currentPage === 1 }"
+              class="border-[#007582] border-l-2 border-r-2 border-y-2 px-4 py-2 rounded-l-[6.032px] font-Satoshi500 text-[1.41rem] items-center flex"
+            >
+              <Arrow class="rotate-[180deg]" />
+            </button>
             <button
               v-for="pageNumber in displayedPageNumbers"
               :key="pageNumber"
               :class="[
-                'border-[#007582] p-4 py-2 font-Satoshi500 text-[22.621px] items-center flex',
-                pageNumber === 1
-                  ? 'border-t-2 border-b-2 border-l-2 rounded-l-[6.032px]'
-                  : 'border-y-2 border-r-2',
-                pageNumber === currentPage ? 'bg-[#007582] text-white' : ''
+                'border-[#007582] p-4 py-2 font-Satoshi500 text-[1.41rem] items-center flex border-y-2 border-r-2',
+                pageNumber === currentPage ? 'bg-[#007582] text-white' : '',
               ]"
               @click="goToPage(pageNumber)"
             >
               {{ pageNumber }}
             </button>
             <button
-              @click="goToPage(currentPage + 5)"
-              class="border-[#007582] border-r-2 border-y-2 p-4 py-2 rounded-r-[6.032px] font-Satoshi500 text-[22.621px] items-center flex"
+              @click="goToPage(currentPage + 1)"
+              :disabled="currentPage === totalPages"
+              class="border-[#007582] border-r-2 border-y-2 p-4 py-2 rounded-r-[6.032px] font-Satoshi500 text-[1.41rem] items-center flex"
+              :class="{ 'opacity-50 cursor-no': currentPage === totalPages }"
             >
               <Arrow />
             </button>
           </div>
+          
           <WorkFlow />
-          <!-- <ul
-            v-if="blog.links"
-            class="flex items-center gap-2 w-full text-sm justify-center"
-          >
-            <li
-              v-if="blog.links.prev"
-              class="px-5 py-1 cursor-pointer rounded-3xl text-xs"
-              @click="goToPrevPage(blog.meta.current_page - 1)"
-            >
-              Prev
-            </li>
-            <li
-              v-for="page in pages"
-              :key="page"
-              class="px-5 py-1 cursor-pointer rounded-3xl text-xs"
-              :class="{
-                'bg-[#878787] text-white': blog.meta.current_page === page,
-                'bg-white': blog.meta.current_page !== page,
-              }"
-              @click="goToPage(page)"
-            >
-              {{ page }}
-            </li>
-            <li
-              v-if="blog.links.next"
-              class="px-5 py-1 text-xs cursor-pointer rounded-3xl bg-[#3A3A3A] text-white"
-              @click="goToNextPage(blog.meta.current_page + 1)"
-            >
-              Older
-            </li>
-          </ul> -->
         </div>
       </div>
     </div>
     <Footer />
   </div>
 </template>
-
-<style scoped></style>
