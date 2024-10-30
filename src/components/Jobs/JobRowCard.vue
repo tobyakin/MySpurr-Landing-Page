@@ -75,7 +75,7 @@ const props = defineProps({
       >
         <img
           class="w-full h-full object-cover"
-          :src="props?.job?.company?.company_logo"
+          :src="props?.job?.company?.logo"
           :alt="props?.job?.company.business_name"
         />
       </div>
