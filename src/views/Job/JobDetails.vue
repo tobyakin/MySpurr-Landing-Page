@@ -1,6 +1,6 @@
 <script setup>
 import { onMounted, ref, onUnmounted } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { storeToRefs } from "pinia";
 import SearchIcon from "@/components/icons/circleSearchIcon.vue";
 import Navbar from "@/components/Navbar/Navbar.vue";
@@ -38,11 +38,17 @@ const store = useNumberFomateStore();
 const jobsStore = useJobsStore();
 const { JobDetails } = storeToRefs(jobsStore);
 const route = useRoute();
+const router = useRouter()
 
 const url = import.meta.env.VITE_DASHBOARD_HOST;
 const redirectToJobDetails = () => {
   window.open(url + `signup`, "_blank");
 };
+
+const redirectToBusinessProfile = (id) => {
+  const name = JobDetails.value?.data?.company?.business_name.toLowerCase().replace(/ /g, '-') 
+  router.push({ name: 'business-profile', params: { name, id}})
+}
 
 defineProps({ singleJob: Object });
 onMounted(async () => {
@@ -76,10 +82,11 @@ onUnmounted(() => {
               :alt="JobDetails?.data?.company?.business_name + `logo`"
             />
           </div>
+          <!-- {{ JobDetails?.data?.company?.business_name }} -->
           <div class="w-full">
             <div class="flex lg:flex-row flex-col gap-4 justify-center lg:items-start items-center lg:justify-between">
               <div class=" flex flex-col lg:items-start items-center">
-                <p class="text-[22.805px] font-Satoshi400 lg:text-left text-center items-center lg:items-start flex text-[#000]">
+                <p class="text-[22.805px] font-Satoshi400 lg:text-left text-center items-center lg:items-start flex text-[#000] cursor-pointer hover:font-[600] transitionItem" @click="redirectToBusinessProfile(JobDetails?.data?.company?.uuid)">
                   {{ JobDetails?.data?.company?.business_name }}
                 </p>
                 <div class="flex mt-1 gap-1">

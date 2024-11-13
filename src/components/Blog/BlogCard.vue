@@ -17,12 +17,12 @@
 
       <router-link :to="{ name: 'SingleBlog', params: { category:blog.category_slug, slug: blog.slug } }">
         <h3
-          class="font-extralight font-Satoshi500 text-[20px] md:text-[20px] lg:text-[20px] leading-[25px] text-[#007582] !my-4"
+          class="font-extralight font-Satoshi500 text-[1.25rem] md:text-[1.25rem] lg:text-[1.25rem] leading-[1.56rem] text-[#007582] !my-4"
         >
           {{ props.heading }}
         </h3>
       </router-link>
-      <div class="text-[#AAAAAA] font-Satoshi400 text-[16.844px] h-9 p-2">
+      <div class="text-[#AAAAAA] font-Satoshi400 text-[1.05rem] h-9 p-2">
         {{ dateFormat(props.date) }}
       </div>
     </div>

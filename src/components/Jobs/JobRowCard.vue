@@ -67,7 +67,7 @@ const props = defineProps({
   >
     <RatedBadge
       v-if="props?.job?.is_highlighted === '1'"
-      class="absolute top-0 left-0 !text-red-600"
+      class="absolute top-0 left-0 !text-[#2F929C]"
     />
     <div class="flex lg:flex-row flex-col lg:justify-normal justify-center lg:items-start items-center gap-3 w-full">
       <div
@@ -75,7 +75,7 @@ const props = defineProps({
       >
         <img
           class="w-full h-full object-cover"
-          :src="props?.job?.company?.company_logo"
+          :src="props?.job?.company?.logo"
           :alt="props?.job?.company.business_name"
         />
       </div>
