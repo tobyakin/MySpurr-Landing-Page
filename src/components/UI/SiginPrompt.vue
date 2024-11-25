@@ -15,7 +15,7 @@
             </div>
             <div>
                 <h3 class="font-Satoshi700 text-[#01181B] text-[1.78rem] leading-[2.06rem] !mb-4">Create an account or Sign in to start a conversation</h3>
-                <p class="text-[#011B1F] font-Satoshi400 text-[1.5rem] leading-[1.94rem] !mb-[3.44rem]">
+                <p class="text-[#011B1F] font-Satoshi400 text-[1.1rem] leading-[1.94rem] !mb-[3.44rem]">
                     Whether you're a business looking to hire top-tier African talent or a talent ready to elevate your career, MySpurr is here to connect you.
                 </p>
             </div>
