@@ -78,7 +78,7 @@ const querySearch = ()=>{
   if(route.query.location && location.value !== "Select Location"){
      filterOptions.location = location.value;
   }
-  if(route.querykeyword && keyword.value !== undefined && keyword.value.length > 0){
+  if(route.query.keyword && keyword.value !== undefined && keyword.value.length > 0){
     filterOptions.name = keyword.value;
   }  
 }
@@ -191,6 +191,7 @@ const setPage = (page) => {
     currentPage.value = page;
   }
 };
+
 const displayedPageNumbers = computed(() => {
   const maxDisplayedPages = 5;
   const startPage = Math.max(currentPage.value - Math.floor(maxDisplayedPages / 2), 1);
@@ -552,7 +553,7 @@ onMounted(async () => {
             </div>
           </div>
           <div v-if="talent?.data?.length < 1" class="w-full h-[20rem] grid place-items-center">
-            <h3>Sorry!! There are no jobs matching your search parameters at this moment</h3>
+            <h3>Sorry!! There are no talents matching your search parameters at this moment</h3>
           </div>
            <div>
             <div v-if="!isLoading">
