@@ -17,6 +17,8 @@ import Loader from "@/components/UI/Loader/Loader.vue";
 const loading = ref(false);
 import { useSkillsStore } from "@/stores/skills";
 import filterBtnIcon from "@/components/icons/filterBtnIcon.vue";
+import Tabs from "@/components/Jobs/Tabs.vue";
+import ComingSoon from "@/components/UI/ComingSoon.vue";
 
 const jobsStore = useJobsStore();
 const { Job } = storeToRefs(jobsStore);
@@ -458,53 +460,70 @@ onMounted(async () => {
           <div>
             <button 
             @click="showFilter"
-            class="items-center gap-[0.71rem] bg-[#31795A] text-[#fff] px-8 py-6 rounded-[2.4375rem] w-[9rem] btn-hover-2 hidden searchBreak:flex mob:py-4">
+            class="items-center gap-[0.71rem] bg-[#31795A] text-[#fff] px-8 py-4 rounded-[2.4375rem] w-[9rem] btn-hover-2 hidden searchBreak:flex mob:py-4">
               <filterBtnIcon />
               <span class="text-[1.13638rem] mob:text-[1rem] font-Satoshi500 leading-[ 2.55681rem]">Filter</span>
             </button>
           </div>
-          <div v-if="filteredJobs?.length < 1" class="w-full h-[20rem] grid place-items-center">
-            <h3>Sorry!! There are no jobs matching your search parameters at this moment</h3>
-          </div>
-          <div v-else>
-            <div v-if="!loading">
-              <div class="mt-14 flex flex-col gap-8">
-                <JobRowCard
-                  class="min-w-[95%] lg:min-w-[45%]"
-                  v-for="item in paginatedJobs"
-                  :key="item"
-                  :job="item"
-                />
-              </div>
-              <div class="mt-12 flex w-[60%] flex-row justify-center mx-auto">
-              <button
-                @click="setPage(currentPage - 1)"
-                class="border-[#007582] border-l-2 border-r-2 border-y-2 p-4 py-2 rounded-l-[6.032px] font-Satoshi500 text-[22.621px] items-center flex"
-              >
-                <Arrow class="rotate-[180deg]"/>
-              </button>
-              <button
-                v-for="pageNumber in displayedPageNumbers"
-                :key="pageNumber"
-                :class="[
-                  'border-[#007582] p-4 py-2 font-Satoshi500 text-[22.621px] items-center flex border-y-2 border-r-2',
-                  pageNumber === currentPage ? 'bg-[#007582] text-white' : '',
-                ]"
-                @click="setPage(pageNumber)"
-              >
-                {{ pageNumber }}
-              </button>
-              <button
-                @click="setPage(currentPage + 1)"
-                class="border-[#007582] border-r-2 border-y-2 p-4 py-2 rounded-r-[6.032px] font-Satoshi500 text-[22.621px] items-center flex"
-              >
-                <Arrow />
-              </button>
-              </div>
-            </div>
-            <div v-if="loading" class="w-[100%]">
-              <Loader v-if="loading" class="!flex !items-start !justify-center"/>
-            </div>
+          <div class="jobSections w-full">
+            <Tabs>
+              <template #tab1> MySpurr Jobs </template>
+              <template #tab2> Other Sources </template>
+              <template #tab3> MySpurr Gigs </template>
+              <template #view1>
+                <div>
+                  <div v-if="filteredJobs?.length < 1" class="w-full h-[20rem] grid place-items-center">
+                    <h3>Sorry!! There are no jobs matching your search parameters at this moment</h3>
+                  </div>
+                  <div v-else>
+                    <div v-if="!loading">
+                      <div class=" flex flex-col gap-8">
+                        <JobRowCard
+                          class="min-w-[95%] lg:min-w-[45%]"
+                          v-for="item in paginatedJobs"
+                          :key="item"
+                          :job="item"
+                        />
+                      </div>
+                      <div class="mt-12 flex w-[60%] flex-row justify-center mx-auto">
+                      <button
+                        @click="setPage(currentPage - 1)"
+                        class="border-[#007582] border-l-2 border-r-2 border-y-2 p-4 py-2 rounded-l-[6.032px] font-Satoshi500 text-[1.414rem] items-center flex"
+                      >
+                        <Arrow class="rotate-[180deg]"/>
+                      </button>
+                      <button
+                        v-for="pageNumber in displayedPageNumbers"
+                        :key="pageNumber"
+                        :class="[
+                          'border-[#007582] p-4 py-2 font-Satoshi500 text-[1.414rem] items-center flex border-y-2 border-r-2',
+                          pageNumber === currentPage ? 'bg-[#007582] !text-white' : '',
+                        ]"
+                        @click="setPage(pageNumber)"
+                      >
+                        {{ pageNumber }}
+                      </button>
+                      <button
+                        @click="setPage(currentPage + 1)"
+                        class="border-[#007582] border-r-2 border-y-2 p-4 py-2 rounded-r-[6.032px] font-Satoshi500 text-[1.414rem] items-center flex"
+                      >
+                        <Arrow />
+                      </button>
+                      </div>
+                    </div>
+                    <div v-if="loading" class="w-[100%]">
+                      <Loader v-if="loading" class="!flex !items-start !justify-center"/>
+                    </div>
+                  </div>
+                </div>
+              </template>
+              <template #view2>
+                <ComingSoon title="Featured Jobs"/>
+              </template>
+              <template #view3>
+                <ComingSoon title="MySpurr Gigs"/>
+              </template>
+            </Tabs>
           </div>
         </div>
       </div>
