@@ -396,6 +396,10 @@ ol {
   @apply !text-[#000000] text-[1rem] font-Satoshi500 eventBreak:!text-[0.75rem] leading-[1.75rem]
 }
 
+.jobSections button {
+  @apply font-Satoshi400 text-[#244034] text-[1.19rem] leading-[1.84rem]
+}
+
 .range-slider {
   @apply appearance-none w-full h-2 bg-[#FFFFFF] rounded-lg outline-none;
 }

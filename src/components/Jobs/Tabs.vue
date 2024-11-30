@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div class="jobs_tabs flex gap-12 py-4 mt-6">
+    <div class="jobs_tabs flex gap-12 py-4">
       <a
         class=""
-        @click="activateTab('all_jobs')"
-        :class="[activetab === 'all_jobs' ? 'active' : '']"
+        @click="activateTab('myspurr_jobs')"
+        :class="[activetab === 'myspurr_jobs' ? 'active' : '']"
       >
         <slot name="tab1"></slot>
       </a>
@@ -15,14 +15,24 @@
       >
         <slot name="tab2"></slot>
       </a>
+      <a
+        class=""
+        @click="activateTab('myspurr_gigs')"
+        :class="[activetab === 'myspurr_gigs' ? 'active' : '']"
+      >
+        <slot name="tab3"></slot>
+      </a>
     </div>
     <!-- jobs_tabs  view  start here -->
     <div class="pt-12">
-      <div v-if="activetab === 'all_jobs'" class="">
+      <div v-if="activetab === 'myspurr_jobs'" class="">
         <slot name="view1"></slot>
       </div>
       <div v-if="activetab === 'branding_jobs'" class="">
         <slot name="view2"></slot>
+      </div>
+      <div v-if="activetab === 'myspurr_gigs'" class="">
+        <slot name="view3"></slot>
       </div>
     </div>
   </div>
@@ -31,7 +41,7 @@
 <script setup>
 import { ref } from "vue";
 
-const activetab = ref("all_jobs");
+const activetab = ref("myspurr_jobs");
 
 function activateTab(tab) {
   activetab.value = tab;
@@ -44,7 +54,7 @@ function activateTab(tab) {
   padding-bottom: 0 !important;
   scroll-padding-bottom: 0;
   text-transform: capitalize !important;
-  @apply text-[14px] leading-[18.2px] font-Satoshi500 bg-none;
+  @apply text-[0.88rem] leading-[1.14rem] font-Satoshi500 bg-none;
 }
 
 .jobs_tabs::-webkit-scrollbar {
@@ -54,7 +64,7 @@ function activateTab(tab) {
 .jobs_tabs a {
   cursor: pointer;
   transition: color 0.2s;
-  @apply p-0 py-2 text-center lg:text-[36.637px] text-[18px] text-[#244034] font-Satoshi400;
+  @apply p-0 py-2 text-center lg:text-[1.19rem] text-[1.13rem] text-[#244034] font-Satoshi400;
 }
 
 .jobs_tabs a:last-child {

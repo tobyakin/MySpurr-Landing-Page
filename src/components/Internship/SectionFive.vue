@@ -1,7 +1,7 @@
 <template>
   <section class="container !my-16 lg:!my-16">
     <h4
-      class="lg:text-[70px] text-[#007582] text-[40px] font-EBGaramond500 leading-[40px] lg:leading-[67.5px] !mb-20"
+      class="lg:text-[4.38rem] text-[#007582] text-[2.5rem] font-EBGaramond500 leading-[2.5rem] lg:leading-[4.22rem] !mb-20"
     >
       The journey from student to professional has never been more promising.
     </h4>
@@ -10,7 +10,7 @@
       class="relative rounded-[29.842px] background p-4 bg-[#00000054]"
     >
       <div class="lg:p-12 lg:py-12">
-        <p class="lg:text-[32px] lg:leading-[49.478px] font-Satoshi500 text-white">
+        <p class="lg:text-[2rem] lg:leading-[3.09rem] font-Satoshi500 text-white">
           Join MySpurr Internships and embark <br class="md:block hidden" />
           on a journey of professional growth, <br class="md:block hidden" />
           skill development, and career <br class="md:block hidden" />
@@ -22,7 +22,7 @@
           <a
             target="_blank"
             :href="dashboardUrl + 'signup'"
-            class="btn-brand font-Satoshi400 text-center w-[193.602px] text-[16px] !px-0"
+            class="btn-brand font-Satoshi400 text-center w-[193.602px] text-[1rem] !px-0"
           >
             Sign Up for internships</a
           ><button
