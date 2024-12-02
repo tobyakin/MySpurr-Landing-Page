@@ -13,12 +13,9 @@ import 'ant-design-vue/dist/reset.css'
 
 import App from './App.vue'
 import router from './router'
-import { QuillEditor } from '@vueup/vue-quill'
-import '@vueup/vue-quill/dist/vue-quill.snow.css'
 
 const app = createApp(App)
 app.use(Toast, { position: POSITION.TOP_RIGHT })
-app.component('QuillEditor', QuillEditor)
 //app.component('vue3-autocounter', Vue3Autocounter)
 app.use(VueQueryPlugin)
 app.use(createPinia())
