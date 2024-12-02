@@ -1,12 +1,12 @@
 <template>
-  <section class="container lg:pt-[145px] !lg:px-0 h-screen relative lg:mb-16">
+  <section class="container lg:pt-[9.06rem] !lg:px-0 h-screen relative lg:mb-16">
     <div class="grid lg:grid-cols-2 relative grid-cols-1">
       <div
         class="lg:col-span-1 w-full bg-[#FBFBEE] lg:static absolute top-[70%] flex rounded-l-[6px] items-center lg:px-8 px-4 py-12 lg:p-8"
       >
         <div class="lg:w-auto lg:pl-8">
           <h1
-            class="font-Satoshi700 text-[#007582] text-[30px] lg:text-[38px] leading-[35px] lg:leading-[45.6px] !mb-4"
+            class="font-Satoshi700 text-[#007582] text-[1.88rem] lg:text-[2.4rem] leading-[2.19rem] lg:leading-[2.85rem] !mb-4"
           >
             Why Choose MySpurr Internships?
           </h1>
@@ -14,12 +14,12 @@
             <div
               v-for="item in lists"
               :key="item"
-              class="text-[#007582] lg:pl-10 text-[18px] font-Satoshi400"
+              class="text-[#007582] lg:pl-10 text-[1.13rem] font-Satoshi400"
             >
-              <h4 class="font-Satoshi500 text-[18.718px] leading-[21.489px]">
+              <h4 class="font-Satoshi500 text-[1.17rem] leading-[1.34rem]">
                 {{ item.heading }}
               </h4>
-              <p class="text-[#011B1F] text-[15px] leading-[21.489px]">
+              <p class="text-[#011B1F] text-[0.94rem] leading-[1.31rem]">
                 {{ item.text }}
               </p>
             </div>
