@@ -116,13 +116,13 @@ const props = defineProps({
         </div>
         <div class="flex flex-col justify-between mt-5">
           <div class="flex lg:flex-row flex-col gap-4 items-center">
-            <!-- <div>
+            <div>
               <p class="text-[1.1rem] font-Satoshi500 text-[#244034B2]">
                 {{ props?.job?.currency }} {{ store.abbr(props?.job?.salary_min) }}-
                 {{ store.abbr(props?.job?.salary_max) }}/
                 {{ props?.job?.salaray_type }}
               </p>
-            </div> -->
+            </div>
             <div class="flex lg:flex-row flex-col gap-2 items-center">
               <div
                 class="flex gap-1 text-[10px] lg:text-[0.83rem] text-[#DA5252] items-center font-Satoshi500"
