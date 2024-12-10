@@ -562,7 +562,7 @@ onMounted(async () => {
                 </div>
               </template>
               <template #view2>
-                <div>
+                <div v-if="externalJobs?.data?.length > 0">
                   <div v-if="filteredJobs?.length < 1" class="w-full h-[20rem] grid place-items-center">
                     <h3>Sorry!! There are no jobs matching your search parameters at this moment</h3>
                   </div>
@@ -607,7 +607,7 @@ onMounted(async () => {
                     </div>
                   </div>
                 </div>
-                <!-- <ComingSoon title="Featured Jobs"/> -->
+                <ComingSoon title="Featured Jobs" v-else/>
               </template>
               <template #view3>
                 <ComingSoon title="MySpurr Gigs"/>
