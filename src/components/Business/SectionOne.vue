@@ -28,8 +28,10 @@
           <a
             role="button"
             class="btn-light-border !rounded-full lg:!px-[10px] !px-0 justify-center lg:!text-base !text-[10px] flex lg:w-[30%] w-full font-Satoshi400"
+            href="https://zcal.co/myspurr/30min"
+            target="_blank"
           >
-            Watch demo
+            Book a demo
           </a>
         </div>
       </div>
@@ -48,7 +50,7 @@
 import { images } from "../../imgAsset";
 // import PlayButton from "@/components/icons/playButton.vue";
 const image = images.business;
-const dashboardUrl = import.meta.env.VITE_DASHBOARD;
+const dashboardUrl = import.meta.env.VITE_DASHBOARD_HOST;
 </script>
 
 <style scoped>

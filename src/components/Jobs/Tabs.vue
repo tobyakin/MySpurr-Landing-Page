@@ -10,8 +10,8 @@
       </a>
       <a
         class=""
-        @click="activateTab('branding_jobs')"
-        :class="[activetab === 'branding_jobs' ? 'active' : '']"
+        @click="activateTab('featured_jobs')"
+        :class="[activetab === 'featured_jobs' ? 'active' : '']"
       >
         <slot name="tab2"></slot>
       </a>
@@ -28,7 +28,7 @@
       <div v-if="activetab === 'myspurr_jobs'" class="">
         <slot name="view1"></slot>
       </div>
-      <div v-if="activetab === 'branding_jobs'" class="">
+      <div v-if="activetab === 'featured_jobs'" class="">
         <slot name="view2"></slot>
       </div>
       <div v-if="activetab === 'myspurr_gigs'" class="">
@@ -40,11 +40,13 @@
 
 <script setup>
 import { ref } from "vue";
+const emit = defineEmits(['currentTab'])
 
 const activetab = ref("myspurr_jobs");
 
 function activateTab(tab) {
   activetab.value = tab;
+  emit("currentTab", tab)
 }
 </script>
 <style scoped>

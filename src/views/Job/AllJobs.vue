@@ -19,15 +19,17 @@ import { useSkillsStore } from "@/stores/skills";
 import filterBtnIcon from "@/components/icons/filterBtnIcon.vue";
 import Tabs from "@/components/Jobs/Tabs.vue";
 import ComingSoon from "@/components/UI/ComingSoon.vue";
+import ExternalJobCard from "@/components/Jobs/ViewJobs/ExternalJobCard.vue";
 
 const jobsStore = useJobsStore();
-const { Job } = storeToRefs(jobsStore);
+const { Job, externalJobs } = storeToRefs(jobsStore);
 const router = useRouter();
 const skillsStore = useSkillsStore();
 const { states, countries, skills } = storeToRefs(skillsStore);
 const country = ref('Nigeria')
 const showMobFilter = ref(false)
 
+const activeTab = ref('myspurr_jobs')
 // let store = useStore();
 
 const sortInput = reactive({
@@ -110,73 +112,109 @@ const toggleFilter = ()=>{
 }
 
 const filteredJobs = computed(() => {
-  let filtered = Job.value?.data; // Create a shallow copy of the jobs array
+  let filtered
+  if(activeTab.value === 'myspurr_jobs'){
+      filtered = Job.value?.data; // Create a shallow copy of the jobs array
+
+      if (sortInput.name) {
+      filtered = filtered?.filter((item) =>
+        item.job_title.toLowerCase().includes(sortInput.name.toLowerCase())
+      );
+    }
+    if (sortInput.jobType && typeof sortInput.jobType === 'string' && sortInput.jobType !== "Job Type") {
+      filtered = filtered?.filter((item) => {
+        const itemJobType = item.job_type.toLowerCase().trim();
+        const inputJobType = sortInput.jobType.toLowerCase().trim();
+        
+        if(itemJobType.includes(inputJobType)) {
+          return item;
+        }
+      });
+    }
+
+    if (sortInput.Location && sortInput.Location !== "Select State") {
+      filtered = filtered?.filter((item) => {
+        const itemLocation = item.state.toLowerCase().trim();
+        const inputLocation = sortInput.Location.toLowerCase().trim();
+        
+        if(itemLocation.includes(inputLocation)) {
+          return item;
+        }
+      });
+    }
+
+    if (sortInput.experienceLevel && typeof sortInput.experienceLevel === 'string' && sortInput.experienceLevel !== "Experience") {
+      filtered = filtered?.filter((item) => {
+        const itemExperience = item.experience.toLowerCase().trim();
+        const inputExperience = sortInput.experienceLevel.toLowerCase().trim();
+        
+        if(itemExperience.includes(inputExperience)) {
+          return item;
+        }
+      });
+    }
+
+    if (sortInput.Category && sortInput.Category !== "Search Skill Categories") {
+      filtered = filtered.filter((item) =>
+        item.skills.some((skill) =>
+          skill.name.toLowerCase().includes(sortInput.Category.toLowerCase())
+        )
+      );
+    }
+    if (sortInput.currency) {
+      filtered = filtered.filter((item) =>
+        item.currency.toLowerCase().includes(sortInput.currency.toLowerCase())
+      );
+    }
+
+    // Filtering by Rate within the specified range
+    if (rateMin.value || rateMax.value) {
+      filtered = filtered.filter((item) => {
+        const salaryMin = parseFloat(item.salary_min);
+        const salaryMax = parseFloat(item.salary_max);
+        const min =
+          rateMin.value !== null ? parseFloat(rateMin.value) : Number.MIN_SAFE_INTEGER;
+        const max =
+          rateMax.value !== null ? parseFloat(rateMax.value) : Number.MAX_SAFE_INTEGER;
+
+        return salaryMax >= min && salaryMin <= max;
+      });
+    }
+  } else if(activeTab.value === 'featured_jobs'){
+    filtered = externalJobs.value?.data; // Create a shallow copy of the jobs array
+
+    if (sortInput.name) {
+      filtered = filtered?.filter((item) =>
+        item.title.toLowerCase().includes(sortInput.name.toLowerCase())
+      );
+    }
+
+    if (sortInput.jobType && typeof sortInput.jobType === 'string' && sortInput.jobType !== "Job Type") {
+      filtered = filtered?.filter((item) => {
+        const itemJobType = item.job_type.toLowerCase().trim();
+        const inputJobType = sortInput.jobType.toLowerCase().trim();
+        
+        if(itemJobType.includes(inputJobType)) {
+          return item;
+        }
+      });
+    }
+
+    if (sortInput.Location && sortInput.Location !== "Select State") {
+      filtered = filtered?.filter((item) => {
+        const itemLocation = item.location.toLowerCase().trim();
+        const inputLocation = sortInput.Location.toLowerCase().trim();
+        
+        if(itemLocation.includes(inputLocation)) {
+          return item;
+        }
+      });
+    }
+    
+  }
 
   // Filtering based on the search criteria
-  if (sortInput.name) {
-    filtered = filtered?.filter((item) =>
-      item.job_title.toLowerCase().includes(sortInput.name.toLowerCase())
-    );
-  }
-  if (sortInput.jobType && typeof sortInput.jobType === 'string' && sortInput.jobType !== "Job Type") {
-    filtered = filtered?.filter((item) => {
-      const itemJobType = item.job_type.toLowerCase().trim();
-      const inputJobType = sortInput.jobType.toLowerCase().trim();
-      
-      if(itemJobType.includes(inputJobType)) {
-        return item;
-      }
-    });
-  }
-
-  if (sortInput.Location && sortInput.Location !== "Select State") {
-    filtered = filtered?.filter((item) => {
-      const itemLocation = item.state.toLowerCase().trim();
-      const inputLocation = sortInput.Location.toLowerCase().trim();
-      
-      if(itemLocation.includes(inputLocation)) {
-        return item;
-      }
-    });
-  }
-
-  if (sortInput.experienceLevel && typeof sortInput.experienceLevel === 'string' && sortInput.experienceLevel !== "Experience") {
-    filtered = filtered?.filter((item) => {
-      const itemExperience = item.experience.toLowerCase().trim();
-      const inputExperience = sortInput.experienceLevel.toLowerCase().trim();
-      
-      if(itemExperience.includes(inputExperience)) {
-        return item;
-      }
-    });
-  }
-
-  if (sortInput.Category && sortInput.Category !== "Search Skill Categories") {
-    filtered = filtered.filter((item) =>
-      item.skills.some((skill) =>
-        skill.name.toLowerCase().includes(sortInput.Category.toLowerCase())
-      )
-    );
-  }
-  if (sortInput.currency) {
-    filtered = filtered.filter((item) =>
-      item.currency.toLowerCase().includes(sortInput.currency.toLowerCase())
-    );
-  }
-
-  // Filtering by Rate within the specified range
-  if (rateMin.value || rateMax.value) {
-    filtered = filtered.filter((item) => {
-      const salaryMin = parseFloat(item.salary_min);
-      const salaryMax = parseFloat(item.salary_max);
-      const min =
-        rateMin.value !== null ? parseFloat(rateMin.value) : Number.MIN_SAFE_INTEGER;
-      const max =
-        rateMax.value !== null ? parseFloat(rateMax.value) : Number.MAX_SAFE_INTEGER;
-
-      return salaryMax >= min && salaryMin <= max;
-    });
-  }
+ 
   return filtered;
 });
 const resetFilters = () => {
@@ -234,6 +272,7 @@ const paginatedJobs = computed(() => {
 watch(currentPage, async (newPage) => {
   console.log("Current Page:", newPage);
   await jobsStore.allJobs(newPage);
+  await jobsStore.allExternalJobs(newPage)
 });
 
 watchEffect(() => {
@@ -248,6 +287,10 @@ const getCountryCode = async ()=>{
   await skillsStore.handleGetStates(payload)
 }
 
+const handleTab = (tab)=>{
+  activeTab.value = tab
+}
+
 onMounted(async()=>{
   sortInput.Location = "Select State"
   sortInput.Category = "Search Skill Categories"
@@ -260,7 +303,8 @@ onMounted(async()=>{
 onMounted(async () => {
   loading.value = true;
   try {
-    await jobsStore.allJobs();
+    await jobsStore.allJobs(currentPage.value);
+    await jobsStore.allExternalJobs(currentPage.value)
     getFilteredJobs()
     loading.value = false;
   } catch (error) {
@@ -293,7 +337,7 @@ onMounted(async () => {
                 inputClasses="w-full mt-[0.5rem] font-light font-Satoshi400 !p-4 border-[#EDEDED] border-[0.509px] opacity-[0.8029] rounded-[6.828px] text-[0.88rem]"
               ></FormGroup>
              
-              <div>
+              <div v-if="activeTab !== 'featured_jobs'">
                 <label for="location" class="font-Satoshi500 !text-[1rem]">Skills Categories</label>
                 <div
                   class="bg-[#fff] w-full mt-[0.5rem] font-light font-Satoshi400 !p-4 border-gray-300 border-[0.509px] opacity-[0.8029] rounded-[6.828px] text-[0.88rem]"
@@ -378,7 +422,7 @@ onMounted(async () => {
                 </div>
               </div>
 
-              <div class="flex flex-col gap-[0.5rem] w-full text-left">
+              <div class="flex flex-col gap-[0.5rem] w-full text-left" v-if="activeTab !== 'featured_jobs'">
                 <Label class="font-Satoshi500 !text-[1rem]">Experience</Label>
                 <div
                   class="w-full flex flex-col searchBreak:flex-row searchBreak:flex-wrap gap-[0rem] searchBreak:gap-[0.5rem]"
@@ -402,7 +446,7 @@ onMounted(async () => {
                 </div>
               </div>
 
-              <div class="w-full flex flex-row gap-1">
+              <div class="w-full flex flex-row gap-1" v-if="activeTab !== 'featured_jobs'">
                 <div class="flex flex-col w-full justify-center">
                   <Label class="font-Satoshi500 text-[15.606px]">Rate</Label>
                   <div class="flex items-center justify-center w-full gap-1 mt-2">
@@ -466,7 +510,7 @@ onMounted(async () => {
             </button>
           </div>
           <div class="jobSections w-full">
-            <Tabs>
+            <Tabs @currentTab="handleTab">
               <template #tab1> MySpurr Jobs </template>
               <template #tab2> Other Sources </template>
               <template #tab3> MySpurr Gigs </template>
@@ -518,7 +562,52 @@ onMounted(async () => {
                 </div>
               </template>
               <template #view2>
-                <ComingSoon title="Featured Jobs"/>
+                <div v-if="externalJobs?.data?.length > 0">
+                  <div v-if="filteredJobs?.length < 1" class="w-full h-[20rem] grid place-items-center">
+                    <h3>Sorry!! There are no jobs matching your search parameters at this moment</h3>
+                  </div>
+                  <div v-else>
+                    <div v-if="!loading">
+                      <div class=" flex flex-col gap-8">
+                        <ExternalJobCard
+                          class="min-w-[95%] lg:min-w-[45%]"
+                          v-for="item in paginatedJobs"
+                          :key="item"
+                          :job="item"
+                        />
+                      </div>
+                      <div class="mt-12 flex w-[60%] flex-row justify-center mx-auto">
+                      <button
+                        @click="setPage(currentPage - 1)"
+                        class="border-[#007582] border-l-2 border-r-2 border-y-2 p-4 py-2 rounded-l-[6.032px] font-Satoshi500 text-[1.414rem] items-center flex"
+                      >
+                        <Arrow class="rotate-[180deg]"/>
+                      </button>
+                      <button
+                        v-for="pageNumber in displayedPageNumbers"
+                        :key="pageNumber"
+                        :class="[
+                          'border-[#007582] p-4 py-2 font-Satoshi500 text-[1.414rem] items-center flex border-y-2 border-r-2',
+                          pageNumber === currentPage ? 'bg-[#007582] !text-white' : '',
+                        ]"
+                        @click="setPage(pageNumber)"
+                      >
+                        {{ pageNumber }}
+                      </button>
+                      <button
+                        @click="setPage(currentPage + 1)"
+                        class="border-[#007582] border-r-2 border-y-2 p-4 py-2 rounded-r-[6.032px] font-Satoshi500 text-[1.414rem] items-center flex"
+                      >
+                        <Arrow />
+                      </button>
+                      </div>
+                    </div>
+                    <div v-if="loading" class="w-[100%]">
+                      <Loader v-if="loading" class="!flex !items-start !justify-center"/>
+                    </div>
+                  </div>
+                </div>
+                <ComingSoon title="Featured Jobs" v-else/>
               </template>
               <template #view3>
                 <ComingSoon title="MySpurr Gigs"/>
@@ -546,7 +635,7 @@ onMounted(async () => {
                   inputClasses="w-full mt-2 font-light font-Satoshi400 !p-4 border-[#EDEDED] border-[0.509px] opacity-[0.8029] rounded-t-[6.828px] text-[0.88rem]"
                   >
               </FormGroup>
-              <div>
+              <div v-if="activeTab !== 'featured_jobs'">
                 <label for="location" class="font-Satoshi500 !text-[1rem]">Skills Categories</label>
                 <div
                   class="bg-[#fff] w-full mt-[0.5rem] font-light font-Satoshi400 !p-4 border-gray-300 border-[0.509px] opacity-[0.8029] rounded-[6.828px] text-[0.88rem]"
@@ -607,6 +696,7 @@ onMounted(async () => {
 
               <div
               class="w-full font-Satoshi500 !p-0 !text-[1.13638rem] leading-[2.55681rem] text-[#000] !bg-transparent !pb-6 !border-b-2 border-[#666666]"
+              v-if="activeTab !== 'featured_jobs'"
               >
                   <select
                       v-model="sortInput.experienceLevel"

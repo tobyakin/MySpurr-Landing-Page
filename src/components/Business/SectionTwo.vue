@@ -28,11 +28,11 @@
   <div class="flex justify-center items-center pb-[6rem]">
     <a
       target="_blank"
-      :href="dashboardUrl + 'signup'"
+      href="https://zcal.co/myspurr/30min"
       role="button"
       class="btn-brand font-Satoshi400"
     >
-      Sign up for free
+      Book a demo
     </a>
   </div>
 </template>
