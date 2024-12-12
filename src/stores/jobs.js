@@ -20,7 +20,7 @@ export const useJobsStore = defineStore('jobs', () => {
   const allExternalJobs = async (page) => {
     try {
       externalJobs.value = await getExternalJobs(page)
-      return Job.value
+      return externalJobs.value
     } catch (error) {
       console.error(error)
     }
@@ -38,7 +38,7 @@ export const useJobsStore = defineStore('jobs', () => {
   const handleGetExternalJobDetailsBySlug = async (slug) => {
     try {
       externalJobDetails.value = await viewExternalJobsDetailsBySlug(slug)
-      return JobDetails.value
+      return externalJobDetails.value
     } catch (error) {
       console.error(error)
     }
