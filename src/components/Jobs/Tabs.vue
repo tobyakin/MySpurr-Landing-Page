@@ -39,37 +39,15 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
-import { useRoute, useRouter } from "vue-router";
-
+import { ref } from "vue";
 const emit = defineEmits(['currentTab'])
-const router = useRouter()
-const route = useRoute()
-const activetab = ref("");
 
-const assignQuery = ()=>{
-  router.push({
-    name: 'jobs',
-    query: {
-      tab: activetab.value
-    }
-  });
-}
+const activetab = ref("myspurr_jobs");
 
 function activateTab(tab) {
   activetab.value = tab;
-  assignQuery()
   emit("currentTab", tab)
 }
-
-onMounted(()=>{
-  if(route.query.tab){
-    activetab.value = route.query.tab
-  } else {
-    active.value = 'myspurr_jobs'
-  }
-  assignQuery()
-})
 </script>
 <style scoped>
 /* Style the jobs_tabs */
@@ -78,7 +56,7 @@ onMounted(()=>{
   padding-bottom: 0 !important;
   scroll-padding-bottom: 0;
   text-transform: capitalize !important;
-  /* @apply text-[0.88rem] leading-[1.14rem] font-Satoshi500 bg-none; */
+  @apply text-[0.88rem] leading-[1.14rem] font-Satoshi500 bg-none;
 }
 
 .jobs_tabs::-webkit-scrollbar {
