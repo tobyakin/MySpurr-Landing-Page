@@ -12,7 +12,7 @@ import { useJobsStore } from "@/stores/jobs";
 import FormGroup from "@/components/Form/Input/FormGroup.vue";
 import Label from "@/components/Form/Input/Label.vue";
 import WorkFlow from "@/components/Bander/WorkFlow.vue";
-import { useRoute, useRouter } from "vue-router";
+import { useRouter } from "vue-router";
 import Loader from "@/components/UI/Loader/Loader.vue";
 const loading = ref(false);
 import { useSkillsStore } from "@/stores/skills";
@@ -28,14 +28,9 @@ const skillsStore = useSkillsStore();
 const { states, countries, skills } = storeToRefs(skillsStore);
 const country = ref('Nigeria')
 const showMobFilter = ref(false)
-const route = useRoute()
 
-const activeTab = ref('')
+const activeTab = ref('myspurr_jobs')
 // let store = useStore();
-
-const handleTab = (tab)=>{
-  activeTab.value = tab
-}
 
 const sortInput = reactive({
   name: "",
@@ -292,8 +287,11 @@ const getCountryCode = async ()=>{
   await skillsStore.handleGetStates(payload)
 }
 
+const handleTab = (tab)=>{
+  activeTab.value = tab
+}
+
 onMounted(async()=>{
-  activeTab.value = route.query.tab
   sortInput.Location = "Select State"
   sortInput.Category = "Search Skill Categories"
   let payload = "NG"
