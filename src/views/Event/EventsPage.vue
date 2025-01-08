@@ -1,7 +1,7 @@
 <script setup>
 import Navbar from '@/components/Navbar/Navbar.vue'
 import Footer from '@/components/Footer.vue'
-import { ref, onMounted, onUnmounted, computed } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useEventStore } from '../../stores/event';
 import Loader from "@/components/UI/Loader/Loader.vue";
 import EventCard from '@/components/Events/EventCard.vue';
@@ -10,18 +10,6 @@ import Arrow from '@/components/icons/paginationArrow.vue';
 const image = 'https://ik.imagekit.io/ldtt3hq8g2/Landing%20Page/EventBg.png?updatedAt=1725975295297';
 
 const navBar = ref(null)
-const navHeight = ref()
-
-const getNavHeight = () => {
-  if (navBar.value) {
-    navHeight.value = navBar.value.offsetHeight;
-    return navHeight.value
-  }
-};
-
-const bgHeight = computed(() => {
-  return `calc(100vh - ${navHeight.value}px)`;
-})
 
 const eventStore = useEventStore();
 const events = ref([]);
@@ -41,7 +29,7 @@ const fetchEvents = async (page = 1) => {
             events.value = res.data.slice((page - 1) * perPage.value, page * perPage.value);
 
             currentPage.value = res.pagination.current_page;
-            totalPages.value = Math.ceil((category === 'ALL' ? allBlog.value.length : filteredBlog.value.length) / perPage.value);
+            totalPages.value = Math.ceil((events.value.length) / perPage.value);
 
             updateDisplayedPageNumbers();
         } else {
@@ -81,12 +69,6 @@ const goToPage = (page) => {
 
 onMounted(() => {
     fetchEvents()
-    getNavHeight();
-    window.addEventListener('resize', getNavHeight);
-});
-
-onUnmounted(() => {
-  window.removeEventListener('resize', getNavHeight);
 });
 
 </script>
@@ -127,7 +109,7 @@ onUnmounted(() => {
                             />
                         </div>
 
-                        <div class="mt-12 flex w-[60%] flex-row justify-center mx-auto" v-if="displayedPageNumbers?.length > 0">
+                        <div class="mt-12 flex w-[60%] flex-row justify-center mx-auto" v-if="displayedPageNumbers?.length > 1">
                             <button
                             @click="goToPage(currentPage - 1)"
                             :disabled="currentPage === 1"
