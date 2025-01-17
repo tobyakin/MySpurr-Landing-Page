@@ -14,6 +14,7 @@ import Loader from '@/components/UI/Loader/Loader.vue'
 import { useEventStore } from '../../stores/event'
 import { storeToRefs } from 'pinia'
 import SpinnerComponent from '@/components/spinner/SpinnerComponent.vue'
+import EventCard from '@/components/Events/EventCard.vue';
 
 const showCalendarOptions = ref(false)
 const calendarOption = ref()
@@ -273,7 +274,7 @@ const handleViewMore = () => {
                 <div class="hidden md:block rounded-[2.1875rem] h-full min-h-[300px] msgMob:min-h-[auto] w-full md:w-3/6">
                         <div class="h-full rounded-[2.1875rem] overflow-hidden msgMob:rounded-[0.5rem]">
                             <img :src="singleEvent.featured_graphics" alt="event image"
-                            class="object-cover w-full h-full min-h-[300px] msgMob:object-contain msgMob:min-h-[auto]"/>
+                            class="object-fill w-full h-full min-h-[300px] msgMob:object-contain msgMob:min-h-[auto]"/>
                         </div>
                     </div>
             </article>
@@ -466,7 +467,7 @@ const handleViewMore = () => {
                 </div>
                 <div class="my-10">
                     <div class="grid grid-cols-customGrid gap-[2.4rem] msgMob:grid-cols-1">
-                        <div class="mb-4" v-for="event in relatedEvents" :key="event.id">
+                        <!-- <div class="mb-4" v-for="event in relatedEvents" :key="event.id">
                             <div class="flex flex-col h-full bg-[#ECFAFC]">
                                 <div class="w-full object-contain h-full rounded-t-[1rem]">
                                     <img :src="event.featured_graphics" alt=""
@@ -501,7 +502,12 @@ const handleViewMore = () => {
                                     </router-link>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
+                        <EventCard 
+                             v-for="(event, index) in relatedEvents.slice(1)"
+                            :key="event?.id"
+                            :event="event"
+                        />
                     </div>
                 </div>
                 <div class="grid place-items-center !my-[5.78rem]">

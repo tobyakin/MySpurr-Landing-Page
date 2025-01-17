@@ -1,41 +1,37 @@
 <script setup>
 import Navbar from '@/components/Navbar/Navbar.vue'
 import Footer from '@/components/Footer.vue'
-import { ref, onMounted, onUnmounted, computed } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useEventStore } from '../../stores/event';
 import Loader from "@/components/UI/Loader/Loader.vue";
 import EventCard from '@/components/Events/EventCard.vue';
+import Arrow from '@/components/icons/paginationArrow.vue';
 
 const image = 'https://ik.imagekit.io/ldtt3hq8g2/Landing%20Page/EventBg.png?updatedAt=1725975295297';
 
 const navBar = ref(null)
-const navHeight = ref()
-
-const getNavHeight = () => {
-  if (navBar.value) {
-    navHeight.value = navBar.value.offsetHeight;
-    return navHeight.value
-  }
-};
-
-
-
-const bgHeight = computed(() => {
-  return `calc(100vh - ${navHeight.value}px)`;
-})
-
 
 const eventStore = useEventStore();
 const events = ref([]);
 const loading = ref(false)
+const currentPage = ref(1);
+const totalPages = ref(1);
+const perPage = ref(9); // Set items per page to 9
+const displayedPageNumbers = ref([]);
 
-const fetchEvents = async () => {
+const fetchEvents = async (page = 1) => {
     loading.value = true
 
     try {
         const res = await eventStore.allEvents();
+        console.log(res.pagination)
         if (res && res.data) {
-            events.value = res.data;
+            events.value = res.data.slice((page - 1) * perPage.value, page * perPage.value);
+
+            currentPage.value = res.pagination.current_page;
+            totalPages.value = Math.ceil((events.value.length) / perPage.value);
+
+            updateDisplayedPageNumbers();
         } else {
             console.error('No data returned from API')
         }
@@ -47,14 +43,32 @@ const fetchEvents = async () => {
     }
 }
 
+const updateDisplayedPageNumbers = () => {
+  const startPage = Math.max(1, currentPage.value - 2);
+  const endPage = Math.min(totalPages.value, startPage + 4);
+  
+  displayedPageNumbers.value = Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
+};
+
+const goToPage = (page) => {
+  if (page >= 1 && page <= totalPages.value) {
+    currentPage.value = page;
+
+    // Set items per page
+    const itemsPerPage = 9;
+    const start = (currentPage.value - 1) * itemsPerPage;
+    const end = currentPage.value * itemsPerPage;
+
+    // Filter and slice based on selected category and page number
+    events.value = events.value.slice(start, end)
+
+    // Update displayed page numbers if needed
+    updateDisplayedPageNumbers();
+  }
+};
+
 onMounted(() => {
     fetchEvents()
-    getNavHeight();
-    window.addEventListener('resize', getNavHeight);
-});
-
-onUnmounted(() => {
-  window.removeEventListener('resize', getNavHeight);
 });
 
 </script>
@@ -81,20 +95,50 @@ onUnmounted(() => {
                     <h3 class="text-[#011B1F] font-EBGaramond500 text-[50px] leading-[4.15788rem] text-center !mb-[6.25rem] tab:text-[3rem] tab:leading-[4rem] tab:!mb-[5rem] mob:text-[2rem] mob:leading-[2.5rem]">Explore MySpurr events and  ignite <br>your creative potential</h3>
 
                     <Loader v-if="loading" />
+                    <div v-else>
+                        <div v-if="events && events.length === 0">
+                            <div class="flex justify-center items-center">
+                                <p class="pt-3">No data available.</p>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-4 gap-5 mob:grid-cols-1">
+                            <EventCard 
+                                v-for="event in events"
+                                :key="event?.id"
+                                :event="event"
+                            />
+                        </div>
 
-                    <div v-if="events && events.length === 0">
-                        <div class="flex justify-center items-center">
-                            <p class="pt-3">No data available.</p>
+                        <div class="mt-12 flex w-[60%] flex-row justify-center mx-auto" v-if="displayedPageNumbers?.length > 1">
+                            <button
+                            @click="goToPage(currentPage - 1)"
+                            :disabled="currentPage === 1"
+                            :class="{ 'opacity-50 !border-r-0 cursor-no': currentPage === 1 }"
+                            class="border-[#007582] border-l-2 border-r-2 border-y-2 px-4 py-2 rounded-l-[6.032px] font-Satoshi500 text-[1.41rem] items-center flex"
+                            >
+                            <Arrow class="rotate-[180deg]" />
+                            </button>
+                            <button
+                            v-for="pageNumber in displayedPageNumbers"
+                            :key="pageNumber"
+                            :class="[
+                                'border-[#007582] p-4 py-2 font-Satoshi500 text-[1.41rem] items-center flex border-y-2 border-r-2',
+                                pageNumber === currentPage ? 'bg-[#007582] text-white' : '',
+                            ]"
+                            @click="goToPage(pageNumber)"
+                            >
+                            {{ pageNumber }}
+                            </button>
+                            <button
+                            @click="goToPage(currentPage + 1)"
+                            :disabled="currentPage === totalPages"
+                            class="border-[#007582] border-r-2 border-y-2 p-4 py-2 rounded-r-[6.032px] font-Satoshi500 text-[1.41rem] items-center flex"
+                            :class="{ 'opacity-50 cursor-no': currentPage === totalPages }"
+                            >
+                            <Arrow />
+                            </button>
                         </div>
                     </div>
-                    <div class="grid grid-cols-4 gap-5 mob:grid-cols-1" v-else>
-                        <EventCard 
-                            v-for="event in events"
-                            :key="event?.id"
-                            :event="event"
-                        />
-                    </div>
-
                 </div>
                 <hr class="bborder border-[#EBEBEB] mt-[9.75rem] !mb-[3.56rem] tab:mt-[5rem]">
                 <div class="w-full flex justify-between items-center mob:flex-col mob:text-center mob:gap-7">

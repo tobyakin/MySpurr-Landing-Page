@@ -62,6 +62,7 @@ const props = defineProps({
 });
 </script>
 <template>
+  <!-- {{props.job}} -->
   <div
     class="border-[#254035AB] relative border-[0.735px] bg-white rounded-[7.347px] lg:p-5 p-4 lg:px-6"
   >
@@ -115,8 +116,8 @@ const props = defineProps({
           <div class="flex lg:flex-row flex-col gap-4 items-center">
             <div>
               <p class="text-[1.1rem] font-Satoshi500 text-[#244034B2]">
-                {{ props?.job?.currency }} {{ store.abbr(props?.job?.salary_min) }}-
-                {{ store.abbr(props?.job?.salary_max) }}/
+                {{ props?.job?.currency }} {{ store.abbr(props?.job?.salary_min, 2) }}-
+                {{ store.abbr(props?.job?.salary_max, 2) }}/
                 {{ props?.job?.salaray_type }}
               </p>
             </div>
