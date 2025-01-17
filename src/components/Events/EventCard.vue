@@ -55,12 +55,7 @@ const isPastDate = (date, time) => {
     
     // // Parse the date string into a Date object
     const givenDate = new Date(formattedDateString);
-    
-    // // Check if the date parsing was successful
-    if (isNaN(givenDate)) {
-        throw new Error("Invalid date string format. Please provide a valid date and time.");
-    }
-    
+        
     // // Get the current date and time
     const currentDate = new Date();
 
