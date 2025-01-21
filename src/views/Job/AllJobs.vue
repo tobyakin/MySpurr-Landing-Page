@@ -117,10 +117,10 @@ const toggleFilter = ()=>{
 }
 
 const filteredJobs = computed(() => {
+  scrollToTop()
   let filtered
   if(activeTab.value === 'myspurr_jobs'){
       filtered = Job.value?.data; // Create a shallow copy of the jobs array
-
       if (sortInput.name) {
       filtered = filtered?.filter((item) =>
         item.job_title.toLowerCase().includes(sortInput.name.toLowerCase())
@@ -273,11 +273,25 @@ const paginatedJobs = computed(() => {
   const endIndex = startIndex + perPage;
   return filteredJobs.value?.slice(startIndex, endIndex);
 });
+
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth' // Smooth scrolling effect
+  });
+}
+
 // You can also watch the currentPage to react to page changes
 watch(currentPage, async (newPage) => {
+  scrollToTop()
+  loading.value = true
+  if(activeTab.value === 'myspurr_jobs'){
+    await jobsStore.allJobs(newPage);
+  } else if(activeTab.value === 'featured_jobs'){
+    await jobsStore.allExternalJobs(newPage)
+  }
   console.log("Current Page:", newPage);
-  await jobsStore.allJobs(newPage);
-  await jobsStore.allExternalJobs(newPage)
+  loading.value = false
 });
 
 watchEffect(() => {
