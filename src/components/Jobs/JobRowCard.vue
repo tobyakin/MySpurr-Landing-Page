@@ -100,7 +100,7 @@ const props = defineProps({
               {{ props?.job?.job_title }}
             </p>
             <button
-              class="bg-[#EDF0B8] font-Satoshi500 lg:text-[9.708px] text-[6px] p-2 lg:px-6 text-[#000000] rounded-full"
+              class="bg-[#EDF0B8] font-Satoshi500 lg:text-[0.61rem] text-[0.4rem] p-2 lg:px-6 text-[#000000] rounded-full"
             >
               {{ props?.job?.job_type }}
             </button>
@@ -123,12 +123,12 @@ const props = defineProps({
             </div>
             <div class="flex lg:flex-row flex-col gap-2 items-center">
               <div
-                class="flex gap-1 text-[10px] lg:text-[0.83rem] text-[#DA5252] items-center font-Satoshi500"
+                class="flex gap-1 text-[0.63rem] lg:text-[0.83rem] text-[#DA5252] items-center font-Satoshi500"
               >
                 <CalenderIcon /><span class="py-[0.25px]">{{ props?.job?.date_created }}</span>
               </div>
               <div
-                class="flex gap-1 text-[10px] lg:text-[0.83rem] text-[#DA5252] items-center font-Satoshi500"
+                class="flex gap-1 text-[0.63rem] lg:text-[0.83rem] text-[#DA5252] items-center font-Satoshi500"
               >
                 <LocationIcon /><span class="py-[0.25px]"
                   >{{ props?.job?.state }}, {{ props?.job?.country }}</span
@@ -146,7 +146,7 @@ const props = defineProps({
               <div
                 v-for="skill in props?.job?.skills"
                 :key="skill"
-                class="bg-[#F2F3EF] font-Satoshi500 text-[10px] lg:text-[0.76rem] uppercase p-[4px] lg:px-6 px-4 text-[#64665D] rounded-full"
+                class="bg-[#F2F3EF] font-Satoshi500 text-[0.63rem] lg:text-[0.76rem] uppercase p-[4px] lg:px-6 px-4 text-[#64665D] rounded-full"
               >
                 {{ skill.name }}
               </div>
@@ -162,7 +162,7 @@ const props = defineProps({
               </div>
               <button
                 @click="redirectToJobDetails(props?.job?.company?.business_name, props?.job?.slug)"
-                class="font-Satoshi500 bg-[#43D0DF] text-[9.708px] p-3 px-12 text-white rounded-full btn-hover-1"
+                class="font-Satoshi500 bg-[#43D0DF] text-[0.61rem] p-3 px-12 !text-white rounded-full btn-hover-1"
               >
                 <span>Apply</span>
               </button>
