@@ -77,13 +77,13 @@ const props = defineProps({
         <img
           class="w-full h-full object-cover"
           :src="props?.job?.company?.logo"
-          :alt="props?.job?.company.business_name"
+          :alt="props?.job?.company?.business_name"
         />
       </div>
       <div class="flex-1">
         <div class="flex lg:justify-start justify-center items-center gap-1 cursor-pointer" @click="redirectToProfile(props?.job?.company?.business_name, props?.job?.id)">
           <p class="text-[13.021px] font-Satoshi500 flex text-[#2F929C]">
-            {{ props?.job?.company.business_name }}
+            {{ props?.job?.company?.business_name }}
           </p>
           <div v-if="props?.job?.verify" class="flex mt-1 gap-1">
             <VerifyIcon class="w-4" />
