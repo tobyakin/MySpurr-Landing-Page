@@ -37,6 +37,45 @@ const handleTab = (tab)=>{
   activeTab.value = tab
 }
 
+// Watch for route query changes
+watch(
+  () => route?.query?.tab,
+  (newTab) => {
+    if (newTab) {
+      activeTab.value = newTab;
+    }
+  },
+  { immediate: true } // Ensures the watcher runs immediately after setup
+);
+
+onMounted(async () => {
+  loading.value = true;
+
+  // Set default values and initialize
+  sortInput.Location = "Select State";
+  sortInput.Category = "Search Skill Categories";
+  let payload = "NG";
+
+  try {
+    // Fetch necessary data
+    await skillsStore.handleGetStates(payload);
+    await skillsStore.getCountriesCode();
+    await skillsStore.getSkills();
+    await jobsStore.allJobs(currentPage.value);
+    await jobsStore.allExternalJobs(currentPage.value);
+
+    // Check and set filtered jobs
+    getFilteredJobs();
+    console.log(filteredJobs.value);
+
+    // Ensure loading is false after tasks
+    loading.value = false;
+  } catch (error) {
+    console.error(error);
+    loading.value = false;
+  }
+});
+
 const sortInput = reactive({
   name: "",
   jobType: "",
@@ -117,10 +156,10 @@ const toggleFilter = ()=>{
 }
 
 const filteredJobs = computed(() => {
+  scrollToTop()
   let filtered
   if(activeTab.value === 'myspurr_jobs'){
       filtered = Job.value?.data; // Create a shallow copy of the jobs array
-
       if (sortInput.name) {
       filtered = filtered?.filter((item) =>
         item.job_title.toLowerCase().includes(sortInput.name.toLowerCase())
@@ -273,11 +312,25 @@ const paginatedJobs = computed(() => {
   const endIndex = startIndex + perPage;
   return filteredJobs.value?.slice(startIndex, endIndex);
 });
+
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth' // Smooth scrolling effect
+  });
+}
+
 // You can also watch the currentPage to react to page changes
 watch(currentPage, async (newPage) => {
+  scrollToTop()
+  loading.value = true
+  if(activeTab.value === 'myspurr_jobs'){
+    await jobsStore.allJobs(newPage);
+  } else if(activeTab.value === 'featured_jobs'){
+    await jobsStore.allExternalJobs(newPage)
+  }
   console.log("Current Page:", newPage);
-  await jobsStore.allJobs(newPage);
-  await jobsStore.allExternalJobs(newPage)
+  loading.value = false
 });
 
 watchEffect(() => {
@@ -292,22 +345,21 @@ const getCountryCode = async ()=>{
   await skillsStore.handleGetStates(payload)
 }
 
-onMounted(async()=>{
-  activeTab.value = route.query.tab
+onMounted(async () => {
+  loading.value = true;
+  activeTab.value = route?.query?.tab || 'myspurr_jobs'
   sortInput.Location = "Select State"
   sortInput.Category = "Search Skill Categories"
   let payload = "NG"
-  await skillsStore.handleGetStates(payload);
-  await skillsStore.getCountriesCode()
-  await skillsStore.getSkills();
-})
-
-onMounted(async () => {
-  loading.value = true;
   try {
+    await skillsStore.handleGetStates(payload);
+    await skillsStore.getCountriesCode()
+    await skillsStore.getSkills();
     await jobsStore.allJobs(currentPage.value);
     await jobsStore.allExternalJobs(currentPage.value)
     getFilteredJobs()
+    console.log(filteredJobs.value)
+    console.log(activeTab.value)
     loading.value = false;
   } catch (error) {
     console.error(error);
@@ -524,6 +576,15 @@ onMounted(async () => {
                   <div v-else>
                     <div v-if="!loading">
                       <div class=" flex flex-col gap-8">
+                        <!-- <div v-if="filteredJobs">
+                          <span>paginated</span>
+                          {{ filteredJobs }}
+                        </div>
+                        <div v-else>
+                          <span>raw</span>
+                          {{ Job?.data }}
+                        </div> -->
+                        <!-- {{ paginatedJobs }} -->
                         <JobRowCard
                           class="min-w-[95%] lg:min-w-[45%]"
                           v-for="item in paginatedJobs"
@@ -564,52 +625,57 @@ onMounted(async () => {
                 </div>
               </template>
               <template #view2>
-                <div v-if="externalJobs?.data?.length > 0">
-                  <div v-if="filteredJobs?.length < 1" class="w-full h-[20rem] grid place-items-center">
-                    <h3>Sorry!! There are no jobs matching your search parameters at this moment</h3>
-                  </div>
-                  <div v-else>
-                    <div v-if="!loading">
-                      <div class=" flex flex-col gap-8">
-                        <ExternalJobCard
-                          class="min-w-[95%] lg:min-w-[45%]"
-                          v-for="item in paginatedJobs"
-                          :key="item"
-                          :job="item"
-                        />
-                      </div>
-                      <div class="mt-12 flex w-[60%] flex-row justify-center mx-auto">
-                      <button
-                        @click="setPage(currentPage - 1)"
-                        class="border-[#007582] border-l-2 border-r-2 border-y-2 p-4 py-2 rounded-l-[6.032px] font-Satoshi500 text-[1.414rem] items-center flex"
-                      >
-                        <Arrow class="rotate-[180deg]"/>
-                      </button>
-                      <button
-                        v-for="pageNumber in displayedPageNumbers"
-                        :key="pageNumber"
-                        :class="[
-                          'border-[#007582] p-4 py-2 font-Satoshi500 text-[1.414rem] items-center flex border-y-2 border-r-2',
-                          pageNumber === currentPage ? 'bg-[#007582] !text-white' : '',
-                        ]"
-                        @click="setPage(pageNumber)"
-                      >
-                        {{ pageNumber }}
-                      </button>
-                      <button
-                        @click="setPage(currentPage + 1)"
-                        class="border-[#007582] border-r-2 border-y-2 p-4 py-2 rounded-r-[6.032px] font-Satoshi500 text-[1.414rem] items-center flex"
-                      >
-                        <Arrow />
-                      </button>
-                      </div>
-                    </div>
-                    <div v-if="loading" class="w-[100%]">
-                      <Loader v-if="loading" class="!flex !items-start !justify-center"/>
-                    </div>
-                  </div>
+                <div v-if="loading" class="w-[100%]">
+                  <Loader v-if="loading" class="!flex !items-start !justify-center"/>
                 </div>
-                <ComingSoon title="Featured Jobs" v-else/>
+                <div v-else>
+                  <div v-if="externalJobs?.data?.length > 0">
+                    <div v-if="filteredJobs?.length < 1" class="w-full h-[20rem] grid place-items-center">
+                      <h3>Sorry!! There are no jobs matching your search parameters at this moment</h3>
+                    </div>
+                    <div v-else>
+                      <div>
+                        <div class=" flex flex-col gap-8">
+                          <ExternalJobCard
+                            class="min-w-[95%] lg:min-w-[45%]"
+                            v-for="item in paginatedJobs"
+                            :key="item"
+                            :job="item"
+                          />
+                        </div>
+                        <div class="mt-12 flex w-[60%] flex-row justify-center mx-auto">
+                        <button
+                          @click="setPage(currentPage - 1)"
+                          class="border-[#007582] border-l-2 border-r-2 border-y-2 p-4 py-2 rounded-l-[6.032px] font-Satoshi500 text-[1.414rem] items-center flex"
+                        >
+                          <Arrow class="rotate-[180deg]"/>
+                        </button>
+                        <button
+                          v-for="pageNumber in displayedPageNumbers"
+                          :key="pageNumber"
+                          :class="[
+                            'border-[#007582] p-4 py-2 font-Satoshi500 text-[1.414rem] items-center flex border-y-2 border-r-2',
+                            pageNumber === currentPage ? 'bg-[#007582] !text-white' : '',
+                          ]"
+                          @click="setPage(pageNumber)"
+                        >
+                          {{ pageNumber }}
+                        </button>
+                        <button
+                          @click="setPage(currentPage + 1)"
+                          class="border-[#007582] border-r-2 border-y-2 p-4 py-2 rounded-r-[6.032px] font-Satoshi500 text-[1.414rem] items-center flex"
+                        >
+                          <Arrow />
+                        </button>
+                        </div>
+                      </div>
+                      <div class="w-[100%]">
+                        <Loader v-if="loading" class="!flex !items-start !justify-center"/>
+                      </div>
+                    </div>
+                  </div>
+                  <ComingSoon title="Featured Jobs" v-else/>
+                </div>
               </template>
               <template #view3>
                 <ComingSoon title="MySpurr Gigs"/>

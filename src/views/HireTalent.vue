@@ -96,6 +96,7 @@ const filters = computed(() => ({
 
 const handleFilter = async () => {
   isLoading.value = true;
+  scrollToTop()
   try {
     await talentsStore.allTalents(1, filters.value);
     isLoading.value = false;
@@ -206,8 +207,18 @@ const displayedPageNumbers = computed(() => {
 });
 
 // You can also watch the currentPage to react to page changes
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth' // Smooth scrolling effect
+  });
+}
+
 watch(currentPage, async (newPage) => {
+  scrollToTop()
+  isLoading.value = true
   await talentsStore.allTalents(newPage, filters.value);
+  isLoading.value = false
 });
 
 const rates = computed(()=>{
