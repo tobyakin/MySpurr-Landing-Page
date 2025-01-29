@@ -19,11 +19,24 @@
                     <span class="text-[0.592rem] leading-[0.911rem] text-[#000] font-SegeoUI capitalize">{{ props.event?.event_time }}</span>
                 </div>
             </div>
-            <a :href="props.event?.youtube_link" v-if="isPastDate(props.event?.event_date, props.event?.event_time)" target="_blank">
-                <div class="event_btn">
+            <a 
+            :href="props.event?.youtube_link" 
+            v-if="isPastDate(props.event?.event_date, props.event?.event_time)" 
+            target="_blank"
+            >
+                <div 
+                    class="event_btn"
+                    :class="{ 'opacity-50 cursor-not-allowed': !(props.event?.youtube_link?.length > 0) }"
+                    :style="{ pointerEvents: !(props.event?.youtube_link?.length > 0) ? 'none' : 'auto' }"
+                >
                     <div class="w-[100%] flex items-center justify-between px-4 py-[0.7rem] bg-[#43D0DF] rounded-[0.46rem] btn-hover-1 cursor-pointer">
-                        <h3 class="reg font-Satoshi700 text-[#000] text-[0.865rem] leading-4 tab:text-[0.7rem]">Watch Replay</h3>
-                        <rightArrowM class="reg"/>
+                    <h3 
+                        class="reg font-Satoshi700 text-[#000] text-[0.865rem] leading-4 tab:text-[0.7rem]"
+                    >
+                        <span v-if="props.event?.youtube_link?.length > 0">Watch Replay</span>
+                        <span v-else>Replay Coming Soon</span>
+                    </h3>
+                    <rightArrowM v-if="props.event?.youtube_link?.length > 0" class="reg"/>
                     </div>
                 </div>
             </a>
