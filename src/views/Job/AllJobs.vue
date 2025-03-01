@@ -280,8 +280,19 @@ const isFilter = computed(()=>{
   }
 })
 
+const pagination = computed(() => {
+  if(activeTab.value === 'myspurr_jobs'){
+    return Job.value?.pagination
+  } else if(activeTab.value === 'featured_jobs'){
+    return externalJobs.value?.pagination 
+  } else {
+    return {}
+  }
+});
+
+
 // const totalPages = computed(() => Math.ceil(Job.value?.length / 2));
-const totalPages = computed(() => Math.ceil(filteredJobs.value?.length / 25));
+const totalPages = computed(() => Math.ceil(pagination.value?.last_page));
 
 // Function to change the current page
 const setPage = (page) => {
@@ -305,13 +316,6 @@ const displayedPageNumbers = computed(() => {
 function getFilteredJobs(){
   return filteredJobs.value
 }
-
-const paginatedJobs = computed(() => {
-  const perPage = 25;
-  const startIndex = (currentPage.value - 1) * perPage;
-  const endIndex = startIndex + perPage;
-  return filteredJobs.value?.slice(startIndex, endIndex);
-});
 
 const scrollToTop = () => {
   window.scrollTo({
@@ -357,6 +361,7 @@ onMounted(async () => {
     await skillsStore.getSkills();
     await jobsStore.allJobs(currentPage.value);
     await jobsStore.allExternalJobs(currentPage.value)
+    console.log(Job.value, externalJobs.value)
     getFilteredJobs()
     console.log(filteredJobs.value)
     console.log(activeTab.value)
@@ -587,7 +592,7 @@ onMounted(async () => {
                         <!-- {{ paginatedJobs }} -->
                         <JobRowCard
                           class="min-w-[95%] lg:min-w-[45%]"
-                          v-for="item in paginatedJobs"
+                          v-for="item in filteredJobs"
                           :key="item"
                           :job="item"
                         />
@@ -628,7 +633,7 @@ onMounted(async () => {
                 <div v-if="loading" class="w-[100%]">
                   <Loader v-if="loading" class="!flex !items-start !justify-center"/>
                 </div>
-                <div v-else>
+                <div v-else class="border border-[red] transitionItem" :class="loading ? 'opacity-0': 'opacity-1'">
                   <div v-if="externalJobs?.data?.length > 0">
                     <div v-if="filteredJobs?.length < 1" class="w-full h-[20rem] grid place-items-center">
                       <h3>Sorry!! There are no jobs matching your search parameters at this moment</h3>
@@ -638,7 +643,7 @@ onMounted(async () => {
                         <div class=" flex flex-col gap-8">
                           <ExternalJobCard
                             class="min-w-[95%] lg:min-w-[45%]"
-                            v-for="item in paginatedJobs"
+                            v-for="item in filteredJobs"
                             :key="item"
                             :job="item"
                           />

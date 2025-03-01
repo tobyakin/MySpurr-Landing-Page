@@ -92,7 +92,7 @@ const filters = computed(() => ({
   employment_type: typeof filterOptions.candidateType === 'string' && filterOptions.candidateType !== "Candidate Type"? filterOptions.candidateType : "",
   salary_min: rateMin.value || "",
   salary_max: rateMax.value || ""
-}));
+}));  
 
 const handleFilter = async () => {
   isLoading.value = true;
