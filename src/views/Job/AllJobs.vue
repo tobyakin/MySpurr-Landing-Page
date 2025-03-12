@@ -633,7 +633,7 @@ onMounted(async () => {
                 <div v-if="loading" class="w-[100%]">
                   <Loader v-if="loading" class="!flex !items-start !justify-center"/>
                 </div>
-                <div v-else class="border border-[red] transitionItem" :class="loading ? 'opacity-0': 'opacity-1'">
+                <div v-else class="transitionItem" :class="loading ? 'opacity-0': 'opacity-1'">
                   <div v-if="externalJobs?.data?.length > 0">
                     <div v-if="filteredJobs?.length < 1" class="w-full h-[20rem] grid place-items-center">
                       <h3>Sorry!! There are no jobs matching your search parameters at this moment</h3>
