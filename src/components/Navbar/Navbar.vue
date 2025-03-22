@@ -154,6 +154,17 @@ const redirectWithSearchQuery = () => {
                   </span>
                 </router-link>
               </li>
+              <li>
+                <router-link
+                  to="/faqs"
+                  :class="route.name === 'FAQs' ? 'text-[#2F929C] ' : ''"
+                  class="p-[10px] pr-0 flex justify-start rounded-[5px]"
+                >
+                  <span class="place-self-center text-[1rem] leading-[21.6px]"
+                    >FAQ
+                  </span>
+                </router-link>
+              </li>
             </ul>
           </div>
           <div class="hidden lg:flex items-center gap-4">
@@ -308,6 +319,18 @@ const redirectWithSearchQuery = () => {
                   </span>
                 </router-link>
               </li>
+              <li>
+                <router-link
+                  to="/faqs"
+                  :class="route.name === 'FAQs' ? 'text-[#2F929C] ' : ''"
+                  class="pt-[10px] pr-0 flex justify-start rounded-[5px]"
+                >
+                  <span class="place-self-center text-[16px] leading-[21.6px]"
+                    >FAQ
+                  </span>
+                </router-link>
+              </li>
+              
             </ul>
             <div class="flex flex-col mt-12 items-center gap-4">
               <a
