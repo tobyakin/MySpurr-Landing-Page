@@ -78,8 +78,8 @@
       :to="{
         name: 'talent-profile',
         params: {
-          id: props?.talent.uniqueId,
-          name: `${props?.talent.first_name}-${props?.talent.last_name}`,
+          id: props?.talent?.uniqueId,
+          name: `${props?.talent?.first_name}-${props?.talent?.last_name}`,
         },
       }"
       class="flex items-center gap-4 mt-6"
