@@ -148,6 +148,13 @@ const handleScreenResize = (event) => {
   }
 };
 
+const resetFilters = () => {
+  Object.keys(filterOptions).forEach(key => filterOptions[key] = "");
+  rateMin.value = null;
+  rateMax.value = null;
+  currentPage.value = 1
+};
+
 const toggleFilter = ()=>{
   showMobFilter.value = false
 }
@@ -228,28 +235,28 @@ const rates = computed(()=>{
 const highestRate = computed(() => Math.max(...(rates.value.length ? rates.value : [0])));
 const lowestRate = computed(() => Math.min(...(rates.value.length ? rates.value : [0])));
 
-const resetFilters = () => {
-  filterOptions.name = "";
-  filterOptions.skills = "Search Skill Categories";
-  filterOptions.location = "Select State";
-  filterOptions.expertLevel = "";
-  filterOptions.qualification = "";
-  filterOptions.candidateType = "";
-  rateMin.value = "";
-  rateMax.value = "";
-  category.value = "";
-  location.value = "";
-  keyword.value = "";
+// const resetFilters = () => {
+//   filterOptions.name = "";
+//   filterOptions.skills = "Search Skill Categories";
+//   filterOptions.location = "Select State";
+//   filterOptions.expertLevel = "";
+//   filterOptions.qualification = "";
+//   filterOptions.candidateType = "";
+//   rateMin.value = "";
+//   rateMax.value = "";
+//   category.value = "";
+//   location.value = "";
+//   keyword.value = "";
 
-  router.push({
-    name: 'hire-talent',
-    query: {}
-  });
+//   router.push({
+//     name: 'hire-talent',
+//     query: {}
+//   });
 
-  if(showMobFilter.value){
-    showMobFilter.value = false
-  }
-};
+//   if(showMobFilter.value){
+//     showMobFilter.value = false
+//   }
+// };
 
 const isFilter = computed(()=>{
   const screenWidth = window.innerWidth
@@ -552,7 +559,7 @@ onMounted(async () => {
                 <span class="text-[#000000] font-Satoshi500">{{talent?.pagination?.total}}</span>
                 candidates found
               </p>
-              <p v-else class="text-[#00000066] font-Satoshi400 text-[1.49rem] mob:text-[1.2rem]">
+              <!-- <p v-else class="text-[#00000066] font-Satoshi400 text-[1.49rem] mob:text-[1.2rem]">
                 All
                 <span v-if="talent?.data?.length > 0" class="text-[#000000] 
                 font-Satoshi500">
@@ -560,7 +567,7 @@ onMounted(async () => {
                 </span>
                 <span v-else class="text-[#000000] 
                 font-Satoshi500">0</span> candidates found
-              </p>
+              </p> -->
             </div>
           </div>
           <div v-if="talent?.data?.length < 1" class="w-full h-[20rem] grid place-items-center">
