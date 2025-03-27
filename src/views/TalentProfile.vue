@@ -38,6 +38,7 @@ const toast = useToast();
 const loading = ref(false);
 const url = import.meta.env.VITE_DASHBOARD;
 const showPopup = ref(false)
+const talentMail = ref('') 
 const redirectToMessage = () => {
   // window.open(url + `messages`, "_blank");
   showPopup.value = true
@@ -65,6 +66,7 @@ onMounted(async () => {
   loading.value = true;
   try {
     await talentsStore.getSingleTalent(route.params.id);
+    talentMail.value = singleTalent.value?.data?.email
     loading.value = false;
   } catch (error) {
     loading.value = false;
@@ -360,8 +362,9 @@ const downloadCV = () => {
     <Footer />
     <transition name="fade">
       <SiginPrompt 
-      v-if="showPopup" 
-      @close="handleClose"
+        v-if="showPopup" 
+        :talentMail="talentMail"
+        @close="handleClose"
       />
     </transition>
   </div>
