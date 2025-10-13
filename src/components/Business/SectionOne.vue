@@ -49,7 +49,7 @@
 <script setup>
 import { images } from "../../imgAsset";
 // import PlayButton from "@/components/icons/playButton.vue";
-const image = 'https://ik.imagekit.io/ldtt3hq8g2/Landing%20Page/For%20Business%20(2).png?updatedAt=1760368929312';
+const image = 'https://ik.imagekit.io/ldtt3hq8g2/Landing%20Page/business.png?updatedAt=1760372224973';
 const dashboardUrl = import.meta.env.VITE_DASHBOARD_HOST;
 </script>
 
