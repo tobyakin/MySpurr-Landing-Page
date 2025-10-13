@@ -45,7 +45,7 @@
   </div>
 </template>
 <script setup>
-const image = 'https://ik.imagekit.io/ldtt3hq8g2/Landing%20Page/learn.webp?updatedAt=1725971048415';
+const image = 'https://ik.imagekit.io/ldtt3hq8g2/Landing%20Page/Courses.png?updatedAt=1760368929777';
 const dashboardUrl = import.meta.env.VITE_DASHBOARD;
 </script>
 
