@@ -49,7 +49,7 @@
 </template>
 <script setup>
 const image = 'https://ik.imagekit.io/ldtt3hq8g2/Landing%20Page/For%20Talents.png?updatedAt=1760368930448';
-const dashboardUrl = import.meta.env.VITE_DASHBOARD;
+const dashboardUrl = import.meta.env.VITE_DASHBOARD_HOST;
 </script>
 
 <style scoped>
