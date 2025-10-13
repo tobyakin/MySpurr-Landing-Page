@@ -10,6 +10,7 @@ import { useJobsStore } from "@/stores/jobs";
 import { useToast } from "vue-toastification";
 import { onMounted } from "vue";
 import { useClipboard } from "@vueuse/core";
+import businessIcon from "@/components/icons/businessIcon.vue";
 
 const toast = useToast();
 let store = useJobsStore();
@@ -32,7 +33,7 @@ const redirectToJobDetails = (business_name, slug) => {
 };
 
 onMounted(() => {
-  source = import.meta.env.VITE_LANDING_PAGE + `job-details/` + props?.job?.slug;
+  source = props?.job?.link;
 });
 
 const { copy, copied, isSupported } = useClipboard({ source });
@@ -62,7 +63,7 @@ const props = defineProps({
 });
 </script>
 <template>
-  <!-- {{props.job}} -->
+    <!-- {{ props.job }} -->
   <div
     class="border-[#254035AB] relative border-[0.735px] bg-white rounded-[7.347px] lg:p-5 p-4 lg:px-6"
   >
@@ -72,18 +73,19 @@ const props = defineProps({
     />
     <div class="flex lg:flex-row flex-col lg:justify-normal justify-center lg:items-start items-center gap-3 w-full">
       <div
-        class="!w-[4rem] h-[4rem] bg-[#EAEAEA] !rounded-[50%] overflow-hidden flex-shrink-0"
+        class="!w-[4rem] h-[4rem] bg-[#EAEAEA] !rounded-[50%] overflow-hidden flex-shrink-0 grid place-items-center"
       >
-        <img
+      <businessIcon class="w-[2rem] h-[2rem] text-[#c6bbbb]"/>
+        <!-- <img
           class="w-full h-full object-cover"
           :src="props?.job?.company?.logo"
-          :alt="props?.job?.company?.business_name"
-        />
+          :alt="props?.job?.company_name"
+        /> -->
       </div>
       <div class="flex-1">
-        <div class="flex lg:justify-start justify-center items-center gap-1 cursor-pointer" @click="redirectToProfile(props?.job?.company?.business_name, props?.job?.id)">
+        <div class="flex lg:justify-start justify-center items-center gap-1 cursor-pointer">
           <p class="text-[13.021px] font-Satoshi500 flex text-[#2F929C]">
-            {{ props?.job?.company?.business_name }}
+            {{ props?.job?.company_name }}
           </p>
           <div v-if="props?.job?.verify" class="flex mt-1 gap-1">
             <VerifyIcon class="w-4" />
@@ -97,10 +99,10 @@ const props = defineProps({
             class="flex items-center w-full lg:w-auto lg:justify-normal justify-center gap-2 lg:gap-14"
           >
             <p class="text-[13.021px] font-Satoshi500 text-[#000000]">
-              {{ props?.job?.job_title }}
+              {{ props?.job?.title }}
             </p>
             <button
-              class="bg-[#EDF0B8] font-Satoshi500 lg:text-[0.61rem] text-[0.4rem] p-2 lg:px-6 text-[#000000] rounded-full"
+              class="bg-[#EDF0B8] font-Satoshi500 lg:text-[9.708px] !text-[0.975rem] py-[0.2rem] px-4 text-[#fff] rounded-full"
             >
               {{ props?.job?.job_type }}
             </button>
@@ -118,20 +120,20 @@ const props = defineProps({
               <p class="text-[1.1rem] font-Satoshi500 text-[#244034B2]">
                 {{ props?.job?.currency }} {{ store.abbr(props?.job?.salary_min, 2) }}-
                 {{ store.abbr(props?.job?.salary_max, 2) }}/
-                {{ props?.job?.salaray_type }}
+                {{ props?.job?.salary_type }}
               </p>
             </div>
             <div class="flex lg:flex-row flex-col gap-2 items-center">
               <div
-                class="flex gap-1 text-[0.63rem] lg:text-[0.83rem] text-[#DA5252] items-center font-Satoshi500"
+                class="flex gap-1 text-[10px] lg:text-[0.83rem] text-[#DA5252] items-center font-Satoshi500"
               >
                 <CalenderIcon /><span class="py-[0.25px]">{{ props?.job?.date_created }}</span>
               </div>
               <div
-                class="flex gap-1 text-[0.63rem] lg:text-[0.83rem] text-[#DA5252] items-center font-Satoshi500"
+                class="flex gap-1 text-[10px] lg:text-[0.83rem] text-[#DA5252] items-center font-Satoshi500"
               >
                 <LocationIcon /><span class="py-[0.25px]"
-                  >{{ props?.job?.state }}, {{ props?.job?.country }}</span
+                  >{{ props?.job?.location }}</span
                 >
               </div>
               <!-- <div
@@ -146,7 +148,7 @@ const props = defineProps({
               <div
                 v-for="skill in props?.job?.skills"
                 :key="skill"
-                class="bg-[#F2F3EF] font-Satoshi500 text-[0.63rem] lg:text-[0.76rem] uppercase p-[4px] lg:px-6 px-4 text-[#64665D] rounded-full"
+                class="bg-[#F2F3EF] font-Satoshi500 text-[10px] lg:text-[0.76rem] uppercase p-[4px] lg:px-6 px-4 text-[#64665D] rounded-full"
               >
                 {{ skill.name }}
               </div>
@@ -160,12 +162,13 @@ const props = defineProps({
                   <SearchIcon />
                 </button>
               </div>
-              <button
-                @click="redirectToJobDetails(props?.job?.company?.business_name, props?.job?.slug)"
-                class="font-Satoshi500 bg-[#43D0DF] text-[0.61rem] p-3 px-12 !text-white rounded-full btn-hover-1"
-              >
-                <span>Apply</span>
-              </button>
+              <a :href="props?.job?.link" target="_blank">
+                  <button
+                    class="font-Satoshi500 bg-[#43D0DF] !text-[0.9rem] p-[0.5rem] px-12 !text-white rounded-full btn-hover-1"
+                  >
+                    <span>Apply</span>
+                  </button>
+              </a>
             </div>
           </div>
         </div>

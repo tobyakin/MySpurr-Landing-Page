@@ -88,7 +88,7 @@
           Do you want to post a job for your company?
           <span class="text-dimBrand">We can help.</span
           ><a
-            :href="dashboardUrl + 'signup'"
+            href="https://zcal.co/myspurr/30min"
             target="_blank"
             class="text-dimBrand font-Satoshi400 underline"
             >Click here</a
@@ -110,7 +110,7 @@ import Loader from "@/components/UI/Loader/Loader.vue";
 const jobsStore = useJobsStore();
 const { Job } = storeToRefs(jobsStore);
 const loading = ref(false);
-const dashboardUrl = import.meta.env.VITE_DASHBOARD;
+const dashboardUrl = import.meta.env.VITE_DASHBOARD_HOST;
 
 const slugify = (text) => {
   return text

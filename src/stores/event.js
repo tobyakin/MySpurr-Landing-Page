@@ -5,7 +5,7 @@ import { getAllEvents, getOneEventSlug, getAllRelated, registerEvent } from '@/s
 export const useEventStore = defineStore('event', () => {
 
     const event = ref([])
-    const singleEventSlug = ref({})
+    const singleEvent = ref({})
     const getRelatedEvent = ref([])
 
     const registerEventData = ref({
@@ -29,8 +29,8 @@ export const useEventStore = defineStore('event', () => {
 
     const handleGetEventDetailsBySlug = async (slug) => {
         try {
-            singleEventSlug.value = await getOneEventSlug(slug)
-            return singleEventSlug.value
+            singleEvent.value = await getOneEventSlug(slug)
+            return singleEvent.value
         } catch (error) {
             console.error(error)
         }
@@ -70,7 +70,8 @@ export const useEventStore = defineStore('event', () => {
         handleGetEventDetailsBySlug,
         related,
         handleRegisterEvent,
-        registerEventData
+        registerEventData,
+        singleEvent
     }
 
 

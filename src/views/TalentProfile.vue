@@ -358,10 +358,12 @@ const downloadCV = () => {
       </div>
     </div>
     <Footer />
-    <SiginPrompt 
-    v-if="showPopup" 
-    @close="handleClose"
-    />
+    <transition name="fade">
+      <SiginPrompt 
+      v-if="showPopup" 
+      @close="handleClose"
+      />
+    </transition>
   </div>
 </template>
 

@@ -6,7 +6,7 @@ import Footer from "@/components/Footer.vue";
 import SectionOne from "@/components/Business/SectionOne.vue";
 import SectionTwo from "@/components/Business/SectionTwo.vue";
 import SectionThree from "@/components/Business/SectionThree.vue";
-import SectionFour from "@/components/Home/SectionFour.vue";
+import SectionFour from "@/components/Business/SectionFour.vue";
 import SectionFive from "@/components/Business/SectionFive.vue";
 import SectionSix from "@/components/Business/SectionSix.vue";
 import SectionSeven from "@/components/Home/SectionSeven.vue";

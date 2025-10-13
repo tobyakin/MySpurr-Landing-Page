@@ -78,10 +78,17 @@ const updateDisplayedPageNumbers = () => {
   displayedPageNumbers.value = Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
 };
 
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth' // Smooth scrolling effect
+  });
+}
+
 const goToPage = (page) => {
   if (page >= 1 && page <= totalPages.value) {
     currentPage.value = page;
-
+    scrollToTop()
     // Set items per page
     const itemsPerPage = 9;
     const start = (currentPage.value - 1) * itemsPerPage;

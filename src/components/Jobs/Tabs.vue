@@ -10,8 +10,8 @@
       </a>
       <a
         class=""
-        @click="activateTab('branding_jobs')"
-        :class="[activetab === 'branding_jobs' ? 'active' : '']"
+        @click="activateTab('featured_jobs')"
+        :class="[activetab === 'featured_jobs' ? 'active' : '']"
       >
         <slot name="tab2"></slot>
       </a>
@@ -28,7 +28,7 @@
       <div v-if="activetab === 'myspurr_jobs'" class="">
         <slot name="view1"></slot>
       </div>
-      <div v-if="activetab === 'branding_jobs'" class="">
+      <div v-if="activetab === 'featured_jobs'" class="">
         <slot name="view2"></slot>
       </div>
       <div v-if="activetab === 'myspurr_gigs'" class="">
@@ -39,13 +39,37 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
+import { useRoute, useRouter } from "vue-router";
 
-const activetab = ref("myspurr_jobs");
+const emit = defineEmits(['currentTab'])
+const router = useRouter()
+const route = useRoute()
+const activetab = ref("");
+
+const assignQuery = ()=>{
+  router.push({
+    name: 'jobs',
+    query: {
+      tab: activetab.value
+    }
+  });
+}
 
 function activateTab(tab) {
   activetab.value = tab;
+  assignQuery()
+  emit("currentTab", tab)
 }
+
+onMounted(()=>{
+  if(route.query.tab){
+    activetab.value = route.query.tab
+  } else {
+    activetab.value = 'myspurr_jobs'
+  }
+  assignQuery()
+})
 </script>
 <style scoped>
 /* Style the jobs_tabs */
@@ -54,7 +78,7 @@ function activateTab(tab) {
   padding-bottom: 0 !important;
   scroll-padding-bottom: 0;
   text-transform: capitalize !important;
-  @apply text-[0.88rem] leading-[1.14rem] font-Satoshi500 bg-none;
+  /* @apply text-[0.88rem] leading-[1.14rem] font-Satoshi500 bg-none; */
 }
 
 .jobs_tabs::-webkit-scrollbar {

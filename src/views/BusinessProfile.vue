@@ -199,10 +199,12 @@
       <!-- </template>
       </Vue3Html2pdf> -->
       <Footer />
-      <SiginPrompt 
-      v-if="showPopup" 
-      @close="handleClose"
-      />
+      <transition name="fade">
+        <SiginPrompt 
+        v-if="showPopup" 
+        @close="handleClose"
+        />
+      </transition>
     </div>
   </template>
 
