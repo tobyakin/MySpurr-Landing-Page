@@ -10,6 +10,7 @@ import SectionFour from "@/components/Business/SectionFour.vue";
 import SectionFive from "@/components/Business/SectionFive.vue";
 import SectionSix from "@/components/Business/SectionSix.vue";
 import SectionSeven from "@/components/Home/SectionSeven.vue";
+
 const siteData = reactive({
   title: `MySpurr | Business`,
   description: ``,
@@ -29,6 +30,7 @@ useHead({
     },
   ],
 });
+
 </script>
 
 <template>
