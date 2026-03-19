@@ -6,7 +6,7 @@ import { useRoute } from 'vue-router'
 import BlogCard from '@/components/Blog/BlogCard.vue'
 import { useBlogStore } from '../../stores/blog';
 import Loader from "@/components/UI/Loader/Loader.vue";
-import { useHead } from '@vueuse/head'
+import { useHead } from '@unhead/vue'
 // import { storeToRefs } from "pinia";
 // import dayjs from "dayjs";
 // import { useFaqStore } from "@/stores/faq";

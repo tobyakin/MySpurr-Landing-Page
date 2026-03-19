@@ -14,7 +14,7 @@
   "dependencies": {
     "@unhead/vue": "^3.0.0-beta.9",
     "@vueuse/core": "^11.1.0",
-    "@vueuse/head": "^0.9.8",
+    "@unhead/vue": "^0.9.8",
     "animate.css": "^4.1.1",
     "ant-design-vue": "^4.2.5",
     "axios": "^1.12.0",

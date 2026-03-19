@@ -9,7 +9,7 @@ import BlogCard from '@/components/Blog/BlogCard.vue';
 import { useBlogStore } from '../../stores/blog';
 import Loader from "@/components/UI/Loader/Loader.vue";
 import WorkFlow from '@/components/Bander/WorkFlow.vue';
-import { useHead } from '@vueuse/head';
+import { useHead } from '@unhead/vue';
 
 const tab = ref('ALL');
 const allBlog = ref([]);

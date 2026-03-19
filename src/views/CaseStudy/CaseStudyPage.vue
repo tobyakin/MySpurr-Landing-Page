@@ -1,5 +1,5 @@
 <script setup>
-import { useHead } from "@vueuse/head";
+import { useHead } from "@unhead/vue";
 import SearchBarIcon from "@/components/icons/searchBarIcon.vue";
 import Navbar from "@/components/Navbar/Navbar.vue";
 import Footer from "@/components/Footer.vue";

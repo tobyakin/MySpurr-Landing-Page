@@ -7,7 +7,7 @@ import {
   onUnmounted,
   defineAsyncComponent,
 } from "vue";
-import { useHead } from "@vueuse/head";
+import { useHead } from "@unhead/vue";
 import SiginPrompt from "@/components/UI/SiginPrompt.vue";
 import { storeToRefs } from "pinia";
 import JobAvater from "@/components/Avater/JobAvater.vue";

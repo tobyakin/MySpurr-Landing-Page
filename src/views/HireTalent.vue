@@ -2,7 +2,7 @@
 import Navbar from "@/components/Navbar/Navbar.vue";
 import Footer from "@/components/Footer.vue";
 import { onMounted, computed, reactive, ref, watch, onUnmounted } from "vue";
-import { useHead } from "@vueuse/head";
+import { useHead } from "@unhead/vue";
 import { storeToRefs } from "pinia";
 import GoPro from "@/components/Bander/GoPro.vue";
 import Arrow from "@/components/icons/paginationArrow.vue";

@@ -21,7 +21,7 @@
    import LinkedinIcon from "@/components/icons/eventLinkedinIcon.vue"
    import twitterIcon from "@/components/icons/eventTwitterIcon.vue";
    import { ref } from "vue";
-   import { useHead } from '@vueuse/head';
+   import { useHead } from '@unhead/vue';
 
     const title = ref('MySpurr');
     const description = ref('Career Coaching for Creatives: Your Path to Professional Excellence');
