@@ -11,16 +11,15 @@ import SectionSeven from "@/components/Home/SectionSeven.vue";
 import WorkFlow from "@/components/Bander/WorkFlow.vue";
 
 const siteData = reactive({
-  title: `MySpurr | Creative talent hiring`,
-  description: ``,
+  title: 'MySpurr | Creative talent hiring',
+  description: '',
 });
 
 useHead({
-  // Can be static or computed
   title: computed(() => siteData.title),
   meta: [
     {
-      name: `description`,
+      name: 'description',
       content: computed(() => siteData.description),
     },
     {

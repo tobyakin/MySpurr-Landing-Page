@@ -5,7 +5,7 @@ import { createPinia } from 'pinia'
 import 'animate.css'
 import Toast, { POSITION } from 'vue-toastification'
 import 'vue-toastification/dist/index.css'
-import { createUnhead } from '@unhead/vue';
+import { createHead } from '@unhead/vue/client'
 //import Vue3Autocounter from 'vue3-autocounter'
 import { VueQueryPlugin } from 'vue-query'
 import Antd from 'ant-design-vue'
@@ -15,7 +15,7 @@ import App from './App.vue'
 import router from './router'
 
 const app = createApp(App)
-const head = createUnhead();
+const head = createHead();
 
 app.use(head);
 
