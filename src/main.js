@@ -6,7 +6,7 @@ import 'animate.css'
 import Toast, { POSITION } from 'vue-toastification'
 import 'vue-toastification/dist/index.css'
 //import Vue3Autocounter from 'vue3-autocounter'
-import { createHead } from '@unhead/vue'
+import { createUnhead, UnheadPlugin } from '@unhead/vue'
 import { VueQueryPlugin } from 'vue-query'
 import Antd from 'ant-design-vue'
 import 'ant-design-vue/dist/reset.css'
@@ -17,7 +17,7 @@ import router from './router'
 const app = createApp(App)
 const head = createHead();
 
-app.use(head);
+app.use(UnheadPlugin) 
 
 app.use(Toast, { position: POSITION.TOP_RIGHT })
 //app.component('vue3-autocounter', Vue3Autocounter)
