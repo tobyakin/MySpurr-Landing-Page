@@ -12,7 +12,7 @@
           Super charge your <br class="md:block hidden" />
           creative career
         </h1>
-        <p class="text-[22px] text-white font-Satoshi400 !my-8 md:!my-6">
+        <p class="text-[22px] text-white font-normal !my-8 md:!my-6">
           Find creative job opportunities, build your portfolio
           <br class="md:block hidden" />
           and enhance your skills with MySpurr
@@ -22,7 +22,7 @@
             target="_blank"
             :href="dashboardUrl + 'signup'"
             role="button"
-            class="btn-brand lg:!px-[10px] !px-0 items-center flex lg:w-[40%] lg:!text-base justify-center !text-[12px] w-full !font-Satoshi400"
+            class="btn-brand lg:!px-[10px] !px-0 items-center flex lg:w-[40%] lg:!text-base justify-center !text-[12px] w-full font-normal"
           >
             Sign up for free
           </a>
@@ -30,7 +30,7 @@
             href="https://youtu.be/S3ySCHITHnc?si=s4Lm5pgEROZj5xKI"
             target="_blank"
             role="button"
-            class="btn-light-border !rounded-full lg:!px-[10px] !px-0 justify-center lg:!text-base !text-[10px] flex lg:w-[40%] w-full font-Satoshi400"
+            class="btn-light-border !rounded-full lg:!px-[10px] !px-0 justify-center lg:!text-base !text-[10px] flex lg:w-[40%] w-full font-normal"
           >
             Watch video
           </a>
