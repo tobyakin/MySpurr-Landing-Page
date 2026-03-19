@@ -11,7 +11,7 @@
           Elevate your skills, guided <br class="md:block hidden" />
           by industry experts
         </h1>
-        <p class="text-[22px] text-white font-Satoshi400 !my-8 md:!my-6">
+        <p class="text-[22px] text-white font-normal !my-8 md:!my-6">
           Gain practical knowledge and resources, enabling and forge
           <br class="md:block hidden" />a successful career in the dynamic world of
           creativity.
@@ -21,13 +21,13 @@
             target="_blank"
             :href="dashboardUrl + 'signup'"
             role="button"
-            class="btn-brand lg:!px-[10px] !px-0 items-center flex lg:w-[30%] lg:!text-base justify-center !text-[12px] w-full !font-Satoshi400"
+            class="btn-brand lg:!px-[10px] !px-0 items-center flex lg:w-[30%] lg:!text-base justify-center !text-[12px] w-full font-normal"
           >
             Sign up for free
           </a>
           <a
             role="button"
-            class="btn-light-border !rounded-full lg:!px-[10px] !px-0 justify-center lg:!text-base !text-[10px] flex lg:w-[30%] w-full font-Satoshi400"
+            class="btn-light-border !rounded-full lg:!px-[10px] !px-0 justify-center lg:!text-base !text-[10px] flex lg:w-[30%] w-full font-normal"
           >
             Watch demo
           </a>

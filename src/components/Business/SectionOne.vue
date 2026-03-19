@@ -11,7 +11,7 @@
           Connect with the world's <br class="md:block hidden" />
           top creative talent
         </h1>
-        <p class="text-[22px] text-white font-Satoshi400 !my-8 md:!my-6">
+        <p class="text-[22px] text-white font-normal !my-8 md:!my-6">
           Find creative talents, manage jobs, and complete your
           <br class="md:block hidden" />
           projects with MySpurr
@@ -21,13 +21,13 @@
             target="_blank"
             :href="dashboardUrl + 'signup'"
             role="button"
-            class="btn-brand lg:!px-[10px] !px-0 items-center flex lg:w-[30%] lg:!text-base justify-center !text-[12px] w-full !font-Satoshi400"
+            class="btn-brand lg:!px-[10px] !px-0 items-center flex lg:w-[30%] lg:!text-base justify-center !text-[12px] w-full font-normal"
           >
             Sign up for free
           </a>
           <a
             role="button"
-            class="btn-light-border !rounded-full lg:!px-[10px] !px-0 justify-center lg:!text-base !text-[10px] flex lg:w-[30%] w-full font-Satoshi400"
+            class="btn-light-border !rounded-full lg:!px-[10px] !px-0 justify-center lg:!text-base !text-[10px] flex lg:w-[30%] w-full font-normal"
             href="https://zcal.co/myspurr/30min"
             target="_blank"
           >

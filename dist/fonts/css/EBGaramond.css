@@ -1,0 +1,138 @@
+
+
+/**
+* This is a variable font
+* You can controll variable axes as shown below:
+* font-variation-settings: 'wght' 900.0;
+*
+* available axes:
+
+* 'wght' (range from 300.0 to 900.0)
+
+*/
+
+/* @font-face {
+    font-family: 'EBGaramond-Variable';
+    src: url('../public/fonts/fonts/EBGaramond-Variable.woff2') format('woff2'),
+        url('../public/fonts/fonts/EBGaramond-Variable.woff') format('woff'),
+        url('../public/fonts/fonts/EBGaramond-Variable.ttf') format('truetype');
+    font-weight: 300 900;
+    font-display: swap;
+    font-style: normal;
+} */
+
+
+/**
+* This is a variable font
+* You can controll variable axes as shown below:
+* font-variation-settings: 'wght' 900.0;
+*
+* available axes:
+
+* 'wght' (range from 300.0 to 900.0)
+
+*/
+
+/* @font-face {
+    font-family: 'EBGaramond-VariableItalic';
+    src:
+        url('../public/fonts/fonts/EBGaramond-VariableItalic.ttf') format('truetype');
+    font-weight: 300 900;
+    font-display: swap;
+    font-style: italic;
+} */
+
+
+/* @font-face {
+    font-family: 'EBGaramond-Light';
+    src:
+        url('../public/fonts/fonts/EBGaramond-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-display: swap;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'EBGaramond-LightItalic';
+    src: url('../public/fonts/fonts/EBGaramond-LightItalic.woff2') format('woff2'),
+        url('../public/fonts/fonts/EBGaramond-LightItalic.woff') format('woff'),
+        url('../public/fonts/fonts/EBGaramond-LightItalic.ttf') format('truetype');
+    font-weight: 300;
+    font-display: swap;
+    font-style: italic;
+} */
+
+
+@font-face {
+    font-family: 'EBGaramond-Regular';
+    src:
+        url('/public/fonts/fonts/EBGaramond-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-display: swap;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'EBGaramond-Italic';
+    src:
+        url('/public/fonts/fonts/EBGaramond-Italic.ttf') format('truetype');
+    font-weight: 400;
+    font-display: swap;
+    font-style: italic;
+}
+
+
+@font-face {
+    font-family: 'EBGaramond-Medium';
+    src:
+        url('../public/fonts/fonts/EBGaramond-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-display: swap;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'EBGaramond-MediumItalic';
+    src:
+        url('../public/fonts/fonts/EBGaramond-MediumItalic.ttf') format('truetype');
+    font-weight: 500;
+    font-display: swap;
+    font-style: italic;
+}
+
+
+@font-face {
+    font-family: 'EBGaramond-Bold';
+    src: url('../public/fonts/fonts/EBGaramond-Bold.woff2') format('woff2'),
+        url('../public/fonts/fonts/EBGaramond-Bold.woff') format('woff'),
+        url('../public/fonts/fonts/EBGaramond-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-display: swap;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'EBGaramond-BoldItalic';
+    src: url('../public/fonts/fonts/EBGaramond-BoldItalic.woff2') format('woff2'),
+        url('../public/fonts/fonts/EBGaramond-BoldItalic.woff') format('woff'),
+        url('../public/fonts/fonts/EBGaramond-BoldItalic.ttf') format('truetype');
+    font-weight: 700;
+    font-display: swap;
+    font-style: italic;
+}
+
+
+
+
+/* @font-face {
+    font-family: 'EBGaramond-BlackItalic';
+    src: 
+        url('../public/fonts/fonts/EBGaramond-BlackItalic.ttf') format('truetype');
+    font-weight: 900;
+    font-display: swap;
+    font-style: italic;
+} */
