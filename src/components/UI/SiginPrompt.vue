@@ -24,7 +24,7 @@
                      <a
                      role="button"
                      target="_blank"
-                     :href="dashboardUrl + 'login'"
+                     :href="dashboardUrl + 'login' + `?redirectTo=messages&talentId=${props.talentMail}`"
                      class="btn-light font-Satoshi500 !text-[1rem]"
                      >
                      Sign in
@@ -48,6 +48,7 @@
 import logoIcon from '../icons/logoIcon.vue';
 
 const emits = defineEmits(['close', 'signin', 'signup'])
+const props = defineProps(['talentMail'])
 
 const handleClose = ()=>{
     emits('close')
@@ -58,8 +59,8 @@ const handleClose = ()=>{
 // const handleSignUp = ()=>{
 //     emits('signup')
 // }
-
 const dashboardUrl = import.meta.env.VITE_DASHBOARD_HOST;
+
 
 </script>
 
