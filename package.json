@@ -12,6 +12,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@tanstack/vue-query": "^5.95.2",
     "@unhead/vue": "^2.1.12",
     "@vueuse/core": "^11.1.0",
     "@vueuse/head": "^0.9.8",
@@ -28,7 +29,6 @@
     "unhead": "^2.1.12",
     "vue": "^3.5.8",
     "vue-facing-decorator": "^3.0.3",
-    "vue-query": "^1.26.0",
     "vue-router": "^4.4.5",
     "vue-slider-component": "^3.2.24",
     "vue-toastification": "^2.0.0-rc.5"

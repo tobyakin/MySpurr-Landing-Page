@@ -12,7 +12,7 @@ import Arrow from "@/components/icons/paginationArrow.vue";
 import { usePorfolioStore } from "@/stores/portfolios";
 const PorfolioStore = usePorfolioStore();
 const { talentPortfolios } = storeToRefs(PorfolioStore);
-import { useQuery } from "vue-query";
+import { useQuery } from '@tanstack/vue-query'
 import Loader from "@/components/UI/Loader/Loader.vue";
 
 const tab = ref("ALL");
