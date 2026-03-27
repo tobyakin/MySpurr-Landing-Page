@@ -7,7 +7,7 @@ import Toast, { POSITION } from 'vue-toastification'
 import 'vue-toastification/dist/index.css'
 import { createHead } from '@unhead/vue/client'
 //import Vue3Autocounter from 'vue3-autocounter'
-import { VueQueryPlugin } from 'vue-query'
+import { VueQueryPlugin } from '@tanstack/vue-query'
 import Antd from 'ant-design-vue'
 import 'ant-design-vue/dist/reset.css'
 
